@@ -1,0 +1,25 @@
+/* font-family: 'Alegreya Sans SC', sans-serif;
+font-family: 'Cinzel', serif;
+font-family: 'Raleway', sans-serif; */
+
+:root {
+
+    /*
+    Color palette
+    */
+        --primary: #181818;
+        --secondary: white;
+        --accent: #7E001E;
+        --accent_fade: #7e001d88;
+        --neutral: #D9D9D9;
+   
+
+    /*
+    Fonts
+    */
+
+      --font-title: 'Cinzel', serif;
+      --font-ss: 'Raleway', sans-serif;
+
+
+}
