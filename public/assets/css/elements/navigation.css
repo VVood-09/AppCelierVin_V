@@ -3,9 +3,14 @@
 
 header{
     background-color: var(--accent);
+    display: flex;
+    justify-content: center;
+
+   padding: var(--espacements-small) ;
 }
 header span svg{
         width: 40px;
+         
     }
 
 /*------------------ nav----------------------- */
@@ -14,7 +19,7 @@ footer nav{
   display: flex;
   justify-content: space-between;
     overflow: hidden;
-    background-color: #181818;
+    background-color: var(--primary);
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -39,19 +44,19 @@ footer nav a {
   }
 
   footer nav a:first-child{
-    margin-left: 15px;
+    margin-left: var(--small);
   }
   footer nav a:last-child{
-    margin-right: 15px;
+    margin-right: var(--small);
   }
 
   footer nav a:hover {
-    background: #ddd;
-    color: black;
+    background: var(--neutral);
+    color: var(--primary);
   }
 main{
-    padding: 16px;
-    margin-bottom: 30px;
+    padding: var(--small);
+    margin-bottom: var(--medium);
  
 }
 

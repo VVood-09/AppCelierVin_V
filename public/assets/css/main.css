@@ -9,7 +9,7 @@
 
 /*-------- Import composants---------*/
 /* !! LES FICHIERS NE SONT PAS CRÉÉS, DONC PAS ENCORE LIÉS !! */
-@import "./composants/bouteille/               ";
+@import "./composants/liste_celliers.css";
 @import "./composants/utilisateur/                ";
 @import "./composants/cellier/                  ";
 

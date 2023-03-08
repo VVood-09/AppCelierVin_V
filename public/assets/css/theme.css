@@ -20,6 +20,15 @@ font-family: 'Raleway', sans-serif; */
 
       --font-title: 'Cinzel', serif;
       --font-ss: 'Raleway', sans-serif;
+      
+    /*
+    Espacements
+    */
+    --espacements-x_small: 5px;
+    --espacements-small:15px;
+    --espacements-medium:30px;
+    --espacements-large:60px;
+    --espacements-x_large:120px;
 
 
 }
