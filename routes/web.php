@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\CellierController;
+Use App\Http\Controllers\VinController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,5 +23,7 @@ Use App\Http\Controllers\CellierController;
 // })->middleware(['auth'])->name('dashboard');
 
 Route::get('dashboard', [CellierController::class, 'index'])->name('dashboard');
-
+Route::get('ajouter-bouteille', [VinController::class, 'ajouterBtl'])->name('ajouter-bouteille');
+Route::get('fiche-bouteille', [VinController::class, 'showBtl'])->name('fiche-bouteille');
+Route::get('modifier-bouteille', [VinController::class, 'editBtl'])->name('modifier-bouteille');
 require __DIR__.'/auth.php';

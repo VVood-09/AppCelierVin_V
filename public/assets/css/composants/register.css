@@ -1,0 +1,15 @@
+
+.register_section{
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   margin-top: var(--espacements-large);
+}
+
+.register_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+ 
+     margin-top: var(--espacements-medium);
+}
