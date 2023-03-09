@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cellier;
+use App\Models\ListeBouteille;
+use App\Models\Bouteille;
 use App\Models\Commentaire;
 use App\Models\Note;
 use App\Models\Provenance;
@@ -20,8 +22,6 @@ class CellierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-
-        
         $celliers = Cellier::with('user')->get();
         return view("users.dashboard", ['celliers'=>$celliers]);
     }
@@ -72,17 +72,22 @@ class CellierController extends Controller
         return redirect(route('dashboard'))->withSuccess('Nouveau cellier créé'); 
     }
 
-    //  /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\Student  $student
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(Cellier $cellier)
-    // {
-    //        //select * from blog_posts where id = $student" 
-    //     return view('cellier.show', ['student' => $student]);
-    // }
+     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Student  $student
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Cellier $cellier)
+    {
+
+        $bouteilles = ListeBouteille::with('bouteilles')
+             ->join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
+             ->select('bouteilles.*')
+             ->get();
+
+        return view('cellier.show', ['bouteilles' => $bouteilles]);
+    }
 
 
 //      /**

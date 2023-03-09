@@ -38,7 +38,7 @@
 
         <div class="grid__celliers">
         @forelse($celliers as $cellier)
-                <div class="card__cellier"><a href="">{{ $cellier->nom }}</a></div>
+                <div class="card__cellier"><a href="{{ route('cellier.show', $cellier->id)}}">{{ $cellier->nom }}</a></div>
                
                 @empty
                 <div>Aucun cellier</div>
