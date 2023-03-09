@@ -26,7 +26,7 @@
 
             <div>
                 <h1>Mes Celliers</h1>
-                    <a href=""><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2"><path d="M16 29a13 13 0 1 1 13-13 13 13 0 0 1-13 13Zm0-24a11 11 0 1 0 11 11A11 11 0 0 0 16 5Z" fill="#7e001e" class="fill-000000"></path><path d="M16 23a1 1 0 0 1-1-1V10a1 1 0 0 1 2 0v12a1 1 0 0 1-1 1Z" fill="#7e001e" class="fill-000000"></path><path d="M22 17H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2Z" fill="#7e001e" class="fill-000000"></path></g><path d="M0 0h32v32H0z" fill="none"></path></svg></a> <!-- modal ajout cellier !!-->
+                    <a href="{{ route('cellier.create') }}"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2"><path d="M16 29a13 13 0 1 1 13-13 13 13 0 0 1-13 13Zm0-24a11 11 0 1 0 11 11A11 11 0 0 0 16 5Z" fill="#7e001e" class="fill-000000"></path><path d="M16 23a1 1 0 0 1-1-1V10a1 1 0 0 1 2 0v12a1 1 0 0 1-1 1Z" fill="#7e001e" class="fill-000000"></path><path d="M22 17H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2Z" fill="#7e001e" class="fill-000000"></path></g><path d="M0 0h32v32H0z" fill="none"></path></svg></a> <!-- modal ajout cellier !!-->
                 </div>
 
                 <div>
@@ -37,14 +37,12 @@
             </div>
 
         <div class="grid__celliers">
-        
-                <div class="card__cellier"><a href="">Maison</a></div>
-                <div class="card__cellier"><a href="">Maison2</a></div>
-                <div class="card__cellier"><a href="">Maison3</a></div>
-                <div class="card__cellier"><a href="">Maison4</a></div>
-                <div class="card__cellier"><a href="">Maison5</a></div>
-                <div class="card__cellier"><a href="">Maison6</a></div>
-                <div class="card__cellier"><a href="">Maison7</a></div>
+        @forelse($celliers as $cellier)
+                <div class="card__cellier"><a href="">{{ $cellier->nom }}</a></div>
+               
+                @empty
+                <div>Aucun cellier</div>
+                @endforelse
 
         
             </div>

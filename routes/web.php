@@ -23,4 +23,7 @@ Use App\Http\Controllers\CellierController;
 
 Route::get('dashboard', [CellierController::class, 'index'])->name('dashboard');
 
+Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
+Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
+
 require __DIR__.'/auth.php';
