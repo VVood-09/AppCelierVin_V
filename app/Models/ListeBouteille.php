@@ -18,4 +18,9 @@ class ListeBouteille extends Model
         'bouteille_id',
         'cellier_id',
     ];
+
+    public function bouteilles()
+    {
+        return $this->belongsTo(Cellier::class);
+    }
 }
