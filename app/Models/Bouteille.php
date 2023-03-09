@@ -20,12 +20,10 @@ class Bouteille extends Model
         'code_saq',
         'pays',
         'description',
-        'prix_saq',
+        'prix',
         'url_saq',
-        'url_img',
         'format',
-        'provenance_id',
-        'type_id',
+        'type',
     ];
 
      public function infos()
