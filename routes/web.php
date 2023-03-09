@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\CellierController;
+Use App\Http\Controllers\VinController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,8 +24,14 @@ Use App\Http\Controllers\CellierController;
 
 Route::get('dashboard', [CellierController::class, 'index'])->name('dashboard');
 
+
 Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
 Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
 Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');
+
+Route::get('ajouter-bouteille', [VinController::class, 'ajouterBtl'])->name('ajouter-bouteille');
+Route::get('fiche-bouteille', [VinController::class, 'showBtl'])->name('fiche-bouteille');
+Route::get('modifier-bouteille', [VinController::class, 'editBtl'])->name('modifier-bouteille');
+
 
 require __DIR__.'/auth.php';
