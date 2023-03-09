@@ -2,12 +2,13 @@
 @extends('layouts.app')
 @section('title', 'Login')
 @section('content')
-<x-guest-layout>
-    <x-auth-card>
+
+    <section class="register_section"  >
+        <h1>S'inscrire</h1>
      
 
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <div class="register_form" :errors="$errors" >
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -51,10 +52,10 @@
                 </a>
 
                 <x-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __("S'inscrire") }}
                 </x-button>
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+  </div>
+</section>
 @endsection

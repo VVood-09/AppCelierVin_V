@@ -1,13 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Login')
 @section('content')
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="" />
-            </a>
-        </x-slot>
+<section class="login_section">
+    <h1>Connexion</h1>
+    <div>
+      
 
         <!-- Session Status -->
         <x-auth-session-status class="" :status="session('status')" />
@@ -15,46 +12,53 @@
 
         <x-auth-validation-errors class="" :errors="$errors" />
 
-        <form method="POST" action="{{ route('login') }}">
+        <form class="login_form" method="POST" action="{{ route('login') }}">
             @csrf
 
          
             <div>
                
 
-                <x-input placeholder='Email' id="email" class="login_email" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input placeholder='Email' id="email"  class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
          
             <div class="">
               
 
-                <x-input placeholder='Mot de passe' id="password" class=""
-                                type="password"
+                <x-input placeholder='Mot de passe' id="password"  class="block mt-1 w-full" 
+                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />
             </div>
 
    
-            <div class="">
+            <div class="mt-4">
                 <label for="remember_me" class="">
                     <input id="remember_me" type="checkbox" class="login_password" name="remember">
                     <span class="">{{ __('Se souvenir de  moi') }}</span>
                 </label>
             </div>
 
-            <div class="">
-                @if (Route::has('password.request'))
-                    <a class="login_resetPassword-btn" href="{{ route('password.request') }}">
-                        {{ __('Mot de Passe  oublie?') }}
-                    </a>
-                @endif
 
-                <x-button class="login_btn">
+
+            <div class="mt-4 login_btn">
+           
+
+                <x-button class="">
                     {{ __('Log in') }}
                 </x-button>
+
+
+                @if (Route::has('password.request'))
+                    <a class="" href="{{ route('password.request') }}">
+                      <small>{{ __('Mot de Passe  oublie?') }}</small>  
+                    </a>
+                @endif
             </div>
+
+            
         </form>
-    </x-auth-card>
-</x-guest-layout>
+</div>
+</section>
 @endsection
