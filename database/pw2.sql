@@ -109,7 +109,7 @@ INSERT INTO `bouteilles` (`id`, `nom`, `image`, `code_saq`, `pays`, `description
 CREATE TABLE `celliers` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nom` varchar(200) NOT NULL,
-  `image` varchar(200) NOT NULL,
+  `image` varchar(200) NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
