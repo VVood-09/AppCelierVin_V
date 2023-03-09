@@ -7,8 +7,8 @@
 
 <h1>Bienvenue au VinoClub</h1>
 
-<a href="#">S'inscrire</a>
-<a href="#">Se Connecter</a>
+<a href="{{ route('register')}}">S'inscrire</a>
+<a href="{{ route('login')}}">Se Connecter</a>
 
 
 

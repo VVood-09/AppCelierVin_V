@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+Use App\Http\Controllers\Controller;
 Use App\Http\Controllers\CellierController;
 Use App\Http\Controllers\VinController;
 /*
@@ -22,6 +23,8 @@ Use App\Http\Controllers\VinController;
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
+Route::get('accueil', [Controller::class, 'index']);
+Route::get('/', [Controller::class, 'index']);
 Route::get('dashboard', [CellierController::class, 'index'])->name('dashboard');
 
 
