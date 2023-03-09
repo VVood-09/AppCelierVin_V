@@ -27,4 +27,10 @@ class Bouteille extends Model
         'provenance_id',
         'type_id',
     ];
+
+     public function infos()
+    {
+        return $this->hasOne(Bouteille::class);
+    }
+
 }
