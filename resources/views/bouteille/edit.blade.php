@@ -8,6 +8,7 @@
 
 <form action="" enctype="multipart/form-data">
     <input type="text" placeholder="Nom:">
+    <input type="text" placeholder="Vignoble:">
     <input type="text" pattern="[0-9]*\.?[0-9]*"   placeholder="Prix:"/>
     <label for="image">Télécharger une image :</label>
     <input type="file" id="image" name="image" accept="image/*">  

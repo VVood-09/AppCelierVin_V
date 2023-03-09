@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Show Btl')
+@section('title', 'Show bouteille')
 @section('content')
 <div class="btl_head">
            <div>
