@@ -69,7 +69,6 @@ class ScraperController extends Controller
             }
         }
 
-        // return $liste;
         return view('scraper.index', ['liste' => $liste]);    
     }
 }
