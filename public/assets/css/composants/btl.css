@@ -1,0 +1,61 @@
+.btl_head{
+    display: flex;
+    justify-content: space-between;
+   
+     margin-top: var(--espacements-medium);
+     margin-bottom: var(--espacements-medium);
+     margin-left: var(--espacements-small);
+     margin-right: var(--espacements-small);
+
+}
+.btl_head div{
+   
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+  }
+  .btl_head div img{
+    margin-right: var(--espacements-small);
+  }
+  .btl_head div div{
+    display: flex;
+    flex-direction: column;
+  }
+   .btl_head-quantite{
+    display: flex;
+    flex-direction: column;
+  
+   }
+
+
+
+
+   .btl_carte-header{
+    display: flex;
+    flex-direction: column;
+    margin-left: var(--espacements-small);
+    margin-right: var(--espacements-small);
+   }
+
+   .btl_carte-header_title, .btl_carte-header_sub-title{
+    display: flex;
+    justify-content: space-between;
+    margin-left: var(--espacements-small);
+    margin-right: var(--espacements-small);
+   }
+
+   .btl_carte-body  {
+     margin-left: var(--espacements-medium);
+     margin-right: var(--espacements-medium);
+   }
+
+   .btl_carte-commentaire{
+    display: flex;
+    justify-content: space-between;
+   
+   }
+   .btl_carte-header_title a svg, .btl_carte-commentaire a svg {
+    width: 25px;
+   }
+   

@@ -109,7 +109,7 @@ INSERT INTO `bouteilles` (`id`, `nom`, `image`, `code_saq`, `pays`, `description
 CREATE TABLE `celliers` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nom` varchar(200) NOT NULL,
-  `image` varchar(200) NOT NULL,
+  `image` varchar(200) NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -156,7 +156,8 @@ CREATE TABLE `liste_bouteilles` (
   `bouteille_id` bigint(20) UNSIGNED NOT NULL,
   `cellier_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `qte` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------

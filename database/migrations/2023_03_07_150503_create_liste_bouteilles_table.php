@@ -23,6 +23,7 @@ class CreateListeBouteillesTable extends Migration
             $table->primary(['bouteille_id', 'cellier_id']);
             $table->foreign('bouteille_id')->references('id')->on('bouteilles');
             $table->foreign('cellier_id')->references('id')->on('celliers');
+            $table->integer('qte')->nullable();
 
             $table->timestamps();
         });
