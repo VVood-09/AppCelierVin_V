@@ -37,7 +37,7 @@ Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('celli
 
 Route::get('ajout-bouteille', [VinController::class, 'create'])->name('bouteille.create');
 Route::post('ajout-bouteille', [VinController::class, 'store'])->name('bouteille.store');
-Route::get('fiche-bouteille/{bouteille}', [VinController::class, 'show'])->name('bouteille.show');
+Route::get('cellier/{cellier}/fiche-bouteille/{bouteille}', [VinController::class, 'show'])->name('bouteille.show');
 Route::get('modifier-bouteille/{bouteille}', [VinController::class, 'edit'])->name('bouteille.edit');
 Route::put('modifier-bouteille/{bouteille}', [VinController::class, 'update'])->name('bouteille.update');
 Route::delete('modifier-bouteille/{bouteille}', [VinController::class, 'destroy'])->name('bouteille.delete');
@@ -47,6 +47,9 @@ Route::get('/autocomplete-search', function() {
     $query = request()->get('q');
     $results = DB::table('bouteilles')
         ->where('nom', 'like', '%' . $query . '%')
+        ->orWhere('pays', 'like', '%' . $query . '%')
+        ->orWhere('prix', 'like', '%' . $query . '%')
+        ->orWhere('format', 'like', '%' . $query . '%')
         ->pluck('nom')
         ->toArray();
     return $results;

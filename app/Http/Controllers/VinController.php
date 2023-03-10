@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Type;
-use App\Models\Provenance;
 use App\Models\Cellier;
 use App\Models\Bouteille;
 use App\Models\ListeBouteille;
@@ -63,9 +61,14 @@ class VinController extends Controller
         return redirect(route('dashboard'))->withSuccess('Nouvelle bouteille créé'); 
     }
 
-    public function show(Bouteille $bouteille, Cellier $cellier){
-        
-        return view("bouteille.show", ['bouteille' => $bouteille ]);
+    public function show(Cellier $cellier, Bouteille $bouteille ){
+
+        $qte = ListeBouteille::select('qte')
+                            ->where('cellier_id', $cellier->id)
+                            ->where('bouteille_id', $bouteille->id)
+                            ->get();
+       
+        return view("bouteille.show", ['bouteille' => $bouteille, 'cellier'=>$cellier, 'qte'=>$qte[0]]);
     }
 
 

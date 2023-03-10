@@ -9,6 +9,10 @@
 .liste-btl_head img{
     margin-right: var(--espacements-small);
 }
+
+.liste-btl_body{
+    margin: var(--espacements-medium) 0 var(--espacements-large);
+}
 .liste-btl_title{
     display: flex;
     align-items: flex-end;
@@ -25,24 +29,54 @@
 }
 
 .liste-btl_liste{
-    margin-left: var(--espacements-medium);
-    margin-right: var(--espacements-medium);
+    margin: var(--espacements-medium);
+    
 }
 
 .liste-btl_carte{
     display: flex;
-    margin-top: var(--espacements-large);
+   /*  margin-top: var(--espacements-medium); */
     background-color: var(--accent_fade);
-    padding-left: var(--espacements-medium);
-    padding-top: var(--espacements-small);
-    padding-bottom: var(--espacements-small);
+    /* padding-left: var(--espacements-medium);
+    padding-top: var(--espacements-small); */
+    padding: var(--espacements-small);
     
 }
 
-.liste-btl_info div{
+.liste-btl_img{
+    width: 50px;
+    height: 50px;
+}
+
+.liste-btl_img img{
+    width: 50px;
+    height: 50px;
+    background-color: grey;
+}
+
+/* .liste-btl_info{
     display: flex;
+} */
+.liste-btl_info>div:first-of-type{
+    display: flex;
+    flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
     padding-right: var(--espacements-medium);
 
+}
+
+.liste-btl_info_header {
+    display: inline;
+}
+
+.liste-btl_info_actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.liste-btl_info_actions input{
+    max-width: 25%;
 }

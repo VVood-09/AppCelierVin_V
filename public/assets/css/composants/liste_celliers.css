@@ -25,11 +25,9 @@
   .liste_celliers .grid__celliers{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(30%,1fr)) ;
-    margin-top: 50px;
+    margin: var(--espacements-medium) 20px;
     grid-gap: var(--espacements-medium);
     padding: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
   }
 
 
@@ -92,4 +90,6 @@
     width: var(--espacements-medium);
   }
   
+
+ 
   

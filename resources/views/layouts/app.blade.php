@@ -35,7 +35,7 @@
 
     <footer>
         <nav>
-            <a href="#"><img src="assets/img/icon_PW2/question_icon.png" alt=""></a>
+            <!--<a href="#"><img src="assets/img/icon_PW2/question_icon.png" alt=""></a>-->
             <a href="{{ route('bouteille.create')}}"><img src="assets/img/icon_PW2/wine_icon.png" alt=""></a>
             <a href="{{ route('dashboard')}}"><img src="assets/img/icon_PW2/profil_icon.png" alt=""></a>
         </nav>
