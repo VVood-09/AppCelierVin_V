@@ -86,8 +86,8 @@ class CellierController extends Controller
              ->select('bouteilles.*', 'liste_bouteilles.qte')
              ->where('cellier_id', $cellier->id)
              ->get();
-   //return $bouteilles;
-        return view('cellier.show', ['bouteilles' => $bouteilles]);
+  
+        return view('cellier.show', ['bouteilles' => $bouteilles, 'cellier'=>$cellier]);
     }
 
 

@@ -17,9 +17,8 @@ class VinController extends Controller
     
     public function create(){
         $celliers= Cellier::select()->where('user_id', Auth::user()->id)->get();
-        $types = Type::all();
-        $provenances = Provenance::all();
-        return view("bouteille.create", ['types'=>$types, 'provenances'=>$provenances, 'celliers'=>$celliers]);
+      
+        return view("bouteille.create", ['celliers'=>$celliers]);
     }
 
 
@@ -64,10 +63,13 @@ class VinController extends Controller
         return redirect(route('dashboard'))->withSuccess('Nouvelle bouteille créé'); 
     }
 
-    public function show(){
-        return view("bouteille.show");
+    public function show(Bouteille $bouteille, Cellier $cellier){
+        
+        return view("bouteille.show", ['bouteille' => $bouteille ]);
     }
-    public function edit(){
+
+
+    public function edit(Request $request, Bouteille $bouteille){
         return view("bouteille.edit");
     }
 }
