@@ -2,18 +2,18 @@
 @section('title', 'Ajouter Btl')
 @section('content')
 
-<section class="createBtl_section">
+<section class="formBtl_section">
 
 <h1>Rechercher un Vin</h1>
 
-<div class="createBtl_search">
+<div class="formBtl_search">
     <input type="search" id="rechercher_bouteille" name="q" >
     <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button>
 </div>
 
 <h1>Ajouter une Bouteille</h1>
 
-<form action="" enctype="multipart/form-data" class="createBtl_form">
+<form action="" enctype="multipart/form-data" class="formBtl_form">
     <input type="text" placeholder="Nom:">
     <input type="text" placeholder="Vignoble:">
     <input type="text" pattern="[0-9]*\.?[0-9]*" placeholder="Prix:" />
