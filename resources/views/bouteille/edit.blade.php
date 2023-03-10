@@ -1,38 +1,66 @@
 @extends('layouts.app')
-@section('title', 'Ajouter Btl')
+@section('title', 'Modifier Bouteille')
 @section('content')
 
 <section class="formBtl_section">
 
 
-<h1>Modifier une Bouteille</h1>
+    <h1>Modifier une Bouteille</h1>
 
-<form action="" enctype="multipart/form-data" class="formBtl_form">
-    <input type="text" placeholder="Nom:">
-    <input type="text" placeholder="Vignoble:">
-    <input type="text" pattern="[0-9]*\.?[0-9]*" placeholder="Prix:" />
     <div>
-        <label for="image">Télécharger une image :</label>
-        <input type="file" id="image" name="image" accept="image/*">  
+        @if($errors)
+          <ul>
+            @foreach($errors->all() as $error)
+            <li class="text-danger">{{ $error }}</li>
+            @endforeach
+          </ul>
+        @endif
     </div>
-    <select name="pays"  >
-        <option value="null">Pays</option>
-        <option value="Suede">Suede</option>
-        <option value="Russie">Russie</option>
-        <option value="Nigeria">Nigeria</option>
-    </select>
-    <textarea id="message" name="message"  placeholder="Description"></textarea>
-     <input placeholder="Annee de Fabrication" type="number" id="annee" name="annee" min="1800" max="2099" >
-     <input placeholder="Format (en ml):" type="number" id="quantity" name="quantity"  min="0">
-    <select name="Type"  >
-        <option value="null">Type</option>
-        <option value="Rouge">Rouge</option>
-        <option value="Blanc">Blanc</option>
-        <option value="Brun">Brun</option>
-    </select>
-    <input type="submit">
 
-</form>
+    <form action="" enctype="multipart/form-data" class="formBtl_form" method="post">
+        @csrf
+        <input type="text" name="nom" placeholder="Nom" value="{{$bouteille.nom}}">
+
+        <input type="text" name="prix"  placeholder="Prix" value="{{$bouteille.prix}}"/>
+
+        <input type="text" name="pays" placeholder="Pays" value="{{$bouteille.pays}}"/>
+
+         <select name="type" >
+            <option value="" disabled selected>Choisir un type</option>
+            <option value="blanc">Blanc</option>
+            <option value="rouge">Rouge</option>
+            <option value="rose">Rosé</option>
+        </select>
+
+        <label for="file">Télécharger une image :</label>
+        <input type="file" id="file" name="file" accept="image/*" > 
+
+        <!--<select name="provenance"  >
+            <option value="" disabled selected>Choisir un pays</option>
+            @foreach($provenances as $provenance)
+            <option value="{{$provenance->id}}">{{$provenance->pays}}</option>
+            @endforeach
+        </select>-->
+
+        <textarea name="description" placeholder="Description" >{{$bouteille.description}}</textarea>
+
+        <label for="format">Quantité (en ml):</label>
+        <input type="number" id="format" name="format" step="0.01" min="0" value="{{$bouteille.format}}">
+
+
+
+        <select name="cellier" >
+            <option value="" disabled selected>Choisir un cellier</option>
+            @foreach($celliers as $cellier)
+            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+            @endforeach
+        </select>
+
+        <input type="number" name="qte"  placeholder="Qte" min="0"/ value="{{$bouteille.qte}}">
+
+        <input type="submit" value="Ajouter">
+
+    </form>
 
 </section>
 @endsection
