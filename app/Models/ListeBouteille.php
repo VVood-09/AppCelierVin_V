@@ -17,6 +17,7 @@ class ListeBouteille extends Model
     protected $fillable = [
         'bouteille_id',
         'cellier_id',
+        'qte'
     ];
 
     public function bouteilles()

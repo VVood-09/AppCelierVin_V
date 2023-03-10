@@ -16,27 +16,29 @@
 
     <div class="liste-btl_liste">
 
-@foreach($bouteilles as $bouteille)
+@forelse($bouteilles as $bouteille)
         <div class="liste-btl_carte">
-     
-                <img src="" alt="">
+            <img src="" alt="">
          
             <div class="liste-btl_info">
                 <div>
-                  <small>Pays</small>
-                  <p>4/5</p>
+                  <small>{{$bouteille->pays}}</small> <small>-{{$bouteille->type}}-</small>
+                  <!--<p>4/5</p>-->
                 </div>
                 <div>
                   <h1>{{$bouteille->nom}}</h1>
                
                 </div>
                 <div>
-                    <h4>Vignoble   <small>-2011-</small></h4>
-                    <p>Quantite</p>
+                    <button>-</button>
+                    <p>{{$bouteille->qte}}</p>
+                    <button>+</button>
                 </div>
             </div>
         </div>
-  @endforeach
+        @empty
+        <div>Aucune bouteille dans le cellier</div>
+  @endforelse
 
 
 

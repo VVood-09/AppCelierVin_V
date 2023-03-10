@@ -22,8 +22,11 @@ class Bouteille extends Model
         'format',
         'pays',
         'description',
-        'prix_saq',
+        'prix',
         'url_saq',
+        'format',
+        'type',
+
     ];
 
      public function infos()

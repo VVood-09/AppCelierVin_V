@@ -19,14 +19,12 @@ class BouteilleFactory extends Factory
             'nom' => $this->faker->company . " " . $this->faker->catchPhrase,
             'image' => null,
             'code_saq' => null,
-            'pays'=> null,
+            'pays'=> $this->faker->country,
             'description' => $this->faker->sentence(10),
-            'prix_saq' => null,
+            'prix' => $this->faker->randomDigit(),
             'url_saq' => null,
-            'url_img' => null,
             'format' => $this->faker->numberBetween(250, 1000) . " ml",
-            'provenance_id' => Provenance::all()->random()->id,
-            'type_id' => Type::all()->random()->id,
+            'type' => null,
         ];
     }
 }
