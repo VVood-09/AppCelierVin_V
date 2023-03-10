@@ -58,7 +58,7 @@
 
         <input type="number" name="qte"  placeholder="Qte" min="0"/ value="{{$bouteille.qte}}">
 
-        <input type="submit" value="Ajouter">
+        <input class="btn"type="submit" value="Ajouter">
 
     </form>
 

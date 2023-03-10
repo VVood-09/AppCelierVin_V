@@ -1,18 +1,32 @@
-<form action="" method="post">
-          @csrf
-          <div class="card-body">
-            <div class="control-group col-12">
-              <label for="nom">Nom</label>
-              <input type="text" id="nom" name="nom" class="form-control" value="{{old('nom')}}">
-            </div>
+@extends('layouts.app')
+@section('title', 'Ajouter cellier')
+@section('content')
 
-          
-          </div>
 
-          <div class="card-footer d-flex justify-content-between">
-            <input type="submit" name="" id="" value="@lang('lang.save')" class="btn btn-success">
-            <a href="{{ route ('dashboard')}}" class="btn btn-danger">@lang('lang.btn_cancel')</a>
+<section class="formCellier">
+  <h1>Creer un Nouveau Cellier</h1>
+    
+     <form  action="" method="post">
 
-          </div>
 
-        </form>
+              @csrf
+              <div >
+                <div >
+                
+                  <input placeholder="Nom du Cellier" type="text" id="nom" name="nom" class="form-control" value="{{old('nom')}}">
+                </div>
+
+              
+              </div>
+
+              <div >
+                <input type="submit" name="" id="" value="Ajouter" class="btn ">
+                <a href="{{ route ('dashboard')}}" class="btn-reverse ">Annuler</a>
+
+              </div>
+
+            </form>
+
+</section>
+
+ @endsection

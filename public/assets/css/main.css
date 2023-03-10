@@ -9,11 +9,13 @@
 
 /*-------- Import composants---------*/
 /* !! LES FICHIERS NE SONT PAS CRÉÉS, DONC PAS ENCORE LIÉS !! */
-
+@import "./composants/welcome.css";
 @import "./composants/login.css";
 @import "./composants/register.css";
 @import "./composants/liste_celliers.css";
+@import "./composants/formCellier.css";
 @import "./composants/btl.css";
+@import "./composants/btn.css";
 @import "./composants/formBtl.css";
 @import "./composants/liste-btl.css";
 

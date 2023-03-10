@@ -1,6 +1,7 @@
 .formBtl_section{
     display: flex;
     flex-direction: column;
+    margin-bottom: var(--espacements-x_large);
    
    
 
@@ -12,8 +13,7 @@
 
 }
 .formBtl_search{
-    /* display: flex;
-    align-items: center;  */
+   
     position: relative;
     display: inline-block;
        margin: auto;
@@ -26,13 +26,12 @@
 .formBtl_search button img{
     width: 30px;
     position: absolute;
-    top: 50%;
+    top: 30%;
     right: 10px;
     transform: translateY(-50%);
   
   
 }
-
 
 
 .formBtl_form {
