@@ -33,10 +33,16 @@
     display: flex;
     margin-top: var(--espacements-large);
     background-color: var(--accent_fade);
+    padding-left: var(--espacements-medium);
+    padding-top: var(--espacements-small);
+    padding-bottom: var(--espacements-small);
+    
 }
 
 .liste-btl_info div{
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    padding-right: var(--espacements-medium);
+
 }
