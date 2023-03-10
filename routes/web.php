@@ -39,3 +39,8 @@ Route::get('modifier-bouteille', [VinController::class, 'edit'])->name('bouteill
 
 
 require __DIR__.'/auth.php';
+
+
+use App\Http\Controllers\ScraperController;
+
+Route::get('/scraper', [ScraperController::class, 'scraper'])->name('scraper.index');
