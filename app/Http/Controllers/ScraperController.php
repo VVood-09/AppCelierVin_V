@@ -11,6 +11,16 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class ScraperController extends Controller
 {
+    /**
+     * Gestion du Scraper avec Weidner\Goutte
+     * Le Git officiel      https://github.com/FriendsOfPHP/Goutte
+     * Tutoriel vidéo       https://www.youtube.com/watch?v=IVXG9gj6R6E
+     * Méthode du Crawler   https://symfony.com/doc/current/components/dom_crawler.html#node-filtering
+     * 
+     * La classe Client de Goutte permet "d'ouvrir" 
+     * un navigateur pour en lire le DOM et récupérer
+     * les information
+     */
     public $resultas = [];
 
     public function scraper(){
@@ -18,7 +28,7 @@ class ScraperController extends Controller
         ini_set('max_execution_time', '0');
 
         $client = new Client();
-        for($i = 1; $i <= 2; $i++){ // Vrai nombre de page 318.20
+        for($i = 1; $i <= 320; $i++){ // Vrai nombre de page 318.20
             $url = 'https://www.saq.com/fr/produits/vin?p='.$i;
             $page = $client->request('GET', $url);
             $page->filter('.product-item-info')->each(function ($item) {
@@ -42,11 +52,6 @@ class ScraperController extends Controller
         
         foreach($data as $bouteille){
             $query = Bouteille::Select()->where('code_saq', '=', $bouteille['code_saq'])->get();
-            // echo $bouteille['nom']."<br>";
-            // echo count($bouteille)."<br>";
-            // echo count($query)."<br>";
-            // var_dump($query);
-            // echo "<br>";
             if(count($query) == 0){
                 Bouteille::create([
                     'nom' => $bouteille['nom'],
@@ -62,15 +67,7 @@ class ScraperController extends Controller
             }
         }
 
-        // $newPost = BlogPost::create([
-        //     'title' => $request->title,
-        //     'body'  => $request->body,
-        //     'title_fr' => $request->title_fr,
-        //     'body_fr'  => $request->body_fr,
-        //     'user_id' => Auth::user()->id,
-        // ]);
-
-        // return $data;
+        return "<h1>Récupération de la SAQ complet!</h1><br>".$data;
         // return view('scraper', compact('data'));    
     }
 }
