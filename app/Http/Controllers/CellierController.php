@@ -36,9 +36,8 @@ class CellierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        $pays = Provenance::all();
-        $types = Type::all();
-        return view('cellier.create', ['pays'=>$pays, 'types'=>$types]);
+ 
+        return view('cellier.create');
     }
 
 
@@ -72,6 +71,8 @@ class CellierController extends Controller
         return redirect(route('dashboard'))->withSuccess('Nouveau cellier créé'); 
     }
 
+
+
      /**
      * Display the specified resource.
      *
@@ -82,10 +83,10 @@ class CellierController extends Controller
 
         $bouteilles = ListeBouteille::with('bouteilles')
              ->join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
-             ->select('bouteilles.*')
-             ->where('cellier_id',$cellier->id)
+             ->select('bouteilles.*', 'liste_bouteilles.qte')
+             ->where('cellier_id', $cellier->id)
              ->get();
-
+   //return $bouteilles;
         return view('cellier.show', ['bouteilles' => $bouteilles]);
     }
 

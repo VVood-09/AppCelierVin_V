@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\Controller;
 Use App\Http\Controllers\CellierController;
 Use App\Http\Controllers\VinController;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\DB;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,9 +35,24 @@ Route::get('cellier/create', [CellierController::class, 'create'])->name('cellie
 Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
 Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');
 
-Route::get('ajouter-bouteille', [VinController::class, 'ajouterBtl'])->name('ajouter-bouteille');
-Route::get('fiche-bouteille', [VinController::class, 'showBtl'])->name('fiche-bouteille');
-Route::get('modifier-bouteille', [VinController::class, 'editBtl'])->name('modifier-bouteille');
+Route::get('ajouter-bouteille', [VinController::class, 'create'])->name('bouteille.create');
+Route::post('ajouter-bouteille', [VinController::class, 'store'])->name('bouteille.store');
+Route::get('fiche-bouteille', [VinController::class, 'show'])->name('bouteille.show');
+Route::get('modifier-bouteille', [VinController::class, 'edit'])->name('bouteille.edit');
 
+#AutoComplete
+Route::get('/autocomplete-search', function() {
+    $query = request()->get('q');
+    $results = DB::table('bouteilles')
+        ->where('nom', 'like', '%' . $query . '%')
+        ->pluck('nom')
+        ->toArray();
+    return $results;
+});
 
 require __DIR__.'/auth.php';
+
+
+use App\Http\Controllers\ScraperController;
+
+Route::get('/scraper', [ScraperController::class, 'scraper'])->name('scraper.index');
