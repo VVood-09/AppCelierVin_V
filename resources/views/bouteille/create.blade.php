@@ -8,8 +8,6 @@
 
     <div class="formBtl_search">
         <x-autocomplete-search />
-
-        <input type="search" id="rechercher_bouteille" name="q" >
         <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button>
     </div>
 
@@ -66,7 +64,7 @@
 
         <input type="number" name="qte"  placeholder="Qte" min="0"/ value="{{old('qte')}}">
 
-        <input type="submit" value="Ajouter">
+        <input class="btn" type="submit" value="Ajouter">
 
     </form>
 

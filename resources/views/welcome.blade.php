@@ -2,13 +2,20 @@
 <!-- PAGE ACCEUIL/ SIGN_IN SIGN+UP -->
 
 @extends('layouts.app')
-@section('title', 'Ajouter Btl')
+@section('title', 'Welcome')
 @section('content')
 
-<h1>Bienvenue au VinoClub</h1>
+<section class="welcome">
+    <div>
+        <h1>Bienvenue au VinoClub</h1>
 
-<a href="{{ route('register')}}">S'inscrire</a>
-<a href="{{ route('login')}}">Se Connecter</a>
+        <a class="btn" href="{{ route('register')}}">S'inscrire</a>
+        <a class="btn" href="{{ route('login')}}">Se Connecter</a>
+    </div>
+
+
+
+</section>
 
 
 
