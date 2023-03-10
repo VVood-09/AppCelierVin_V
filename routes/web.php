@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\Controller;
 Use App\Http\Controllers\CellierController;
 Use App\Http\Controllers\VinController;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\DB;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +40,15 @@ Route::post('ajouter-bouteille', [VinController::class, 'store'])->name('bouteil
 Route::get('fiche-bouteille', [VinController::class, 'show'])->name('bouteille.show');
 Route::get('modifier-bouteille', [VinController::class, 'edit'])->name('bouteille.edit');
 
+#AutoComplete
+Route::get('/autocomplete-search', function() {
+    $query = request()->get('q');
+    $results = DB::table('bouteilles')
+        ->where('nom', 'like', '%' . $query . '%')
+        ->pluck('nom')
+        ->toArray();
+    return $results;
+});
 
 require __DIR__.'/auth.php';
 
