@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Vino Cellier') }}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -36,8 +36,8 @@
     <footer>
         <nav>
             <a href="#"><img src="assets/img/icon_PW2/question_icon.png" alt=""></a>
-            <a href="#"><img src="assets/img/icon_PW2/wine_icon.png" alt=""></a>
-            <a href="#"><img src="assets/img/icon_PW2/profil_icon.png" alt=""></a>
+            <a href="{{ route('bouteille.create')}}"><img src="assets/img/icon_PW2/wine_icon.png" alt=""></a>
+            <a href="{{ route('dashboard')}}"><img src="assets/img/icon_PW2/profil_icon.png" alt=""></a>
         </nav>
     </footer>    
       

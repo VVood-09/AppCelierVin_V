@@ -1,0 +1,48 @@
+.liste-btl_head{
+    display: flex;
+    align-items: flex-end;
+    margin-left: var(--espacements-medium);
+    margin-top: var(--espacements-medium);
+    margin-bottom: var(--espacements-medium);
+
+}
+.liste-btl_head img{
+    margin-right: var(--espacements-small);
+}
+.liste-btl_title{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-left: var(--espacements-medium);
+    margin-right: var(--espacements-medium);
+    padding-bottom: var(--espacements-x_small);
+    border-bottom: 2px solid var(--primary);
+}
+
+.liste-btl_title a svg{
+    width: 25px;
+
+}
+
+.liste-btl_liste{
+    margin-left: var(--espacements-medium);
+    margin-right: var(--espacements-medium);
+}
+
+.liste-btl_carte{
+    display: flex;
+    margin-top: var(--espacements-large);
+    background-color: var(--accent_fade);
+    padding-left: var(--espacements-medium);
+    padding-top: var(--espacements-small);
+    padding-bottom: var(--espacements-small);
+    
+}
+
+.liste-btl_info div{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-right: var(--espacements-medium);
+
+}

@@ -22,7 +22,9 @@ class CellierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $celliers = Cellier::with('user')->get();
+
+        $celliers = Cellier::select()->where('user_id', Auth::user()->id)->get();
+   
         return view("users.dashboard", ['celliers'=>$celliers]);
     }
 
@@ -33,11 +35,9 @@ class CellierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $pays = Provenance::all();
-        $types = Type::all();
-        return view('cellier.create', ['pays'=>$pays, 'types'=>$types]);
+    public function create(){
+ 
+        return view('cellier.create');
     }
 
 
@@ -48,8 +48,7 @@ class CellierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
        
         $request->validate([
             'nom' => 'required',
@@ -72,20 +71,22 @@ class CellierController extends Controller
         return redirect(route('dashboard'))->withSuccess('Nouveau cellier créé'); 
     }
 
+
+
      /**
      * Display the specified resource.
      *
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Cellier $cellier)
-    {
+    public function show(Cellier $cellier){
 
         $bouteilles = ListeBouteille::with('bouteilles')
              ->join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
-             ->select('bouteilles.*')
+             ->select('bouteilles.*', 'liste_bouteilles.qte')
+             ->where('cellier_id', $cellier->id)
              ->get();
-
+   //return $bouteilles;
         return view('cellier.show', ['bouteilles' => $bouteilles]);
     }
 
@@ -96,10 +97,12 @@ class CellierController extends Controller
 //      * @param  \App\Models\Student  $student
 //      * @return \Illuminate\Http\Response
 //      */
-//     public function edit(Student $student)
+//     public function edit(Cellier $cellier)
 //     {
-//         $cities = City::all();
-//         return view('cellier.edit', ['student' => $student, 'cities'=>$cities]);
+    //      $pays = Provenance::all();
+       // $types = Type::all();
+      //  return view('cellier.edit', ['pays'=>$pays, 'types'=>$types, 'cellier'=>'$cellier']);
+//        
 //     }
 
     
