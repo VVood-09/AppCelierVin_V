@@ -1,0 +1,58 @@
+.formBtl_section{
+    display: flex;
+    flex-direction: column;
+   
+   
+
+}
+.formBtl_section h1{
+    
+    margin:var(--espacements-large) auto var(--espacements-medium) auto;
+   
+
+}
+.formBtl_search{
+    /* display: flex;
+    align-items: center;  */
+    position: relative;
+    display: inline-block;
+       margin: auto;
+       
+}
+.formBtl_search input{
+    border-radius: 20px;
+    padding-right: 30px;
+}
+.formBtl_search button img{
+    width: 30px;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  
+  
+}
+
+
+
+.formBtl_form {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: auto;
+}
+.formBtl_form input ,.formBtl_form textarea,.formBtl_form select{
+    margin-bottom: var(--espacements-small);
+   
+}
+ 
+.formBtl_form textarea,.formBtl_form select,.formBtl_form input:not([type=file]){
+    margin-bottom: var(--espacements-small);
+    border-radius: 20px;
+}
+.formBtl_form div{
+    display: flex;
+    margin-bottom: var(--espacements-small);
+    align-items: last baseline;
+
+}
