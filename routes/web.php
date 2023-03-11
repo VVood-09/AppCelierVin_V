@@ -36,16 +36,21 @@ Route::get('cellier/create', [CellierController::class, 'create'])->name('cellie
 Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
 Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');
 
-Route::get('ajouter-bouteille', [VinController::class, 'create'])->name('bouteille.create');
-Route::post('ajouter-bouteille', [VinController::class, 'store'])->name('bouteille.store');
-Route::get('fiche-bouteille', [VinController::class, 'show'])->name('bouteille.show');
-Route::get('modifier-bouteille', [VinController::class, 'edit'])->name('bouteille.edit');
+Route::get('ajout-bouteille', [VinController::class, 'create'])->name('bouteille.create');
+Route::post('ajout-bouteille', [VinController::class, 'store'])->name('bouteille.store');
+Route::get('cellier/{cellier}/fiche-bouteille/{bouteille}', [VinController::class, 'show'])->name('bouteille.show');
+Route::get('modifier-bouteille/{bouteille}', [VinController::class, 'edit'])->name('bouteille.edit');
+Route::put('modifier-bouteille/{bouteille}', [VinController::class, 'update'])->name('bouteille.update');
+Route::delete('modifier-bouteille/{bouteille}', [VinController::class, 'destroy'])->name('bouteille.delete');
 
 #AutoComplete
 Route::get('/autocomplete-search', function() {
     $query = request()->get('q');
     $results = DB::table('bouteilles')
         ->where('nom', 'like', '%' . $query . '%')
+        ->orWhere('pays', 'like', '%' . $query . '%')
+        ->orWhere('prix', 'like', '%' . $query . '%')
+        ->orWhere('format', 'like', '%' . $query . '%')
         ->pluck('nom')
         ->toArray();
     return $results;

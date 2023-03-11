@@ -41,12 +41,7 @@
         <label for="file">Télécharger une image :</label>
         <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}"> 
 
-        <!--<select name="provenance"  >
-            <option value="" disabled selected>Choisir un pays</option>
-            @foreach($provenances as $provenance)
-            <option value="{{$provenance->id}}">{{$provenance->pays}}</option>
-            @endforeach
-        </select>-->
+ 
 
         <textarea name="description" placeholder="Description" >{{old('description')}}</textarea>
 
@@ -62,7 +57,7 @@
             @endforeach
         </select>
 
-        <input type="number" name="qte"  placeholder="Qte" min="0"/ value="{{old('qte')}}">
+        <input type="number" name="qte"  placeholder="Nombre de bouteilles" min="0"/ value="{{old('qte')}}">
 
         <input class="btn" type="submit" value="Ajouter">
 
