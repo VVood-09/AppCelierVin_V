@@ -21,7 +21,7 @@
             @isset($bouteille->image)
             <img src="{{$bouteille->image}}" alt="">
             @else
-            <img src="{{asset('assets/img/icon_PW2/btl-alt.svg')}}" alt="" class="liste-btl_img_alt">
+            <img src="{{asset('assets/img/icon_PW2/btl-alt_maison.svg')}}" alt="" class="liste-btl_img_alt">
 
             @endisset
             </div>
