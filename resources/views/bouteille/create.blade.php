@@ -33,9 +33,10 @@
 
          <select name="type" >
             <option value="" disabled selected>Choisir un type</option>
-            <option value="blanc">Blanc</option>
-            <option value="rouge">Rouge</option>
-            <option value="rose">Rosé</option>
+            <option value="Vin blanc">Vin blanc</option>
+            <option value="Vin rouge">Vin rouge</option>
+            <option value="Vin rose">Vin rosé</option>
+            <option value="Vin de tomate">Vin de tomate</option>
         </select>
 
        <!-- <label for="file">Télécharger une image :</label>

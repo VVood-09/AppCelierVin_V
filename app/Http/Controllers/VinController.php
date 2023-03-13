@@ -46,8 +46,8 @@ class VinController extends Controller
             'description'=>$request->description,
             'pays'=>$request->pays,
             'type'=>$request->type,
-            'format'=>$request->format,
-            'prix'=>$request->prix,
+            'format'=>$request->format.' ml',
+            'prix'=>$request->prix.' $',
             
 
         ]);
