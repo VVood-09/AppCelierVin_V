@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\Controller;
 Use App\Http\Controllers\CellierController;
 Use App\Http\Controllers\VinController;
+use App\Http\Controllers\ScraperController;
 Use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\DB;
@@ -65,8 +66,6 @@ Route::group(['middleware' => 'auth'], function(){
         'middleware' => 'permission',
     ], function(){   
         Route::get('', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/scraper', [ScraperController::class, 'scraper'])->name('scraper.index');
     });
 });
-
-use App\Http\Controllers\ScraperController;
-Route::get('/scraper', [ScraperController::class, 'scraper'])->name('scraper.index');
