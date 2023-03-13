@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\Controller;
 Use App\Http\Controllers\CellierController;
@@ -58,7 +59,14 @@ Route::get('/autocomplete-search', function() {
 
 require __DIR__.'/auth.php';
 
+Route::group(['middleware' => 'auth'], function(){
+    Route::group([
+        'prefix' => 'admin',
+        'middleware' => 'permission',
+    ], function(){   
+        Route::get('', [AdminController::class, 'index'])->name('admin.index');
+    });
+});
 
 use App\Http\Controllers\ScraperController;
-
 Route::get('/scraper', [ScraperController::class, 'scraper'])->name('scraper.index');

@@ -60,7 +60,7 @@
 
     </article>
 
-    <!--<a href="{{ route('logout')}}" >Déconnexion</a>-->
+    <a href="{{ route('logout')}}" >Déconnexion</a>
 </section>
 
                                     
