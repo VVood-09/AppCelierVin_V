@@ -65,6 +65,13 @@ Route::get('/autocomplete-search', function() {
 
 require __DIR__.'/auth.php';
 
+/**
+ * Gestion des routes administrative
+ * Valide une connexion avec Middleware Auth
+ * Valide si l'utilisateur est un admin
+ * 
+ * https://www.youtube.com/watch?v=kZOgH3-0Bko
+ */
 Route::group(['middleware' => 'auth'], function(){
     Route::group([
         'prefix' => 'admin',

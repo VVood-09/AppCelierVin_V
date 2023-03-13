@@ -28,9 +28,21 @@ class ScraperController extends Controller
 
         ini_set('max_execution_time', '0');
 
+        $debut = date('H:i:s');
+
         $client = new Client();
-        for($i = 1; $i <= 1; $i++){ // Vrai nombre de page 318.20
-            $url = 'https://www.saq.com/fr/produits/vin?p='.$i;
+
+        // Pour allez chercher la quantité de page à Crawl
+        $url = 'https://www.saq.com/fr/produits/vin';
+        $page = $client->request('GET', $url);
+        $qteVin = explode(' ', $page->filter('.toolbar-amount')->text()); // Allez chercher la quantité de bouteille de vin de la SAQ
+        $qteVin = end($qteVin);
+        $nbParPage = 96; // Pour la quantité de bouteille par page
+        $nbPage = ceil($qteVin / $nbParPage); // Nombre de page de bouteille de vin
+
+        // Récupération des bouteilles de vin
+        for($i = 1; $i <= $nbPage; $i++){
+            $url = 'https://www.saq.com/fr/produits/vin?p='.$i.'&product_list_limit=96';
             $page = $client->request('GET', $url);
             $page->filter('.product-item-info')->each(function ($item) {
                 $info = explode(' | ', $item->filter('.product-item-identity-format')->text());
@@ -50,10 +62,11 @@ class ScraperController extends Controller
 
         $data = $this->resultas;
 
+        // Pour ajouter les bouteilles dans la DB
         $liste = [];
         foreach($data as $bouteille){
             $query = Bouteille::Select()->where('code_saq', '=', $bouteille['code_saq'])->get();
-            if(count($query) == 0){
+            if(count($query) == 0){ // Si la bouteille n'est pas dans la DB, elle est ajouté
                 Bouteille::create([
                     'nom' => $bouteille['nom'],
                     'image' => $bouteille['image'],
@@ -69,6 +82,8 @@ class ScraperController extends Controller
             }
         }
 
-        return view('scraper.index', ['liste' => $liste]);    
+        $fin = date('H:i:s');
+        
+        return view('scraper.index', ['liste' => $liste, 'debut' => $debut, 'fin' => $fin]);    
     }
 }
