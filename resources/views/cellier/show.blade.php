@@ -19,9 +19,13 @@
         <div class="liste-btl_carte">
             <div class="liste-btl_img">
             @isset($bouteille->image)
-            <img src="{{$bouteille->image}}" alt="">
+                @isset($bouteille->code_saq)
+                <img src="{{$bouteille->image}}" alt="" class="saq">
+                @else
+                <img src="{{asset('assets/img/icon_PW2/biere.jpg')}}" alt="" >
+                @endisset
             @else
-            <img src="{{asset('assets/img/icon_PW2/btl-alt_maison.svg')}}" alt="" class="liste-btl_img_alt">
+                <img src="{{asset('assets/img/icon_PW2/btl-alt_maison.svg')}}" alt="" class="liste-btl_img_alt">
 
             @endisset
             </div>

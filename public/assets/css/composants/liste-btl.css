@@ -107,16 +107,19 @@
 
 .liste-btl_img{
     width: 200px;
-    /* height: 200px;  */
-    background-color: rgba(255, 255, 255, 0); 
+    height: 200px;  
+    /* background-color: rgba(255, 255, 255, 0);  */
+    background-color: beige;
+    border-radius: 100px; 
     margin: auto;
+    overflow: hidden;
 }
 
-.liste-btl_img img{
+.liste-btl_img .saq{
     max-width: 100%;
     max-height: 100%;
     display: block;
-    margin: 0 auto;
+    margin: 15px auto 0;
 }
 
 .liste-btl_info{
@@ -156,7 +159,7 @@
 
 
 .liste-btl_img_alt{
-    width: 75%;
-
-    
+   
+    width: 30%;
+    margin: var(--espacements-small) auto;
 }
