@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Login')
+@section('title', 'Connexion')
 @section('content')
 <section class="login_section">
     <h1>Connexion</h1>
@@ -15,17 +15,11 @@
         <form class="login_form" method="POST" action="{{ route('login') }}">
             @csrf
 
-         
             <div>
-               
-
                 <x-input placeholder='Email' id="email"  class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
-         
             <div class="">
-              
-
                 <x-input placeholder='Mot de passe' id="password"  class="block mt-1 w-full" 
                                  type="password"
                                 name="password"
@@ -46,13 +40,13 @@
            
 
                 <x-button class="">
-                    {{ __('Log in') }}
+                    {{ __('Connexion') }}
                 </x-button>
 
 
                 @if (Route::has('password.request'))
                     <a class="" href="{{ route('password.request') }}">
-                      <small>{{ __('Mot de Passe  oublie?') }}</small>  
+                      <small>{{ __('Mot de Passe oublié?') }}</small>  
                     </a>
                 @endif
             </div>

@@ -17,5 +17,5 @@
     border: 2px solid  var(--accent);
     padding: var(--espacements-small);
     border-radius: 5px;
-    margin-left: var(--espacements-small);
+    /* margin-left: var(--espacements-small); */
 } 
