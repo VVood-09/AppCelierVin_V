@@ -38,17 +38,14 @@
             <option value="rose">Rosé</option>
         </select>
 
-        <label for="file">Télécharger une image :</label>
+       <!-- <label for="file">Télécharger une image :</label>
         <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}"> 
-
+-->
  
 
         <textarea name="description" placeholder="Description" >{{old('description')}}</textarea>
 
-        <label for="format">Quantité (en ml):</label>
-        <input type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}">
-
-
+        <input type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)">
 
         <select name="cellier" >
             <option value="" disabled selected>Choisir un cellier</option>

@@ -60,7 +60,7 @@
 
     </article>
 
-    <a href="{{ route('logout')}}" >Déconnexion</a>
+    <a href="{{ route('logout')}}" class="btn" style="margin:25px;">Déconnexion</a>
 </section>
 
                                     

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\Controller;
 Use App\Http\Controllers\CellierController;
 Use App\Http\Controllers\VinController;
+Use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\DB;
 
