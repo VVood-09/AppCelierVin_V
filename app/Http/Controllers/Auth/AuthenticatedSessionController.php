@@ -17,6 +17,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        if(Auth::check()){
+            return view('dashboard');
+        }
         return view('auth.login');
     }
 
