@@ -1,0 +1,25 @@
+
+.formCellier{
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--espacements-x_large);
+   
+
+
+}
+.formCellier h1, .formCellier, .formCellier_input input{
+    display: flex;
+    margin: auto;
+    margin: var(--espacements-small) auto;
+    border-radius: 20px;
+ 
+}
+
+.formCellier_btn{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 30px auto;
+    width: 50%;
+    text-align: center;
+}

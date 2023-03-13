@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
@@ -17,7 +18,9 @@ class Controller extends BaseController
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        
+        if(Auth::check()){
+            return redirect('dashboard');
+        }
         return view("welcome");
     }
 

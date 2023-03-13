@@ -8,8 +8,7 @@ use App\Models\ListeBouteille;
 use App\Models\Bouteille;
 use App\Models\Commentaire;
 use App\Models\Note;
-use App\Models\Provenance;
-use App\Models\Type;
+
 
 use Illuminate\Support\Facades\Auth;
 
@@ -24,8 +23,9 @@ class CellierController extends Controller
     public function index(){
 
         $celliers = Cellier::select()->where('user_id', Auth::user()->id)->get();
-   
-        return view("users.dashboard", ['celliers'=>$celliers]);
+        $utilisateur = Auth::user();
+      
+        return view("users.dashboard", ['celliers'=>$celliers, 'utilisateur'=>$utilisateur]);
     }
 
 
@@ -86,8 +86,8 @@ class CellierController extends Controller
              ->select('bouteilles.*', 'liste_bouteilles.qte')
              ->where('cellier_id', $cellier->id)
              ->get();
-   //return $bouteilles;
-        return view('cellier.show', ['bouteilles' => $bouteilles]);
+  
+        return view('cellier.show', ['bouteilles' => $bouteilles, 'cellier'=>$cellier]);
     }
 
 

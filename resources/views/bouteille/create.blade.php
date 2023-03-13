@@ -8,8 +8,6 @@
 
     <div class="formBtl_search">
         <x-autocomplete-search />
-
-        <input type="search" id="rechercher_bouteille" name="q" >
         <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button>
     </div>
 
@@ -40,22 +38,14 @@
             <option value="rose">Rosé</option>
         </select>
 
-        <label for="file">Télécharger une image :</label>
+       <!-- <label for="file">Télécharger une image :</label>
         <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}"> 
-
-        <!--<select name="provenance"  >
-            <option value="" disabled selected>Choisir un pays</option>
-            @foreach($provenances as $provenance)
-            <option value="{{$provenance->id}}">{{$provenance->pays}}</option>
-            @endforeach
-        </select>-->
+-->
+ 
 
         <textarea name="description" placeholder="Description" >{{old('description')}}</textarea>
 
-        <label for="format">Quantité (en ml):</label>
-        <input type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}">
-
-
+        <input type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)">
 
         <select name="cellier" >
             <option value="" disabled selected>Choisir un cellier</option>
@@ -64,9 +54,9 @@
             @endforeach
         </select>
 
-        <input type="number" name="qte"  placeholder="Qte" min="0"/ value="{{old('qte')}}">
+        <input type="number" name="qte"  placeholder="Nombre de bouteilles" min="0"/ value="{{old('qte')}}">
 
-        <input type="submit" value="Ajouter">
+        <input class="btn" type="submit" value="Ajouter">
 
     </form>
 

@@ -1,0 +1,15 @@
+.welcome div{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: var(--espacements-x_large) auto;
+}
+.welcome div h1{
+    margin-bottom: var(--espacements-large);
+
+}
+.welcome div a{
+    margin-bottom: var(--espacements-medium);
+    text-align: center;
+    padding: var(--espacements-small) ;
+}
