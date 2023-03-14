@@ -29,12 +29,14 @@ use Illuminate\Support\Facades\DB;
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-Route::get('/', [Controller::class, 'index']);
-Route::get('accueil', [Controller::class, 'index']);
+// Route::get('/', [AuthenticatedSessionController::class, 'create']);
+// Route::get('accueil', [Controller::class, 'index']);
 
 // Route de l'utilisateur
 Route::group(['middleware' => 'auth'], function(){
     Route::get('dashboard', [CellierController::class, 'index'])->name('dashboard');
+    
+    Route::get('profile', [AuthenticatedSessionControllerController::class, 'show'])->name('user.show');
 
     Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
     Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
