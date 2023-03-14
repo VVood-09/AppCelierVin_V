@@ -8,7 +8,7 @@
   <form  action="" method="post">
     @csrf
       <div class="formCellier_input">
-        <input placeholder="Nom du Cellier" type="text" id="nom" name="nom" class="form-control" value="{{old('nom')}}">
+        <input placeholder="Nom du Cellier" type="text" id="nom" name="nom" class="form-control" value="{{old('nom')}}" max="8">
       </div>
       <div class="formCellier_btn">
           <input type="submit" name="" id="" value="Ajouter" class="btn ">

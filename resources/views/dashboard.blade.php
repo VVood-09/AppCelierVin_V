@@ -1,15 +1,10 @@
 @extends('layouts.app')
-@section('title', 'Profil')
+@section('title', 'Celliers')
 @section('content')
-
-<!-- PAGE CELLIERS/PROFIL -->
-
 
 
 
 <section class="liste_celliers">
-
-    <article>
         <div class="header">
 
             <div>
@@ -43,7 +38,7 @@
                 </a>
             <!--</button> -->
 
-    </article>
+ 
 
     
 </section>
