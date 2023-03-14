@@ -25,7 +25,7 @@ class CellierController extends Controller
         $celliers = Cellier::select()->where('user_id', Auth::user()->id)->get();
         $utilisateur = Auth::user();
       
-        return view("users.dashboard", ['celliers'=>$celliers, 'utilisateur'=>$utilisateur]);
+        return view("dashboard", ['celliers'=>$celliers, 'utilisateur'=>$utilisateur]);
     }
 
 
