@@ -39,9 +39,9 @@
             <option value="Vin de tomate">Vin de tomate</option>
         </select>
 
-       <!-- <label for="file">Télécharger une image :</label>
+       <label for="file">Télécharger une image :</label>
         <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}"> 
--->
+
  
 
         <textarea name="description" placeholder="Description" >{{old('description')}}</textarea>

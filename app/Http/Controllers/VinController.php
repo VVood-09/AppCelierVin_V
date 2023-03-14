@@ -26,7 +26,7 @@ class VinController extends Controller
 // return $request;
         $request->validate([
             'nom' => 'required',
-            // 'image'=> 'mimes:jpg, png' 
+            'image'=> 'mimes:jpg, png',
             'qte'=>'numeric|gt:0',
             'format'=>'numeric|gt:0',
             'prix'=>'numeric|gt:0',
@@ -34,15 +34,15 @@ class VinController extends Controller
        
         ]);
 
-        // $file = $request->file('file');
-        // $filename = $file->getClientOriginalName();
+        $file = $request->file('file');
+        $filename = $file->getClientOriginalName();
 
         
-        // $file->storeAs('public/uploads', $filename);
+        $file->storeAs('public/uploads', $filename);
 
         $bouteille = Bouteille::create([
             'nom'=>$request->nom,
-            // 'image'=>$filename,
+            'image'=>$filename,
             'description'=>$request->description,
             'pays'=>$request->pays,
             'type'=>$request->type,
@@ -60,6 +60,7 @@ class VinController extends Controller
 
         return redirect(route('dashboard'))->withSuccess('Nouvelle bouteille créé'); 
     }
+
 
     public function show(Cellier $cellier, Bouteille $bouteille ){
 
