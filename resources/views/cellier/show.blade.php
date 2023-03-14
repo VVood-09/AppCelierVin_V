@@ -60,6 +60,14 @@
 
 
 
+<?php
+$action = 'supprimer ce cellier';
+?>
+
+  <x-modal trigger-text="Supprimer Cellier" >
+    Etes-vous certain de vouloir {{ $action }} ?
+  </x-modal>
+
     </div>   
 </div>
 @endsection
