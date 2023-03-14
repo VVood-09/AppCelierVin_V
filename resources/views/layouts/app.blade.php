@@ -36,8 +36,10 @@
     <footer>
         <nav>
             <!--<a href="#"><img src="assets/img/icon_PW2/question_icon.png" alt=""></a>-->
+            @if(Auth::check())
             <a href="{{ route('bouteille.create')}}"><img src="{{asset('assets/img/icon_PW2/btl-icon.svg')}}" alt=""></a>
             <a href="{{ route('dashboard')}}"><img src="{{asset('assets/img/icon_PW2/profile_icon.svg')}}" alt=""></a>
+            @endif
         </nav>
     </footer>    
       

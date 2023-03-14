@@ -33,6 +33,10 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        if(Auth::check()){
+            return view('dashboard');
+        }
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
