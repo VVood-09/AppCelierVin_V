@@ -1,61 +1,180 @@
-.btl_head{
-    display: flex;
-    justify-content: space-between;
-   
-     margin-top: var(--espacements-medium);
-     margin-bottom: var(--espacements-medium);
-     margin-left: var(--espacements-small);
-     margin-right: var(--espacements-small);
-
-}
-.btl_head div{
-   
-    display: flex;
-    justify-content: space-between;
-
-    align-items: center;
-  }
-  .btl_head div img{
-    margin-right: var(--espacements-small);
-  }
-  .btl_head div div{
-    display: flex;
-    flex-direction: column;
-  }
-   .btl_head-quantite{
-    display: flex;
-    flex-direction: column;
-  
-   }
 
 
+ .btl_carte{
+   margin-bottom: var(--espacements-x_large);
+ }
+ .btl_carte h1{
+  margin-bottom: var(--espacements-small);
+ }
+ .btl_carte-description{
+  padding-bottom: var(--espacements-medium);
+  margin-bottom: var(--espacements-medium);
+  /* border-bottom: 2px var(--primary) solid; */
+ }
+ .btl_carte-description summary{
+  border-bottom: 2px var(--accent) solid;
+  width: 35%;
+ 
+ }
 
 
    .btl_carte-header{
     display: flex;
-    flex-direction: column;
-    margin-left: var(--espacements-small);
-    margin-right: var(--espacements-small);
+
+    margin-top: var(--espacements-small);
+    margin-left: var(--espacements-medium);
+    margin-right: var(--espacements-medium);
+    margin-bottom: var(--espacements-medium);
+  }
+
+  
+  .btl_carte-header>*{
+    display: flex;
+     flex-basis: 33.33% ;
+
    }
 
-   .btl_carte-header_title, .btl_carte-header_sub-title{
-    display: flex;
-    justify-content: space-between;
-    margin-left: var(--espacements-small);
-    margin-right: var(--espacements-small);
+   .btl_carte-header>a:first-of-type{
+     justify-content: center;
    }
+   .btl_carte-header>a:last-of-type{
+    justify-content: flex-end;
+  }
+
 
    .btl_carte-body  {
      margin-left: var(--espacements-medium);
      margin-right: var(--espacements-medium);
    }
 
+
+
+
+
+   .btl_carte-quantite{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    margin-bottom: var(--espacements-medium);
+   }
+   .btl_carte-quantite p{
+    margin: var(--espacements-small) var(--espacements-medium);
+   }
+   .btl_carte .btl_carte-quantite a svg{
+    width: 50px;
+   }
+
+
+
+
+
+   .btl_carte-body>.liste-btl_img{
+    margin-bottom: var(--espacements-x_small);
+   }
+
+
+   .btl_carte-saq_lien{
+    display: flex;
+    justify-content: flex-end;
+ 
+    margin-bottom: var(--espacements-medium);
+  
+ 
+   }
+
+
+   .btl_carte-saq_lien a img{
+    width: 20px;
+
+   }
+
+   .btl_carte-bullet_info{
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--espacements-small)
+   }
+
+   .btl_carte-bullet_info>*{
+      display: flex;
+      flex-basis: 50% ;
+      align-items: center;
+   }
+
+   .btl_carte-bullet_info div:first-of-type{
+    justify-content: flex-start;
+  }
+
+
+/* sert a faire la ligne rouge  dans les info */
+
+
+  .btl_carte-espaceur{
+      width: 30%;
+       background-color: var(--accent);
+       height: 5px;
+   
+    
+   }
+   .btl_carte-espaceur-large{
+    width: 50%;
+     background-color: var(--accent);
+     height: 5px;
+ 
+  
+ }
+   
+  .btl_carte-bullet_info div:first-of-type .btl_carte-espaceur{
+    margin-right: var(--espacements-small);
+    
+   }
+   .btl_carte-bullet_info div:last-of-type .btl_carte-espaceur{
+    margin-left: var(--espacements-small);
+    
+   }
+   .btl_carte-bullet_info div:first-of-type .btl_carte-espaceur-large{
+    margin-right: var(--espacements-small);
+    
+   }
+   .btl_carte-bullet_info div:last-of-type .btl_carte-espaceur-large{
+    margin-left: var(--espacements-small);
+    
+   }
+
+
+   /* fin */
+
+
+
+
+
+
+
+
+
+
+
+
+  .btl_carte-bullet_info div:last-of-type{
+    justify-content: flex-end;
+  }
+
+ 
+
    .btl_carte-commentaire{
     display: flex;
     justify-content: space-between;
    
    }
-   .btl_carte-header_title a svg, .btl_carte-commentaire a svg {
-    width: 25px;
-   }
+
+
+   .btl_carte-commentaire summary{
+    border-bottom: 2px var(--accent) solid;
+    width: 100%;
    
+   }
+   .btl_carte a svg, .btl_carte-commentaire a svg {
+    width: 20px;
+   }
+
+

@@ -19,9 +19,14 @@
         <div class="liste-btl_carte">
             <div class="liste-btl_img">
             @isset($bouteille->image)
-            <img src="{{$bouteille->image}}" alt="">
+                @isset($bouteille->code_saq)
+                <img src="{{$bouteille->image}}" alt="{{$bouteille->nom}}" class="saq">
+                @else
+                <img src="{{asset('storage/uploads/'.$bouteille->image)}}" alt="{{$bouteille->nom}}" > 
+
+                @endisset
             @else
-            <img src="{{asset('assets/img/icon_PW2/btl-alt.svg')}}" alt="" class="liste-btl_img_alt">
+                <img src="{{asset('assets/img/icon_PW2/btl-alt_maison.svg')}}" alt="{{$bouteille->nom}}" class="liste-btl_img_alt">
 
             @endisset
             </div>
@@ -59,6 +64,14 @@
   @endforelse
 
 
+
+<?php
+$action = 'supprimer ce cellier';
+?>
+
+  <x-modal trigger-text="Supprimer Cellier" >
+    Etes-vous certain de vouloir {{ $action }} ?
+  </x-modal>
 
     </div>   
 </div>
