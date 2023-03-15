@@ -6,9 +6,11 @@
         {{ $slot }}
       </div>
       <div class="flex justify-end p-4">
+
         <button class="modal-button modal-button-confirm">Confirmer</button>
         <button @click="ismodalopen = false" class="modal-button modal-button-cancel">Annuler</button>
       </div>
     </div>
   </div>
 </div>
+
