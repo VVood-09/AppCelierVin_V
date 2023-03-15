@@ -54,7 +54,7 @@ class ScraperController extends Controller
                     'format' => $info[1],
                     'pays' => $info[2],
                     'description' => $item->filter('img')->first()->attr('alt'),
-                    'prix_saq' => $item->filter('.price')->text(),
+                    'prix' => $item->filter('.price')->text(),
                     'url_saq' => $item->filter('.product.photo.product-item-photo')->attr('href'),
                 ];
             });
@@ -75,7 +75,7 @@ class ScraperController extends Controller
                     'format' => $bouteille['format'],
                     'pays' => $bouteille['pays'],
                     'description' => $bouteille['description'],
-                    'prix_saq' => $bouteille['prix_saq'],
+                    'prix' => $bouteille['prix'],
                     'url_saq' => $bouteille['url_saq'],
                 ]);
                 $liste[] = ['nom' => $bouteille['nom'], 'code_saq' => $bouteille['code_saq']];
