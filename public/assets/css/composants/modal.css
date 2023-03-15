@@ -46,3 +46,6 @@
     background-color: #88888b;
 }
 
+.containerBoutonsCellier{
+  display: flex;
+}
