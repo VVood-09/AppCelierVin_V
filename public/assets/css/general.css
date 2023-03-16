@@ -5,6 +5,9 @@ html, body {
     font-family: var(--font-base);
     scroll-behavior: smooth;
 }
+main{
+  margin: 0 var(--espacement-medium)  var(--espacement-medium)  var(--espacement-x_large);
+}
 
 a{
     text-decoration: none;
@@ -30,3 +33,30 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
   display: none;
 }
+
+
+
+
+details summary::marker {
+    font-size: 25px;
+      color: var(--accent);
+
+
+} 
+
+
+/* 
+details summary::before {
+  content:url(../img/icon_PW2/arrow_down_left_icon.svg);
+  font-size: 1.2em;
+}
+
+
+
+[data-css-icon="right outline"] i{
+  transform: scale(0.5);
+}
+
+summary{
+  font-size: 20px;
+} */

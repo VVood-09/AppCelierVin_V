@@ -13,7 +13,7 @@
  }
  .btl_carte-description summary{
   border-bottom: 2px var(--accent) solid;
-  width: 35%;
+  width: 100%;
  
  }
 
@@ -159,22 +159,56 @@
     justify-content: flex-end;
   }
 
+ .btl_carte-description details div{
+         padding: var(--espacements-small);
+    background-color: var(--accent);
+    margin-top:var(--espacements-medium);
+    border-radius: 10px;
+    
+   
+    
+  }
+
+
+  .btl_carte-description details p{
+      border-left: 2px solid white;
+       padding-left: var(--espacements-small);
+       color: white;
+  }
+ 
+
+
+
  
 
    .btl_carte-commentaire{
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
    
    }
 
 
    .btl_carte-commentaire summary{
     border-bottom: 2px var(--accent) solid;
-    width: 100%;
+     padding-bottom: var(--espacements-small);
    
    }
-   .btl_carte a svg, .btl_carte-commentaire a svg {
-    width: 20px;
+  
+
+
+
+   .btl_carte-commentaire a{
+    position: absolute;
+    right: 0;
+    margin-right: var(--espacements-medium);
+  
+
+
    }
 
+   .btl_carte a svg, .btl_carte-commentaire a svg {
+    width: 30px;
+   }
+
+   
 
