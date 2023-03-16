@@ -1,0 +1,23 @@
+.carte_commentaire{
+    display: flex;
+    flex-direction: column;
+    padding: var(--espacements-small);
+    background-color: var(--accent);
+    margin-top:var(--espacements-medium);
+    border-radius: 10px;
+    
+}
+.carte_commentaire p{
+    padding-left: var(--espacements-small);
+    border-left: 2px solid white;
+    color: white;
+
+}
+.carte_commentaire small{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--espacements-x_small);
+    /* border-bottom: 2px solid white; */
+    padding-right: var(--espacements-x_small);
+    color: white;
+}
