@@ -65,6 +65,19 @@
 
 
 
+<?php
+$action = 'supprimer ce cellier';
+?>
+
+  <div class="containerBoutonsCellier">
+      <x-modal trigger-text="Supprimer Cellier" >
+        Etes-vous certain de vouloir {{ $action }} ?
+      </x-modal>
+      <x-modalForm trigger-text="Ajout Bouteille" >
+        Etes-vous certain de vouloir {{ $action }} ?
+      </x-modalForm>
+  </div>
+
     </div>   
 </div>
 @endsection
