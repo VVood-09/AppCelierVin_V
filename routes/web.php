@@ -62,7 +62,8 @@ Route::get('/autocomplete-search', function() {
         ->orWhere('pays', 'like', '%' . $query . '%')
         ->orWhere('prix', 'like', '%' . $query . '%')
         ->orWhere('format', 'like', '%' . $query . '%')
-        ->pluck('nom')
+        // ->pluck('nom')
+        ->get()
         ->toArray();
     return $results;
 });

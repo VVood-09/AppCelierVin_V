@@ -51,10 +51,10 @@ class ScraperController extends Controller
                     'image' => $item->filter("img[class='product-image-photo']")->attr('src'),
                     'code_saq' => explode(' ', $item->filter('.saq-code')->text())[2],
                     'type' => $info[0],
-                    'format' => $info[1],
+                    'format' => explode(' ', $info[1])[0],
                     'pays' => $info[2],
                     'description' => $item->filter('img')->first()->attr('alt'),
-                    'prix' => $item->filter('.price')->text(),
+                    'prix' => substr($item->filter('.price')->text(), 0, -3),
                     'url_saq' => $item->filter('.product.photo.product-item-photo')->attr('href'),
                 ];
             });
