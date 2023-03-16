@@ -36,7 +36,18 @@ class AutocompleteSearch extends Component
                 <input type="text" x-model="query" @input.debounce.300ms="search" />
                 <ul>
                     <template x-for="(result, index) in results" :key="index">
-                        <li x-text="result"></li>
+                        <li x-text="result.nom" 
+                            @click= "
+                                console.log(result)
+                                $refs.nom.value = result.nom;
+                                $refs.prix.value = result.prix;
+                                $refs.pays.value = result.pays;
+                                $refs.type.value = result.type;
+                                $refs.description.value = result.description;
+                                $refs.format.value = result.format;
+                                $refs.format.value = result.format;
+                                    " 
+                                value="result" ></li>
                     </template>
                 </ul>
             </div>

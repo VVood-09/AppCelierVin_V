@@ -24,13 +24,13 @@
 
                     <form action="" enctype="multipart/form-data" class="formBtl_form" method="post">
                         @csrf
-                        <input type="text" name="nom" placeholder="Nom" value="{{old('nom')}}">
+                        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}">
 
-                        <input type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" />
+                        <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" />
 
-                        <input type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" />
+                        <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" />
 
-                        <select name="type">
+                        <select x-ref="type" name="type">
                             <option value="" disabled selected>Choisir un type</option>
                             <option value="Vin blanc">Vin blanc</option>
                             <option value="Vin rouge">Vin rouge</option>
@@ -43,9 +43,9 @@
 
 
 
-                        <textarea name="description" placeholder="Description">{{old('description')}}</textarea>
+                        <textarea x-ref="description" name="description" placeholder="Description">{{old('description')}}</textarea>
 
-                        <input type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)">
+                        <input x-ref="format" type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)">
 
                         <!-- Le select a été retiré car $celliers n'est pas défini ici -->
 
