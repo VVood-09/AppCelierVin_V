@@ -1,5 +1,5 @@
 # Liens & Information Utiles
-- URL: vinocellier.com
+- URL: https://vinocellier.com
 - GitHub: https://github.com/PW2-21647/AppCelierVin
 - ScrumDesk: https://app.scrumdesk.com/#/projects/37122
 - Identifiant/Mot de Passe: guillaume@gmail.com/guillaume
