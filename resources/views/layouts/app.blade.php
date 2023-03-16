@@ -20,7 +20,7 @@
     </head>
 
 
-    <body class="font-sans antialiased">
+    <body>
    
 
             <!-- Page Heading -->

@@ -26,3 +26,8 @@
 /*-------- Import éléments---------*/
 @import "./elements/boutons.css";
 @import "./elements/navigation.css";
+
+/*-------- Import administration ---------*/
+@import "./admin/body_admin.css";
+@import "./admin/main_admin.css";
+@import "./admin/nav_admin.css";
