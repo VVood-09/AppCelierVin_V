@@ -14,7 +14,7 @@ header span svg{
     }
 
 /*------------------ nav----------------------- */
-body {margin:0;}
+
 footer nav{
   display: flex;
   justify-content: space-between;
@@ -44,21 +44,17 @@ footer nav a {
 
   }
 
-  footer nav a:first-child{
+  /* footer nav a:first-child{
     margin-left: var(--small);
   }
   footer nav a:last-child{
     margin-right: var(--small);
-  }
+  } */
 
   footer nav a:hover {
     background: var(--neutral);
     color: var(--primary);
   }
-main{
-    padding: var(--small);
-    margin-bottom: var(--medium);
- 
-}
+
 
 /*------------------ fin nav----------------------- */

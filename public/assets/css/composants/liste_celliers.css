@@ -1,7 +1,3 @@
-  .liste_celliers{
-    margin: var(--espacements-medium);
-    margin-bottom: 100px;
-  }
 
   .liste_celliers .grid__celliers{
     display: grid;
