@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="html_admin">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,8 +24,13 @@
 
             <!-- Page Heading -->
             <header class="nav_admin">
-                <h1>Bienvenue {{ Auth::user()->name}}</h1>
-                <a href="{{ route('scraper.index') }}">Scraper</a>
+                <h1>Administration : {{ Auth::user()->name}}</h1>
+                <nav>
+                    <a href="#">Membres</a>
+                    <a href="#">Vins</a>
+                    <a href="{{ route('scraper.index') }}">Scraper</a>
+                    <a href="{{ route('logout') }}">Déconnexion</a>
+                </nav>
             </header>
 
             <!-- Page Content -->
