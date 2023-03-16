@@ -99,23 +99,28 @@
     gap: var(--espacements-small); 
 } */
 
+/*--------------------------------------------------- ici debut 
 /* .liste-btl_img{
     width: 200px;
     height: 200px;  
-    --  background-color: rgba(255, 255, 255, 0);  --
+ 
     background-color: beige;
     border-radius: 100px; 
     margin: auto;
     overflow: hidden;
-} */
-/* 
+} 
+
 .liste-btl_img .saq{
     max-width: 100%;
     max-height: 100%;
     display: block;
     margin: 15px auto 0;
 }
+*/
+/*--------------------------------------------------- ici fin
 
+
+/*
 .liste-btl_info{
     text-align: center;
 } */
