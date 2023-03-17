@@ -33,7 +33,7 @@ class AutocompleteSearch extends Component
                     .then(response => { this.results = response.data })
                     .catch(error => { console.log(error) });
             }}">
-                <input type="text" x-model="query" @input.debounce.300ms="search" />
+                <input x-ref="autocompletefield" type="text" x-model="query" @input.debounce.300ms="search" />
                 <ul>
                     <template x-for="(result, index) in results" :key="index">
                         <li x-text="result.nom" 
@@ -45,7 +45,8 @@ class AutocompleteSearch extends Component
                                 $refs.type.value = result.type;
                                 $refs.description.value = result.description;
                                 $refs.format.value = result.format;
-                                $refs.format.value = result.format;
+                                $refs.autocompletefield.value = result.nom;
+                                results = []; 
                                     " 
                                 value="result" ></li>
                     </template>
