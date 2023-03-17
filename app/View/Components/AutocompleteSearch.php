@@ -45,8 +45,8 @@ class AutocompleteSearch extends Component
                                 $refs.type.value = result.type;
                                 $refs.description.value = result.description;
                                 $refs.format.value = result.format;
-                                $refs.autocompletefield.value = result.nom;
-                                results = []; 
+                                $refs.autocompletefield.value = result.nom; 
+                                results = [];
                                     " 
                                 value="result" ></li>
                     </template>
