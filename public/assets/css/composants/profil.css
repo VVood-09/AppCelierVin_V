@@ -1,0 +1,24 @@
+.liste_celliers .profil_head{
+    display: flex;
+    align-items: flex-end;
+    margin-left: var(--espacements-medium);
+    margin-top: var(--espacements-medium);
+    margin-bottom: var(--espacements-medium);
+
+}
+.liste_celliers .profil_head div{
+    margin-left: var(--espacements-small);
+    display: flex;
+    align-items: center;
+  }
+  .liste_celliers .profil_head div a{
+    margin-left: var(--espacements-small);
+
+  }
+  .liste_celliers .profil_head svg{
+    width: 20px;
+  }
+  
+  .liste_celliers .profil_head img{
+    max-height: 40px;
+  }

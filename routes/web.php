@@ -29,12 +29,16 @@ use Illuminate\Support\Facades\DB;
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-Route::get('/', [Controller::class, 'index']);
-Route::get('accueil', [Controller::class, 'index']);
+// Route::get('/', [AuthenticatedSessionController::class, 'create']);
+// Route::get('accueil', [Controller::class, 'index']);
 
 // Route de l'utilisateur
 Route::group(['middleware' => 'auth'], function(){
     Route::get('dashboard', [CellierController::class, 'index'])->name('dashboard');
+    
+    Route::get('profile', [AuthenticatedSessionController::class, 'show'])->name('user.show');
+    //Route::get('profile-modification', [AuthenticatedSessionController::class, 'edit'])->name('user.edit');
+    //Route::put('profile-modification', [AuthenticatedSessionController::class, 'update'])->name('user.update');
 
     Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
     Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
@@ -58,13 +62,21 @@ Route::get('/autocomplete-search', function() {
         ->orWhere('pays', 'like', '%' . $query . '%')
         ->orWhere('prix', 'like', '%' . $query . '%')
         ->orWhere('format', 'like', '%' . $query . '%')
-        ->pluck('nom')
+        // ->pluck('nom')
+        ->get()
         ->toArray();
     return $results;
 });
 
 require __DIR__.'/auth.php';
 
+/**
+ * Gestion des routes administrative
+ * Valide une connexion avec Middleware Auth
+ * Valide si l'utilisateur est un admin
+ * 
+ * https://www.youtube.com/watch?v=kZOgH3-0Bko
+ */
 Route::group(['middleware' => 'auth'], function(){
     Route::group([
         'prefix' => 'admin',

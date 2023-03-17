@@ -2,8 +2,8 @@
 
 
 /*-------- Import généraux---------*/
-@import "./general.css";
 @import "./theme.css";
+@import "./general.css";
 
 
 
@@ -18,10 +18,16 @@
 @import "./composants/btn.css";
 @import "./composants/formBtl.css";
 @import "./composants/liste-btl.css";
-
+@import "./composants/modal.css";
+@import "./composants/carte_commentaire.css";
 
 
 
 /*-------- Import éléments---------*/
 @import "./elements/boutons.css";
 @import "./elements/navigation.css";
+
+/*-------- Import administration ---------*/
+@import "./admin/general_admin.css";
+@import "./admin/main_admin.css";
+@import "./admin/nav_admin.css";

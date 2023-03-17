@@ -1,89 +1,54 @@
-.liste_celliers .profil_head{
-    display: flex;
-    align-items: flex-end;
-    margin-left: var(--espacements-medium);
-    margin-top: var(--espacements-medium);
-    margin-bottom: var(--espacements-medium);
 
-}
-.liste_celliers .profil_head div{
-    margin-left: var(--espacements-small);
-    display: flex;
-    align-items: center;
-  }
-  .liste_celliers .profil_head div a{
-    margin-left: var(--espacements-small);
-
-  }
-  .liste_celliers .profil_head svg{
-    width: 20px;
-  }
-  
-  .liste_celliers .profil_head img{
-    max-height: 40px;
-  }
   .liste_celliers .grid__celliers{
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(30%,1fr)) ;
-    margin: var(--espacements-medium) 20px;
-    grid-gap: var(--espacements-medium);
-    padding: 10px;
+    grid-template-columns: repeat(auto-fit,minmax(40%,1fr)) ;
+    margin:  var(--espacements-medium) 0;
+    grid-gap: var(--espacements-small);   
   }
 
+  .liste_celliers .grid__celliers span{
+    background-color: var(--accent_fade);
+    width: 100%;
+  }
 
-  .liste_celliers article .header, article .header div {
+  .liste_celliers  .header,  .header div {
     display: flex;
     align-items: center;
   }
 
-
-  .liste_celliers article .header div h1{
-    margin-right:var(--espacements-small);
-  }
-
-  .liste_celliers article .header div a:first-child{
+  .liste_celliers .header div a:first-child{
     padding-right: var(--espacements-x_small);
-    margin-right:  var(--espacements-x_small);
     border-right: var(--primary) solid 2px;
   }
 
-  .liste_celliers article .header{
+  .liste_celliers .header{
     justify-content: space-between;
-    margin-right: var(--espacements-medium);
-    margin-left: var(--espacements-medium);
     border-bottom: var(--primary) solid 2px;
-  
-  
   }
 
   .liste_celliers .card__cellier{
     display: flex;
+    background-image: url("../../img/photos/fond_cellier.jpg");
+    background-color: var(--neutral);
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
     position: relative; 
     justify-content: center;
     align-items: center;
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 40px 0;
     font-size: var(--espacements-medium);
     max-height: 150px;
-    /* box-shadow: 3px 5px #000049a3; */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;   
     border-radius: var(--espacements-x_small);
-  
     box-sizing: border-box;
-    background-color: var(--neutral);
-  
-   
   }
 
   .liste_celliers .card__cellier a{
     background-color: var(--accent_fade);
-    color:  var(--primary);
-    text-decoration: none;
     width: 100%;
-    padding: var(--espacements-medium) 0;
+    /* padding: var(--espacements-medium) 0; */
   }
 
   .liste_celliers a svg{
@@ -91,5 +56,11 @@
   }
   
 
- 
+ .liste_celliers>a{
+  display: block;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  font-size: larger;
+ }
   
