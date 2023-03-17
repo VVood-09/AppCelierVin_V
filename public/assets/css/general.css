@@ -6,7 +6,7 @@ html, body {
     scroll-behavior: smooth;
 }
 main{
-  margin: 0 var(--espacement-medium)  var(--espacement-medium)  var(--espacement-x_large);
+  margin: var(--espacements-medium) var(--espacements-small) var(--espacements-x_large);
 }
 
 a{

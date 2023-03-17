@@ -5,10 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cellier;
 use App\Models\ListeBouteille;
-use App\Models\Bouteille;
-use App\Models\Commentaire;
-use App\Models\Note;
-
 
 use Illuminate\Support\Facades\Auth;
 
@@ -51,19 +47,12 @@ class CellierController extends Controller
     public function store(Request $request){
        
         $request->validate([
-            'nom' => 'required',
-            // 'image'=> 'mimes:jpg, png'  
+            'nom' => 'required|max:8',
         ]);
 
-        // $file = $request->file('file');
-        // $filename = $file->getClientOriginalName();
-
-        
-        // $file->storeAs('public/uploads', $filename);
 
         $cellier = Cellier::create([
             'nom'=>$request->nom,
-            // 'image'=>$filename,
             'user_id'=> Auth::user()->id
         ]);
 
