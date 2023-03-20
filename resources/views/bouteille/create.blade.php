@@ -56,7 +56,16 @@
                         <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
 
 
-</div>
+                    </div>
+                    <form action="">
+                        <input type="hidden" name="id" value="{{old('id')}}">
+                        <select name="cellier">
+                            <option value="" disabled selected>Choisir un cellier</option>
+                            @foreach($celliers as $cellier)
+                            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+                            @endforeach
+                        </select>
+                    </form>
                 </div>
             </div>
         </div>
@@ -66,7 +75,7 @@
         <x-autocomplete-search  />
         <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button>
     </div>
-
+-->
     <h1>Ajouter une Bouteille</h1>
 
     <div>
@@ -116,7 +125,7 @@
 
         <input class="btn" type="submit" value="Ajouter">
 
-    </form> -->
+    </form>
 
 </section>
 @endsection
