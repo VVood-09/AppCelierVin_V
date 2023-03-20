@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Bouteille;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 use Goutte\Client;
 

@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\Controller;
 Use App\Http\Controllers\CellierController;
 Use App\Http\Controllers\VinController;
-use App\Http\Controllers\ScraperController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminUtilisateurController;
+use App\Http\Controllers\Admin\ScraperController;
 Use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,14 +36,17 @@ use Illuminate\Support\Facades\DB;
 // Route de l'utilisateur
 Route::group(['middleware' => 'auth'], function(){
     Route::get('dashboard', [CellierController::class, 'index'])->name('dashboard');
-    
-    Route::get('profile', [AuthenticatedSessionController::class, 'show'])->name('user.show');
-    //Route::get('profile-modification', [AuthenticatedSessionController::class, 'edit'])->name('user.edit');
-    //Route::put('profile-modification', [AuthenticatedSessionController::class, 'update'])->name('user.update');
+   // Route::get('/user/{id}', [UserController::class, 'user.show']);
+    Route::get('utilisateur/{id}', [UtilisateurController::class, 'show'])->name('user.show');
+    Route::get('utilisateur/modif/{id}', [UtilisateurController::class, 'edit'])->name('user.edit');
+    Route::put('utilisateur/modif/{id}', [UtilisateurController::class, 'update'])->name('user.update');
 
     Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
     Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
     Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');
+    Route::get('modifier-cellier/{cellier}', [CellierController::class, 'edit'])->name('cellier.edit');
+    Route::put('modifier-cellier/{cellier}', [CellierController::class, 'update']);
+
 
     Route::get('ajout-bouteille', [VinController::class, 'create'])->name('bouteille.create');
     Route::post('ajout-bouteille', [VinController::class, 'store'])->name('bouteille.store');
@@ -85,5 +89,8 @@ Route::group(['middleware' => 'auth'], function(){
         // Route pour l'administration
         Route::get('', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/scraper', [ScraperController::class, 'scraper'])->name('scraper.index');
+        Route::get('/membres', [AdminUtilisateurController::class, 'index'])->name('admin.membre.index');
+        Route::get('/membres/{utilisateur}', [AdminUtilisateurController::class, 'show'])->name('admin.membre.show');
+        Route::put('/membres/{utilisateur}', [AdminUtilisateurController::class, 'update']);
     });
 });

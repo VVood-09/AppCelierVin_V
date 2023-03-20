@@ -81,6 +81,38 @@ class CellierController extends Controller
     }
 
 
+    public function edit( Cellier $cellier){
+      
+        return view("cellier.edit", ['cellier' => $cellier]);
+    }
+
+
+
+
+
+    public function update(Request $request, Cellier $cellier){
+// return $request;
+        $request->validate([
+            'nom' => 'required|max:8',
+        ]);
+
+        $cellier->update([
+            'nom'=>$request->nom,
+            
+        ]);
+        // return redirect()->back();
+        return redirect(route('dashboard'))->withSuccess('Cellier modifie'); 
+      }
+
+
+
+
+    public function destroy( Cellier $cellier)
+    {
+        $cellier->delete();
+        return redirect(route('dashboard'));
+    }
+
 
      /**
      * Display the specified resource.
