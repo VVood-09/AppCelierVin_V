@@ -15,7 +15,7 @@
             <td>{{$membre->name}}</td>
             <td>{{$membre->email}}</td>
             <td>{{$membre->permissionUtilisateur->permission}}</td>
-            <td><a href="#" class="modifier">Modifier</a></td>
+            <td><a href="{{ route('admin.membre.show', [$membre->id]) }}" class="modifier">Modifier</a></td>
             <td><a href="#" class="supprimer">Supprimer</a></td>
         </tr>
         @empty

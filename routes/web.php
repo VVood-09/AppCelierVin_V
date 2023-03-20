@@ -87,5 +87,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/scraper', [ScraperController::class, 'scraper'])->name('scraper.index');
         Route::get('/membres', [AdminUtilisateurController::class, 'index'])->name('admin.membre.index');
+        Route::get('/membres/{utilisateur}', [AdminUtilisateurController::class, 'show'])->name('admin.membre.show');
+        Route::put('/membres/{utilisateur}', [AdminUtilisateurController::class, 'update']);
     });
 });

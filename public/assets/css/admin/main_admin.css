@@ -1,3 +1,7 @@
+.main_admin {
+    padding-bottom: var(--espacements-large);
+}
+
 .main_admin table {
     max-width: 1000px;
     margin: var(--espacements-large) auto;
