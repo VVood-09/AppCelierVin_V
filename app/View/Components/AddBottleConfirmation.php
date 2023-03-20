@@ -39,26 +39,12 @@ class AutocompleteSearch extends Component
                         <li x-text="result.nom" 
                             @click= "
                                 console.log(result)
-                                // $refs.nom.value = result.nom;
-                                $refs.nom.textContent = result.nom;
-
-                                // $refs.prix.value = result.prix;
-                                $refs.prix.textContent = result.prix;
-
-                                // $refs.pays.value = result.pays;
-                                $refs.pays.textContent = result.pays;
-
-                                // $refs.type.value = result.type;
-                                $refs.type.textContent = result.type;
-
-                                // $refs.description.value = result.description;
-                                $refs.description.textContent = result.description;
-
-
-                                // $refs.format.value = result.format;
-                                $refs.format.textContent = result.format;
-
-
+                                $refs.nom.value = result.nom;
+                                $refs.prix.value = result.prix;
+                                $refs.pays.value = result.pays;
+                                $refs.type.value = result.type;
+                                $refs.description.value = result.description;
+                                $refs.format.value = result.format;
                                 $refs.autocompletefield.value = result.nom; 
                                 results = [];
                                     " 

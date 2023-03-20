@@ -6,9 +6,9 @@
 
 <section class="formBtl_section">
 
-    <h1>Rechercher un Vin</h1>
-
-    <div class="relative" x-data="{ ismodalopen: true }">
+    
+    <div x-data="{ ismodalopen: true }">
+        <h1>Rechercher un Vin</h1>
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75" x-show="ismodalopen">
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg w-2/3 max-w-md">
                 <div class="p-4">
@@ -29,15 +29,27 @@
                             @endif
                         </div>
 
+                        <div>
+                            <ul>
+                                <span>nom</span><li x-ref="nom" value="{{old('nom')}}"> </li>
+                                <span>Prix</span><li x-ref="prix" value="{{old('prix')}}"></li>
+                                <span>Pays</span><li x-ref="pays" value="{{old('pays')}}"></li>
+                                <span>Type</span><li x-ref="type" value="{{old('type')}}"></li>
+                                <span>Description</span><li x-ref="description" value="{{old('description')}}"></li>
+                                <span>Format</span> <li x-ref="format " value="{{old('format ')}}"></li>
+                            </ul>
+                        </div>
+
+
                         <form action="" enctype="multipart/form-data" class="formBtl_form" method="post">
                             @csrf
-                            <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}">
+                            <input  type="text" name="nom" placeholder="Nom" value="{{old('nom')}}">
 
-                            <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" />
+                            <input  type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" />
 
-                            <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" />
+                            <input name="pays" placeholder="Pays" value="{{old('pays')}}" />
 
-                            <select x-ref="type" name="type">
+                            <select name="type">
                                 <option value="" disabled selected>Choisir un type</option>
                                 <option value="Vin blanc">Vin blanc</option>
                                 <option value="Vin rouge">Vin rouge</option>
@@ -50,9 +62,9 @@
 
 
 
-                            <textarea x-ref="description" name="description" placeholder="Description">{{old('description')}}</textarea>
+                            <textarea  name="description" placeholder="Description">{{old('description')}}</textarea>
 
-                            <input x-ref="format" type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)">
+                            <input  type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)">
 
                             <!-- Le select a été retiré car $celliers n'est pas défini ici -->
 
