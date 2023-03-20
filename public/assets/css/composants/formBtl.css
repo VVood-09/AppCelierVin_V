@@ -34,15 +34,23 @@
     width: 75%;
     margin: auto;
 }
+.formBtl_form h1{
+    text-align: center;
+}
 
 .formBtl_form input ,.formBtl_form textarea,.formBtl_form select{
     margin-bottom: var(--espacements-small);  
 }
  
-.formBtl_form textarea,.formBtl_form select,.formBtl_form input:not([type=file]){
+.formBtl_form textarea,.formBtl_form select,.formBtl_form input:not([type=file]),.formBtl_form a{
     margin-bottom: var(--espacements-small);
     border-radius: 20px;
     resize: none;
+}
+.formBtl_form a{
+   display: flex;
+   justify-content: center;
+ 
 }
 
 .formBtl_form div{

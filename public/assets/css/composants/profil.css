@@ -1,19 +1,24 @@
 .profil{
     display: flex;
     flex-direction: column;
-    margin-top: var(--espacements-large);
+    margin-top: var(--espacements-medium);
     
    
     /* margin-left: var(--espacements-medium);
     margin-top: var(--espacements-medium);
-    margin-bottom: var(--espacements-medium); */
+     */
 
 }
- .profil div{
+ .profil div,.profil h1{
     display: flex;
+    text-align: center;
     margin: auto;
-
   }
+  .profil h1{
+    margin-bottom: var(--espacements-small);
+  }
+
+
 
   .profil div:first-of-type{
     display: flex;

@@ -12,27 +12,28 @@ class UtilisateurController extends Controller
         return view('utilisateur.show', compact('utilisateur'));
     }
 
-    public function edit(  User $utilisateur){
+    public function edit( ){
+        $utilisateur = Auth::user();
+    
         return view("utilisateur.edit", ['utilisateur' => $utilisateur]);
     }
 
 
 
 
-    public function update(Request $request, User $utilisateur){
-
-     
-
+    public function update(Request $request){
+   //return $request;
+        $utilisateur = Auth::user();
         $request->validate([
             'nom' => 'required',
-            'email'=>'email|required',
+            'email'=>'email',
         ]);
 
         $utilisateur->update([
-            'nom'=>$request->nom,
+            'name'=>$request->nom,
             'email'=>$request->email,
-          
         ]);
+
         return redirect()->back();
       }
 
