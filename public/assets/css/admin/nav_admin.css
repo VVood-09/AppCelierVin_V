@@ -3,6 +3,24 @@
     display: flex;
     flex-direction: row;
     color: var(--secondary);
-    /* width: 20%; */
-    /* justify-content: flex-start; */
+    justify-content: space-between;
+}
+
+.nav_admin > * {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav_admin span {
+    margin-right: var(--espacements-medium);
+}
+
+.nav_admin nav > *+* {
+    margin-left: var(--espacements-medium);
+}
+
+.nav_admin a:hover {
+    text-decoration: underline;
+    text-underline-offset: var(--espacements-x_small);
 }
