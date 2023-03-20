@@ -12,6 +12,9 @@
 
 
 .liste-btl_title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding-bottom: var(--espacements-x_small);
     border-bottom: 2px solid var(--primary);
 }

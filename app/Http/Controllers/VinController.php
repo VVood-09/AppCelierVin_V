@@ -112,4 +112,12 @@ class VinController extends Controller
         return redirect()->back();
 
       }
+
+      public function destroy(  Bouteille $bouteille)
+      {
+          $bouteille->delete();
+  
+          return redirect(route('dashboard'));
+      }
+
 }
