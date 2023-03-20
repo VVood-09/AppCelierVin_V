@@ -79,6 +79,30 @@ class CellierController extends Controller
         return view('cellier.show', ['bouteilles' => $bouteilles, 'cellier'=>$cellier]);
     }
 
+    
+
+
+
+    public function update(Request $request, Cellier $cellier){
+        $request->validate([
+            'nom' => 'required',
+        ]);
+
+        $cellier->update([
+            'nom'=>$request->nom,
+        ]);
+        return redirect()->back();
+      }
+
+
+
+
+    public function destroy( Cellier $cellier)
+    {
+        $cellier->delete();
+
+        return redirect(route('dashboard'));
+    }
 
 //      /**
 //      * Show the form for editing the specified resource.

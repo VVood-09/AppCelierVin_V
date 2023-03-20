@@ -1,24 +1,60 @@
-.liste_celliers .profil_head{
+.profil{
     display: flex;
-    align-items: flex-end;
-    margin-left: var(--espacements-medium);
+    flex-direction: column;
+    margin-top: var(--espacements-large);
+    
+   
+    /* margin-left: var(--espacements-medium);
     margin-top: var(--espacements-medium);
-    margin-bottom: var(--espacements-medium);
+    margin-bottom: var(--espacements-medium); */
 
 }
-.liste_celliers .profil_head div{
-    margin-left: var(--espacements-small);
+ .profil div{
     display: flex;
-    align-items: center;
-  }
-  .liste_celliers .profil_head div a{
-    margin-left: var(--espacements-small);
+    margin: auto;
 
   }
-  .liste_celliers .profil_head svg{
+
+  .profil div:first-of-type{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: var(--espacements-medium);
+    align-items: center;
+  }
+  .profil div:first-of-type h3{
+    margin-top: var(--espacements-x_small);
+    margin-bottom: var(--espacements-x_small);
+  }
+
+
+
+
+  
+  
+  .profil div:last-of-type{
+    display: flex;
+    flex-direction: column;
+  }
+  .profil div:last-of-type a{
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--espacements-small);
+    align-items: center;
+   
+  }
+
+
+
+
+
+
+
+
+   .profil svg{
     width: 20px;
   }
   
-  .liste_celliers .profil_head img{
-    max-height: 40px;
+ .profil span svg{
+  width: 80px;
   }

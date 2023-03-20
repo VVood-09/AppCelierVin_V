@@ -2,10 +2,7 @@
 @extends('layouts.app')
 @section('title', 'Cellier')
 @section('content')
-<!--<div class="liste-btl_head">
-        <img src="{{asset('img/icon_PW2/black_profil_icon.png')}}" alt="profil_icon">
-        <h3>John Canary</h3>
-</div>  -->
+
 
 <div class="liste-btl_body">
     <div class="liste-btl_title">
