@@ -2,35 +2,29 @@
     display: flex;
     flex-direction: column;
     margin-bottom: var(--espacements-x_large);
-   
-   
-
 }
-.formBtl_section h1{
-    
+
+.formBtl_section h1, .formBtl_form h1{ 
     margin:var(--espacements-large) auto var(--espacements-medium) auto;
-   
-
 }
+
 .formBtl_search{
-   
     position: relative;
     display: inline-block;
-       margin: auto;
-       
+       margin: auto;   
 }
+
 .formBtl_search input{
     border-radius: 20px;
     padding-right: 30px;
 }
+
 .formBtl_search button img{
     width: 30px;
     position: absolute;
     top: 30%;
     right: 10px;
     transform: translateY(-50%);
-  
-  
 }
 
 
@@ -40,16 +34,25 @@
     width: 75%;
     margin: auto;
 }
+.formBtl_form h1{
+    text-align: center;
+}
+
 .formBtl_form input ,.formBtl_form textarea,.formBtl_form select{
-    margin-bottom: var(--espacements-small);
-   
+    margin-bottom: var(--espacements-small);  
 }
  
-.formBtl_form textarea,.formBtl_form select,.formBtl_form input:not([type=file]){
+.formBtl_form textarea,.formBtl_form select,.formBtl_form input:not([type=file]),.formBtl_form a{
     margin-bottom: var(--espacements-small);
     border-radius: 20px;
     resize: none;
 }
+.formBtl_form a{
+   display: flex;
+   justify-content: center;
+ 
+}
+
 .formBtl_form div{
     display: flex;
     margin-bottom: var(--espacements-small);
