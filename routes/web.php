@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\Controller;
 Use App\Http\Controllers\CellierController;
 Use App\Http\Controllers\VinController;
+Use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\ScraperController;
 Use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use GuzzleHttp\Psr7\Request;
@@ -35,10 +36,10 @@ use Illuminate\Support\Facades\DB;
 // Route de l'utilisateur
 Route::group(['middleware' => 'auth'], function(){
     Route::get('dashboard', [CellierController::class, 'index'])->name('dashboard');
-    
-    Route::get('profile', [AuthenticatedSessionController::class, 'show'])->name('user.show');
-    //Route::get('profile-modification', [AuthenticatedSessionController::class, 'edit'])->name('user.edit');
-    //Route::put('profile-modification', [AuthenticatedSessionController::class, 'update'])->name('user.update');
+   // Route::get('/user/{id}', [UserController::class, 'user.show']);
+    Route::get('utilisateur/{id}', [UtilisateurController::class, 'show'])->name('user.show');
+    Route::get('utilisateur/modif/{id}', [UtilisateurController::class, 'edit'])->name('user.edit');
+    Route::put('utilisateur/modif/{id}', [UtilisateurController::class, 'update'])->name('user.update');
 
     Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
     Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
