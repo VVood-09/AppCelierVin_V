@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cellier;
 use App\Models\ListeBouteille;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -79,6 +80,49 @@ class CellierController extends Controller
         return view('cellier.show', ['bouteilles' => $bouteilles, 'cellier'=>$cellier]);
     }
 
+
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Student  $student
+     * @return \Illuminate\Http\Response
+     */
+    public function changeQte(Request $request){
+        // $bouteille = DB::table('liste_bouteilles')
+        //     ->select('*')
+        //     ->where('cellier_id', $request->idC)
+        //     ->andWhere('bouteille_id', $request->idB)
+        //     ->get();
+        
+        //return $request->qte;
+        
+        
+        // $bouteille = ListeBouteille::where([
+        //     'cellier_id' => $request->cellier,
+        //     'bouteille_id' => $request->bouteille,
+        // ])->first();
+
+
+        //return $bouteille;
+        DB::statement("UPDATE liste_bouteilles SET qte = $request->qte WHERE bouteille_id = $request->bouteille AND cellier_id = $request->cellier;");
+        
+        
+        //return $bouteille;
+
+        // if ($bouteille) {
+        //     $bouteille->update([
+        //         'qte' => $request->qte,
+        //     ]);
+        // }
+    
+        // $test=$request->qte;
+
+        // return response()->json([
+        //     "status"=>200,
+        //     "reponse"=>$test
+        // ]);
+    }
 
 //      /**
 //      * Show the form for editing the specified resource.
