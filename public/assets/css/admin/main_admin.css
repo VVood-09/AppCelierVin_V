@@ -23,3 +23,31 @@
 .main_admin tr:nth-child(even){
     background-color: rgb(255, 140, 140);
 }
+
+.main_admin a {
+    background-color: white;
+    padding: var(--espacements-x_small);
+    border-radius: var(--espacements-x_small);
+    box-sizing: border-box;
+    font-weight: 900;
+}
+
+.main_admin .modifier {
+    color: rgb(0, 180, 30);
+    border: 3px solid rgb(0, 180, 30);
+}
+
+.main_admin .supprimer {
+    color: rgb(225, 0, 0);
+    border: 3px solid rgb(225, 0, 0);
+}
+
+.main_admin .modifier:hover {
+    color: white;
+    background-color: rgb(0, 180, 30);
+}
+
+.main_admin .supprimer:hover {
+    color: white;
+    background-color: rgb(225, 0, 0);
+}
