@@ -1,0 +1,25 @@
+.main_admin table {
+    max-width: 1000px;
+    margin: var(--espacements-large) auto;
+    border-spacing: 0;
+}
+
+.main_admin th {
+    font-size: 1.15rem;
+}
+
+.main_admin td {
+    padding: var(--espacements-small);
+}
+
+.main_admin td+td {
+    padding-left: var(--espacements-medium);
+}
+
+.main_admin tr:first-of-type {
+    border-bottom: solid black 3px;
+}
+
+.main_admin tr:nth-child(even){
+    background-color: rgb(255, 140, 140);
+}
