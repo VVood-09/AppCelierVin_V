@@ -24,7 +24,7 @@ class AutocompleteSearch extends Component
     public function render()
     {
         return <<<'blade'
-        <div x-data="{ query: '', results: [], search: function() {
+        <div class="suggestion_scroll" x-data="{ query: '', results: [], search: function() {
             if (!this.query.trim()) {
                 this.results = [];
                 return;
@@ -35,7 +35,7 @@ class AutocompleteSearch extends Component
         }, resetQuery: function() {
             this.query = '';
         } }" @reset-query.window="resetQuery">
-            <input x-ref="autocompletefield" type="text" x-model="query" @input.debounce.300ms="search" />
+            <input x-ref="autocompletefield" type="text" x-model="query" @input.debounce.300ms="search" placeholder="Rechercher un vin"/>
                 <ul>
                     <template x-for="(result, index) in results" :key="index">
                         <li x-text="result.nom" 
