@@ -19,9 +19,9 @@
             ?>
 
 
-  <x-modal trigger-text="Supprimer ce cellier" >
+  <x-modal_suppresion trigger-text="Supprimer ce cellier" >
     Etes-vous certain de vouloir {{ $action }} ?
-  </x-modal>
+  </x-modal_suppresion>
 </div>
   
 

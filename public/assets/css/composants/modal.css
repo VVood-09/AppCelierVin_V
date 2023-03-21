@@ -9,6 +9,15 @@
  color: #fefefe;
  font-size: 18px;
 
+ padding: 0 var(--espacements-medium);
+ position: fixed; /* élément positionné de manière fixe */
+ top: 0; /* position en haut de l'écran */
+ left: 0; /* position à gauche de l'écran */
+ width: 100%; /* largeur de l'écran */
+ height: 100%; /* hauteur de l'écran */
+ justify-content: center; /* centrer horizontalement */
+ align-items: center; /* centrer verticalement */
+
 }
 
 .modal div{
@@ -18,6 +27,8 @@
 
 .modal div:first-of-type{
   text-align: center;
+  font-size: 25px;
+  margin-bottom: var(--espacements-large);
 }
 
 .modal_btn-delete{
@@ -25,7 +36,14 @@
   margin: auto;
 }
 
+.modal_confirm-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 30px;
 
+}
 
 .modal_confirm-btn  button svg{
   width: 35px;
@@ -43,12 +61,7 @@
   width: 100%;
 }
 
-.modal_confirm-btn{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
+
 
 .modal_confirm-btn .btn{
   border: 1px solid var(--accent);
