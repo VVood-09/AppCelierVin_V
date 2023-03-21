@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\Controller;
 Use App\Http\Controllers\CellierController;
 Use App\Http\Controllers\VinController;
+Use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminUtilisateurController;
 use App\Http\Controllers\Admin\ScraperController;
