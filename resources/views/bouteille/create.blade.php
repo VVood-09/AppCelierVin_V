@@ -67,19 +67,19 @@
 
 
                             </div>
-                            <form action="">
-                                <input type="hidden" name="id" value="{{old('id')}}">
-                                    <select name="cellier">
-                                        <option value="" disabled selected>Choisir un cellier</option>
-                                        @foreach($celliers as $cellier)
-                                        <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
-                                        @endforeach
-                                    </select>
-                                    <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
-                                <div class="btnWrapper">
-                                    <button class="modal-button modal-button-confirm">Confirmer</button>
-                                    <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
-                                </div>
+
+                            <form action="" >
+                                <li x-ref="code_saq" value="{{old('code_saq')}}"></li>
+                                <select name="cellier">
+                                    <option value="" disabled selected>Choisir un cellier</option>
+                                    @foreach($celliers as $cellier)
+                                    <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+                                    @endforeach
+                                </select>
+                                <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
+                                <button class="modal-button modal-button-confirm">Confirmer</button>
+                                <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
+
 
                             </form>
                         </div>
