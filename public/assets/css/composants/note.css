@@ -1,7 +1,19 @@
-.etoile_dimension {
+.note {
     width: 30px;
+    cursor: pointer;
 }
 
-.etoile_jaune {
+.note_vide {
+    color: white;
+    stroke: black;
+}
+
+.note_hover {
+    color: grey;
+    stroke: grey;
+}
+
+.note_jaune {
     color: rgb(225, 225, 10);
+    stroke: rgb(225, 225, 10);
 }
