@@ -20,7 +20,7 @@
                         <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button>
 
 
-                        <div x-show="ismodalopen">
+                        <div x-show="ismodalopen" class="modal-SAQ">
                             <h1>Ajouter cette bouteille de la SAQ à un cellier?</h1>
                             <div>
                                 @if($errors)
