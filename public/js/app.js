@@ -22819,6 +22819,31 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 
 
 
+
+
+
+//------------------- Button modal supression---------------------------------------
+
+function modal_delete(){
+
+  switch (someVariable) {
+    case "controller1":
+      fetch("../api/")
+      break;
+    case "controller2":
+      callController("controller2", "action2", { data: "some data" });
+      break;
+    case "controller3":
+      callController("controller3", "action3", { data: "some data" });
+      break;
+    default:
+      console.log("Unknown controller.");
+      break;
+  }
+  
+}
+=======
+
 function changeQte(){
 
   let data = {
@@ -22834,3 +22859,4 @@ function changeQte(){
   
 
  }
+

@@ -1,3 +1,9 @@
+.formBtl > h1{
+    margin-inline: var(--espacements-medium);
+    text-align: center;
+    margin-bottom: var(--espacements-medium);
+}
+
 .formBtl_section{
     display: flex;
     flex-direction: column;

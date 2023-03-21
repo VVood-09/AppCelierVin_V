@@ -29,10 +29,10 @@ class UtilisateurController extends Controller
             'email'=>'email',
         ]);
 
-        $utilisateur->update([
-            'name'=>$request->nom,
-            'email'=>$request->email,
-        ]);
+        // $utilisateur->update([
+        //     'name'=>$request->nom,
+        //     'email'=>$request->email,
+        // ]);
 
         return redirect()->back();
       }

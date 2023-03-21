@@ -4,6 +4,7 @@
     border-radius: 5px;
     transition: all 0.6s;
     padding: var(--espacements-small);
+   
 }
 .btn:hover{
     background-color: white;
@@ -18,4 +19,5 @@
     padding: var(--espacements-small);
     border-radius: 5px;
     /* margin-left: var(--espacements-small); */
+
 } 
