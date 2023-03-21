@@ -181,10 +181,11 @@
 .liste-btl_carte{
     display: flex;
     flex-direction: column;
-    background:  rgba(126,0,30,0.55);
+    background:  var(--neutral);
     gap: var(--espacements-small); 
     padding: var(--espacements-small);
     border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 4px;   
 }
 
 .liste-btl_img{

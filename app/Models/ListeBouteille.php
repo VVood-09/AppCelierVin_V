@@ -9,6 +9,8 @@ class ListeBouteille extends Model
 {
     use HasFactory;
 
+    //  protected $primaryKey = ['bouteille_id', 'cellier_id'];
+
     /**
      * The attributes that are mass assignable.
      *
