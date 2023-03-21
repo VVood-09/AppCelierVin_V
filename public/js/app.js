@@ -22821,6 +22821,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 
 
 
+
 //------------------- Button modal supression---------------------------------------
 
 function modal_delete(){
@@ -22841,3 +22842,21 @@ function modal_delete(){
   }
   
 }
+=======
+
+function changeQte(){
+
+  let data = {
+      'qte' :this.counter,
+      'bouteille': this.idB,
+      'cellier': this.idC
+    };
+
+  var entete = new Headers();
+  entete.append('Content-Type', 'application/json');
+    
+  fetch('../api/changeQte', { method:'PUT', body: JSON.stringify(data), headers:entete})
+  
+
+ }
+

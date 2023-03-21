@@ -67,7 +67,7 @@ Route::get('/autocomplete-search', function() {
     $results = DB::table('bouteilles')
         ->where('nom', 'like', '%' . $query . '%')
         ->orWhere('pays', 'like', '%' . $query . '%')
-        ->orWhere('prix', 'like', '%' . $query . '%')
+        ->orWhere('type', 'like', '%' . $query . '%')
         ->orWhere('format', 'like', '%' . $query . '%')
         // ->pluck('nom')
         ->get()

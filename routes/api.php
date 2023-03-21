@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CellierController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controlers\UtilisateurController;
@@ -22,3 +23,5 @@ Route::delete('modifier-bouteille/{bouteille}', [VinController::class, 'destroy'
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::put('changeQte', [CellierController::class, 'changeQte']);
