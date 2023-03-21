@@ -17,10 +17,10 @@
 
                     <div class="formBtl_search">
                         <x-autocomplete-search />
-                        <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button>
+                        <!-- <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button> -->
 
 
-                        <div x-show="ismodalopen" class="modal-SAQ">
+                        <div x-show="ismodalopen" class="modal-SAQ" x-transition>
                             <h1>Ajouter cette bouteille de la SAQ à un cellier?</h1>
                             <div>
                                 @if($errors)
