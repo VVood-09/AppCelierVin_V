@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     margin-bottom: var(--espacements-x_large);
+    align-items: center;
 }
 
 .formBtl_section h1, .formBtl_form h1{ 
