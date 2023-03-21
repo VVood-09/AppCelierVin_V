@@ -20,6 +20,7 @@
 
    .btl_carte-header{
     display: flex;
+    justify-content: space-between;
 
     margin-top: var(--espacements-small);
     margin-left: var(--espacements-medium);
@@ -28,18 +29,18 @@
   }
 
   
-  .btl_carte-header>*{
+  /* .btl_carte-header>*{
     display: flex;
      flex-basis: 50% ;
 
-   }
+   } */
 
-   .btl_carte-header>a:first-of-type{
+   /* .btl_carte-header>a:first-of-type{
      justify-content: center;
    }
    .btl_carte-header>a:last-of-type{
     justify-content: flex-end;
-  }
+  } */
 
 
    .btl_carte-body  {
