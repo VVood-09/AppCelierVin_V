@@ -47,6 +47,9 @@
      margin-left: var(--espacements-medium);
      margin-right: var(--espacements-medium);
    }
+   .btl_carte-body > .liste-btl_img {
+    margin: var(--espacements-x_small) auto;
+  }
 
 
 

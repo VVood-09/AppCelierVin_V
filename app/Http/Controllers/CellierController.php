@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cellier;
 use App\Models\ListeBouteille;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -80,67 +81,81 @@ class CellierController extends Controller
     }
 
 
-//      /**
-//      * Show the form for editing the specified resource.
-//      *
-//      * @param  \App\Models\Student  $student
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function edit(Cellier $cellier)
-//     {
-    //      $pays = Provenance::all();
-       // $types = Type::all();
-      //  return view('cellier.edit', ['pays'=>$pays, 'types'=>$types, 'cellier'=>'$cellier']);
-//        
-//     }
+    public function edit( Cellier $cellier){
+      
+        return view("cellier.edit", ['cellier' => $cellier]);
+    }
 
-    
-//     /**
-//      * Update the specified resource in storage.
-//      *
-//      * @param  \Illuminate\Http\Request  $request
-//      * @param  \App\Models\Student  $student
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function update(Request $request, Student $student)
-//     {
-//         // update where student->id => select where student->id
-//          $request->validate([
-//             'name' => 'required',
-//             'phone' => 'required',
-//             'address' => 'required',
-//             'city_id' => 'required|numeric',
-//             'birthday' => 'required|date',
-//             'email'=> 'required|email',
+
+
+
+
+    public function update(Request $request, Cellier $cellier){
+// return $request;
+        $request->validate([
+            'nom' => 'required|max:8',
+        ]);
+
+        $cellier->update([
+            'nom'=>$request->nom,
             
-//         ]);
+        ]);
+        // return redirect()->back();
+        return redirect(route('dashboard'))->withSuccess('Cellier modifie'); 
+      }
+
+
+
+
+    public function destroy( Cellier $cellier)
+    {
+        $cellier->delete();
+        return redirect(route('dashboard'));
+    }
+
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Student  $student
+     * @return \Illuminate\Http\Response
+     */
+    public function changeQte(Request $request){
+        // $bouteille = DB::table('liste_bouteilles')
+        //     ->select('*')
+        //     ->where('cellier_id', $request->idC)
+        //     ->andWhere('bouteille_id', $request->idB)
+        //     ->get();
         
-//         $student->update([
-//             'name'=> $request->name,
-//             'email' => $request->email,
-//             'phone' => $request->phone,
-//             'address' => $request->address,
-//             'city_id' => $request->city_id,
-//             'birthday' => $request->birthday,
-//         ]);
+        //return $request->qte;
+        
+        
+        // $bouteille = ListeBouteille::where([
+        //     'cellier_id' => $request->cellier,
+        //     'bouteille_id' => $request->bouteille,
+        // ])->first();
 
 
-//         return redirect(route('students.show', $student->id))->with('success', 'Modifications effectuées');
-//     }
+        //return $bouteille;
+        DB::statement("UPDATE liste_bouteilles SET qte = $request->qte WHERE bouteille_id = $request->bouteille AND cellier_id = $request->cellier;");
+        
+        
+        //return $bouteille;
 
+        // if ($bouteille) {
+        //     $bouteille->update([
+        //         'qte' => $request->qte,
+        //     ]);
+        // }
+    
+        // $test=$request->qte;
 
-//  /**
-//      * Remove the specified resource from storage.
-//      *
-//      * @param  \App\Models\Student  $student
-//      * @return \Illuminate\Http\Response
-//      */
-//     public function destroy(Student $student)
-//     {
-//         $student->delete();
+        // return response()->json([
+        //     "status"=>200,
+        //     "reponse"=>$test
+        // ]);
+    }
 
-//         return redirect(route('students.index'))->withSuccess('Suppression réussite');
-//     }
 
 
  }

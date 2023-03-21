@@ -44,8 +44,13 @@
         <input type="text" id="format" name="format" step="0.01" min="0" value="{{$bouteille->format}}" placeholder="Quantité (en ml)">
 
         <input class="btn"type="submit" value="Modifier">
-
+        <a href="#" class="btn-reverse">Suprimer</a>
+      
     </form>
+
+
+  
+
 
 </section>
 @endsection
