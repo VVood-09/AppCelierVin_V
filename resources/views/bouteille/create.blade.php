@@ -53,8 +53,8 @@
 
 
                             </div>
-                            <form action="">
-                                <input type="hidden" name="id" value="{{old('id')}}">
+                            <form action="" >
+                                <li x-ref="code_saq" value="{{old('code_saq')}}"></li>
                                 <select name="cellier">
                                     <option value="" disabled selected>Choisir un cellier</option>
                                     @foreach($celliers as $cellier)
