@@ -9,10 +9,50 @@
     margin:var(--espacements-large) auto var(--espacements-medium) auto;
 }
 
+.formBtl_section.suggestion_section h1{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .formBtl_search{
     position: relative;
     display: inline-block;
        margin: auto;   
+       padding: 5px;
+}
+
+.formBtl_search form input, .formBtl_search form select{
+    width: -webkit-fill-available;
+    margin-top: 10px;
+}
+
+.formBtl_search tr{
+    padding-top: 30px;
+}
+
+.formBtl_search th{
+    text-align: initial;
+    padding-right: 10px;
+}
+
+.formBtl_search table{
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+.btnWrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.formBtl_search li{
+    padding-top: 10px;
+    border-bottom: 1px solid black;
+}
+
+.suggestion_scroll{
+    overflow: auto;
+    max-height: 50vh;
 }
 
 .formBtl_search input{
@@ -60,3 +100,4 @@
     align-items: last baseline;
 
 }
+
