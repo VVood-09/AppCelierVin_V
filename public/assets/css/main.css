@@ -28,3 +28,7 @@
 @import "./admin/general_admin.css";
 @import "./admin/main_admin.css";
 @import "./admin/nav_admin.css";
+/*-------- Import administration ---------*/
+@import "./admin/general_admin.css";
+@import "./admin/main_admin.css";
+@import "./admin/nav_admin.css";
