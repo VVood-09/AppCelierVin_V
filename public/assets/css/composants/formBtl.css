@@ -8,16 +8,79 @@
     display: flex;
     flex-direction: column;
     margin-bottom: var(--espacements-x_large);
+    align-items: center;
 }
 
 .formBtl_section h1, .formBtl_form h1{ 
     margin:var(--espacements-large) auto var(--espacements-medium) auto;
 }
 
+.formBtl_section.suggestion_section h1{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .formBtl_search{
     position: relative;
     display: inline-block;
        margin: auto;   
+       padding: 5px;
+}
+
+.modal-SAQ{
+    position: fixed;
+    top: 10%;
+    right: 0;
+    bottom: 10%;
+    left: 0;
+    margin: 30px;
+}
+
+.formBtl_search form input, .formBtl_search form select{
+    width: -webkit-fill-available;
+    margin-top: 10px;
+}
+
+.formBtl_search tr{
+    padding-top: 30px;
+}
+
+.formBtl_search th{
+    text-align: initial;
+    padding-right: 10px;
+}
+
+.formBtl_search table{
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+.suggestion_section h1:first-of-type{
+    max-width: max-content;
+}
+
+.modal-SAQ{
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 6px 0 rgba(0,0,0,.3);
+    background-color: #e6e6e6;
+    border-radius: 20px;
+    padding: 20px;
+    
+}
+
+.btnWrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.formBtl_search li{
+    padding-top: 10px;
+    border-bottom: 1px solid black;
+}
+
+.suggestion_scroll{
+    overflow: auto;
+    max-height: 50vh;
 }
 
 .formBtl_search input{
@@ -65,3 +128,4 @@
     align-items: last baseline;
 
 }
+
