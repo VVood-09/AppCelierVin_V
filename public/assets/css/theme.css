@@ -12,6 +12,7 @@ font-family: 'Raleway', sans-serif; */
     Color palette
     */
         --primary: #181818;
+        --primary_fade: #1818185a;
         --secondary: white;
         --accent: #7E001E;
         --accent_fade: #7e001d9c;

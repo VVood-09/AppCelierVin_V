@@ -22,6 +22,16 @@
        
     </form>
 
+    
+    <?php
+    $action = 'Supprimer le compte';
+    ?>
+    <x-modal trigger-text="Suprimer" >
+      Etes-vous certain de vouloir {{ $action }} ?
+    </x-modal>
+            
+    
+
 
 </div>
 

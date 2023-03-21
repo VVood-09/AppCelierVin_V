@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');
     Route::get('modifier-cellier/{cellier}', [CellierController::class, 'edit'])->name('cellier.edit');
     Route::put('modifier-cellier/{cellier}', [CellierController::class, 'update']);
+    Route::delete('modifier-cellier/{cellier}', [VinController::class, 'delete'])->name('cellier.delete');
 
 
     Route::get('ajout-bouteille', [VinController::class, 'create'])->name('bouteille.create');

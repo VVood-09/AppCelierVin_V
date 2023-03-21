@@ -106,12 +106,15 @@ class CellierController extends Controller
 
 
 
-    public function destroy( Cellier $cellier)
+    public function delete( Cellier $cellier)
     {
         $cellier->delete();
         return redirect(route('dashboard'));
     }
 
+
+
+    
 //      /**
 //      * Show the form for editing the specified resource.
 //      *
