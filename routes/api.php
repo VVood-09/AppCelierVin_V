@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CellierController;
+use App\Http\Controllers\VinController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::put('changeQte', [CellierController::class, 'changeQte']);
+Route::put('changeNote', [VinController::class, 'changeNote']);

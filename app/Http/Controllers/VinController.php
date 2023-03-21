@@ -120,4 +120,11 @@ class VinController extends Controller
           return redirect(route('dashboard'));
       }
 
+    public function changeNote(Request $request){
+        // return Auth::user()->id;
+        // $uID = Auth::user()->id;
+        // var_dump(Auth::user()); die;
+        $request->user_id = Auth::user()->id;
+        return $request;
+    }
 }

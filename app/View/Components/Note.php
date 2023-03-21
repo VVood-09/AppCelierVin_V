@@ -47,7 +47,7 @@ class Note extends Component
           ">
           <div>
             <template x-for="(star, index) in ratings" :key="index">
-              <button @click="rate(star.amount)" @mouseover="hoverRating = star.amount" @mouseleave="hoverRating = rating"
+              <button @click="rate(star.amount)" x-on:click="changeNote(star.amount)" @mouseover="hoverRating = star.amount" @mouseleave="hoverRating = rating"
                 aria-hidden="true"
                 :title="star.label"
                 class="note note_vide"

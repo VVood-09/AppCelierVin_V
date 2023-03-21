@@ -22816,7 +22816,11 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 ;
 
 
-
+/****************************
+ * Fonction de App Vino
+ * Changement de quantité de bouteille dans le cellier
+ * Changement de la note sur bouteille
+ */
 
 
 function changeQte(){
@@ -22835,3 +22839,29 @@ function changeQte(){
     .then((reponse)=>console.log(reponse));
   
  }
+
+
+
+function changeNote(note){
+  let url = window.location.href,
+      bouteille_id = url.split('/fiche-bouteille/')[1];
+
+  if (this.note == note) {
+    this.note = 0;
+  }
+  else this.note = note;
+  
+  data = { 
+    'note' : this.note,
+    'bouteille_id' : bouteille_id,
+    'user_id' : '',
+  };
+  // console.log(data);
+
+  var entete = new Headers();
+  entete.append('Content-Type', 'application/json');
+    
+  fetch('../../../api/changeNote', { method:'PUT', body: JSON.stringify(data), headers:entete})
+    .then(reponse=> reponse.json())
+    .then((reponse)=>console.log(reponse));
+}

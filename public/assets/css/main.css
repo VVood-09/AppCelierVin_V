@@ -21,7 +21,6 @@
 @import "./composants/profil.css";
 
 /*-------- Import éléments---------*/
-@import "./elements/boutons.css";
 @import "./elements/navigation.css";
 
 /*-------- Import administration ---------*/
