@@ -22830,7 +22830,7 @@ function changeQte(){
   var entete = new Headers();
   entete.append('Content-Type', 'application/json');
     
-  fetch('//127.0.0.1:8000/api/changeQte', { method:'PUT', body: JSON.stringify(data), headers:entete})
+  fetch('../api/changeQte', { method:'PUT', body: JSON.stringify(data), headers:entete})
   
 
  }
