@@ -19,7 +19,7 @@
 
 
                         <div x-show="ismodalopen">
-                            <h1>Ajouter une Bouteille</h1>
+                            <h1>Souhaitez-vous ajouter cette bouteille de la SAQ à un cellier?</h1>
                             <div>
                                 @if($errors)
                                 <ul>
@@ -47,16 +47,27 @@
                             </div>
 
 
+
+
+                            <div class="flex justify-end p-4">
+
+
+                            </div>
+                            <form action="">
+                                <input type="hidden" name="id" value="{{old('id')}}">
+                                <select name="cellier">
+                                    <option value="" disabled selected>Choisir un cellier</option>
+                                    @foreach($celliers as $cellier)
+                                    <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+                                    @endforeach
+                                </select>
+                                <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
+                                <button class="modal-button modal-button-confirm">Confirmer</button>
+                                <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
+
+                            </form>
                         </div>
-
-
                     </div>
-                    <div class="flex justify-end p-4">
-                        <button class="modal-button modal-button-confirm">Confirmer</button>
-                        <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
-
-
-</div>
                 </div>
             </div>
         </div>
@@ -66,7 +77,7 @@
         <x-autocomplete-search  />
         <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button>
     </div>
-
+-->
     <h1>Ajouter une Bouteille</h1>
 
     <div>
@@ -116,7 +127,7 @@
 
         <input class="btn" type="submit" value="Ajouter">
 
-    </form> -->
+    </form>
 
 </section>
 @endsection
