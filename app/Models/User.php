@@ -42,4 +42,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function permissionUtilisateur(){
+        return $this->hasOne('App\Models\Permission', 'id', 'permission_id');
+    }
 }

@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\Controller;
 Use App\Http\Controllers\CellierController;
 Use App\Http\Controllers\VinController;
-Use App\Http\Controllers\UtilisateurController;
-use App\Http\Controllers\ScraperController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminUtilisateurController;
+use App\Http\Controllers\Admin\ScraperController;
 Use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\DB;
@@ -90,5 +90,8 @@ Route::group(['middleware' => 'auth'], function(){
         // Route pour l'administration
         Route::get('', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/scraper', [ScraperController::class, 'scraper'])->name('scraper.index');
+        Route::get('/membres', [AdminUtilisateurController::class, 'index'])->name('admin.membre.index');
+        Route::get('/membres/{utilisateur}', [AdminUtilisateurController::class, 'show'])->name('admin.membre.show');
+        Route::put('/membres/{utilisateur}', [AdminUtilisateurController::class, 'update']);
     });
 });
