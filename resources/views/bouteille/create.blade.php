@@ -9,87 +9,70 @@
 
     <div x-data="{ ismodalopen: false }">
         <h1>Rechercher un Vin</h1>
-        <div class="">
-            <!-- <div class="fixed inset-0 bg-gray-500 bg-opacity-75"> -->
-            <div class="">
-                <!-- <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg w-2/3 max-w-md"> -->
-                <div class="p-4">
-
-                    <div class="formBtl_search">
-                        <x-autocomplete-search />
-                        <!-- <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button> -->
-
-
-                        <div x-show="ismodalopen" class="modal-SAQ" x-transition>
-                            <h1>Ajouter à un cellier?</h1>
-                            <div>
-                                @if($errors)
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                    <li class="text-danger">{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                                @endif
-                            </div>
-                            <div>
-                                <table>
-                                    <tr>
-                                        <th>Nom</th>
-                                        <td x-ref="nom" value="{{old('nom')}}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Prix</th>
-                                        <td x-ref="prix" value="{{old('prix')}}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Pays</th>
-                                        <td x-ref="pays" value="{{old('pays')}}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Type</th>
-                                        <td x-ref="type" value="{{old('type')}}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Détails</th>
-                                        <td x-ref="description" value="{{old('description')}}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Format</th>
-                                        <td x-ref="format" value="{{old('format ')}}"></td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <form action="" method="post">
-                            @csrf
-                                <input type="hidden" name="id" x-ref="id" value="{{old('id')}}">
-                                <input type="hidden" name="code_saq" x-ref="code_saq" value="{{old('code_saq')}}">
-
-                                <select name="cellier">
-                                    <option value="" disabled selected>Choisir un cellier</option>
-                                    @foreach($celliers as $cellier)
-                                    <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
-                                    @endforeach
-                                </select>
-                                <input type="number" name="qte" placeholder="Nombre de bouteilles" min="1"  value="{{old('qte')}}">
-
-                                <div class="btnWrapper">
-                                    <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
-                                    <button class="modal-button modal-button-confirm">Confirmer</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+        <div class="formBtl_search">
+            <x-autocomplete-search />
+            <!-- <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button> -->
+            <div x-show="ismodalopen" class="modal-SAQ" x-transition>
+                <h1>Ajouter à un cellier?</h1>
+                <div>
+                @if($errors)
+                    <ul>
+                    @foreach($errors->all() as $error)
+                        <li class="text-danger">{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                @endif
                 </div>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Nom</th>
+                            <td x-ref="nom" value="{{old('nom')}}"></td>
+                        </tr>
+                        <tr>
+                            <th>Prix</th>
+                            <td x-ref="prix" value="{{old('prix')}}"></td>
+                        </tr>
+                        <tr>
+                            <th>Pays</th>
+                            <td x-ref="pays" value="{{old('pays')}}"></td>
+                        </tr>
+                        <tr>
+                            <th>Type</th>
+                            <td x-ref="type" value="{{old('type')}}"></td>
+                        </tr>
+                        <tr>
+                            <th>Détails</th>
+                            <td x-ref="description" value="{{old('description')}}"></td>
+                        </tr>
+                        <tr>
+                            <th>Format</th>
+                            <td x-ref="format" value="{{old('format ')}}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <form action="" method="post">
+                @csrf
+                    <input type="hidden" name="id" x-ref="id" value="{{old('id')}}">
+                    <input type="hidden" name="code_saq" x-ref="code_saq" value="{{old('code_saq')}}">
+                    <select name="cellier">
+                        <option value="" disabled selected>Choisir un cellier</option>
+                        @foreach($celliers as $cellier)
+                        <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+                        @endforeach
+                    </select>
+                    <input type="number" name="qte" placeholder="Nombre de bouteilles" min="1"  value="{{old('qte')}}">
+                    <div class="btnWrapper">
+                        <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
+                        <button class="modal-button modal-button-confirm">Confirmer</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+    
 
-    <!-- <div class="formBtl_search">
-        <x-autocomplete-search  />
-        <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button>
-    </div>
--->
+
     <h1>Ajouter une Bouteille</h1>
 
     <div>
@@ -104,6 +87,11 @@
 
     <form x-data="{ ismodalopen: true }" action="" enctype="multipart/form-data" class="formBtl_form" method="post">
         @csrf
+
+        <label for="file" class="formBtl_ajoutL">Télécharger une image <i><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="formBtl_ajoutF"><g data-name="Layer 2"><path d="M16 29a13 13 0 1 1 13-13 13 13 0 0 1-13 13Zm0-24a11 11 0 1 0 11 11A11 11 0 0 0 16 5Z" fill="#7e001e" class="fill-000000"></path><path d="M16 23a1 1 0 0 1-1-1V10a1 1 0 0 1 2 0v12a1 1 0 0 1-1 1Z" fill="#7e001e" class="fill-000000"></path><path d="M22 17H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2Z" fill="#7e001e" class="fill-000000"></path></g><path d="M0 0h32v32H0z" fill="none"></path></svg></i>
+        </label>
+        <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}" class="formBtl_file">
+
         <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}">
 
         <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" />
@@ -112,17 +100,11 @@
 
         <select x-ref="type" name="type">
             <option value="" disabled selected>Choisir un type</option>
-            <option value="Vin blanc">Vin blanc</option>
-            <option value="Vin rouge">Vin rouge</option>
-            <option value="Vin rose">Vin rosé</option>
-            <option value="Vin de tomate">Vin de tomate</option>
+            <option value="Vin blanc" @if(old("type") == "Vin blanc") selected @endif>Vin blanc</option>
+            <option value="Vin rouge" @if(old("type") == "Vin rouge") selected @endif>Vin rouge</option>
+            <option value="Vin rose" @if(old("type") == "Vin rose") selected @endif>Vin rosé</option>
+            <option value="Vin de tomate" @if(old("type") == "Vin de tomate") selected @endif>Vin de tomate</option>
         </select>
-
-
-        <label for="file">Télécharger une image :</label>
-        <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}">
-
-
 
         <textarea x-ref="description" name="description" placeholder="Description">{{old('description')}}</textarea>
 
@@ -131,11 +113,14 @@
         <select name="cellier">
             <option value="" disabled selected>Choisir un cellier</option>
             @foreach($celliers as $cellier)
-            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+            <option value="{{$cellier->id}}" @if(old("cellier") == "$cellier->id") selected @endif>{{$cellier->nom}}</option>
             @endforeach
         </select>
 
         <input type="number" name="qte" placeholder="Nombre de bouteilles" min="1" / value="{{old('qte')}}">
+
+  
+
 
         <input class="btn" type="submit" value="Ajouter">
 
