@@ -97,13 +97,15 @@ class VinController extends Controller
     }
     
     
-    public function edit( Bouteille $bouteille){
+    public function edit(  Cellier $cellier,Bouteille $bouteille){
+        // return $this->cellier_actif;
 
-        return view("bouteille.edit", ['bouteille' => $bouteille]);
+        return view("bouteille.edit", ['cellier' => $cellier,'bouteille' => $bouteille]);
 
     }
 
-    public function update(Request $request, Bouteille $bouteille){
+
+    public function update(Request $request, Bouteille $bouteille, Cellier $cellier){
 
         // $file = $request->file('file');
         // $filename = $file->getClientOriginalName();
@@ -127,17 +129,21 @@ class VinController extends Controller
             'format'=>$request->format.' ml',
             'prix'=>$request->prix.' $'
         ]);
-        return redirect()->back();
+        return view("bouteille.show", ['cellier' => $cellier,'bouteille' => $bouteille]);
 
       }
 
 
 
-      public function destroy(  Bouteille $bouteille)
+      public function destroy(Cellier $cellier,Bouteille $bouteille)
       {
+
+       
           $bouteille->delete();
   
-          return redirect(route('dashboard'));
+         return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Bouteille supprimer');
+
+
       }
 
     /**

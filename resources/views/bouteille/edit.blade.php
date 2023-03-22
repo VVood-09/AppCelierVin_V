@@ -44,9 +44,22 @@
         <input type="text" id="format" name="format" step="0.01" min="0" value="{{$bouteille->format}}" placeholder="Quantité (en ml)">
 
         <input class="btn"type="submit" value="Modifier">
-        <a href="#" class="btn-reverse">Suprimer</a>
+        
       
     </form>
+
+    <?php
+    $action = 'Supprimer cette bouteille';
+  //  $routeBack = '  Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');';
+    
+    $route = route('bouteille.delete', ['bouteille' => $bouteille->id,'cellier' => $cellier->id]);
+            ?>
+
+
+    <x-modal_suppresion  route="{{ $route }}" trigger-text="Supprimer cette bouteille" >
+      Etes-vous certain de vouloir {{ $action }} ?
+    </x-modal_suppresion>
+
 
 
   
