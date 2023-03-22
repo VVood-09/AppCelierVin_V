@@ -97,24 +97,26 @@ class VinController extends Controller
     }
     
     
-    public function edit(  Cellier $cellier,Bouteille $bouteille){
-        // return $this->cellier_actif;
-
+    public function edit(Cellier $cellier,Bouteille $bouteille){
+  
         return view("bouteille.edit", ['cellier' => $cellier,'bouteille' => $bouteille]);
 
     }
 
 
-    public function update(Request $request, Bouteille $bouteille, Cellier $cellier){
+    public function update(Request $request, Cellier $cellier, Bouteille $bouteille){
+        $filename= null;
 
-        // $file = $request->file('file');
-        // $filename = $file->getClientOriginalName();
-        // $file->storeAs('public/uploads', $filename);
+        if ($request->file){
 
+            $file = $request->file('file');
+            $filename = $file->getClientOriginalName();
+            $file->storeAs('public/uploads', $filename);
+        }
 
         $request->validate([
             'nom' => 'required',
-            // 'image'=> 'mimes:jpg, png',
+            'image'=> 'mimes:jpg, png',
             'qte'=>'numeric|gt:0',
             'format'=>'numeric|gt:0',
             'prix'=>'numeric|gt:0',
@@ -122,14 +124,15 @@ class VinController extends Controller
 
         $bouteille->update([
             'nom'=>$request->nom,
-            // 'image'=>$filename,
+            'image'=>$filename,
             'description'=>$request->description,
             'pays'=>$request->pays,
             'type'=>$request->type,
-            'format'=>$request->format.' ml',
-            'prix'=>$request->prix.' $'
+            'format'=>$request->format,
+            'prix'=>$request->prix
         ]);
-        return view("bouteille.show", ['cellier' => $cellier,'bouteille' => $bouteille]);
+        
+        return redirect(route('bouteille.show', ['cellier'=>$cellier, 'bouteille'=>$bouteille]))->withSuccess('Bouteille modifiée');
 
       }
 
