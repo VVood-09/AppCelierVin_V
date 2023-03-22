@@ -1,28 +1,29 @@
 @extends('layouts.app')
-@section('title', 'Modification cellier')
+@section('title', 'Modification Cellier')
 @section('content')
    
-    <form class="formBtl_form"  method="post" action="">
-        @csrf
-        @method('put')
-        <h1>Modification du Cellier {{$cellier->nom}} </h1>
-        <input type="text" name="nom" placeholder="Nom du cellier" value="{{$cellier->nom}}">
-        <input class="btn"  type="submit" value="Modifier">
-         
-         <?php
-            $action = 'Supprimer ce cellier';
+<div class="formBtl">
+  <h1>Modification du Cellier {{$cellier->nom}} </h1>
+  
+  <form class="formBtl_form"  method="post" action="">
+    @csrf
+    @method('put')
+    <input type="text" name="nom" placeholder="Nom du cellier" value="{{$cellier->nom}}">
+    <input class="btn"  type="submit" value="Modifier">
+    
+    
+  </form>
+  
+  <?php
+    $action = 'Supprimer ce cellier';
+    $route = route('cellier.delete', ['cellier' => $cellier->id]);
             ?>
 
 
-      <x-modal  trigger-text="Supprimer Cellier" >
-        Etes-vous certain de vouloir {{ $action }} ?
-      </x-modal>
-      <x-modalForm trigger-text="Ajout Bouteille" >
-        Etes-vous certain de vouloir {{ $action }} ?
-      </x-modalForm> 
-
-    </form>
-
-
+  <x-modal_suppresion  route="{{ $route }}" trigger-text="Supprimer ce cellier" >
+    Etes-vous certain de vouloir {{ $action }} ?
+  </x-modal_suppresion>
+</div>
+  
 
 @endsection

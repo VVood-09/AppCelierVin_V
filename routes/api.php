@@ -5,6 +5,8 @@ use App\Http\Controllers\VinController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controlers\UtilisateurController;
+use App\Http\Controlers\VinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +19,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::put('changeQte', [CellierController::class, 'changeQte']);
-Route::middleware(['web'])->group(function () {
-    Route::put('changeNote', [VinController::class, 'changeNote']);
-});

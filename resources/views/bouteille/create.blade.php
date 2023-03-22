@@ -4,22 +4,24 @@
 
 
 
-<section class="formBtl_section">
+<section class="formBtl_section suggestion_section">
 
 
     <div x-data="{ ismodalopen: false }">
         <h1>Rechercher un Vin</h1>
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75">
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg w-2/3 max-w-md">
+        <div class="">
+            <!-- <div class="fixed inset-0 bg-gray-500 bg-opacity-75"> -->
+            <div class="">
+                <!-- <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg w-2/3 max-w-md"> -->
                 <div class="p-4">
 
                     <div class="formBtl_search">
                         <x-autocomplete-search />
-                        <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button>
+                        <!-- <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button> -->
 
 
-                        <div x-show="ismodalopen">
-                            <h1>Ajouter une Bouteille</h1>
+                        <div x-show="ismodalopen" class="modal-SAQ" x-transition>
+                            <h1>Ajouter cette bouteille de la SAQ à un cellier?</h1>
                             <div>
                                 @if($errors)
                                 <ul>
@@ -30,33 +32,58 @@
                                 @endif
                             </div>
                             <div>
-                                <ul>
-                                    <b>Nom</b>
-                                    <li x-ref="nom" value="{{old('nom')}}"> </li>
-                                    <b>Prix</b>
-                                    <li x-ref="prix" value="{{old('prix')}}"></li>
-                                    <b>Pays</b>
-                                    <li x-ref="pays" value="{{old('pays')}}"></li>
-                                    <b>Type</b>
-                                    <li x-ref="type" value="{{old('type')}}"></li>
-                                    <b>Description</b>
-                                    <li x-ref="description" value="{{old('description')}}"></li>
-                                    <b>Format</b>
-                                    <li x-ref="format" value="{{old('format ')}}"></li>
-                                </ul>
+                                <table>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <td x-ref="nom" value="{{old('nom')}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Prix</th>
+                                        <td x-ref="prix" value="{{old('prix')}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Pays</th>
+                                        <td x-ref="pays" value="{{old('pays')}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Type</th>
+                                        <td x-ref="type" value="{{old('type')}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Détails</th>
+                                        <td x-ref="description" value="{{old('description')}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Format</th>
+                                        <td x-ref="format" value="{{old('format ')}}"></td>
+                                    </tr>
+                                </table>
                             </div>
 
 
+
+
+                            <div class="flex justify-end p-4">
+
+
+                            </div>
+
+                            <form action="" >
+                                <li x-ref="code_saq" value="{{old('code_saq')}}"></li>
+                                <select name="cellier">
+                                    <option value="" disabled selected>Choisir un cellier</option>
+                                    @foreach($celliers as $cellier)
+                                    <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+                                    @endforeach
+                                </select>
+                                <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
+                                <button class="modal-button modal-button-confirm">Confirmer</button>
+                                <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
+
+
+                            </form>
                         </div>
-
-
                     </div>
-                    <div class="flex justify-end p-4">
-                        <button class="modal-button modal-button-confirm">Confirmer</button>
-                        <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
-
-
-</div>
                 </div>
             </div>
         </div>
@@ -66,7 +93,7 @@
         <x-autocomplete-search  />
         <button><img src="/assets/img/icon_PW2/search_icon.png" alt="search icon"></button>
     </div>
-
+-->
     <h1>Ajouter une Bouteille</h1>
 
     <div>
@@ -116,7 +143,7 @@
 
         <input class="btn" type="submit" value="Ajouter">
 
-    </form> -->
+    </form>
 
 </section>
 @endsection

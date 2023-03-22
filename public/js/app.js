@@ -22823,6 +22823,12 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
  */
 
 
+
+
+
+
+
+
 function changeQte(){
 
   let data = {
@@ -22830,16 +22836,14 @@ function changeQte(){
       'bouteille': this.idB,
       'cellier': this.idC
     };
-   //console.log(data);
+
   var entete = new Headers();
   entete.append('Content-Type', 'application/json');
     
-  fetch('//127.0.0.1:8000/api/changeQte', { method:'PUT', body: JSON.stringify(data), headers:entete})
-    .then(reponse=> reponse.json())
-    .then((reponse)=>console.log(reponse));
+  fetch('../api/changeQte', { method:'PUT', body: JSON.stringify(data), headers:entete})
   
- }
 
+ }
 
 
 function changeNote(note){
@@ -22864,3 +22868,4 @@ function changeNote(note){
     .then(reponse=> reponse.json())
     .then((reponse)=>console.log(reponse));
 }
+

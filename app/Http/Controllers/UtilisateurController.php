@@ -38,10 +38,13 @@ class UtilisateurController extends Controller
       }
 
       
-      public function destroy( User $utilisateur)
+      public function destroy()
       {
+        $utilisateur = Auth::user();
+        // return $utilisateur;
           $utilisateur->delete();
-          return redirect(route('dashboard'));
+
+          return redirect(route('login'));
       }
 
 }
