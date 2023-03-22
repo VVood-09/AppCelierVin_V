@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controlers\UtilisateurController;
-use App\Http\Controlers\VinController;
+
 
 /*
 |--------------------------------------------------------------------------
