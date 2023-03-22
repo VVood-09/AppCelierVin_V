@@ -29,19 +29,22 @@ class UtilisateurController extends Controller
             'email'=>'email',
         ]);
 
-        // $utilisateur->update([
-        //     'name'=>$request->nom,
-        //     'email'=>$request->email,
-        // ]);
+        $utilisateur->update([
+            'name'=>$request->nom,
+            'email'=>$request->email,
+        ]);
 
         return redirect()->back();
       }
 
       
-      public function destroy( User $utilisateur)
+      public function destroy()
       {
+        $utilisateur = Auth::user();
+        // return $utilisateur;
           $utilisateur->delete();
-          return redirect(route('dashboard'));
+
+          return redirect(route('login'));
       }
 
 }

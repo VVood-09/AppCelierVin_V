@@ -1,11 +1,8 @@
 /* -------------------- Importation de fichiers CSS -------------------- */
 
-
 /*-------- Import généraux---------*/
 @import "./theme.css";
 @import "./general.css";
-
-
 
 /*-------- Import composants---------*/
 /* !! LES FICHIERS NE SONT PAS CRÉÉS, DONC PAS ENCORE LIÉS !! */
@@ -20,13 +17,10 @@
 @import "./composants/liste-btl.css";
 @import "./composants/modal.css";
 @import "./composants/carte_commentaire.css";
+@import "./composants/note.css";
 @import "./composants/profil.css";
 
-
-
-
 /*-------- Import éléments---------*/
-@import "./elements/boutons.css";
 @import "./elements/navigation.css";
 
 /*-------- Import administration ---------*/

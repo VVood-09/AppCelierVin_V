@@ -16,10 +16,11 @@
   
   <?php
     $action = 'Supprimer ce cellier';
+    $route = route('cellier.delete', ['cellier' => $cellier->id]);
             ?>
 
 
-  <x-modal_suppresion trigger-text="Supprimer ce cellier" >
+  <x-modal_suppresion  route="{{ $route }}" trigger-text="Supprimer ce cellier" >
     Etes-vous certain de vouloir {{ $action }} ?
   </x-modal_suppresion>
 </div>

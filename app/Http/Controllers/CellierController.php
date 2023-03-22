@@ -81,6 +81,7 @@ class CellierController extends Controller
     }
 
 
+    
     public function edit( Cellier $cellier){
       
         return view("cellier.edit", ['cellier' => $cellier]);
@@ -101,16 +102,16 @@ class CellierController extends Controller
             
         ]);
         // return redirect()->back();
-        return redirect(route('dashboard'))->withSuccess('Cellier modifie'); 
+        return redirect(route('dashboard'))->withSuccess('Cellier modifié'); 
       }
 
 
 
 
-    public function delete( Cellier $cellier)
+    public function destroy( Cellier $cellier)
     {
         $cellier->delete();
-        return redirect(route('dashboard'));
+        return redirect(route('dashboard'))->withSuccess('Cellier supprimay'); 
     }
 
 
@@ -138,7 +139,7 @@ class CellierController extends Controller
 
 
         //return $bouteille;
-        DB::statement("UPDATE liste_bouteilles SET qte = $request->qte WHERE bouteille_id = $request->bouteille AND cellier_id = $request->cellier;");
+        DB::statement("UPDATE liste_bouteilles SET qte = $request->qte, updated_at = now() WHERE bouteille_id = $request->bouteille AND cellier_id = $request->cellier ;");
         
         
         //return $bouteille;

@@ -67,6 +67,7 @@
 
 
                             </div>
+
                             <form action="">
                                 <input type="hidden" name="id" x-ref="id" value="{{old('id')}}">
                                     <select name="cellier">
@@ -80,6 +81,7 @@
                                     <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
                                     <button class="modal-button modal-button-confirm">Confirmer</button>
                                 </div>
+
 
                             </form>
                         </div>

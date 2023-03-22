@@ -30,6 +30,13 @@
   font-size: 25px;
   margin-bottom: var(--espacements-large);
 }
+.modal_text{
+  margin-top:var(--espacements-large);
+  
+}
+.modal .formBtl_form{
+  margin: 0;
+}
 
 .modal_btn-delete{
   width: 75%;
