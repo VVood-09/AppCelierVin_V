@@ -73,8 +73,17 @@
 
 .btnWrapper{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
+
+.btnWrapper > * {
+    max-width: 40%;
+}
+
+.btnWrapper .modal-button-confirm{
+    color: white;
+}
+
 
 .formBtl_search li{
     padding-top: 10px;
