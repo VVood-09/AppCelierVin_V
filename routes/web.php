@@ -9,7 +9,6 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminUtilisateurController;
 use App\Http\Controllers\Admin\ScraperController;
 Use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\UtilisateurController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\DB;
 
