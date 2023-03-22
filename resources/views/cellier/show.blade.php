@@ -3,12 +3,22 @@
 @section('title', 'Cellier')
 @section('content')
 
-  @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>{{session('success')}}</strong> 
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+
+    <div x-data="{ showNotification: false, message: '' }" x-init="() => {
+        const message = '{{ session('success') }}'; 
+        if (message) {
+            showNotification = true;
+            message = message.replaceAll('\\\'', '\'');
+            this.message = message; 
+            setTimeout(() => showNotification = false, 5000); 
+        }
+    }">
+        <div x-show="showNotification" class="retourAction">
+            <p x-text="message">yo</p>
+        </div>
     </div>
-  @endif
+
 <div class="liste-btl_body">
     <div class="liste-btl_title">
          <h1>Cellier : {{$cellier->nom}}</h1> 
@@ -125,4 +135,6 @@
 
     </div>   
 </div>
+
+
 @endsection
