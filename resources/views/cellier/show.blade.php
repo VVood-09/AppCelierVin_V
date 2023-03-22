@@ -117,18 +117,6 @@
 
 
 
-<?php
-$action = 'Supprimer ce cellier';
-?>
-
-  <div class="containerBoutonsCellier ">
-      <x-modal class="btn-reverse" trigger-text="Supprimer Cellier" >
-        Etes-vous certain de vouloir {{ $action }} ?
-      </x-modal>
-      <x-modalForm trigger-text="Ajout Bouteille" >
-        Etes-vous certain de vouloir {{ $action }} ?
-      </x-modalForm> 
-  </div>
 
     </div>   
 </div>
