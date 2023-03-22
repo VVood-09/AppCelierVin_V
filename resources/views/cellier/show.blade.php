@@ -3,7 +3,12 @@
 @section('title', 'Cellier')
 @section('content')
 
-
+  @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{session('success')}}</strong> 
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
 <div class="liste-btl_body">
     <div class="liste-btl_title">
          <h1>Cellier : {{$cellier->nom}}</h1> 
