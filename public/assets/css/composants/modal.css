@@ -1,3 +1,86 @@
+.modal{
+  display: flex;
+  flex-direction: column;
+  margin:var(--espacements-medium) auto;
+  background-color: var(--primary_fade);
+ width: 100%;
+ border-radius: 20px;
+ padding: 15px;
+ color: #fefefe;
+ font-size: 18px;
+
+ padding: 0 var(--espacements-medium);
+ position: fixed; /* élément positionné de manière fixe */
+ top: 0; /* position en haut de l'écran */
+ left: 0; /* position à gauche de l'écran */
+ width: 100%; /* largeur de l'écran */
+ height: 100%; /* hauteur de l'écran */
+ justify-content: center; /* centrer horizontalement */
+ align-items: center; /* centrer verticalement */
+
+}
+
+.modal div{
+  display: flex;
+
+}
+
+.modal div:first-of-type{
+  text-align: center;
+  font-size: 25px;
+  margin-bottom: var(--espacements-large);
+}
+
+.modal_btn-delete{
+  width: 75%;
+  margin: auto;
+}
+
+.modal_confirm-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 30px;
+
+}
+
+.modal_confirm-btn  button svg{
+  width: 35px;
+  height: 35px;
+}
+
+.modal_btn-delete .modal .modal_confirm-btn{
+ display: flex;
+ flex-direction: row;
+  margin-top: var(--espacements-small);
+  justify-content: space-between;
+}
+
+.modal_btn-delete>.btn-reverse{
+  width: 100%;
+}
+
+
+
+.modal_confirm-btn .btn{
+  border: 1px solid var(--accent);
+}
+
+
+
+
+.modal_btn-delete .modal_confirm-btn{
+  display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+/* .modal_btn-delete .modal_confirm-btn button{
+  display: flex;
+  width:50%;
+} */
+
 .modal-selector {
     display: none;
     position: fixed;
@@ -32,11 +115,13 @@
   }
   
   .modal-button {
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 10px;
-  }
+    display: flex;
+    margin: auto;
+    width: 75%;
+    justify-content: center;
+}
+
+
   
   .modal-button-confirm {
     background-color: var(--accent);

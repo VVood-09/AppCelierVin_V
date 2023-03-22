@@ -12,7 +12,7 @@
  .profil div,.profil h1{
     display: flex;
     text-align: center;
-    margin: auto;
+    /* margin: auto; */
   }
   .profil h1{
     margin-bottom: var(--espacements-small);
