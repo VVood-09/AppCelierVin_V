@@ -40,6 +40,7 @@ class AutocompleteSearch extends Component
                     <template x-for="(result, index) in results" :key="index">
                         <li x-text="result.nom" 
                             @click= "
+                            console.log(result)
                             query = result.nom;
                                 $refs.nom.textContent = result.nom;
                                 $refs.prix.textContent = result.prix;
@@ -47,7 +48,7 @@ class AutocompleteSearch extends Component
                                 $refs.type.textContent = result.type;
                                 $refs.description.textContent = result.description;
                                 $refs.format.textContent = result.format;
-
+                                $refs.id.value = result.id;
 
                                 results = [];
 
