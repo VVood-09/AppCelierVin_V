@@ -28,16 +28,6 @@ class VinController extends Controller
     public function store(Request $request){
         $filename= null;
 
-        $request->validate([
-            'nom' => 'required',
-            'image'=> 'mimes:jpg, png',
-            'qte'=>'numeric|gt:0',
-            'format'=>'numeric|gt:0',
-            'prix'=>'numeric|gt:0',
-            'cellier'=>'required'
-
-        ]);
-
         if ($request->file){
 
             $file = $request->file('file');
@@ -47,6 +37,15 @@ class VinController extends Controller
 
         if(!$request->code_saq){
 
+            $request->validate([
+                'nom' => 'required',
+                'image'=> 'mimes:jpg, png',
+                'qte'=>'numeric|gt:0',
+                'format'=>'numeric|gt:0',
+                'prix'=>'numeric|gt:0',
+                'cellier'=>'required'
+
+            ]);
             $bouteille = Bouteille::create([
                 'nom'=>$request->nom,
                 'image'=>$filename,
@@ -58,7 +57,13 @@ class VinController extends Controller
             ]);
             $bouteille_id = $bouteille->id;
         } else{
-            $bouteille_id = $request->id_saq;
+            $request->validate([
+                'cellier'=>'required|numeric',
+                'id'=>'required|numeric',
+                'qte'=>'required|numeric',
+
+            ]);
+            $bouteille_id = $request->id;
         }
 
         ListeBouteille::create([
@@ -67,7 +72,7 @@ class VinController extends Controller
             'qte'=>$request->qte
         ]);
 
-        return redirect(route('dashboard'))->withSuccess('Nouvelle bouteille créé');
+        return redirect(route('cellier.show', ['cellier'=>$request->cellier]))->withSuccess('Nouvelle bouteille créé');
     }
 
 
@@ -93,7 +98,6 @@ class VinController extends Controller
     
     
     public function edit( Bouteille $bouteille){
-        // return $this->cellier_actif;
 
         return view("bouteille.edit", ['bouteille' => $bouteille]);
 

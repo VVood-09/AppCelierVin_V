@@ -60,29 +60,23 @@
                                 </table>
                             </div>
 
-
-
-
-                            <div class="flex justify-end p-4">
-
-
-                            </div>
-
-                            <form action="">
+                            <form action="" method="post">
+                            @csrf
                                 <input type="hidden" name="id" x-ref="id" value="{{old('id')}}">
-                                    <select name="cellier">
-                                        <option value="" disabled selected>Choisir un cellier</option>
-                                        @foreach($celliers as $cellier)
-                                        <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
-                                        @endforeach
-                                    </select>
-                                    <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
+                                <input type="hidden" name="code_saq" x-ref="code_saq" value="{{old('code_saq')}}">
+
+                                <select name="cellier">
+                                    <option value="" disabled selected>Choisir un cellier</option>
+                                    @foreach($celliers as $cellier)
+                                    <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+                                    @endforeach
+                                </select>
+                                <input type="number" name="qte" placeholder="Nombre de bouteilles" min="1"  value="{{old('qte')}}">
+
                                 <div class="btnWrapper">
                                     <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
                                     <button class="modal-button modal-button-confirm">Confirmer</button>
                                 </div>
-
-
                             </form>
                         </div>
                     </div>
@@ -141,7 +135,7 @@
             @endforeach
         </select>
 
-        <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
+        <input type="number" name="qte" placeholder="Nombre de bouteilles" min="1" / value="{{old('qte')}}">
 
         <input class="btn" type="submit" value="Ajouter">
 
