@@ -41,14 +41,15 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('utilisateur/{id}', [UtilisateurController::class, 'show'])->name('user.show');
     Route::get('utilisateur/modif/{id}', [UtilisateurController::class, 'edit'])->name('user.edit');
     Route::put('utilisateur/modif/{id}', [UtilisateurController::class, 'update'])->name('user.update');
-    Route::delete('modifier-utilisateur/{id}', [UtilisateurController::class, 'delete'])->name('utilisateur.delete');
+    Route::delete('utilisateur/modif/{id}', [UtilisateurController::class, 'destroy'])->name('utilisateur.delete');
+
 
     Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
     Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
     Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');
     Route::get('modifier-cellier/{cellier}', [CellierController::class, 'edit'])->name('cellier.edit');
     Route::put('modifier-cellier/{cellier}', [CellierController::class, 'update']);
-    Route::delete('modifier-cellier/{cellier}', [CellierController::class, 'delete'])->name('cellier.delete');
+    Route::delete('modifier-cellier/{cellier}', [CellierController::class, 'destroy'])->name('cellier.delete');
 
 
     Route::get('ajout-bouteille', [VinController::class, 'create'])->name('bouteille.create');

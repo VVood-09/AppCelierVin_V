@@ -20,14 +20,16 @@
        
     </form>
 
-    
     <?php
-    $action = 'Supprimer le compte';
-    ?>
-    <x-modal_suppresion trigger-text="Supprimer le compte" >
-      Etes-vous certain de vouloir {{ $action }} ?
-    </x-modal_suppresion>
-            
+$action = 'Supprimer le compte';
+$route = route('utilisateur.delete', ['id' => $utilisateur->id]);
+?>
+
+<div>
+  <x-modal_suppresion route="{{ $route }}" trigger-text="Supprimer le compte">
+    Êtes-vous certain de vouloir {{  $action }} ?
+  </x-modal_suppresion>
 </div>
+
 
 @endsection

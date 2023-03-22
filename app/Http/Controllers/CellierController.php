@@ -108,10 +108,10 @@ class CellierController extends Controller
 
 
 
-    public function delete( Cellier $cellier)
+    public function destroy( Cellier $cellier)
     {
         $cellier->delete();
-        return redirect(route('dashboard'));
+        return redirect(route('dashboard'))->withSuccess('Cellier supprimay'); 
     }
 
 
