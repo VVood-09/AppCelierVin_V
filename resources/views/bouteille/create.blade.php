@@ -21,7 +21,7 @@
 
 
                         <div x-show="ismodalopen" class="modal-SAQ" x-transition>
-                            <h1>Ajouter cette bouteille de la SAQ à un cellier?</h1>
+                            <h1>Ajouter à un cellier?</h1>
                             <div>
                                 @if($errors)
                                 <ul>
@@ -68,17 +68,19 @@
 
                             </div>
 
-                            <form action="" >
-                                <li x-ref="code_saq" value="{{old('code_saq')}}"></li>
-                                <select name="cellier">
-                                    <option value="" disabled selected>Choisir un cellier</option>
-                                    @foreach($celliers as $cellier)
-                                    <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
-                                    @endforeach
-                                </select>
-                                <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
-                                <button class="modal-button modal-button-confirm">Confirmer</button>
-                                <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
+                            <form action="">
+                                <input type="hidden" name="id" x-ref="id" value="{{old('id')}}">
+                                    <select name="cellier">
+                                        <option value="" disabled selected>Choisir un cellier</option>
+                                        @foreach($celliers as $cellier)
+                                        <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
+                                <div class="btnWrapper">
+                                    <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
+                                    <button class="modal-button modal-button-confirm">Confirmer</button>
+                                </div>
 
 
                             </form>
