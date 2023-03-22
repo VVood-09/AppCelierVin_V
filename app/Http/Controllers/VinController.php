@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 class VinController extends Controller
 {
 
-    // private $cellier_actif;
 
     public function create(){
         $celliers= Cellier::select()->where('user_id', Auth::user()->id)->get();
@@ -24,11 +23,11 @@ class VinController extends Controller
 
 
     public function store(Request $request){
+        $filename= null;
 
-// return $request;
         $request->validate([
             'nom' => 'required',
-            // 'image'=> 'mimes:jpg, png',
+            'image'=> 'mimes:jpg, png',
             'qte'=>'numeric|gt:0',
             'format'=>'numeric|gt:0',
             'prix'=>'numeric|gt:0',
@@ -36,26 +35,31 @@ class VinController extends Controller
 
         ]);
 
-        // $file = $request->file('file');
-        // $filename = $file->getClientOriginalName();
+        if ($request->file){
 
+            $file = $request->file('file');
+            $filename = $file->getClientOriginalName();
+            $file->storeAs('public/uploads', $filename);
+        }
 
-        // $file->storeAs('public/uploads', $filename);
+        if(!$request->code_saq){
 
-        $bouteille = Bouteille::create([
-            'nom'=>$request->nom,
-            // 'image'=>$filename,
-            'description'=>$request->description,
-            'pays'=>$request->pays,
-            'type'=>$request->type,
-            'format'=>$request->format.' ml',
-            'prix'=>$request->prix.' $',
-
-
-        ]);
+            $bouteille = Bouteille::create([
+                'nom'=>$request->nom,
+                'image'=>$filename,
+                'description'=>$request->description,
+                'pays'=>$request->pays,
+                'type'=>$request->type,
+                'format'=>$request->format,
+                'prix'=>$request->prix,
+            ]);
+            $bouteille_id = $bouteille->id;
+        } else{
+            $bouteille_id = $request->id_saq;
+        }
 
         ListeBouteille::create([
-            'bouteille_id'=>$bouteille->id,
+            'bouteille_id'=>$bouteille_id,
             'cellier_id'=>$request->cellier,
             'qte'=>$request->qte
         ]);
@@ -112,6 +116,8 @@ class VinController extends Controller
         return redirect()->back();
 
       }
+
+
 
       public function destroy(  Bouteille $bouteille)
       {
