@@ -39,9 +39,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('dashboard', [CellierController::class, 'index'])->name('dashboard');
    // Route::get('/user/{id}', [UserController::class, 'user.show']);
     Route::get('utilisateur/{id}', [UtilisateurController::class, 'show'])->name('user.show');
-    Route::get('utilisateur/modif/{id}', [UtilisateurController::class, 'edit'])->name('user.edit');
-    Route::put('utilisateur/modif/{id}', [UtilisateurController::class, 'update'])->name('user.update');
-    Route::delete('utilisateur/modif/{id}', [UtilisateurController::class, 'destroy'])->name('utilisateur.delete');
+    Route::get('utilisateur/{id}/modif', [UtilisateurController::class, 'edit'])->name('user.edit');
+    Route::put('utilisateur/{id}/modif', [UtilisateurController::class, 'update'])->name('user.update');
+    Route::delete('utilisateur/{id}/modif', [UtilisateurController::class, 'destroy'])->name('utilisateur.delete');
 
 
     Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
@@ -55,14 +55,17 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('ajout-bouteille', [VinController::class, 'create'])->name('bouteille.create');
     Route::post('ajout-bouteille', [VinController::class, 'store'])->name('bouteille.store');
     Route::get('cellier/{cellier}/fiche-bouteille/{bouteille}', [VinController::class, 'show'])->name('bouteille.show');
-    Route::get('modifier-bouteille/{bouteille}', [VinController::class, 'edit'])->name('bouteille.edit');
-    Route::put('modifier-bouteille/{bouteille}', [VinController::class, 'update'])->name('bouteille.update');
-    Route::delete('modifier-bouteille/{bouteille}', [VinController::class, 'destroy'])->name('bouteille.delete');
+    Route::get('cellier/{cellier}/fiche-bouteille/{bouteille}/modif', [VinController::class, 'edit'])->name('bouteille.edit');
+    Route::put('cellier/{cellier}/fiche-bouteille/{bouteille}/modif', [VinController::class, 'update'])->name('bouteille.update');
+    Route::delete('cellier/{cellier}/fiche-bouteille/{bouteille}/modif', [VinController::class, 'destroy'])->name('bouteille.delete');
+
+
 });
 
 
 
 #AutoComplete
+
 Route::get('/autocomplete-search', function() {
     $query = request()->get('q');
     $results = DB::table('bouteilles')
