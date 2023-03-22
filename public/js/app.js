@@ -22845,11 +22845,20 @@ function changeQte(){
 
  }
 
-
-function changeNote(note){
+/**
+ * Fonction pour créer une note sur une bouteille de vin
+ * @param {string} note la valeur récupéré sur un click
+ * @param {string} valDepart la valeur de départ au chargement de la page
+ */
+function changeNote(note, valDepart){
+  // Récupéré le id de la bouteille
   let url = window.location.href,
       bouteille_id = url.split('/fiche-bouteille/')[1];
 
+  // Pour gérer la note à envoyer
+  if(this.note == undefined && note == valDepart){
+    this.note = note;
+  }
   if (this.note == note) {
     this.note = 0;
   }
@@ -22857,15 +22866,17 @@ function changeNote(note){
   
   data = { 
     'note' : this.note,
-    'bouteille_id' : 5,
-    // 'user_id' : '',
+    'bouteille_id' : bouteille_id,
   };
-
-  var entete = new Headers();
-  entete.append('Content-Type', 'application/json');
-    
+  
+  entete = {
+    'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': document.head.querySelector('meta[name=csrf-token]').content
+  }
+  
   fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete})
-    .then(reponse=> reponse.json())
-    .then((reponse)=>console.log(reponse));
+    // Pour développement, voir les réponses serveur
+    // .then(reponse=> reponse.json())
+    // .then((reponse)=>console.log(reponse));
 }
 

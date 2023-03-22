@@ -73,15 +73,22 @@ class VinController extends Controller
 
     public function show(Cellier $cellier, Bouteille $bouteille ){
 
+        $notes = Note::select()
+                    ->where('user_id', Auth::user()->id)
+                    ->where('bouteille_id', $bouteille->id)
+                    ->get();
+        if(count($notes) == 0){
+            $note = 0;
+        } else {
+            $note = $notes[0]->note;
+        }
+
         $qte = ListeBouteille::select('qte')
                             ->where('cellier_id', $cellier->id)
                             ->where('bouteille_id', $bouteille->id)
                             ->get();
-
-        // $this->cellier_actif = $cellier->id;
-
         
-        return view("bouteille.show", ['bouteille' => $bouteille, 'cellier'=>$cellier, 'qte'=>$qte[0]]);
+        return view("bouteille.show", ['bouteille' => $bouteille, 'cellier'=>$cellier, 'qte'=>$qte[0], 'note' => $note]);
     }
     
     
@@ -129,19 +136,19 @@ class VinController extends Controller
           return redirect(route('dashboard'));
       }
 
+    /**
+     * Route::put('cellier/{cellier}/fiche-bouteille/{bouteille}', [VinController::class, 'changeNote']);
+     * Réponse du FETCH de la même page en GET
+     * @param {object} $request: note, bouteille_id
+     */
     public function changeNote(Request $request){
-        // return Auth::user()->id;
-        // $data{
-        //     'id' -> Auth::user()->id
-        // };
-        // $varqulkkonk = session()->get('username');; return session()->get('id');
-        return ['id' => Auth::user()->id];
-        // return $test;
-        // return Auth::user()->id;
-        // DB::statement(
-        //     "INSERT INTO `notes`(`note`, `bouteille_id`, `user_id`, `created_at`, `updated_at`) 
-        //     VALUES ('$request->note','$request->bouteille_id','1', now(), now())
-        //     ON DUPLICATE KEY UPDATE `note` = '$request->note', `updated_at` = now();"
-        // );
+        if($request->note >= 0 && $request->note <= 5){
+            $id = Auth::user()->id;
+            DB::statement(
+                "INSERT INTO `notes`(`note`, `bouteille_id`, `user_id`, `created_at`, `updated_at`) 
+                VALUES ('$request->note','$request->bouteille_id','$id', now(), now())
+                ON DUPLICATE KEY UPDATE `note` = '$request->note', `updated_at` = now();"
+            );
+        }
     }
 }

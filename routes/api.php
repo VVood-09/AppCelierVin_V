@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controlers\UtilisateurController;
 
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
