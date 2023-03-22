@@ -34,6 +34,7 @@
     /* bottom: 10%; */
     left: 0;
     margin: 30px;
+    z-index: 100;
 }
 
 .formBtl_search form input, .formBtl_search form select{
