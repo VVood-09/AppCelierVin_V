@@ -110,7 +110,8 @@
 
     <form x-data="{ ismodalopen: true }" action="" enctype="multipart/form-data" class="formBtl_form" method="post">
         @csrf
-        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}">
+        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}" x-model-lazy="nom">
+        <span x-show="username.length < 2">Minimum two characters</span>
 
         <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" />
 
