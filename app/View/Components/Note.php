@@ -25,7 +25,7 @@ class Note extends Component
     {
       return <<<'blade'
       
-      <div>      
+      <form action="#">@csrf      
         <div x-data="
           {
             rating: 0,
@@ -59,7 +59,7 @@ class Note extends Component
             </template>
           </div>      
         </div>
-      </div>
+      </form>
 
       blade;
     }

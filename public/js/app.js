@@ -22853,15 +22853,14 @@ function changeNote(note){
   
   data = { 
     'note' : this.note,
-    'bouteille_id' : bouteille_id,
-    'user_id' : '',
+    'bouteille_id' : 5,
+    // 'user_id' : '',
   };
-  // console.log(data);
 
   var entete = new Headers();
   entete.append('Content-Type', 'application/json');
     
-  fetch('../../../api/changeNote', { method:'PUT', body: JSON.stringify(data), headers:entete})
+  fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete})
     .then(reponse=> reponse.json())
     .then((reponse)=>console.log(reponse));
 }

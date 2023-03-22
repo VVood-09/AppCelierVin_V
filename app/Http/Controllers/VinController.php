@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Cellier;
 use App\Models\Bouteille;
 use App\Models\ListeBouteille;
+use App\Models\Note;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class VinController extends Controller
 {
 
-    // private $cellier_actif;
+    private $user_id;
 
     public function create(){
         $celliers= Cellier::select()->where('user_id', Auth::user()->id)->get();
@@ -122,9 +124,17 @@ class VinController extends Controller
 
     public function changeNote(Request $request){
         // return Auth::user()->id;
-        // $uID = Auth::user()->id;
-        // var_dump(Auth::user()); die;
-        $request->user_id = Auth::user()->id;
-        return $request;
+        // $data{
+        //     'id' -> Auth::user()->id
+        // };
+        // $varqulkkonk = session()->get('username');; return session()->get('id');
+        return ['id' => Auth::user()->id];
+        // return $test;
+        // return Auth::user()->id;
+        // DB::statement(
+        //     "INSERT INTO `notes`(`note`, `bouteille_id`, `user_id`, `created_at`, `updated_at`) 
+        //     VALUES ('$request->note','$request->bouteille_id','1', now(), now())
+        //     ON DUPLICATE KEY UPDATE `note` = '$request->note', `updated_at` = now();"
+        // );
     }
 }
