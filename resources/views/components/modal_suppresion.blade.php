@@ -2,7 +2,7 @@
   <button @click="ismodalopen = true" class="btn-reverse">{{ $triggerText }}</button>
   <div class="" x-show="ismodalopen">
     <div class="modal">
-      <div c    lass="modal_text">
+      <div class="modal_text">
         {{ $slot }}
       </div>
 

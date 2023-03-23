@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('ajout-bouteille', [VinController::class, 'create'])->name('bouteille.create');
     Route::post('ajout-bouteille', [VinController::class, 'store'])->name('bouteille.store');
     Route::get('cellier/{cellier}/fiche-bouteille/{bouteille}', [VinController::class, 'show'])->name('bouteille.show');
+    Route::put('cellier/{cellier}/fiche-bouteille/{bouteille}', [VinController::class, 'changeNote']);
     Route::get('cellier/{cellier}/fiche-bouteille/{bouteille}/modif', [VinController::class, 'edit'])->name('bouteille.edit');
     Route::put('cellier/{cellier}/fiche-bouteille/{bouteille}/modif', [VinController::class, 'update'])->name('bouteille.update');
     Route::delete('cellier/{cellier}/fiche-bouteille/{bouteille}/modif', [VinController::class, 'destroy'])->name('bouteille.delete');
