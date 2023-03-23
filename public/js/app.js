@@ -22883,22 +22883,22 @@ function changeNote(note, valDepart){
 
 
 
-// // Sélectionnez votre modal et votre bouton pour ouvrir le modal
-// const modal = document.querySelector('.modal');
-// const openModalBtn = document.querySelector('.modal_btn-add');
+function ajoutComment(){
 
-// // Ajoutez un écouteur d'événement sur le bouton pour ouvrir le modal
-// openModalBtn.addEventListener('click', function() {
-//   // Ajoutez la classe "modal-open" au corps de la page
-//   document.body.classList.add('modal-open');
+  let data = {
+      'qte' :this.counter,
+      'bouteille': this.idB,
+      'cellier': this.idC
+    };
+
+    entete = {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+    };
+    
+  fetch('../api/changeQte', { method:'POST', body: JSON.stringify(data), headers:entete})
   
 
-// });
-
-
-//   fermetureModal() {
-//     this.ismodalopen = false;
-//     document.body.classList.remove('modal-open');
-//   }
+ }
 
 
