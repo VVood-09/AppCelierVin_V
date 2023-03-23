@@ -54,8 +54,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect( route('login'))->withSuccess('Votre compte a été créé. Veuillez-vous connecter');
     }
 }

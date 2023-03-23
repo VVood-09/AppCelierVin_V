@@ -4,11 +4,8 @@
 <section class="login_section">
     <h1>Connexion</h1>
     <div>
-      
-
         <!-- Session Status -->
         <x-auth-session-status class="" :status="session('status')" />
-
 
         <x-auth-validation-errors class="" :errors="$errors" />
 
@@ -34,15 +31,11 @@
                 </label>
             </div>
 
-
-
             <div class="mt-4 login_btn">
-           
 
                 <x-button class="">
                     {{ __('Connexion') }}
                 </x-button>
-
 
                 @if (Route::has('password.request'))
                     <a class="" href="{{ route('password.request') }}">
@@ -58,6 +51,12 @@
                     {{ __('Vous n\'avez pas un compte?') }}
                 </a>
         </div>
-</div>
+    </div>
+
+    <div>
+        <x-notification ></x-notification>
+    </div>
 </section>
+
+
 @endsection

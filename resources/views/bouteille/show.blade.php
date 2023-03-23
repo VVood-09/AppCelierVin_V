@@ -88,5 +88,7 @@
 
         </div>
     </article>
-
+<div>
+    <x-notification ></x-notification>
+</div>
 @endsection

@@ -38,27 +38,27 @@ use Illuminate\Support\Facades\DB;
 Route::group(['middleware' => 'auth'], function(){
     Route::get('dashboard', [CellierController::class, 'index'])->name('dashboard');
    // Route::get('/user/{id}', [UserController::class, 'user.show']);
-    Route::get('utilisateur/{id}', [UtilisateurController::class, 'show'])->name('user.show');
-    Route::get('utilisateur/{id}/modif', [UtilisateurController::class, 'edit'])->name('user.edit');
-    Route::put('utilisateur/{id}/modif', [UtilisateurController::class, 'update'])->name('user.update');
+    Route::get('utilisateur/{id}', [UtilisateurController::class, 'show'])->name('utilisateur.show');
+    Route::get('utilisateur/{id}/modif', [UtilisateurController::class, 'edit'])->name('utilisateur.edit');
+    Route::put('utilisateur/{id}/modif', [UtilisateurController::class, 'update'])->name('utilisateur.update');
     Route::delete('utilisateur/{id}/modif', [UtilisateurController::class, 'destroy'])->name('utilisateur.delete');
 
 
     Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
     Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
     Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');
-    Route::get('modifier-cellier/{cellier}', [CellierController::class, 'edit'])->name('cellier.edit');
-    Route::put('modifier-cellier/{cellier}', [CellierController::class, 'update']);
-    Route::delete('modifier-cellier/{cellier}', [CellierController::class, 'destroy'])->name('cellier.delete');
+    Route::get('cellier/{cellier}/modif', [CellierController::class, 'edit'])->name('cellier.edit');
+    Route::put('cellier/{cellier}/modif', [CellierController::class, 'update']);
+    Route::delete('cellier/{cellier}/modif', [CellierController::class, 'destroy'])->name('cellier.delete');
 
 
     Route::get('ajout-bouteille', [VinController::class, 'create'])->name('bouteille.create');
     Route::post('ajout-bouteille', [VinController::class, 'store'])->name('bouteille.store');
-    Route::get('cellier/{cellier}/fiche-bouteille/{bouteille}', [VinController::class, 'show'])->name('bouteille.show');
-    Route::put('cellier/{cellier}/fiche-bouteille/{bouteille}', [VinController::class, 'changeNote']);
-    Route::get('cellier/{cellier}/fiche-bouteille/{bouteille}/modif', [VinController::class, 'edit'])->name('bouteille.edit');
-    Route::put('cellier/{cellier}/fiche-bouteille/{bouteille}/modif', [VinController::class, 'update'])->name('bouteille.update');
-    Route::delete('cellier/{cellier}/fiche-bouteille/{bouteille}/modif', [VinController::class, 'destroy'])->name('bouteille.delete');
+    Route::get('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'show'])->name('bouteille.show');
+    Route::put('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'changeNote']);
+    Route::get('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'edit'])->name('bouteille.edit');
+    Route::put('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'update'])->name('bouteille.update');
+    Route::delete('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'destroy'])->name('bouteille.delete');
 
 
 });
