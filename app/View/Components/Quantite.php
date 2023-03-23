@@ -6,14 +6,17 @@ use Illuminate\View\Component;
 
 class Quantite extends Component
 {
+    public $bouteille;
+    public $cellier;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($bouteille, $cellier)
     {
-        //
+        $this->bouteille = $bouteille;
+        $this->cellier = $cellier;
     }
 
     /**
