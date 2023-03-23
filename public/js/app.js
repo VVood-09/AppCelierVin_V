@@ -22823,25 +22823,32 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
  */
 
 
-
-
-
-
-
-
+/**
+ * Function pour changer la quantité de bouteilles dans le cellier
+ */
 function changeQte(){
+  // Récupéré le id de la bouteille
+  let url = window.location.href;
 
+  // crée l'objet a envoyé
   let data = {
       'qte' :this.counter,
       'bouteille': this.idB,
       'cellier': this.idC
     };
 
-  var entete = new Headers();
-  entete.append('Content-Type', 'application/json');
+  // var entete = new Headers();
+  // entete.append('Content-Type', 'application/json');
+
+  entete = {
+    'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+  };
     
-  fetch('../api/changeQte', { method:'PUT', body: JSON.stringify(data), headers:entete})
-  
+  // fetch('../api/changeQte', { method:'PUT', body: JSON.stringify(data), headers:entete})
+  //
+   fetch(url, { method:'POST', body: JSON.stringify(data), headers:entete})
+  //Pas de retour nécessaire dans ce cas
 
  }
 
