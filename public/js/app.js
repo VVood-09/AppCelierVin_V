@@ -22871,10 +22871,10 @@ function changeNote(note, valDepart){
   
   entete = {
     'Content-Type': 'application/json',
-    'X-CSRF-TOKEN': document.head.querySelector('meta[name=csrf-token]').content
-  }
+    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+  };
   
-  fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete})
+  fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete});
     // Pour développement, voir les réponses serveur
     // .then(reponse=> reponse.json())
     // .then((reponse)=>console.log(reponse));
