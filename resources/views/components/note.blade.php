@@ -1,3 +1,5 @@
+<!-- Donner du crédit à celui qui a créé -->
+<!-- https://codepen.io/rehhouari/pen/NWdrXjz -->
 <form action="#" onsubmit="return false">
   <meta name="csrf-token" content="{{ csrf_token() }}" />     
   <div x-data="
