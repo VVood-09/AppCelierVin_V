@@ -5,19 +5,7 @@
 
 
 
-    <div x-data="{ showNotification: false, message: '' }" x-init="() => {
-        const message = '{{ session('success') }}'; 
-        if (message) {
-            showNotification = true;
-            message = message.replaceAll('\\\'', '\'');
-            this.message = message; 
-            setTimeout(() => showNotification = false, 5000); 
-        }
-    }">
-        <div x-show="showNotification" class="retourAction">
-            <p x-text="message">yo</p>
-        </div>
-    </div>
+   
 
 <div class="liste-btl_body">
     <div class="liste-btl_title">
@@ -136,5 +124,7 @@
     </div>   
 </div>
 
-
+<div>
+    <x-notification ></x-notification>
+</div>
 @endsection
