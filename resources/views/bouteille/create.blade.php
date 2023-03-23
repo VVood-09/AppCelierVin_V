@@ -115,17 +115,11 @@
         this.errors = {};
         let isValid = true;
 
-        if (!this.formValues.nom) {
-            this.errors.nom = 'Le champ Nom est obligatoire.';
+        if (!this.formValues.nom || !this.formValues.prix || !this.formValues.pays|| !this.formValues.type || !this.formValues.prix || !this.formValues.format || !this.formValues.cellier || !this.formValues.quantite  ) {
+            this.errors.recap = 'Veuillez remplir tout les champs';
             isValid = false;
         }
 
-        if (!this.formValues.prix) {
-            this.errors.prix = 'Le champ Prix est obligatoire.';
-            isValid = false;
-        }
-
-        // Add more validation rules here
 
         return isValid;
     },
@@ -201,19 +195,19 @@
         <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}"
         x-model="formValues.nom"  @blur="validateNom()"
         >
-        <div x-text="errors.nom" class="text-red-500"></div>
+        <div x-text="errors.nom" class="textError"></div>
 
 
         <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" 
         x-model="formValues.prix" @blur="validatePrix()"
         />
-        <div x-text="errors.prix" class="text-red-500"></div>
+        <div x-text="errors.prix" class="textError"></div>
 
 
         <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" 
         x-model="formValues.pays" @blur="validatePays()"
         />
-        <div x-text="errors.pays" class="text-red-500"></div>
+        <div x-text="errors.pays" class="textError"></div>
 
 
         <select x-ref="type" name="type" value="{{old('type')}}
@@ -225,7 +219,7 @@
             <option value="Vin rose">Vin rosé</option>
             <option value="Vin de tomate">Vin de tomate</option>
         </select>
-        <div x-text="errors.type" class="text-red-500"></div>
+        <div x-text="errors.type" class="textError"></div>
 
 
         <label for="file">Télécharger une image :</label>
@@ -239,7 +233,7 @@
         x-model="formValues.format" @blur="validateFormat()"
         >
 
-        <div x-text="errors.format" class="text-red-500"></div>
+        <div x-text="errors.format" class="textError"></div>
 
 
         <select name="cellier"
@@ -250,17 +244,18 @@
     <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
     @endforeach
 </select>
-<div x-text="errors.cellier" class="text-red-500"></div>
+<div x-text="errors.cellier" class="textError"></div>
 
 
         <input type="number" name="quantite" placeholder="Nombre de bouteilles" min="0" / value="{{old('quantite')}}"
         x-model="formValues.quantite" @blur="validateQuantite()"
         >
 
-        <div x-text="errors.quantite" class="text-red-500"></div>
+        <div x-text="errors.quantite" class="textError"></div>
 
 
         <input class="btn" type="submit" value="Ajouter">
+        <div x-text="errors.recap" class="textError"></div>
 
     </form>
 </section>

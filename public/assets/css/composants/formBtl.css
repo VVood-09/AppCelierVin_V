@@ -141,3 +141,7 @@
 
 }
 
+.textError{
+    color: red;
+    font-weight: bold;
+}
