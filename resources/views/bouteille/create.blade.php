@@ -68,7 +68,7 @@
 
                             </div>
 
-                            <form action="">
+                            <form action="" method="post">
                                 <input type="hidden" name="id" x-ref="id" value="{{old('id')}}">
                                 <select name="cellier">
                                     <option value="" disabled selected>Choisir un cellier</option>
@@ -112,23 +112,20 @@
         formValues: {},
     errors: {},
     validateForm() {
-        this.errors = {};
-        let isValid = true;
+        event.preventDefault();
 
-        if (!this.formValues.nom || !this.formValues.prix || !this.formValues.pays|| this.formValues.type !== '' || !this.formValues.format || !this.formValues.cellier || !this.formValues.quantite  ) {
-            console.log(!this.formValues.nom)
-            console.log(!this.formValues.pays)
-            console.log(this.formValues.type)
-            console.log(!this.formValues.prix)
-            console.log(!this.formValues.format)
-            console.log(this.formValues.cellier)
-            console.log(!this.formValues.quantite)
+
+        this.errors = {};
+
+        if (!this.formValues.nom && !this.formValues.prix && !this.formValues.pays&& !this.formValues.type && !this.formValues.format && !this.formValues.cellier && !this.formValues.quantite  ) {
+            console.log(!this.formValues.nom && !this.formValues.prix && !this.formValues.pays&& !this.formValues.type && !this.formValues.format && !this.formValues.cellier && !this.formValues.quantite  )
             this.errors.recap = 'Veuillez remplir tout les champs';
-            isValid = false;
+            return;
         }
 
 
-        return isValid;
+        event.target.submit();
+
     },
     validateNom() {
         this.nomErrors = {};
@@ -199,27 +196,19 @@
 }" @submit.prevent="validateForm()" action="" enctype="multipart/form-data" class="formBtl_form" method="post">
         <!-- }" action="" enctype="multipart/form-data" class="formBtl_form" method="post"> -->
         @csrf
-        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}"
-        x-model="formValues.nom"  @blur="validateNom()"
-        >
+        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}" x-model="formValues.nom" @blur="validateNom()">
         <div x-text="errors.nom" class="textError"></div>
 
 
-        <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" 
-        x-model="formValues.prix" @blur="validatePrix()"
-        />
+        <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" x-model="formValues.prix" @blur="validatePrix()" />
         <div x-text="errors.prix" class="textError"></div>
 
 
-        <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" 
-        x-model="formValues.pays" @blur="validatePays()"
-        />
+        <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" x-model="formValues.pays" @blur="validatePays()" />
         <div x-text="errors.pays" class="textError"></div>
 
 
-        <select x-ref="type" name="type" 
-        x-model="formValues.type" @blur="validateType()"
-        >
+        <select x-ref="type" name="type" x-model="formValues.type" @blur="validateType()">
             <option value="" disabled selected>Choisir un type</option>
             <option value="Vin blanc">Vin blanc</option>
             <option value="Vin rouge">Vin rouge</option>
@@ -236,27 +225,21 @@
 
         <textarea x-ref="description" name="description" placeholder="Description">{{old('description')}}</textarea>
 
-        <input x-ref="format" type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)"
-        x-model="formValues.format" @blur="validateFormat()"
-        >
+        <input x-ref="format" type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)" x-model="formValues.format" @blur="validateFormat()">
 
         <div x-text="errors.format" class="textError"></div>
 
 
-        <select name="cellier"
-    x-model="formValues.cellier" @blur="validateCellier()"
->
-    <option value="" disabled selected>Choisir un cellier</option>
-    @foreach($celliers as $cellier)
-    <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
-    @endforeach
-</select>
-<div x-text="errors.cellier" class="textError"></div>
+        <select name="cellier" x-model="formValues.cellier" @blur="validateCellier()">
+            <option value="" disabled selected>Choisir un cellier</option>
+            @foreach($celliers as $cellier)
+            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+            @endforeach
+        </select>
+        <div x-text="errors.cellier" class="textError"></div>
 
 
-        <input type="number" name="quantite" placeholder="Nombre de bouteilles" min="0" / value="{{old('quantite')}}"
-        x-model="formValues.quantite" @blur="validateQuantite()"
-        >
+        <input type="number" name="quantite" placeholder="Nombre de bouteilles" min="0" / value="{{old('quantite')}}" x-model="formValues.quantite" @blur="validateQuantite()">
 
         <div x-text="errors.quantite" class="textError"></div>
 
