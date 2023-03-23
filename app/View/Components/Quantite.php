@@ -1,26 +1,19 @@
 <?php
 
-/**
- * https://laravel.com/docs/10.x/blade#rendering-components
- * Création de composante laravel
- */
-
 namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Note extends Component
+class Quantite extends Component
 {
-    public $note;
-    
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($note)
+    public function __construct()
     {
-        $this->note = $note;
+        //
     }
 
     /**
@@ -30,6 +23,6 @@ class Note extends Component
      */
     public function render()
     {
-        return view('components.note');
+        return view('components.quantite');
     }
 }

@@ -22,6 +22,7 @@
 
 /*-------- Import éléments---------*/
 @import "./elements/navigation.css";
+@import "./elements/retourAction.css";
 
 /*-------- Import administration ---------*/
 @import "./admin/general_admin.css";

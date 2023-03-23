@@ -1,0 +1,17 @@
+.retourAction{
+  background-color: var(--secondary);
+  border: rgb(93, 93, 93) solid 1px;
+  border-radius: 5px;
+  width: 90vw;
+  padding: var(--espacements-x_small);
+  font-weight: 700;
+  text-align: center;
+  position: fixed;
+  bottom: 80px; /* add 20px space between notification and bottom of page */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+ transition: opacity 0.5s ease-in-out;
+}
+

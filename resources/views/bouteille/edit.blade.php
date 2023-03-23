@@ -21,12 +21,15 @@
         @csrf
         @method('put')
 
+        <label for="file" class="formBtl_ajoutL">Télécharger une image <i><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="formBtl_ajoutF"><g data-name="Layer 2"><path d="M16 29a13 13 0 1 1 13-13 13 13 0 0 1-13 13Zm0-24a11 11 0 1 0 11 11A11 11 0 0 0 16 5Z" fill="#7e001e" class="fill-000000"></path><path d="M16 23a1 1 0 0 1-1-1V10a1 1 0 0 1 2 0v12a1 1 0 0 1-1 1Z" fill="#7e001e" class="fill-000000"></path><path d="M22 17H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2Z" fill="#7e001e" class="fill-000000"></path></g><path d="M0 0h32v32H0z" fill="none"></path></svg></i>
+        </label>
+        <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}" class="formBtl_file">
+
         <input type="text" name="nom" placeholder="Nom" value="{{$bouteille->nom}}">
 
         <input type="text" name="prix"  placeholder="Prix" value="{{$bouteille->prix}}"/>
 
         <input type="text" name="pays" placeholder="Pays" value="{{$bouteille->pays}}"/>
-  
 
         <select name="type" >
             <option value="Vin blanc" @if($bouteille->type == "Vin blanc") selected @endif>Vin blanc</option>
@@ -35,18 +38,27 @@
             <option value="Vin de tomate" @if($bouteille->type == "Vin de tomate") selected @endif>Vin de tomate</option>
         </select>
 
-        <label for="file">Télécharger une image :</label>
-        <input type="file" id="file" name="file" accept="image/*" > 
-
-
         <textarea name="description" placeholder="Description" >{{$bouteille->description}}</textarea>
 
         <input type="text" id="format" name="format" step="0.01" min="0" value="{{$bouteille->format}}" placeholder="Quantité (en ml)">
 
         <input class="btn"type="submit" value="Modifier">
-        <a href="#" class="btn-reverse">Suprimer</a>
+        
       
     </form>
+
+    <?php
+    $action = 'Supprimer cette bouteille';
+  //  $routeBack = '  Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');';
+    
+    $route = route('bouteille.delete', ['bouteille' => $bouteille->id,'cellier' => $cellier->id]);
+            ?>
+
+
+    <x-modal_suppresion  route="{{ $route }}" trigger-text="Supprimer cette bouteille" >
+      Etes-vous certain de vouloir {{ $action }} ?
+    </x-modal_suppresion>
+
 
 
   

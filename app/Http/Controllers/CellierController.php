@@ -51,14 +51,12 @@ class CellierController extends Controller
             'nom' => 'required|max:8',
         ]);
 
-
         $cellier = Cellier::create([
             'nom'=>$request->nom,
             'user_id'=> Auth::user()->id
         ]);
 
-
-        return redirect(route('dashboard'))->withSuccess('Nouveau cellier créé'); 
+        return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Nouveau cellier créé'); 
     }
 
 
@@ -71,11 +69,16 @@ class CellierController extends Controller
      */
     public function show(Cellier $cellier){
 
-        $bouteilles = ListeBouteille::with('bouteilles')
-             ->join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
-             ->select('bouteilles.*', 'liste_bouteilles.qte')
-             ->where('cellier_id', $cellier->id)
-             ->get();
+        $bouteilles = ListeBouteille::
+            join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
+            ->leftJoin('notes', function($join){
+                $join
+                ->on('bouteilles.id', '=', 'notes.bouteille_id')
+                ->where('notes.user_id', '=', Auth::user()->id);
+            })
+            ->where('cellier_id', $cellier->id)
+            ->select('bouteilles.*', 'liste_bouteilles.qte', 'notes.note')
+            ->get();
   
         return view('cellier.show', ['bouteilles' => $bouteilles, 'cellier'=>$cellier]);
     }
@@ -89,21 +92,18 @@ class CellierController extends Controller
 
 
 
-
-
     public function update(Request $request, Cellier $cellier){
-// return $request;
+
         $request->validate([
             'nom' => 'required|max:8',
         ]);
 
         $cellier->update([
             'nom'=>$request->nom,
-            
         ]);
-        // return redirect()->back();
-        return redirect(route('dashboard'))->withSuccess('Cellier modifié'); 
-      }
+        
+        return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Cellier modifié');
+    }
 
 
 
@@ -111,7 +111,7 @@ class CellierController extends Controller
     public function destroy( Cellier $cellier)
     {
         $cellier->delete();
-        return redirect(route('dashboard'))->withSuccess('Cellier supprimay'); 
+        return redirect(route('dashboard'))->withSuccess('Cellier supprimé'); 
     }
 
 
@@ -123,39 +123,8 @@ class CellierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function changeQte(Request $request){
-        // $bouteille = DB::table('liste_bouteilles')
-        //     ->select('*')
-        //     ->where('cellier_id', $request->idC)
-        //     ->andWhere('bouteille_id', $request->idB)
-        //     ->get();
-        
-        //return $request->qte;
-        
-        
-        // $bouteille = ListeBouteille::where([
-        //     'cellier_id' => $request->cellier,
-        //     'bouteille_id' => $request->bouteille,
-        // ])->first();
-
-
-        //return $bouteille;
         DB::statement("UPDATE liste_bouteilles SET qte = $request->qte, updated_at = now() WHERE bouteille_id = $request->bouteille AND cellier_id = $request->cellier ;");
         
-        
-        //return $bouteille;
-
-        // if ($bouteille) {
-        //     $bouteille->update([
-        //         'qte' => $request->qte,
-        //     ]);
-        // }
-    
-        // $test=$request->qte;
-
-        // return response()->json([
-        //     "status"=>200,
-        //     "reponse"=>$test
-        // ]);
     }
 
 

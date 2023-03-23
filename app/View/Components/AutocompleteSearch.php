@@ -49,6 +49,7 @@ class AutocompleteSearch extends Component
                                 $refs.description.textContent = result.description;
                                 $refs.format.textContent = result.format;
                                 $refs.id.value = result.id;
+                                $refs.code_saq.value = result.code_saq;
 
                                 results = [];
 
