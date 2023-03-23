@@ -115,7 +115,14 @@
         this.errors = {};
         let isValid = true;
 
-        if (!this.formValues.nom || !this.formValues.prix || !this.formValues.pays|| !this.formValues.type || !this.formValues.prix || !this.formValues.format || !this.formValues.cellier || !this.formValues.quantite  ) {
+        if (!this.formValues.nom || !this.formValues.prix || !this.formValues.pays|| this.formValues.type !== '' || !this.formValues.format || !this.formValues.cellier || !this.formValues.quantite  ) {
+            console.log(!this.formValues.nom)
+            console.log(!this.formValues.pays)
+            console.log(this.formValues.type)
+            console.log(!this.formValues.prix)
+            console.log(!this.formValues.format)
+            console.log(this.formValues.cellier)
+            console.log(!this.formValues.quantite)
             this.errors.recap = 'Veuillez remplir tout les champs';
             isValid = false;
         }
@@ -210,7 +217,7 @@
         <div x-text="errors.pays" class="textError"></div>
 
 
-        <select x-ref="type" name="type" value="{{old('type')}}
+        <select x-ref="type" name="type" 
         x-model="formValues.type" @blur="validateType()"
         >
             <option value="" disabled selected>Choisir un type</option>
