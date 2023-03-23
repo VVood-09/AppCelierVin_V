@@ -21,3 +21,7 @@
     /* margin-left: var(--espacements-small); */
 
 } 
+.btn-close svg{
+    width: 35px;
+    height: 35px;
+}

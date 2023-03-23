@@ -20,7 +20,7 @@
     </head>
 
 
-    <body>
+    <body x-bind:class="{ 'pas-defilement': ismodalopen }">
    
 
             <!-- Page Heading -->

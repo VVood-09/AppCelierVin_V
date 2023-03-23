@@ -22885,5 +22885,27 @@ function changeNote(note, valDepart){
     // Pour développement, voir les réponses serveur
     // .then(reponse=> reponse.json())
     // .then((reponse)=>console.log(reponse));
+
 }
+
+
+
+// // Sélectionnez votre modal et votre bouton pour ouvrir le modal
+// const modal = document.querySelector('.modal');
+// const openModalBtn = document.querySelector('.modal_btn-add');
+
+// // Ajoutez un écouteur d'événement sur le bouton pour ouvrir le modal
+// openModalBtn.addEventListener('click', function() {
+//   // Ajoutez la classe "modal-open" au corps de la page
+//   document.body.classList.add('modal-open');
+  
+
+// });
+
+
+//   fermetureModal() {
+//     this.ismodalopen = false;
+//     document.body.classList.remove('modal-open');
+//   }
+
 
