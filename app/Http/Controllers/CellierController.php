@@ -71,8 +71,11 @@ class CellierController extends Controller
 
         $bouteilles = ListeBouteille::
             join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
-            ->join('notes', 'bouteilles.id', '=', 'notes.bouteille_id')
-            ->where('notes.user_id', Auth::user()->id)
+            ->leftJoin('notes', function($join){
+                $join
+                ->on('bouteilles.id', '=', 'notes.bouteille_id')
+                ->where('notes.user_id', '=', Auth::user()->id);
+            })
             ->where('cellier_id', $cellier->id)
             ->select('bouteilles.*', 'liste_bouteilles.qte', 'notes.note')
             ->get();
