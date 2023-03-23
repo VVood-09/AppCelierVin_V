@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
     Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
     Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');
+    Route::post('cellier/{cellier}', [CellierController::class, 'changeQte']);
     Route::get('cellier/{cellier}/modif', [CellierController::class, 'edit'])->name('cellier.edit');
     Route::put('cellier/{cellier}/modif', [CellierController::class, 'update']);
     Route::delete('cellier/{cellier}/modif', [CellierController::class, 'destroy'])->name('cellier.delete');
@@ -56,11 +57,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('ajout-bouteille', [VinController::class, 'store'])->name('bouteille.store');
     Route::get('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'show'])->name('bouteille.show');
     Route::put('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'changeNote']);
+    Route::post('cellier/{cellier}/bouteille/{bouteille}', [CellierController::class, 'changeQte']);
     Route::get('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'edit'])->name('bouteille.edit');
     Route::put('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'update'])->name('bouteille.update');
     Route::delete('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'destroy'])->name('bouteille.delete');
 
-
+    // Route::put('changeQte', [CellierController::class, 'changeQte']);
 });
 
 

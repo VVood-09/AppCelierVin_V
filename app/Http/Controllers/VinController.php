@@ -72,7 +72,7 @@ class VinController extends Controller
             'qte'=>$request->qte
         ]);
 
-        return redirect(route('cellier.show', ['cellier'=>$request->cellier]))->withSuccess('Nouvelle bouteille ajoutée');
+        return redirect(route('cellier.show', ['cellier'=>$request->cellier]))->withSuccess('Nouvelle bouteille créé');
     }
 
 
@@ -92,8 +92,10 @@ class VinController extends Controller
                             ->where('cellier_id', $cellier->id)
                             ->where('bouteille_id', $bouteille->id)
                             ->get();
-        
-        return view("bouteille.show", ['bouteille' => $bouteille, 'cellier'=>$cellier, 'qte'=>$qte[0], 'note' => $note]);
+
+        $bouteille->qte = $qte[0]["qte"];
+  
+        return view("bouteille.show", ['bouteille' => $bouteille, 'cellier'=>$cellier, 'note' => $note]);
     }
     
     
@@ -144,9 +146,9 @@ class VinController extends Controller
   
         return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Bouteille supprimé');
 
+
       }
 
-      
     /**
      * Route::put('cellier/{cellier}/fiche-bouteille/{bouteille}', [VinController::class, 'changeNote']);
      * Réponse du FETCH de la même page en GET
