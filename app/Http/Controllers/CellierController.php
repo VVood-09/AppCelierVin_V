@@ -55,8 +55,9 @@ class CellierController extends Controller
             'nom'=>$request->nom,
             'user_id'=> Auth::user()->id
         ]);
+        $nom = $cellier->nom;
 
-        return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Nouveau cellier créé'); 
+        return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess("Nouveau cellier {$nom} créé"); 
     }
 
 
@@ -69,11 +70,16 @@ class CellierController extends Controller
      */
     public function show(Cellier $cellier){
 
-        $bouteilles = ListeBouteille::with('bouteilles')
-             ->join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
-             ->select('bouteilles.*', 'liste_bouteilles.qte')
-             ->where('cellier_id', $cellier->id)
-             ->get();
+        $bouteilles = ListeBouteille::
+            join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
+            ->leftJoin('notes', function($join){
+                $join
+                ->on('bouteilles.id', '=', 'notes.bouteille_id')
+                ->where('notes.user_id', '=', Auth::user()->id);
+            })
+            ->where('cellier_id', $cellier->id)
+            ->select('bouteilles.*', 'liste_bouteilles.qte', 'notes.note')
+            ->get();
   
         return view('cellier.show', ['bouteilles' => $bouteilles, 'cellier'=>$cellier]);
     }

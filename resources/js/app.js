@@ -6,5 +6,8 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-
+function validateEmail(event){
+    console.log(userEmail);
+    
+    }
  

@@ -72,7 +72,7 @@ class VinController extends Controller
             'qte'=>$request->qte
         ]);
 
-        return redirect(route('cellier.show', ['cellier'=>$request->cellier]))->withSuccess('Nouvelle bouteille créé');
+        return redirect(route('cellier.show', ['cellier'=>$request->cellier]))->withSuccess('Nouvelle bouteille ajoutée');
     }
 
 
@@ -140,15 +140,13 @@ class VinController extends Controller
 
       public function destroy(Cellier $cellier,Bouteille $bouteille)
       {
-
-       
-          $bouteille->delete();
+        $bouteille->delete();
   
-         return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Bouteille supprimer');
-
+        return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Bouteille supprimé');
 
       }
 
+      
     /**
      * Route::put('cellier/{cellier}/fiche-bouteille/{bouteille}', [VinController::class, 'changeNote']);
      * Réponse du FETCH de la même page en GET
