@@ -73,12 +73,12 @@
            <div class="btl_carte-commentaire">            
                 <!-- Ajout de Commentaire !!-->
                         <?php
-                $action = 'Ajouter un commentaire';
-                //$route = route();
+              
+                         $route = route('commentaire.store', ['cellier' => $cellier->id,'bouteille' => $bouteille->id]);
                         ?>
 
 
-            <x-modal_commentaire  route=""  >
+            <x-modal_commentaire  route="{{ $route }}"  >
                         
             </x-modal_commentaire> 
 
