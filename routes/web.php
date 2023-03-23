@@ -66,7 +66,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 #AutoComplete
 
-Route::get('/autocomplete-search', function() {
+                        Route::get('/autocomplete-search', function() {
     $query = request()->get('q');
     $results = DB::table('bouteilles')
         ->where('nom', 'like', '%' . $query . '%')
