@@ -55,8 +55,9 @@ class CellierController extends Controller
             'nom'=>$request->nom,
             'user_id'=> Auth::user()->id
         ]);
+        $nom = $cellier->nom;
 
-        return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Nouveau cellier créé'); 
+        return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess("Nouveau cellier {$nom} créé"); 
     }
 
 

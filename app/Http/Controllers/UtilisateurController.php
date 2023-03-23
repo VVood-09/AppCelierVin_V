@@ -9,20 +9,19 @@ class UtilisateurController extends Controller
     public function show()
     {
         $utilisateur = Auth::user();
-        return view('utilisateur.show', compact('utilisateur'));
+        return view('utilisateur.show', ['utilisateur' => $utilisateur]);
     }
 
-    public function edit( ){
+
+    public function edit(){
         $utilisateur = Auth::user();
     
         return view("utilisateur.edit", ['utilisateur' => $utilisateur]);
     }
 
 
-
-
     public function update(Request $request){
-   //return $request;
+
         $utilisateur = Auth::user();
         $request->validate([
             'nom' => 'required',
@@ -34,17 +33,17 @@ class UtilisateurController extends Controller
             'email'=>$request->email,
         ]);
 
-        return redirect()->back();
+        return redirect(route('utilisateur.show', ['id'=> $utilisateur->id, 'utilisateur' => $utilisateur]))->withSuccess('Compte modifié');
       }
 
       
       public function destroy()
       {
         $utilisateur = Auth::user();
-        // return $utilisateur;
-          $utilisateur->delete();
 
-          return redirect(route('login'));
+        $utilisateur->delete();
+
+          return redirect(route('login'))->withSuccess('Compte supprimé');
       }
 
 }

@@ -47,12 +47,6 @@
                 </a>
             <!--</button> -->
 
-
-            
-
- 
-
-    
 </section>
 
                                     
@@ -79,6 +73,10 @@
         </div>
     </div> -->
     <!--/Modal -->
+
+    <div>
+        <x-notification ></x-notification>
+    </div>
 @endsection
 
 
