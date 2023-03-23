@@ -1,14 +1,10 @@
 .modal{
   display: flex;
   flex-direction: column;
-  margin:var(--espacements-medium) auto;
   background-color: var(--primary_fade);
  width: 100%;
- border-radius: 20px;
- padding: 15px;
  color: #fefefe;
  font-size: 18px;
-
  padding: 0 var(--espacements-medium);
  position: fixed; /* élément positionné de manière fixe */
  top: 0; /* position en haut de l'écran */
@@ -20,9 +16,29 @@
 
 }
 
+
+
+
+
 .modal div{
   display: flex;
+  justify-content: center;
+  align-items: center;
 
+}
+.modal>button:first-of-type{
+  padding: var(--espacements-x_small);
+  position: absolute;
+  top:0;
+  right:0 ;
+  margin-top:var(--espacements-x_large) ;
+  margin-right: var(--espacements-small);
+}
+
+.modal>button:first-of-type svg{
+ 
+  width: 35px;
+  height: 35px;
 }
 
 .modal div:first-of-type{
@@ -34,8 +50,20 @@
   margin-top:var(--espacements-large);
   
 }
+
 .modal .formBtl_form{
   margin: 0;
+}
+.modal_btn-add div .formBtl_form .modal_commentaire-textarea{
+  height: 150px;
+  padding: var(--espacements-x_small);
+  margin-top: var(--espacements-x_large);
+  margin-bottom: var(--espacements-large);
+}
+
+
+.modal_btn-add svg{
+   width: 30px;
 }
 
 .modal_btn-delete{
@@ -49,6 +77,10 @@
   justify-content: center;
   width: 100%;
   padding: 0 30px;
+}
+.modal_confirm-btn .formBtl_form {
+  width:initial ;
+
 
 }
 
@@ -153,3 +185,10 @@
   display: flex;
 }
 
+body.pas-defilement {
+  overflow: hidden;
+}
+
+.modal textarea{
+  color: black;
+}

@@ -1,26 +1,27 @@
-<div class="modal_btn-delete" x-data="{ ismodalopen: false }">
-  <button @click="ismodalopen = true" class="btn-reverse">{{ $triggerText }}</button>
-  <div class="" x-show="ismodalopen">
+<div class="modal_btn-add" x-data="{ ismodalopen: false }">
+  <button @click="ismodalopen = true" ><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2"><path d="M16 29a13 13 0 1 1 13-13 13 13 0 0 1-13 13Zm0-24a11 11 0 1 0 11 11A11 11 0 0 0 16 5Z" fill="#7e001e" class="fill-000000"></path><path d="M16 23a1 1 0 0 1-1-1V10a1 1 0 0 1 2 0v12a1 1 0 0 1-1 1Z" fill="#7e001e" class="fill-000000"></path><path d="M22 17H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2Z" fill="#7e001e" class="fill-000000"></path></g><path d="M0 0h32v32H0z" fill="none"></path></svg></button>
+  <div class="" x-show="ismodalopen"  @keydown.escape.window="ismodalopen = false"  x-init="$watch('ismodalopen', value => { if (value) { document.body.classList.add('no-scroll'); } else { document.body.classList.remove('no-scroll'); } })">
     <div class="modal">
-      <div class="modal_text">
-        {{ $slot }}
-      </div>
 
+    
+      <button @click="ismodalopen = false" class="btn-reverse ">
+
+          <svg data-name="Layer 1" height="200" id="Layer_1" viewBox="0 0 200 200" width="200" xmlns="http://www.w3.org/2000/svg"><title/><path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z"/></svg>
+         </button>
 
       <form class="formBtl_form" method="post" action="{{ $route }}" >
           @csrf
-          @method('delete')
+          <textarea class="modal_commentaire-textarea"  placeholder="Ecrivez votre commentaire..."></textarea>
+        
           <div class="modal_confirm-btn">
           <button type="submit"  class="btn">
-          <svg viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill="#ffffff" fill-rule="evenodd" class="fill-333333"><path d="M29.98 6.819A2.99 2.99 0 0 0 27 4.003h-3V3.001a3 3 0 0 0-3-3H11a3 3 0 0 0-3 3v1.001H5a2.99 2.99 0 0 0-2.981 2.816H2v2.183a2 2 0 0 0 2 2v17a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4v-17a2 2 0 0 0 2-2V6.819h-.02zM10 3.002a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1H10v-1zm16 25c0 1.102-.898 2-2 2H8c-1.103 0-2-.898-2-2v-17h20v17zm2-20.001v1H4V7.002a1 1 0 0 1 1-1h22a1 1 0 0 1 1 1v.999z"></path><path d="M9 28.006h2a1 1 0 0 0 1-1v-13a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1zm0-14.001h2v13H9v-13zM15 28.006h2a1 1 0 0 0 1-1v-13a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1zm0-14.001h2v13h-2v-13zM21 28.006h2a1 1 0 0 0 1-1v-13a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1zm0-14.001h2v13h-2v-13z"></path></g></svg>
-          </button>
-
-          <button @click="ismodalopen = false" class="btn-reverse">
-        <svg data-name="Layer 1" height="200" id="Layer_1" viewBox="0 0 200 200" width="200" xmlns="http://www.w3.org/2000/svg"><title/><path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z"/></svg>
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><g fill="#ffffff" fill-rule="evenodd" class="fill-000000"><path d="M21.59 47.41a2.5 2.5 0 0 0 3.536 0L53.41 19.126a2.5 2.5 0 0 0-3.536-3.536L21.59 43.874a2.5 2.5 0 0 0 0 3.536Z"></path><path d="M10.429 32.929a2.5 2.5 0 0 1 3.535 0l10.607 10.607a2.5 2.5 0 0 1-3.535 3.535L10.429 36.464a2.5 2.5 0 0 1 0-3.535Z"></path></g></svg>
           </button>
         </div>
-      </form>
+      </form>   
+       
     </div>
   </div>
 </div>
+
 

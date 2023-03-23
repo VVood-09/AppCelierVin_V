@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentaireController extends Controller{
     public function create(){
-        
+
  
     }
 
 
 
     public function store(Request $request){
+        
       
     }
 
