@@ -90,7 +90,7 @@
 
                 <details class="comment">
                     <summary>Commentaire</summary>
-                    
+               
                     @foreach($comments as $comment)
                     <div class="carte_commentaire">
                         <p>{{$comment->commentaire}}</p>               
