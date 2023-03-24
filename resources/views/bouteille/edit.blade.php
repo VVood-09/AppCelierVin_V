@@ -2,6 +2,9 @@
 @section('title', 'Modifier Bouteille')
 @section('content')
 
+
+<a href="{{ route('bouteille.show', ['cellier' => $cellier->id, 'bouteille' => $bouteille->id]) }}" class="retour"> <svg viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512"><path d="M352 115.4 331.3 96 160 256l171.3 160 20.7-19.3L201.5 256z" fill="#7e001e" class="fill-000000"></path></svg>Retour</a>
+
 <section class="formBtl_section">
 
 
@@ -115,11 +118,10 @@
     </form>
 
     <?php
-    $action = 'Supprimer cette bouteille';
-  //  $routeBack = '  Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');';
-    
-    $route = route('bouteille.delete', ['bouteille' => $bouteille->id,'cellier' => $cellier->id]);
-            ?>
+        $action = 'Supprimer cette bouteille';
+      //  $routeBack = '  Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');';
+        $route = route('bouteille.delete', ['bouteille' => $bouteille->id,'cellier' => $cellier->id]);
+    ?>
 
 
     <x-modal_suppresion  route="{{ $route }}" trigger-text="Supprimer cette bouteille" >
