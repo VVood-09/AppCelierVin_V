@@ -90,10 +90,7 @@
 
                 <details class="comment">
                     <summary>Commentaire</summary>
-                    <div class="carte_commentaire">
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet odio aspernatur, illo facere nisi repellendus aliquid ratione reprehenderit fuga soluta voluptatem, vitae quae architecto molestias nesciunt magni voluptatum nostrum esse.</p>               
-                        <small>22/3/2001</small>
-                    </div>
+               
                     @foreach($comments as $comment)
                     <div class="carte_commentaire">
                         <p>{{$comment->commentaire}}</p>               
