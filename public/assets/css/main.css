@@ -4,8 +4,12 @@
 @import "./theme.css";
 @import "./general.css";
 
+/*-------- Import éléments---------*/
+@import "./elements/navigation.css";
+@import "./elements/retourAction.css";
+
+
 /*-------- Import composants---------*/
-/* !! LES FICHIERS NE SONT PAS CRÉÉS, DONC PAS ENCORE LIÉS !! */
 @import "./composants/welcome.css";
 @import "./composants/login.css";
 @import "./composants/register.css";
@@ -20,9 +24,6 @@
 @import "./composants/note.css";
 @import "./composants/profil.css";
 
-/*-------- Import éléments---------*/
-@import "./elements/navigation.css";
-@import "./elements/retourAction.css";
 
 /*-------- Import administration ---------*/
 @import "./admin/general_admin.css";
