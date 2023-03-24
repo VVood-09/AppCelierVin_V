@@ -64,7 +64,7 @@
   @endforelse
 -->
 
-@forelse($bouteilles as $bouteille)
+        @forelse($bouteilles as $bouteille)
         <div class="liste-btl_carte">
            
             <div class="liste-btl_tete">
@@ -118,6 +118,15 @@
         <div>Aucune bouteille dans le cellier</div>
   @endforelse
 
+  <div x-data="{ items: {{$bouteilles}} }">
+    <button @click="testFunct(items)">Sort</button>
+    
+    <ul>
+      <template x-for="item in items">
+        <li x-text="item.nom"></li>
+      </template>
+    </ul>
+  </div>
 
 
 

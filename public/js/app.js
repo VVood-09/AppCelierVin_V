@@ -22908,4 +22908,6 @@ function ajoutComment(){
 
  }
 
-
+function testFunct(bouteilles){
+  bouteilles.reverse();
+}
