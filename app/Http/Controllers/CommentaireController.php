@@ -16,11 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentaireController extends Controller{
 
-    public function create(Request $request){
-
-   
- 
-    }
+    // public function create(Request $request){}
 
 
 
@@ -31,15 +27,12 @@ class CommentaireController extends Controller{
             'bouteille_id'=> $request->bouteille_id
         ]);
         
-        //return redirect(route('bouteille.show', ['bouteille'=>$request->bouteille]))->withSuccess('Nouveau commentaire créé');
+
       return $comment;
     }
 
 
-    // public function show(Cellier $cellier, Bouteille $bouteille ){
-
-   
-    // }
+    // public function show(Cellier $cellier, Bouteille $bouteille ){}
     
     
     public function edit(  Cellier $cellier,Bouteille $bouteille){
@@ -52,16 +45,15 @@ class CommentaireController extends Controller{
 
      
 
-      }
+    }
 
 
 
-      public function destroy(Cellier $cellier,Bouteille $bouteille,)
-      {
+    public function destroy(Cellier $cellier,Bouteille $bouteille,){
 
        
         
-      }
+    }
 
 
 }

@@ -102,6 +102,17 @@ class VinController extends Controller
                 ->get();
 
 
+        foreach($comments as $comment){
+            $date = $comment->created_at;
+    
+            $datetime = new \DateTime($date);
+
+            $date_formate = $datetime->format('d/m/Y');
+                
+            $comment->created_at_format = $date_formate;
+               
+        }
+        
         return view("bouteille.show", ['bouteille' => $bouteille, 'cellier'=>$cellier, 'note' => $note, 'comments' => $comments]);
     }
     
