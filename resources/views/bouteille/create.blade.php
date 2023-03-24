@@ -110,149 +110,91 @@
         @endif
     </div>
 
-    <form x-data="{ ismodalopen: true,
-        formValues: {},
+    <form x-data="{
+    ismodalopen: true,
+    formValues: {},
     errors: {},
     validateForm() {
         event.preventDefault();
-
-
         this.errors = {};
 
-        if (!this.formValues.nom && !this.formValues.prix && !this.formValues.pays&& !this.formValues.type && !this.formValues.format && !this.formValues.cellier && !this.formValues.quantite  ) {
-            <!-- console.log(!this.formValues.nom && !this.formValues.prix && !this.formValues.pays&& !this.formValues.type && !this.formValues.format && !this.formValues.cellier && !this.formValues.quantite  ) -->
-            
+        const requiredFields = ['nom', 'prix', 'pays', 'type', 'format', 'cellier', 'quantite'];
+        const missingFields = requiredFields.filter(field => !this.formValues[field]);
+
+        if (missingFields.length > 0) {
             this.errors.recap = 'Remplir ce champ';
             this.errors.warning = 'Champs manquant(s)';
             return;
         }
 
-
         event.target.submit();
+    },
+    validateField(field) {
+        const fieldErrors = {};
+        let isValid = true;
 
-    },
-    validateNom() {
-        this.nomErrors = {};
-        let isValid = true;
-        if (!this.formValues.nom) {
-            this.errors.nom = 'Le champ Nom est obligatoire.';
+        if (!this.formValues[field]) {
+            fieldErrors[field] = `Le champ ${field} est obligatoire.`;
+            console.log(fieldErrors)
             isValid = false;
         }
-        return isValid;
-
-    },
-    validatePrix() {
-        this.prixErrors = {};
-        let isValid = true;
-        if (!this.formValues.prix) {
-            this.errors.prix = 'Le champ Prix est obligatoire.';
-            isValid = false;
-        }
+        
+        this.errors = {...this.errors, ...fieldErrors};
+        console.log(this.errors)
         return isValid;
     },
-    validatePays() {
-        this.paysErrors = {};
-        let isValid = true;
-        if (!this.formValues.pays) {
-            this.errors.pays = 'Le champ pays est obligatoire.';
-            isValid = false;
-        }
-        return isValid;
-    },
-    validateType() {
-        this.typeErrors = {};
-        let isValid = true;
-        if (!this.formValues.type) {
-            this.errors.type = 'Le champ type est obligatoire.';
-            isValid = false;
-        }
-        return isValid;
-    },
-    validateFormat() {
-        this.formatErrors = {};
-        let isValid = true;
-        if (!this.formValues.format) {
-            this.errors.format = 'Le champ format est obligatoire.';
-            isValid = false;
-        }
-        return isValid;
-    },
-    validateCellier() {
-    this.cellierErrors = {};
-    let isValid = true;
-    if (!this.formValues.cellier) {
-        this.errors.cellier = 'Le champ cellier est obligatoire.';
-        isValid = false;
-    }
-    return isValid;
-},
-    validateQuantite() {
-        this.quantiteErrors = {};
-        let isValid = true;
-        if (!this.formValues.quantite) {
-            this.errors.quantite = 'Le champ quantité est obligatoire.';
-            isValid = false;
-        }
-        return isValid;
-    },
-
-    
 }" @submit.prevent="validateForm()" action="" enctype="multipart/form-data" class="formBtl_form" method="post">
+
         <!-- }" action="" enctype="multipart/form-data" class="formBtl_form" method="post"> -->
-        @csrf
-        <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}" x-model="formValues.nom" @blur="validateNom()">
-        <span x-text="errors.nom" class="textError"></span>
+@csrf
+<span x-text="errors.recap" class="textError"></span>
+<input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}" x-model="formValues.nom" @blur="validateField('nom')">
+<span x-text="errors.nom" class="textError"></span>
 
+<span x-text="errors.recap" class="textError"></span>
+<input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" x-model="formValues.prix" @blur="validateField('prix')" />
+<div x-text="errors.prix" class="textError"></div>
 
-        <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" x-model="formValues.prix" @blur="validatePrix()" />
-        <div x-text="errors.prix" class="textError"></div>
+<span x-text="errors.recap" class="textError"></span>
+<input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" x-model="formValues.pays" @blur="validateField('pays')" />
+<div x-text="errors.pays" class="textError"></div>
 
-        <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" x-model="formValues.pays" @blur="validatePays()" />
-        <div x-text="errors.pays" class="textError"></div>
+<span x-text="errors.recap" class="textError"></span>
+<select x-ref="type" name="type" x-model="formValues.type" @blur="validateField('type')">
+    <option value="" disabled selected>Choisir un type</option>
+    <option value="Vin blanc">Vin blanc</option>
+    <option value="Vin rouge">Vin rouge</option>
+    <option value="Vin rose">Vin rosé</option>
+    <option value="Vin de tomate">Vin de tomate</option>
+</select>
+<div x-text="errors.type" class="textError"></div>
 
-        <span x-text="errors.recap" class="textError"></span>
-        <select x-ref="type" name="type" x-model="formValues.type" @blur="validateType()">
-            <option value="" disabled selected>Choisir un type</option>
-            <option value="Vin blanc">Vin blanc</option>
-            <option value="Vin rouge">Vin rouge</option>
-            <option value="Vin rose">Vin rosé</option>
-            <option value="Vin de tomate">Vin de tomate</option>
-        </select>
-        <div x-text="errors.type" class="textError"></div>
+<label for="file">Télécharger une image :</label>
+<input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}">
 
+<textarea x-ref="description" name="description" placeholder="Description">{{old('description')}}</textarea>
 
-        <label for="file">Télécharger une image :</label>
-        <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}">
+<span x-text="errors.recap" class="textError"></span>
+<input x-ref="format" type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)" x-model="formValues.format" @blur="validateField('format')">
+<div x-text="errors.format" class="textError"></div>
 
+<span x-text="errors.recap" class="textError"></span>
+<select name="cellier" x-model="formValues.cellier" @blur="validateField('cellier')">
+    <option value="" disabled selected>Choisir un cellier</option>
+    @foreach($celliers as $cellier)
+    <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+    @endforeach
+</select>
+<div x-text="errors.cellier" class="textError"></div>
 
+<span x-text="errors.recap" class="textError"></span>
+<input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('quantite')}}" x-model="formValues.quantite" @blur="validateField('quantite')">
+<div x-text="errors.quantite" class="textError"></div>
 
-        <textarea x-ref="description" name="description" placeholder="Description">{{old('description')}}</textarea>
+<div x-text="errors.warning" class="textError"></div>
+<input class="btn" type="submit" value="Ajouter">
 
-        <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="format" type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)" x-model="formValues.format" @blur="validateFormat()">
+</form>
 
-        <div x-text="errors.format" class="textError"></div>
-
-        <span x-text="errors.recap" class="textError"></span>
-        <select name="cellier" x-model="formValues.cellier" @blur="validateCellier()">
-            <option value="" disabled selected>Choisir un cellier</option>
-            @foreach($celliers as $cellier)
-            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
-            @endforeach
-        </select>
-        <div x-text="errors.cellier" class="textError"></div>
-
-        <span x-text="errors.recap" class="textError"></span>
-        <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('quantite')}}" x-model="formValues.quantite" @blur="validateQuantite()">
-        <div x-text="errors.quantite" class="textError"></div>
-
-
-        <div x-text="errors.warning" class="textError"></div>
-        <input class="btn" type="submit" value="Ajouter">
-
-    </form>
 </section>
 @endsection
