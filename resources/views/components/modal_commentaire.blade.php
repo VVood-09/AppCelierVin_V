@@ -9,15 +9,15 @@
           <svg data-name="Layer 1" height="200" id="Layer_1" viewBox="0 0 200 200" width="200" xmlns="http://www.w3.org/2000/svg"><title/><path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z"/></svg>
          </button>
 
-      <form class="formBtl_form"> 
+      <form class="formBtl_form"  action="#" onsubmit="return false"> 
       <!-- method="post" action="{{ $route }}"  -->
       
-      <meta name="csrf-token" content="{{ csrf_token() }}" />     
+          <meta name="csrf-token" content="{{ csrf_token() }}" />     
 
           <textarea class="modal_commentaire-textarea"  placeholder="Ecrivez votre commentaire..."></textarea>
         
           <div class="modal_confirm-btn">
-          <button type="submit"  class="btn">
+          <button type="submit"  class="btn" @click="ajoutComment()">
           <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><g fill="#ffffff" fill-rule="evenodd" class="fill-000000"><path d="M21.59 47.41a2.5 2.5 0 0 0 3.536 0L53.41 19.126a2.5 2.5 0 0 0-3.536-3.536L21.59 43.874a2.5 2.5 0 0 0 0 3.536Z"></path><path d="M10.429 32.929a2.5 2.5 0 0 1 3.535 0l10.607 10.607a2.5 2.5 0 0 1-3.535 3.535L10.429 36.464a2.5 2.5 0 0 1 0-3.535Z"></path></g></svg>
           </button>
         </div>

@@ -22860,7 +22860,7 @@ function changeQte(){
 function changeNote(note, valDepart){
   // Récupéré le id de la bouteille
   let url = window.location.href,
-      bouteille_id = url.split('/fiche-bouteille/')[1];
+      bouteille_id = url.split('/bouteille/')[1];
 
   // Pour gérer la note à envoyer
   if(this.note == undefined && note == valDepart){
@@ -22891,19 +22891,23 @@ function changeNote(note, valDepart){
 
 
 function ajoutComment(){
+  console.log('rehjihu');
+  let url = window.location.href,
+      bouteille_id = url.split('/bouteille/')[1];
 
-  let data = {
-      'qte' :this.counter,
-      'bouteille': this.idB,
-      'cellier': this.idC
-    };
+// console.log(data);
+//   let data = {
+//       'qte' :this.counter,
+//       'bouteille': this.idB,
+//       'cellier': this.idC
+//     };
 
-    entete = {
-      'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-    };
+//     entete = {
+//       'Content-Type': 'application/json',
+//       'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+//     };
     
-  fetch('../api/changeQte', { method:'POST', body: JSON.stringify(data), headers:entete})
+//   fetch(url+'/comment', { method:'POST', body: JSON.stringify(data), headers:entete})
   
 
  }
