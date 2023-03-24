@@ -135,7 +135,8 @@
 
         if (!this.formValues[field]) {
             fieldErrors[field] = `Le champ ${field} est obligatoire.`;
-            console.log(fieldErrors)
+            <!-- console.log(fieldErrors) -->
+            console.log(!this.formValues[field])
             isValid = false;
         }
         
