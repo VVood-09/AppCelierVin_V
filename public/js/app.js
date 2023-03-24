@@ -22936,6 +22936,7 @@ function ajoutComment(){
     })
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       let element = document.querySelector('.comment');
       let created_at = new Date(data.created_at);
       let date = created_at.toLocaleDateString('fr');
@@ -22943,18 +22944,9 @@ function ajoutComment(){
                       <p>${data.commentaire}</p>               
                       <small>${date}</small>
                     </div>`;
-console.log(comment);
       element.insertAdjacentHTML("beforeend", comment);
 
-   // let ismodalopen = false;
 
-   //document.querySelector('.modal_btn-add').__x.$data.ismodalopen = false;
-
-  //  document.getElementById('commentaire').value = ''; // Ajout de cette ligne pour effacer le contenu du textarea après l'ajout du commentaire
-  //  let ismodalopen = document.querySelector('.modal_btn-add [x-data]').__x.$data.ismodalopen;
-  //  if (ismodalopen) {
-  //    document.querySelector('.modal_btn-add [x-data]').__x.$data.ismodalopen = false;
-  //    document.body.classList.remove('no-scroll');}
 
   
     })
