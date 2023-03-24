@@ -22890,26 +22890,61 @@ function changeNote(note, valDepart){
 
 
 
-function ajoutComment(){
-  console.log('rehjihu');
-  let url = window.location.href,
-      bouteille_id = url.split('/bouteille/')[1];
+// function ajoutComment(){
+//   console.log('rehjihu');
+//   let url = window.location.href,
+//       bouteille_id = url.split('/bouteille/')[1];
 
-// console.log(data);
-//   let data = {
-//       'qte' :this.counter,
-//       'bouteille': this.idB,
-//       'cellier': this.idC
-//     };
+// // console.log(data);
+// //   let data = {
+// //       'qte' :this.counter,
+// //       'bouteille': this.idB,
+// //       'cellier': this.idC
+// //     };
 
-//     entete = {
-//       'Content-Type': 'application/json',
-//       'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-//     };
+// //     entete = {
+// //       'Content-Type': 'application/json',
+// //       'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+// //     };
     
-//   fetch(url+'/comment', { method:'POST', body: JSON.stringify(data), headers:entete})
+// //   fetch(url+'/comment', { method:'POST', body: JSON.stringify(data), headers:entete})
   
 
- }
+//  }
+
+
+function ajoutComment(){
+  
+  let url = window.location.href;
+  let bouteille_id = url.split('/bouteille/')[1];
+  let commentaire = document.getElementById('commentaire').value; 
+
+  let data = {
+    'bouteille_id': bouteille_id,
+    'commentaire': commentaire
+  };
+
+  let entete = {
+    'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+  };
+
+  fetch(url+'/commentaire', {
+      method: 'POST',
+      headers: entete,
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      let element = document.querySelector('.comment');
+      let comment = `<div class="carte_commentaire">
+                      <p>${data.commentaire}</p>               
+                      <small>${data.created_at}</small>
+                    </div>`;
+console.log(comment);
+      element.insertAdjacentHTML("beforeend", comment);
+    })
+  
+}
 
 

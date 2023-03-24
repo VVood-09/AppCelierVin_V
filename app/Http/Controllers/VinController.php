@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cellier;
 use App\Models\Bouteille;
+use App\Models\Commentaire;
 use App\Models\ListeBouteille;
 use App\Models\Note;
 use Illuminate\Support\Facades\DB;
@@ -94,8 +95,14 @@ class VinController extends Controller
                             ->get();
 
         $bouteille->qte = $qte[0]["qte"];
-  
-        return view("bouteille.show", ['bouteille' => $bouteille, 'cellier'=>$cellier, 'note' => $note]);
+
+        $comments = Commentaire::select()
+                ->where('user_id', Auth::user()->id)
+                ->where('bouteille_id', $bouteille->id)
+                ->get();
+
+
+        return view("bouteille.show", ['bouteille' => $bouteille, 'cellier'=>$cellier, 'note' => $note, 'comments' => $comments]);
     }
     
     
