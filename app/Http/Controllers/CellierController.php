@@ -63,7 +63,7 @@ class CellierController extends Controller
 
      /**
      * Display the specified resource.
-     *
+     * Requête Eloquent pour leftJoin( on()) https://kirschbaumdevelopment.com/insights/power-joins
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
