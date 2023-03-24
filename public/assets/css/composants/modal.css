@@ -55,8 +55,9 @@
   margin: 0;
 }
 .modal_btn-add div .formBtl_form .modal_commentaire-textarea{
+  color: black;
   height: 150px;
-  padding: var(--espacements-x_small);
+  padding: var(--espacements-small);
   margin-top: var(--espacements-x_large);
   margin-bottom: var(--espacements-large);
 }
@@ -197,6 +198,3 @@ body.pas-defilement {
   overflow: hidden;
 }
 
-.modal textarea{
-  color: black;
-}

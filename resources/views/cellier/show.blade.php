@@ -42,7 +42,7 @@
                     <img src="{{asset('storage/uploads/'.$bouteille->image)}}" alt="{{$bouteille->nom}}" > 
                     @endisset
                 @else
-                    <img src="{{asset('assets/img/icon_PW2/btl-alt_maison.svg')}}" alt="{{$bouteille->nom}}" class="liste-btl_img_alt">
+                    <img src="{{ asset('assets/img/icon_PW2/btl-alt_maison.svg') }}" alt="{{$bouteille->nom}}" class="liste-btl_img_alt">
                 @endisset
                 </div>
                 <div class="liste-btl_info">
