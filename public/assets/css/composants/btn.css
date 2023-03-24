@@ -6,21 +6,21 @@
     padding: var(--espacements-small);
    text-align: center;
 }
+
 .btn:hover{
     background-color: white;
     color: black;
     border: 2px solid  var(--accent);
-    
 }
+
 .btn-reverse{
     background-color: white;
     color: black;
     border: 2px solid  var(--accent);
     padding: var(--espacements-small);
     border-radius: 5px;
-    /* margin-left: var(--espacements-small); */
-
 } 
+
 .btn-close svg{
     width: 35px;
     height: 35px;

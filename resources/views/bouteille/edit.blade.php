@@ -51,11 +51,10 @@
     </form>
 
     <?php
-    $action = 'Supprimer cette bouteille';
-  //  $routeBack = '  Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');';
-    
-    $route = route('bouteille.delete', ['bouteille' => $bouteille->id,'cellier' => $cellier->id]);
-            ?>
+        $action = 'Supprimer cette bouteille';
+      //  $routeBack = '  Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');';
+        $route = route('bouteille.delete', ['bouteille' => $bouteille->id,'cellier' => $cellier->id]);
+    ?>
 
 
     <x-modal_suppresion  route="{{ $route }}" trigger-text="Supprimer cette bouteille" >

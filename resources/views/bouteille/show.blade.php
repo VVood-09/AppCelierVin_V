@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Show bouteille')
 @section('content')
+
 <a href="{{ route('cellier.show', ['cellier' => $cellier->id]) }}" class="retour"> <svg viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512"><path d="M352 115.4 331.3 96 160 256l171.3 160 20.7-19.3L201.5 256z" fill="#7e001e" class="fill-000000"></path></svg>Cellier</a>
 <article class="btl_carte">
         
@@ -9,7 +10,7 @@
             <x-note :note="$note"/>         
             @if(!$bouteille->code_saq)
             <a href="{{route('bouteille.edit',[$cellier->id, $bouteille->id])}}"><svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M0 14.2V18h3.8l11-11.1L11 3.1 0 14.2ZM17.7 4c.4-.4.4-1 0-1.4L15.4.3c-.4-.4-1-.4-1.4 0l-1.8 1.8L16 5.9 17.7 4Z" fill="#7e001e" fill-rule="evenodd" class="fill-000000"></path></svg></a>
-            @endIf<!-- Edit Btl !!-->
+            @endIf
         </div>
 
         <div class="btl_carte-body">

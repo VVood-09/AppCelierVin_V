@@ -1,31 +1,31 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
-    font-family: var(--font-base);
-    scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: var(--font-base);
+  scroll-behavior: smooth;
 }
 main{
   margin: var(--espacements-medium) var(--espacements-small) var(--espacements-x_large);
 }
 
 a{
-    text-decoration: none;
-    font-family: var(--font-base);
+  text-decoration: none;
+  font-family: var(--font-base);
 }
 
 img{
-    max-width: 100%;
+  max-width: 100%;
 }
 
 h1{
-    font-weight: 700;
-    font-size: 25px;
-  }
+  font-weight: 700;
+  font-size: 25px;
+}
 
 h3{
-    font-size: 20px;
-  }
+  font-size: 20px;
+}
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -41,12 +41,9 @@ input[type=number] {
 
 
 details summary::marker {
-    font-size: 25px;
-      color: var(--accent);
-
-
+  font-size: 25px;
+  color: var(--accent);
 } 
-
 
 .retour{
   color: var(--accent);

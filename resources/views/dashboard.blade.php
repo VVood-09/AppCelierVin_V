@@ -2,8 +2,6 @@
 @section('title', 'Celliers')
 @section('content')
 
-
-
     <section class="liste_celliers">
         <div class="header">
             <h1>Mes Celliers</h1>
