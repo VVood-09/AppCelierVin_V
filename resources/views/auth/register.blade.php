@@ -10,17 +10,52 @@
         <!-- Validation Errors -->
         <div class="register_form" :errors="$errors" >
 
-        <form method="POST" action="{{ route('register') }}">
+        <form x-data="{
+                formValues: {},
+                errors: {},
+                validateForm() {
+                    
+                    this.errors = {};
+                    const requiredFields = ['nom', 'email', 'password', 'password_confirmation']
+                    const missingFields = requiredFields.filter(field => !this.formValues[field]);
+
+                    if (missingFields.length > 0) {
+                        this.errors.recap = 'Remplir ce champ';
+                        this.errors.warning = 'Champs manquant(s)';
+                        return;
+                    }
+
+                },
+                validateField(field) {
+                    const fieldErrors = {};
+                    let isValid = true;
+
+                    if (!this.formValues[field]) {
+                        fieldErrors[field] = `Le champ ${field} est obligatoire.`;
+                        console.log(fieldErrors)
+                        isValid = false;
+                    }
+
+                    this.errors = {...this.errors, ...fieldErrors};
+                    console.log(this.errors)
+                    return isValid;
+                    },
+            }"
+        
+        method="POST" action="{{ route('register') }}">
             @csrf
 
             <!-- Name -->
             <div>
-                <x-input placeholder='Nom:' id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" placeholder='Nom:' id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <span x-text="errors.nom" class="textError"></span>
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-input placeholder='Email:'  id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input x-model="formValues.email" x-ref="email" @blur="validateField('email')" placeholder='Email:'  id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <span x-text="errors.email" class="textError"></span>
+
             </div>
 
             <!-- Password -->
@@ -28,14 +63,24 @@
                 <x-input placeholder='Mot de passe:'  id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
-                                required autocomplete="new-password" />
+                                required autocomplete="new-password" 
+                                x-ref="password" @blur="validateField('password')"
+                                x-model="formValues.password"
+                                />
+                <span x-text="errors.password" class="textError"></span>
+
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
                 <x-input  placeholder='Confirmation du mot de passe:'  id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
-                                name="password_confirmation" required />
+                                name="password_confirmation" required 
+                                x-ref="password_confirmation" @blur="validateField('password_confirmation')"
+                                x-model="formValues.password_confirmation"
+                                />
+                <span x-text="errors.password_confirmation" class="textError"></span>
+
             </div>
 
             <div class="flex items-center justify-end mt-4">
