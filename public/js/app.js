@@ -22914,11 +22914,11 @@ function changeNote(note, valDepart){
 
 
 function ajoutComment(){
-  
+   
   let url = window.location.href;
   let bouteille_id = url.split('/bouteille/')[1];
   let commentaire = document.getElementById('commentaire').value; 
-
+     
   let data = {
     'bouteille_id': bouteille_id,
     'commentaire': commentaire
@@ -22945,6 +22945,18 @@ function ajoutComment(){
                     </div>`;
 console.log(comment);
       element.insertAdjacentHTML("beforeend", comment);
+
+   // let ismodalopen = false;
+
+   //document.querySelector('.modal_btn-add').__x.$data.ismodalopen = false;
+
+  //  document.getElementById('commentaire').value = ''; // Ajout de cette ligne pour effacer le contenu du textarea après l'ajout du commentaire
+  //  let ismodalopen = document.querySelector('.modal_btn-add [x-data]').__x.$data.ismodalopen;
+  //  if (ismodalopen) {
+  //    document.querySelector('.modal_btn-add [x-data]').__x.$data.ismodalopen = false;
+  //    document.body.classList.remove('no-scroll');}
+
+  
     })
   
 }
