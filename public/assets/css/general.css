@@ -48,6 +48,20 @@ details summary::marker {
 } 
 
 
+.retour{
+  color: var(--accent);
+  text-decoration: underline;
+  text-transform: uppercase;
+  padding-bottom: var(--espacements-small);
+  font-size: 15px;
+  display: flex;
+
+}
+
+.retour svg{
+  display: inline;
+  width: 20px;
+}
 /* 
 details summary::before {
   content:url(../img/icon_PW2/arrow_down_left_icon.svg);

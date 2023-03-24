@@ -116,6 +116,7 @@
         </div>
         @empty
         <div>Aucune bouteille dans le cellier</div>
+        <a href="{{ route('bouteille.create')}}" class="btn">Ajouter une bouteille</a>
   @endforelse
 
 

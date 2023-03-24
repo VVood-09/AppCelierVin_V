@@ -4,7 +4,7 @@
     border-radius: 5px;
     transition: all 0.6s;
     padding: var(--espacements-small);
-   
+   text-align: center;
 }
 .btn:hover{
     background-color: white;
