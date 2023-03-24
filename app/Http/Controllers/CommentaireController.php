@@ -28,7 +28,7 @@ class CommentaireController extends Controller{
         ]);
         
 
-      return $comment;
+      return $comment()->json(['success' => session('success')]);
     }
 
 

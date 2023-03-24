@@ -2,8 +2,8 @@
 @section('title', 'Show bouteille')
 @section('content')
 
-<a href="{{ route('cellier.show', ['cellier' => $cellier->id]) }}" class="retour"> <svg viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512"><path d="M352 115.4 331.3 96 160 256l171.3 160 20.7-19.3L201.5 256z" fill="#7e001e" class="fill-000000"></path></svg>Cellier</a>
-<article class="btl_carte">
+    <a href="{{ route('cellier.show', ['cellier' => $cellier->id]) }}" class="retour"> <svg viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512"><path d="M352 115.4 331.3 96 160 256l171.3 160 20.7-19.3L201.5 256z" fill="#7e001e" class="fill-000000"></path></svg>Cellier</a>
+    <article class="btl_carte">
         
         <div class="btl_carte-header">   
             <!-- Composante Note.php -->
@@ -73,29 +73,21 @@
 
            <div class="btl_carte-commentaire">            
                 <!-- Ajout de Commentaire !!-->
-                        <?php
-              
-                         $route = route('commentaire.store', ['cellier' => $cellier->id,'bouteille' => $bouteille->id]);
-                        ?>
+                <?php
+                    $route = route('commentaire.store', ['cellier' => $cellier->id,'bouteille' => $bouteille->id]);
+                ?>
 
-
-            <x-modal_commentaire  route="{{ $route }}"  >
-                        
-            </x-modal_commentaire> 
-
-                <!-- <a href="#"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2"><path d="M16 29a13 13 0 1 1 13-13 13 13 0 0 1-13 13Zm0-24a11 11 0 1 0 11 11A11 11 0 0 0 16 5Z" fill="#7e001e" class="fill-000000"></path><path d="M16 23a1 1 0 0 1-1-1V10a1 1 0 0 1 2 0v12a1 1 0 0 1-1 1Z" fill="#7e001e" class="fill-000000"></path><path d="M22 17H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2Z" fill="#7e001e" class="fill-000000"></path></g><path d="M0 0h32v32H0z" fill="none"></path></svg></a> -->
-
-
-
-
+                <x-modal_commentaire  route="{{ $route }}"  />
+                            
                 <details class="comment">
-                    <summary>Commentaire</summary>
-               
+                    <summary> @if(count($comments)>1)Commentaires @else Commentaire @endif</summary>
+                  
                     @foreach($comments as $comment)
                     <div class="carte_commentaire">
                         <p>{{$comment->commentaire}}</p>               
                         <small>{{$comment->created_at_format}}</small>
                     </div>
+                
                     @endforeach
                 </details>
             </div>
@@ -103,8 +95,8 @@
         </div>
     </article>
 
-<div>
-    <x-notification ></x-notification>
-</div>
+    <div>
+        <x-notification ></x-notification>
+    </div>
 
 @endsection
