@@ -22909,5 +22909,6 @@ function ajoutComment(){
  }
 
 function testFunct(bouteilles){
+  console.log(bouteilles);
   bouteilles.reverse();
 }
