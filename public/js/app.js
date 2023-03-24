@@ -22937,9 +22937,11 @@ function ajoutComment(){
     .then(response => response.json())
     .then(data => {
       let element = document.querySelector('.comment');
+      let created_at = new Date(data.created_at);
+      let date = created_at.toLocaleDateString('fr');
       let comment = `<div class="carte_commentaire">
                       <p>${data.commentaire}</p>               
-                      <small>${data.created_at}</small>
+                      <small>${date}</small>
                     </div>`;
 console.log(comment);
       element.insertAdjacentHTML("beforeend", comment);
