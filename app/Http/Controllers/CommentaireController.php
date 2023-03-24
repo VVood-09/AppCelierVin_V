@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cellier;
 use App\Models\Bouteille;
+use App\Models\Commentaire;
 use App\Models\ListeBouteille;
 use App\Models\Note;
 use App\Models\User;
@@ -16,12 +17,7 @@ use Illuminate\Support\Facades\Auth;
 class CommentaireController extends Controller{
 
     public function create(Request $request){
-        
 
-
-        //$requete = "INSERT INTO commentaires (utilisateur_id, bouteille_id, commentaire) VALUES ('$utilisateur_id', '$bouteille_id', '$request')";
-       
-        
    
  
     }
@@ -29,8 +25,14 @@ class CommentaireController extends Controller{
 
 
     public function store(Request $request){
+        $comment = Commentaire::create([
+            'commentaire'=>$request->commentaire,
+            'user_id'=> Auth::user()->id,
+            'bouteille_id'=> $request->bouteille_id
+        ]);
         
-      
+        //return redirect(route('bouteille.show', ['bouteille'=>$request->bouteille]))->withSuccess('Nouveau commentaire créé');
+      return $comment;
     }
 
 

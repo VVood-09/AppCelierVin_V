@@ -9,12 +9,12 @@
           <svg data-name="Layer 1" height="200" id="Layer_1" viewBox="0 0 200 200" width="200" xmlns="http://www.w3.org/2000/svg"><title/><path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z"/></svg>
          </button>
 
-      <form class="formBtl_form"  action="#" onsubmit="return false"> 
-      <!-- method="post" action="{{ $route }}"  -->
+      <form class="formBtl_form" method="post" action="{{ $route }}" onsubmit="return false"> 
+   
       
           <meta name="csrf-token" content="{{ csrf_token() }}" />     
 
-          <textarea class="modal_commentaire-textarea"  placeholder="Ecrivez votre commentaire..."></textarea>
+          <textarea class="modal_commentaire-textarea" id="commentaire"  placeholder="Écrivez votre commentaire..."></textarea>
         
           <div class="modal_confirm-btn">
           <button type="submit"  class="btn" @click="ajoutComment()">

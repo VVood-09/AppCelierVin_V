@@ -62,6 +62,14 @@
 }
 
 
+/* .modal_btn-add{
+  display: flex;
+  justify-content: flex-end;
+  transform: translateY(35px);
+} */
+
+
+
 .modal_btn-add svg{
    width: 30px;
 }
