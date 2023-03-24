@@ -65,7 +65,7 @@
  .modal_btn-add{
 position: absolute;
 right: 0;
-bottom: 0
+top:5px;
 } 
 
 
