@@ -22839,7 +22839,7 @@ function changeQte(){
 
   // var entete = new Headers();
   // entete.append('Content-Type', 'application/json');
-
+    console.log(document.querySelector('meta[name=csrf-token]').content);
   entete = {
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
