@@ -22859,8 +22859,8 @@ function changeQte(){
  */
 function changeNote(note, valDepart){
   // Récupéré le id de la bouteille
-  let url = window.location.href,
-      bouteille_id = url.split('/fiche-bouteille/')[1];
+  let url = window.location.href;
+  let bouteille_id = url.split('/bouteille/')[1];
 
   // Pour gérer la note à envoyer
   if(this.note == undefined && note == valDepart){
@@ -22881,7 +22881,7 @@ function changeNote(note, valDepart){
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
   };
   
-  fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete});
+  fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete})
     // Pour développement, voir les réponses serveur
     // .then(reponse=> reponse.json())
     // .then((reponse)=>console.log(reponse));
