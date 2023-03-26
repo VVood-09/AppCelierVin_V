@@ -12,7 +12,7 @@
 }
 
 .formBtl_section h1, .formBtl_form h1{ 
-    margin:var(--espacements-large) auto var(--espacements-medium) auto;
+    margin-bottom: var(--espacements-medium)
 }
 
 .formBtl_section.suggestion_section h1{

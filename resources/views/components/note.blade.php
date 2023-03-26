@@ -6,7 +6,7 @@
     {
       rating: {{$note}},
       hoverRating: {{$note}},
-      ratings: [{'amount': 1, 'label':'Térrible'}, {'amount': 2, 'label':'Mauvais'}, {'amount': 3, 'label':'Correct'}, {'amount': 4, 'label':'Bon'}, {'amount': 5, 'label':'Excellent'}],
+      ratings: [{'amount': 1, 'label':'Terrible'}, {'amount': 2, 'label':'Mauvais'}, {'amount': 3, 'label':'Correct'}, {'amount': 4, 'label':'Bon'}, {'amount': 5, 'label':'Excellent'}],
       rate(amount) {
         if (this.rating == amount) {
           this.rating = 0;

@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 // Route des commentaires
     // Route::get('cellier/{cellier}/bouteille/{bouteille}', [CommentaireController::class, 'create'])->name('commentaire.create');
-    Route::post('cellier/{cellier}/bouteille/{bouteille}/comment', [CommentaireController::class, 'store'])->name('commentaire.store');
+    Route::post('cellier/{cellier}/bouteille/{bouteille}/commentaire', [CommentaireController::class, 'store'])->name('commentaire.store');
     Route::get('cellier/{cellier}/bouteille/{bouteille}/commentaire/{commentaire}/modif', [CommentaireController::class, 'edit'])->name('commentaire.edit');
     Route::put('cellier/{cellier}/bouteille/{bouteille}/commentaire/{commentaire}/modif', [CommentaireController::class, 'update'])->name('commentaire.update');
     Route::delete('cellier/{cellier}/bouteille/{bouteille}/commentaire/{commentaire}/modif', [CommentaireController::class, 'destroy'])->name('commentaire.delete');

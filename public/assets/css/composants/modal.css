@@ -62,6 +62,14 @@
 }
 
 
+ .modal_btn-add{
+position: absolute;
+right: 0;
+top:5px;
+} 
+
+
+
 .modal_btn-add svg{
    width: 30px;
 }
