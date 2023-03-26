@@ -164,7 +164,7 @@
                                 </a>
                             </div>
 
-                            {{-- Avec l'utilisation de Alpine.js pour Sort() et de Laravel, la syntaxe a employé limite la manière de faire les choses. Dans le cas que la composante Quantite doit être usé avec un object contenant les informations de `item` provenant d'alpine `x-data`, `item` n'est pas un objet transferable dans la composante donc il doit être créé manuellement avec les informations de $bouteilles. --}}
+                            {{-- Avec l'utilisation de Alpine.js pour Sort() et de Laravel, la syntaxe a employé limite la manière de faire les choses. Dans le cas que la composante Quantite doit être usé avec un object contenant les informations de `item` provenant d'alpine `x-data`, `item` n'est pas un objet transferable dans la composante donc il doit être créé manuellement avec les informations de $bouteilles. `item` ne peut pas non plus être mis dans une variable pour php puisque c'est du JSON front-end. --}}
                             @forelse($bouteilles as $bouteille)
                             <template x-if="item.nom.toString() == '{{$bouteille->nom}}'">
                                 @php
@@ -174,7 +174,10 @@
                             </template>
                             @empty
                             @endforelse
-                            {{-- <x-quantite bouteille="item" :cellier="$cellier"/> --}}
+                            {{-- Malheureusement, 
+                                https://gist.github.com/jasonlbeggs/1341e7367c0dc69ac64ef2140d0f0591
+                                ne semble pas fonctionner. --}}
+                            {{-- <x-quantite ::bouteille="item" :cellier="$cellier"/> --}}
                         </div>
                     </div>
                 </div>
