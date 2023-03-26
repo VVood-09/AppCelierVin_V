@@ -22908,7 +22908,18 @@ function ajoutComment(){
 
  }
 
-function testFunct(bouteilles){
-  console.log(bouteilles);
-  bouteilles.reverse();
+ /**
+  * Fonction pour assortir les bouteilles dans le cellier
+  * https://www.raymondcamden.com/2022/05/02/building-table-sorting-and-pagination-in-alpinejs
+  * @param {array} bouteilles 
+  * @param {string} col sur quoi assortir les bouteilles ('nom', 'pays', 'type')
+  */
+function assortir(bouteilles, col){
+  if(this.sortCol === col) this.sortAsc = !this.sortAsc;
+  this.sortCol = col;
+  bouteilles.sort((a, b) => {
+    if(a[this.sortCol] < b[this.sortCol]) return this.sortAsc?1:-1;
+    if(a[this.sortCol] > b[this.sortCol]) return this.sortAsc?-1:1;
+    return 0;
+  });
 }
