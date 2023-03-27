@@ -17,6 +17,7 @@
                     this.errors = {};
                     const requiredFields = ['email', 'password']
                     const missingFields = requiredFields.filter(field => !this.formValues[field]);
+                    console.log(missingFields);
 
                     if (missingFields.length > 0) {
                         this.errors.recap = 'Remplir ce champ';
@@ -67,6 +68,7 @@
             
 
             <div class="mt-4 login_btn">
+            <div x-text="errors.warning" class="textError"></div>
 
                 <x-button class="">
                     {{ __('Connexion') }}
