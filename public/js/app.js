@@ -22954,17 +22954,38 @@ console.log(data);
 }
 
  /**
-  * Fonction pour assortir les bouteilles dans le cellier
+  * Fonction pour trier les bouteilles dans le cellier
   * https://www.raymondcamden.com/2022/05/02/building-table-sorting-and-pagination-in-alpinejs
   * @param {array} bouteilles 
-  * @param {string} col sur quoi assortir les bouteilles ('nom', 'pays', 'type')
+  * @param {string} col sur quoi trier les bouteilles ('nom', 'pays', 'type')
   */
-function assortir(bouteilles, col){
-  if(this.sortCol === col) this.sortAsc = !this.sortAsc;
-  this.sortCol = col;
-  bouteilles.sort((a, b) => {
-    if(a[this.sortCol] < b[this.sortCol]) return this.sortAsc?1:-1;
-    if(a[this.sortCol] > b[this.sortCol]) return this.sortAsc?-1:1;
-    return 0;
-  });
+function triage(bouteilles, col){
+  if(this.triAsc == undefined){
+    this.triAsc = true;
+  }
+  if(this.colonneTri === col) this.triAsc = !this.triAsc;
+  this.colonneTri = col;
+  if(this.colonneTri == 'note'){
+    bouteilles.sort((a, b) => {
+      if(a[this.colonneTri] < b[this.colonneTri]) return this.triAsc?1:-1;
+      if(a[this.colonneTri] > b[this.colonneTri]) return this.triAsc?-1:1;
+      return 0;
+    });
+  } else {
+    bouteilles.sort((a, b) => {
+      const resultatTri = a[this.colonneTri].localeCompare(b[this.colonneTri]);
+      if(resultatTri === 0) return 0; // If the strings are equal, return 0
+      return this.triAsc ? resultatTri : -resultatTri; // Reverse the sort order if triAsc is false
+    });
+  }
+  const sectionTri = document.querySelector(".triage");
+  const sectionTriSpan = sectionTri.querySelectorAll("span#id");
+  sectionTriSpan.forEach((span) => {
+    span.innerHTML = `&#8226;`;
+  })
+  if(this.triAsc){
+    sectionTri.querySelector('#'+this.colonneTri).innerHTML = `&#9650;`;
+  } else {
+    sectionTri.querySelector('#'+this.colonneTri).innerHTML = `&#9660;`;
+  }
 }

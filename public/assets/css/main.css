@@ -23,6 +23,7 @@
 @import "./composants/carte_commentaire.css";
 @import "./composants/note.css";
 @import "./composants/profil.css";
+@import "./composants/triage.css";
 
 
 /*-------- Import administration ---------*/
