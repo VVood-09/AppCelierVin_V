@@ -11,7 +11,7 @@
         <input placeholder="Nom du Cellier" type="text" id="nom" name="nom" class="form-control" value="{{old('nom')}}" maxlength="8">
       </div>
       <div class="formCellier_btn">
-          <input type="submit" name="" id="" value="Ajouter" class="btn ">
+          <input type="submit" name="" id="" value="Créer" class="btn ">
           <a href="{{ route ('dashboard')}}" class="btn-reverse ">Annuler</a>
       </div>
   </form>

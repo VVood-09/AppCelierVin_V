@@ -4,19 +4,16 @@
 
     <section class="liste_celliers">
         <div class="header">
-            <h1>Mes Celliers</h1>
+            <h1>Mes celliers</h1>
         </div>
 
         <div class="grid__celliers">
-        @forelse($celliers as $cellier)
-            <a href="{{ route('cellier.show', $cellier->id)}}" class="card__cellier"> <span>
-
+        @for($celliers as $cellier)
+            <a href="{{ route('cellier.show', $cellier->id)}}" class="card__cellier"> 
+                <span>
                 {{ $cellier->nom }}
-            </span>
-               </a>
-        @empty
-            <h3>Aucun cellier</h3>
-        @endforelse
+                </span>
+            </a>
         
         </div>
     

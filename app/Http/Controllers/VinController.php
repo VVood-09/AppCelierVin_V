@@ -162,7 +162,7 @@ class VinController extends Controller
       {
         $bouteille->delete();
   
-        return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Bouteille supprimé');
+        return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Bouteille supprimée');
 
 
       }
