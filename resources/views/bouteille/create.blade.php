@@ -49,9 +49,9 @@
                     <input type="hidden" name="id" x-ref="id" value="{{old('id')}}">
                     <input type="hidden" name="code_saq" x-ref="code_saq" value="{{old('code_saq')}}">
                     <select name="cellier">
-                        <option value="" disabled selected>Choisir un cellier</option>
+                        {{-- <option value="" disabled selected>Choisir un cellier</option> --}}
                         @foreach($celliers as $cellier)
-                        <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+                        <option value="{{$cellier->id}}" @if($cellier_actif == $cellier->id) selected @endif>{{$cellier->nom}}</option>
                         @endforeach
                     </select>
                     <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
@@ -78,7 +78,7 @@
     
     <form x-data="{
     ismodalopen: true,
-    formValues: {},
+    formValues: {cellier: {{$cellier_actif}}},
     errors: {},
     validateForm() {
         event.preventDefault();
@@ -147,9 +147,9 @@
 
         <span x-text="errors.recap" class="textError"></span>
         <select name="cellier" x-model="formValues.cellier" @blur="validateField('cellier')">
-            <option value="" disabled selected>Choisir un cellier</option>
+            {{-- <option value="" disabled>Choisir un cellier</option> --}}
             @foreach($celliers as $cellier)
-            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+            <option value="{{$cellier->id}}" @if($cellier_actif == $cellier->id) selected @endif>{{$cellier->nom}}</option>
             @endforeach
         </select>
         <div x-text="errors.cellier" class="textError"></div>
