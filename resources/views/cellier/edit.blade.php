@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Modification Cellier')
+@section('title', 'Modifier cellier')
 @section('content')
    
 <div class="formBtl">
