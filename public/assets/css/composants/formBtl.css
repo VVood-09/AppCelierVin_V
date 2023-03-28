@@ -18,13 +18,26 @@
 .formBtl_section.suggestion_section h1{
     margin-block: var(--espacements-small);
 
+
+}
+
+.formBtl_search-section{
+    width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-bottom: var(--espacements-medium);
 }
 
 .formBtl_search{
     position: relative;
     display: inline-block;
-    margin: auto;   
     padding: 5px;
+    width: 100%;
+   
+}
+.formBtl_search input{
+    width: 100%;
 }
 
 .modal-SAQ{
@@ -38,7 +51,6 @@
 }
 
 .formBtl_search form input, .formBtl_search form select{
-    width: -webkit-fill-available;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -112,7 +124,7 @@
 .formBtl_form {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: 100%;
     margin: auto;
 }
 .formBtl_form h1{
@@ -123,7 +135,7 @@
     margin-bottom: var(--espacements-small);  
 }
  
-.formBtl_form textarea,.formBtl_form select,.formBtl_form input:not([type=file]),.formBtl_form a{
+.formBtl_form textarea,.formBtl_form select,.formBtl_form input:not([type=file],[type=submit]),.formBtl_form a{
     margin-bottom: var(--espacements-small);
     border-radius: 20px;
     resize: none;
