@@ -7,11 +7,28 @@
         
         <div class="btl_carte-header">   
             <!-- Composante Note.php -->
-            <x-note :note="$note"/>         
+            <x-note :note="$note"/>  
+            
+            
             @if(!$bouteille->code_saq)
             <a href="{{route('bouteille.edit',[$cellier->id, $bouteille->id])}}"><svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M0 14.2V18h3.8l11-11.1L11 3.1 0 14.2ZM17.7 4c.4-.4.4-1 0-1.4L15.4.3c-.4-.4-1-.4-1.4 0l-1.8 1.8L16 5.9 17.7 4Z" fill="#7e001e" fill-rule="evenodd" class="fill-000000"></path></svg></a>
+            @else
+            <div class="btl_carte-saq_lien">
+                @if($bouteille->url_saq != null)
+                    <a href="{{$bouteille->url_saq}}" target="blank"><img src="/assets/img/icon_PW2/SAQ_Logo.svg.png" alt="SAQ logo"></a>
+                @endif
+            </div>
             @endIf
+
+
+
+
+
+            
         </div>
+
+
+
 
         <div class="btl_carte-body">
 
@@ -27,11 +44,7 @@
                 @endisset
             </div>
 
-            <div class="btl_carte-saq_lien">
-                @if($bouteille->url_saq != null)
-                    <a href="{{$bouteille->url_saq}}" target="blank"><img src="/assets/img/icon_PW2/SAQ_Logo.svg.png" alt="SAQ logo"></a>
-                @endif
-            </div>
+       
 
             <h1>{{$bouteille->nom}}</h1>
 
