@@ -14,6 +14,6 @@
 }
 
 .note_jaune {
-    color: rgb(225, 225, 10);
-    stroke: rgb(125, 125, 5);
+    color: var(--accent);
+    stroke: var(--accent);
 }
