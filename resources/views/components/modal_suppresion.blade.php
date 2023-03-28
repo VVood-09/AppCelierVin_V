@@ -8,7 +8,7 @@
       </div>
 
       <div class="modal_confirm-btn">
-        <form class="formBtl_form" method="post" action="{{ $route }}" >
+        <form  method="post" action="{{ $route }}" >
           @csrf
           @method('delete')
               

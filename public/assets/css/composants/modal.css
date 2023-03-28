@@ -5,7 +5,7 @@
   width: 100%;
   color: #fefefe;
   font-size: 18px;
-  /* padding: 0 var(--espacements-medium); */
+  padding: 0 var(--espacements-large);
   position: fixed; 
   top: 0; 
   left: 0; 
@@ -42,17 +42,15 @@
 .modal> div:first-of-type{
   text-align: center;
   font-size: 25px;
-  margin-bottom: var(--espacements-large);
+  margin-bottom: var(--espacements-medium);
 }
 
-.modal_text{
-  margin-top:var(--espacements-large);
-  
-}
+
 
 /* .modal .formBtl_form{
-  margin-inline: var(--espacements-small);
-} */
+  margin-inline: var(--espacements-large);
+}  */
+
 .modal_btn-add div .formBtl_form .modal_commentaire-textarea{
   color: black;
   height: 150px;
