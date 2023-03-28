@@ -36,6 +36,26 @@
                         isValid = false;
                     }
 
+                    if (field == 'email') {
+                        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))){
+                            fieldErrors[field] = `Entrez une adresse courriel valide`;
+                            isValid = false;
+                        }
+                    }
+                    
+                    if (field == 'password'){
+                        if (password.value < 8) {
+                            fieldErrors[field] = `8 caractères minimum`;
+                            isValid = false;
+                        }
+                    }
+                    if (field == 'password_validation'){
+                        if (password_validation.value < 8) {
+                            fieldErrors[field] = `8 caractères minimum`;
+                            isValid = false;
+                        }
+                    }
+
                     this.errors = {...this.errors, ...fieldErrors};
                     console.log(this.errors)
                     return isValid;
