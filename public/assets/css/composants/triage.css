@@ -1,0 +1,22 @@
+.triage, .triage > * {
+    display: flex;
+    flex-direction: row;
+}
+
+.triage > * {
+    width: 70px;
+    justify-content: space-between;
+}
+
+.triage > *+* {
+    margin-left: auto;
+}
+
+.triage .btn {
+    padding: 0 var(--espacements-x_small);
+}
+
+.triage .triage_fleche {
+    font-size: 0.75rem;
+    align-self: center;
+}

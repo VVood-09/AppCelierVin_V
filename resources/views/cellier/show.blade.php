@@ -119,16 +119,21 @@
         @endforelse --}}
 
         <section x-data="{ items: {{$bouteilles}} }" class="liste-btl_liste">
-            <div>
-                <p>Assortir par :</p>
-                <button @click="assortir(items, 'nom')">Nom</button>
-                <button @click="assortir(items, 'pays')">Pays</button>
-                <button @click="assortir(items, 'type')">Type</button>
-                <button @click="assortir(items, 'note')">Note</button>
-            </div>
         
             <template x-if="items == ''">
-                <div>Aucune bouteille dans le cellier</div>
+                <section class="liste-btl_vide">
+                    <p>Aucune bouteille dans le cellier.</p>
+                    <a href="{{ route('bouteille.create')}}" class="btn">Ajouter une bouteille</a>
+                </section>
+            </template>
+        
+            <template x-if="items != ''">
+                <nav class="triage">
+                    <button @click="triage(items, 'nom')" class="btn"><span>Nom </span><span class="triage_fleche" id="nom">&#9660;</span></button>
+                    <button @click="triage(items, 'pays')" class="btn"><span>Pays </span><span class="triage_fleche" id="pays">&#9660;</span></button>
+                    <button @click="triage(items, 'type')" class="btn"><span>Type </span><span class="triage_fleche" id="type">&#9660;</span></button>
+                    <button @click="triage(items, 'note')" class="btn"><span>Note </span><span class="triage_fleche" id="note">&#9660;</span></button>
+                </nav>
             </template>
     
             <template x-for="(item, cle) in items">
