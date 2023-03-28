@@ -22859,8 +22859,8 @@ function changeQte(){
  */
 function changeNote(note, valDepart){
   // Récupéré le id de la bouteille
-  let url = window.location.href,
-      bouteille_id = url.split('/bouteille/')[1];
+  let url = window.location.href;
+  let bouteille_id = url.split('/bouteille/')[1];
 
   // Pour gérer la note à envoyer
   if(this.note == undefined && note == valDepart){
@@ -22881,7 +22881,7 @@ function changeNote(note, valDepart){
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
   };
   
-  fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete});
+  fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete})
     // Pour développement, voir les réponses serveur
     // .then(reponse=> reponse.json())
     // .then((reponse)=>console.log(reponse));
@@ -22953,4 +22953,18 @@ console.log(data);
   
 }
 
-
+ /**
+  * Fonction pour assortir les bouteilles dans le cellier
+  * https://www.raymondcamden.com/2022/05/02/building-table-sorting-and-pagination-in-alpinejs
+  * @param {array} bouteilles 
+  * @param {string} col sur quoi assortir les bouteilles ('nom', 'pays', 'type')
+  */
+function assortir(bouteilles, col){
+  if(this.sortCol === col) this.sortAsc = !this.sortAsc;
+  this.sortCol = col;
+  bouteilles.sort((a, b) => {
+    if(a[this.sortCol] < b[this.sortCol]) return this.sortAsc?1:-1;
+    if(a[this.sortCol] > b[this.sortCol]) return this.sortAsc?-1:1;
+    return 0;
+  });
+}
