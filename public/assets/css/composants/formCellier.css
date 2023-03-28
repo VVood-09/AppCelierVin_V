@@ -9,9 +9,10 @@
 }
 .formCellier h1, .formCellier, .formCellier_input input{
     display: flex;
-    margin: auto;
+    justify-content: center;
     margin: var(--espacements-small) auto;
     border-radius: 20px;
+    width: 100%;
  
 }
 
@@ -20,6 +21,6 @@
     flex-direction: column;
     gap: 20px;
     margin: 30px auto;
-    width: 50%;
+    width: 100%;
     text-align: center;
 }

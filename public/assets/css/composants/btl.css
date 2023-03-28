@@ -43,17 +43,16 @@
 }
 
 .btl_carte-body>.liste-btl_img{
-  margin-bottom: var(--espacements-x_small);
+  margin-bottom: var(--espacements-medium);
 }
 
 .btl_carte-saq_lien{
   display: flex;
   justify-content: flex-end;
-  margin-bottom: var(--espacements-medium);
 }
 
 .btl_carte-saq_lien a img{
-  width: 20px;
+  width: 30px;
 }
 
 .btl_carte-bullet_info{
@@ -75,13 +74,13 @@
 /* sert a faire la ligne rouge  dans les info */
 .btl_carte-espaceur{
   width: 30%;
-  background-color: var(--accent);
+  background-color: var(--primary);
   height: 5px;
 }
 
 .btl_carte-espaceur-large{
   width: 50%;
-  background-color: var(--accent);
+  background-color: var(--primary);
   height: 5px;
 }
   
@@ -108,15 +107,15 @@
 
 .btl_carte-description details div{
   padding: var(--espacements-small);
-  background-color: var(--accent);
+  background-color: var(--neutral);
   margin-top:var(--espacements-medium);
   border-radius: 10px;   
 }
 
 .btl_carte-description details p{
-  border-left: 2px solid white;
+  border-left: 2px solid var(--primary);
   padding-left: var(--espacements-small);
-  color: white;
+  color: var(--primary);
 }
 
 .btl_carte-commentaire{

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Modification Profil')
+@section('title', 'Modifier Profil')
 @section('content')
    
 
@@ -17,7 +17,7 @@
   </form>
 
   <?php
-    $action = 'Supprimer le compte';
+    $action = 'supprimer le compte';
     $route = route('utilisateur.delete', ['id' => $utilisateur->id]);
   ?>
 </div>

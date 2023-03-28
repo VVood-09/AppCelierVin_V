@@ -235,7 +235,6 @@
 .liste-btl_tete_pays svg{
     width: 20px;
     height: 20px;
-
 }
 
 .liste-btl_corps{
@@ -267,8 +266,8 @@
     display: flex;
     /* justify-content: center; */
     gap: var(--espacements-x_small);
-   
 }
+
 .liste-btl_info_bouteilles svg{
     width: 40px;
 }

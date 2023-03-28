@@ -27,8 +27,9 @@ class CommentaireController extends Controller{
             'bouteille_id'=> $request->bouteille_id
         ]);
         
-
-      return $comment()->json(['success' => session('success')]);
+        $comment->message = 'Commentaire ajouté';
+        
+      return $comment;
     }
 
 

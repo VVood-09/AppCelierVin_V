@@ -22923,7 +22923,7 @@ function ajoutComment(){
     'bouteille_id': bouteille_id,
     'commentaire': commentaire
   };
-
+console.log(data);
   let entete = {
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content

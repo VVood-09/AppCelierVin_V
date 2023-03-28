@@ -20,6 +20,7 @@
     border: 2px solid  var(--accent);
     padding: var(--espacements-small);
     border-radius: 5px;
+   ;
 } 
 
 .btn-close svg{
