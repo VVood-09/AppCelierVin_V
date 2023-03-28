@@ -13,7 +13,7 @@
     stroke: grey;
 }
 
-.note_jaune {
+.note_couleur {
     color: var(--accent);
     stroke: var(--accent);
 }
