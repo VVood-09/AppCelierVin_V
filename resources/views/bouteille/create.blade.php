@@ -6,8 +6,10 @@
 
 <section class="formBtl_section suggestion_section">
 
-    <div x-data="{ ismodalopen: false }">
-        <h1>Rechercher un vin</h1>
+
+    <div class="formBtl_search-section" x-data="{ ismodalopen: false }">
+        <h1>Rechercher un Vin</h1>
+
         <div class="formBtl_search">
             <x-autocomplete-search />
                        

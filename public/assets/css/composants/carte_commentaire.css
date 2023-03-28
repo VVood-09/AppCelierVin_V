@@ -2,15 +2,15 @@
     display: flex;
     flex-direction: column;
     padding: var(--espacements-small);
-    background-color: var(--accent);
-    margin-top:var(--espacements-medium);
+    background-color: var(--neutral);
+    margin-top:var(--espacements-small);
     border-radius: 10px;
     
 }
 .carte_commentaire p{
     padding-left: var(--espacements-small);
-    border-left: 2px solid white;
-    color: white;
+    border-left: 2px solid var(--primary);
+    color:var(--primary);
 
 }
 .carte_commentaire small{
@@ -19,5 +19,5 @@
     margin-top: var(--espacements-x_small);
     /* border-bottom: 2px solid white; */
     padding-right: var(--espacements-x_small);
-    color: white;
+    color: var(--primary);
 }
