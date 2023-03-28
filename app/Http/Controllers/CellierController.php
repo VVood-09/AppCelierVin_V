@@ -87,8 +87,11 @@ class CellierController extends Controller
 
     
     public function edit( Cellier $cellier){
-      
-        return view("cellier.edit", ['cellier' => $cellier]);
+        $celliersTotal = DB::table('celliers')
+                        ->where('user_id', Auth::user()->id)
+                        ->count();
+   
+        return view("cellier.edit", ['cellier' => $cellier, 'celliersTotal'=>$celliersTotal]);
     }
 
 
@@ -109,9 +112,15 @@ class CellierController extends Controller
 
 
 
-    public function destroy( Cellier $cellier)
-    {
-        $cellier->delete();
+    public function destroy( Cellier $cellier){
+        $celliersTotal = DB::table('celliers')
+                        ->where('user_id', Auth::user()->id)
+                        ->count();
+
+        if($celliersTotal > 1){
+            $cellier->delete();
+        }
+
         return redirect(route('dashboard'))->withSuccess('Cellier supprimé'); 
     }
 

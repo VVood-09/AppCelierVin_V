@@ -3,7 +3,7 @@
 @section('content')
    
 <div class="formBtl">
-  <h1>Modification du Cellier {{$cellier->nom}} </h1>
+  <h1>Modification du cellier {{$cellier->nom}} </h1>
   
   <form class="formBtl_form"  method="post" action="">
     @csrf
@@ -14,15 +14,18 @@
     
   </form>
   
-  <?php
-    $action = 'Supprimer ce cellier';
-    $route = route('cellier.delete', ['cellier' => $cellier->id]);
-            ?>
+  @if($celliersTotal > 1)
+    <?php
+      $action = 'supprimer ce cellier';
+      $route = route('cellier.delete', ['cellier' => $cellier->id]);
+              ?>
 
 
-  <x-modal_suppresion  route="{{ $route }}" trigger-text="Supprimer ce cellier" >
-    Etes-vous certain de vouloir {{ $action }} ?
-  </x-modal_suppresion>
+    <x-modal_suppresion  route="{{ $route }}" trigger-text="Supprimer ce cellier" >
+      Etes-vous certain de vouloir {{ $action }} ?
+    </x-modal_suppresion>
+  @endif
+
 </div>
   
 
