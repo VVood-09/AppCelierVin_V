@@ -22,7 +22,7 @@
 
 
     <x-modal_suppresion  route="{{ $route }}" trigger-text="Supprimer ce cellier" >
-      Etes-vous certain de vouloir {{ $action }} ?
+      Êtes-vous certain de vouloir {{ $action }} ?
     </x-modal_suppresion>
   @endif
 

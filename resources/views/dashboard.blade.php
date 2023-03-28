@@ -8,13 +8,13 @@
         </div>
 
         <div class="grid__celliers">
-        @for($celliers as $cellier)
+        @foreach($celliers as $cellier)
             <a href="{{ route('cellier.show', $cellier->id)}}" class="card__cellier"> 
                 <span>
                 {{ $cellier->nom }}
                 </span>
             </a>
-        
+        @endforeach
         </div>
     
         <!-- Button trigger modal -->
