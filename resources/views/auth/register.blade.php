@@ -29,6 +29,7 @@
                 validateField(field) {
                     const fieldErrors = {};
                     let isValid = true;
+                    fieldErrors[field] = ``;
 
                     if (!this.formValues[field]) {
                         fieldErrors[field] = `Le champ ${field} est obligatoire.`;
@@ -37,6 +38,7 @@
                     }
 
                     if (field == 'email') {
+                        fieldErrors[field] = ``;
                         if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))){
                             fieldErrors[field] = `Entrez une adresse courriel valide`;
                             isValid = false;
@@ -44,13 +46,15 @@
                     }
                     
                     if (field == 'password'){
+                        fieldErrors[field] = ``;
                         if (password.value < 8) {
                             fieldErrors[field] = `8 caractères minimum`;
                             isValid = false;
                         }
                     }
-                    if (field == 'password_validation'){
-                        if (password_validation.value < 8) {
+                    if (field == 'password_confirmation'){
+                        fieldErrors[field] = ``;
+                        if (password_confirmation.value < 8) {
                             fieldErrors[field] = `8 caractères minimum`;
                             isValid = false;
                         }

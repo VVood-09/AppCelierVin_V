@@ -37,6 +37,7 @@
                     }
 
                     if (field == 'email') {
+                        fieldErrors[field] = ``;
                         if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))){
                             fieldErrors[field] = `Entrez une adresse courriel valide`;
                             isValid = false;
@@ -44,6 +45,7 @@
                     }
                     
                     if (field == 'password'){
+                        fieldErrors[field] = ``;
                         if (password.value < 8) {
                             fieldErrors[field] = `8 caractères minimum`;
                             isValid = false;
