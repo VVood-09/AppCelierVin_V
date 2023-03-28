@@ -2,36 +2,34 @@
   display: flex;
   flex-direction: column;
   background-color: var(--primary_fade);
- width: 100%;
- color: #fefefe;
- font-size: 18px;
- padding: 0 var(--espacements-medium);
- position: fixed; /* élément positionné de manière fixe */
- top: 0; /* position en haut de l'écran */
- left: 0; /* position à gauche de l'écran */
- width: 100%; /* largeur de l'écran */
- height: 100%; /* hauteur de l'écran */
- justify-content: center; /* centrer horizontalement */
- align-items: center; /* centrer verticalement */
-
-}
-
-
-
-
-
-.modal div{
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  color: #fefefe;
+  font-size: 18px;
+  padding: 0 var(--espacements-large);
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  justify-content: center; 
   align-items: center;
 
 }
+
+
+/* .modal div{
+   display: flex; 
+  justify-content: center;
+  align-items: center;
+
+} */
+
 .modal>button:first-of-type{
   padding: var(--espacements-x_small);
   position: absolute;
   top:0;
   right:0 ;
-  margin-top:var(--espacements-x_large) ;
+  margin-top: 100px ;
   margin-right: var(--espacements-small);
 }
 
@@ -41,24 +39,23 @@
   height: 35px;
 }
 
-.modal div:first-of-type{
+.modal> div:first-of-type{
   text-align: center;
   font-size: 25px;
-  margin-bottom: var(--espacements-large);
-}
-.modal_text{
-  margin-top:var(--espacements-large);
-  
+  margin-bottom: var(--espacements-medium);
 }
 
-.modal .formBtl_form{
-  margin: 0;
-}
+
+
+/* .modal .formBtl_form{
+  margin-inline: var(--espacements-large);
+}  */
+
 .modal_btn-add div .formBtl_form .modal_commentaire-textarea{
   color: black;
   height: 150px;
   padding: var(--espacements-small);
-  margin-top: var(--espacements-x_large);
+  margin-top: var(--espacements-small);
   margin-bottom: var(--espacements-large);
 }
 
@@ -81,29 +78,29 @@ top:5px;
 }
 
 .modal_confirm-btn{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+   display: flex; 
+   align-items: center;
+  justify-content: space-between;
   width: 100%;
-  padding: 0 30px;
+  /* padding: 0 30px; */
 }
-.modal_confirm-btn .formBtl_form {
-  width:initial ;
+/* .modal_confirm-btn .formBtl_form {
+  width: ;
 
 
-}
+} */
 
 .modal_confirm-btn  button svg{
   width: 35px;
   height: 35px;
 }
 
-.modal_btn-delete .modal .modal_confirm-btn{
+/* .modal_btn-delete .modal .modal_confirm-btn{
  display: flex;
  flex-direction: row;
   margin-top: var(--espacements-small);
   justify-content: space-between;
-}
+} */
 
 .modal_btn-delete>.btn-reverse{
   width: 100%;
@@ -118,12 +115,12 @@ top:5px;
 
 
 
-.modal_btn-delete .modal_confirm-btn{
+/* .modal_btn-delete .modal_confirm-btn{
   display: flex;
  align-items: center;
  justify-content: center;
  
-}
+} */
 
 .modal-button-confirm{
   padding: var(--espacements-small);
@@ -198,3 +195,18 @@ body.pas-defilement {
   overflow: hidden;
 }
 
+
+.modal_commentaire div:first-of-type{
+  margin-top: var(--espacements-x_large);
+  margin-bottom: var(--espacements-medium);
+}
+
+.modal_commentaire {
+  padding: 0;
+}
+
+
+.modal .modal_btn{
+  display: flex;
+  justify-content: space-between
+}
