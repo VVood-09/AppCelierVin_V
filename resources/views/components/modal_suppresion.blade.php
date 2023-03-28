@@ -1,6 +1,6 @@
 <div class="modal_btn-delete" x-data="{ ismodalopen: false }">
   <button @click="ismodalopen = true" class="btn-reverse">{{ $triggerText }}</button>
-  <div class="" x-show="ismodalopen" x-init="$watch('ismodalopen', value => { if (value) { document.body.classList.add('no-scroll'); } else { document.body.classList.remove('no-scroll'); } })">
+  <div class="" x-show="ismodalopen" x-init="$watch('ismodalopen', value => { if (value) { document.body.classList.add('pas-defilement'); } else { document.body.classList.remove('pas-defilement'); } })">
     
     <div class="modal">
       <div class="modal_text">

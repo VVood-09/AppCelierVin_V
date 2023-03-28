@@ -7,13 +7,13 @@
 <section class="formBtl_section suggestion_section">
 
 
-    <div class="formBtl_search-section" x-data="{ ismodalopen: false }">
+    <div class="formBtl_search-section over" x-data="{ ismodalopen: false }">
         <h1>Rechercher un Vin</h1>
 
-        <div class="formBtl_search">
+        <div class="formBtl_search over">
             <x-autocomplete-search />
                        
-            <div x-show="ismodalopen" class="modal-SAQ" x-transition>
+            <div x-show="ismodalopen" x-init="$watch('ismodalopen', value => { if (value) { document.body.classList.add('pas-defilement'); } else { document.body.classList.remove('pas-defilement'); } })" class="modal-SAQ" x-transition>
                 <h1>Ajouter à un cellier?</h1>
                 <div>
                     <table>
