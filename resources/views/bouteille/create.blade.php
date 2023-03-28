@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Ajouter Bouteille')
+@section('title', 'Ajouter bouteille')
 @section('content')
 
 
@@ -7,7 +7,7 @@
 <section class="formBtl_section suggestion_section">
 
     <div x-data="{ ismodalopen: false }">
-        <h1>Rechercher un Vin</h1>
+        <h1>Rechercher un vin</h1>
         <div class="formBtl_search">
             <x-autocomplete-search />
                        
@@ -62,7 +62,7 @@
         </div>
     </div>
 
-    <h1>Ajouter une Bouteille</h1>
+    <h1>Ajouter une bouteille</h1>
 
      <div>
         @if($errors)

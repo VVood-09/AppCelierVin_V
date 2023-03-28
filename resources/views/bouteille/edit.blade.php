@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Modifier Bouteille')
+@section('title', 'Modifier bouteille')
 @section('content')
 
 
@@ -8,7 +8,7 @@
 <section class="formBtl_section">
 
 
-    <h1>Modifier une Bouteille</h1>
+    <h1>Modifier une bouteille</h1>
 
     <div>
         @if($errors)
@@ -118,14 +118,14 @@
     </form>
 
     <?php
-        $action = 'Supprimer cette bouteille';
+        $action = 'supprimer cette bouteille';
       //  $routeBack = '  Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');';
         $route = route('bouteille.delete', ['bouteille' => $bouteille->id,'cellier' => $cellier->id]);
     ?>
 
 
     <x-modal_suppresion  route="{{ $route }}" trigger-text="Supprimer cette bouteille" >
-      Etes-vous certain de vouloir {{ $action }} ?
+      Êtes-vous certain de vouloir {{ $action }} ?
     </x-modal_suppresion>
 
 
