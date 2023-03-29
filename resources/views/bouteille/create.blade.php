@@ -54,6 +54,7 @@
                         <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
                         @endforeach
                     </select>
+                    
                     <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
                     <div class="btnWrapper">
                         <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
@@ -98,12 +99,39 @@
     validateField(field) {
         const fieldErrors = {};
         let isValid = true;
+        fieldErrors[field] = ``;
 
         if (!this.formValues[field]) {
             fieldErrors[field] = `Le champ ${field} est obligatoire.`;
             <!-- console.log(fieldErrors) -->
             console.log(!this.formValues[field])
             isValid = false;
+        }
+
+        if (field == 'prix'){
+            console.log('prix')
+            fieldErrors[field] = ``;
+            if (!(/^\d+\s*\$?$/.test(prix.value))) {
+                            fieldErrors[field] = `Entrez un prix valide`;
+                            isValid = false;
+                        }
+        }
+
+        if (field == 'format'){
+            console.log('format')
+            fieldErrors[field] = ``;
+            if (!(/^\d+$/.test(format.value))) {
+                            fieldErrors[field] = `Entrez la quantité (sans écrire ml)`;
+                            isValid = false;
+                        }
+        }
+
+        if (field == 'qte'){
+            fieldErrors[field] = ``;
+            if (!(/^\d+\s*\$?$/.test(qte.value))) {
+                            fieldErrors[field] = `Entrez une quantité valide`;
+                            isValid = false;
+                        }
         }
         
         this.errors = {...this.errors, ...fieldErrors};
@@ -118,15 +146,15 @@
         </label>
         <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}" class="formBtl_file">
 
-        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}" x-model="formValues.nom" @blur="validateField('nom')">
+        <input x-ref="nom" id="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}" x-model="formValues.nom" @blur="validateField('nom')">
         <span x-text="errors.nom" class="textError"></span>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" x-model="formValues.prix" @blur="validateField('prix')" />
+        <input x-ref="prix" id="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" x-model="formValues.prix" @blur="validateField('prix')" />
         <div x-text="errors.prix" class="textError"></div>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" x-model="formValues.pays" @blur="validateField('pays')" />
+        <input x-ref="pays" id="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" x-model="formValues.pays" @blur="validateField('pays')" />
         <div x-text="errors.pays" class="textError"></div>
 
         <span x-text="errors.recap" class="textError"></span>
@@ -155,7 +183,7 @@
         <div x-text="errors.cellier" class="textError"></div>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('quantite')}}" x-model="formValues.quantite" @blur="validateField('quantite')">
+        <input type="number" id="qte" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('quantite')}}" x-model="formValues.quantite" @blur="validateField('quantite')">
         <div x-text="errors.quantite" class="textError"></div>
 
         <div x-text="errors.warning" class="textError"></div>
