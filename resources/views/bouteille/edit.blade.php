@@ -71,8 +71,8 @@
         if (field == 'format'){
             console.log('format')
             fieldErrors[field] = ``;
-            if (!(/^(\d+)\s*(ml)?$/.test(format.value))) {
-                            fieldErrors[field] = `Entrez un format valide`;
+            if (!(/^\d+$/.test(format.value))) {
+                            fieldErrors[field] = `Entrez la quantité (sans écrire ml)`;
                             isValid = false;
                         }
         }

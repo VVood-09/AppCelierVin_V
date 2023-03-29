@@ -7,10 +7,33 @@
 <div class="formBtl">
   <h1>Modification du cellier {{$cellier->nom}} </h1>
   
-  <form class="formBtl_form"  method="post" action="">
+  <form x-data="{
+    formValues: {
+        nom: '{{$cellier->nom}}'
+    },
+    errors: {},
+    validateField(field) {
+        const fieldErrors = {};
+        let isValid = true;
+        fieldErrors[field] = ``;
+    
+        if (!this.formValues[field]) {
+            fieldErrors[field] = `Le champ ${field} est obligatoire.`;
+            isValid = false;
+        }
+    
+        this.errors = {...this.errors, ...fieldErrors};
+        return isValid;
+    },
+  }"
+  
+  class="formBtl_form"  method="post" action="">
     @csrf
     @method('put')
-    <input type="text" name="nom" placeholder="Nom du cellier" value="{{$cellier->nom}}">
+    <span x-text = "errors.nom" class="textError"></span>
+    <input type="text" name="nom" placeholder="Nom du cellier" value="{{$cellier->nom}}"
+    x-model="formValues.nom" @blur="validateField('nom')" id="nom"
+    >
     <input class="btn"  type="submit" value="Modifier">
     
     

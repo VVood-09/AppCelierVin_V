@@ -22993,3 +22993,23 @@ function triage(bouteilles, col){
     sectionTri.querySelector('#'+this.colonneTri).innerHTML = `&#9660;`;
   }
 }
+
+/**
+ * 
+ */
+function scraper(){
+  let url = window.location.href;
+  let entete = {
+    'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+  };
+  fetch(url, { method:'POST', headers:entete})
+  .then(reponse=> reponse.json())
+  .then((reponse)=> {for(let i = 1; i <= reponse; i++){
+    // console.log(i);
+    fetch(url, { method:'PUT', body: JSON.stringify(i), headers:entete})
+    .then(reponse=> reponse.json())
+    .then((reponse)=>{document.querySelector('#page').innerHTML = reponse});
+    }
+ });
+}

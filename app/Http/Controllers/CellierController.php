@@ -70,6 +70,12 @@ class CellierController extends Controller
      */
     public function show(Cellier $cellier){
 
+        if(Auth::user()->id != $cellier->user_id){
+            return $this->index();
+        }
+
+        session(['cellier_actif' => $cellier->id]);
+
         $bouteilles = ListeBouteille::
             join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
             ->leftJoin('notes', function($join){
