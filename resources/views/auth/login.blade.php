@@ -62,7 +62,9 @@
 
             <div>
 
-                <x-input x-ref="email" @blur="validateField('email')" placeholder='Email' id="email" class="block mt-1 w-full" type="email" name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus />
+                <x-input x-ref="email" @blur="validateField('email')" placeholder='Email' 
+                id="email" class="block mt-1 w-full" type="email" 
+                name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus />
                 <span x-text="errors.email" class="textError"></span>
 
             </div>
