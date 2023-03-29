@@ -22923,34 +22923,71 @@ function ajoutComment(){
     'bouteille_id': bouteille_id,
     'commentaire': commentaire
   };
-console.log(data);
+
   let entete = {
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
   };
 
+   
+    // var notification = document.querySelector('#notification');
+    // let notif = notification.getAttribute('x-init');
+    // console.log(notif);
+    // let xData = eval('(' + notif + ')');
+    // console.log(xData);
+
+
   fetch(url+'/commentaire', {
-      method: 'POST',
-      headers: entete,
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      let element = document.querySelector('.comment');
-      let created_at = new Date(data.created_at);
-      let date = created_at.toLocaleDateString('fr');
-      let comment = `<div class="carte_commentaire">
-                      <p>${data.commentaire}</p>               
-                      <small>${date}</small>
-                    </div>`;
-      element.insertAdjacentHTML("beforeend", comment);
+    method: 'POST',
+    headers: entete,
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+    
+    let element = document.querySelector('.comment');
+    let created_at = new Date(data.data.created_at);
+    let date = created_at.toLocaleDateString('fr');
+    
+    let comment = `<div class="carte_commentaire">
+    <p>${data.data.commentaire}</p>               
+    <small>${date}</small>
+    </div>`;
+    element.insertAdjacentHTML("beforeend", comment);
 
 
+    window.notificationMessage = {
+      message: 'Your message here',
+      type: 'success'
+    };
 
+    let notification = document.querySelector('#notification');
+    console.log(notification);
+    notification.setAttribute('x-init', JSON.stringify({
   
-    })
+      message: window.notificationMessage.message,
+    
+    }));
+    console.log(notification);
+    //notification.__x.$data.showNotification = true;
+  });
+//     if (data.success) {
+
+//       // Modify the 'showNotification' property
+//       xData.message = data.message;
+//          console.log(xData.message);
+ 
+//       // Convert the modified data object back to a string
+//       var newData = JSON.stringify(xData);
+// console.log(newData);
+//       // Update the 'x-data' attribute of the element
+//       notification.setAttribute('x-data', newData);
   
+//       }
+      
+      
+   
+
 }
 
  /**

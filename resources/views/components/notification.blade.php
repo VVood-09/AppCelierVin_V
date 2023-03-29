@@ -1,11 +1,12 @@
 
 
-<div x-data="{ showNotification: false, message: '' }" x-init="() => {
+<div id="notification" x-data="{ showNotification: false, message: '' }" x-init="() => {
         message = '{{ session('success') }}'; 
         if (message) {
             showNotification = true;
             message = message.replaceAll('\\\'', '\'');
             setTimeout(() => showNotification = false, 5000); 
+            console.log(showNotification)
         }   
     }">
 
