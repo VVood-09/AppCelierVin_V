@@ -22912,7 +22912,9 @@ function changeNote(note, valDepart){
 
 //  }
 
-
+/**
+ * Fonction pour ajouter un commentaire sur une bouteille de vin. Le commentaire et une notification sont injectées dès que la requête est faite.
+ */
 function ajoutComment(){
    
   let url = window.location.href;
@@ -22923,35 +22925,37 @@ function ajoutComment(){
     'bouteille_id': bouteille_id,
     'commentaire': commentaire
   };
-console.log(data);
+
   let entete = {
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
   };
 
   fetch(url+'/commentaire', {
-      method: 'POST',
-      headers: entete,
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      let element = document.querySelector('.comment');
-      let created_at = new Date(data.created_at);
-      let date = created_at.toLocaleDateString('fr');
-      let comment = `<div class="carte_commentaire">
-                      <p>${data.commentaire}</p>               
-                      <small>${date}</small>
-                    </div>`;
-      element.insertAdjacentHTML("beforeend", comment);
+    method: 'POST',
+    headers: entete,
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+    
+    let element = document.querySelector('.comment');
+    let created_at = new Date(data.data.created_at);
+    let date = created_at.toLocaleDateString('fr');
+    
+    let comment = `<div class="carte_commentaire">
+    <p>${data.data.commentaire}</p>               
+    <small>${date}</small>
+    </div>`;
+    element.insertAdjacentHTML("beforeend", comment);
 
-
-
+    let notification = document.querySelector('#notification');
   
-    })
-  
+    notification.setAttribute('x-init', "() => { message = 'Commentaire ajouté'; if (message) { showNotification = true; message = message.replaceAll(\"'\", \"'\"); setTimeout(() => showNotification = false, 5000); } }");
+  });
+
 }
+
 
  /**
   * Fonction pour trier les bouteilles dans le cellier
