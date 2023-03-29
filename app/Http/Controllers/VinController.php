@@ -8,6 +8,7 @@ use App\Models\Bouteille;
 use App\Models\Commentaire;
 use App\Models\ListeBouteille;
 use App\Models\Note;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,7 @@ class VinController extends Controller
                 'cellier'=>'required'
 
             ]);
+
             $bouteille = Bouteille::create([
                 'nom'=>$request->nom,
                 'image'=>$filename,
@@ -57,6 +59,12 @@ class VinController extends Controller
                 'prix'=>$request->prix,
             ]);
             $bouteille_id = $bouteille->id;
+            
+            ListeBouteille::create([
+                'bouteille_id'=>$bouteille_id,
+                'cellier_id'=>$request->cellier,
+                'qte'=>$request->qte
+            ]);
         } else{
             $request->validate([
                 'cellier'=>'required|numeric',
@@ -65,13 +73,31 @@ class VinController extends Controller
 
             ]);
             $bouteille_id = $request->id;
-        }
+            $cellier_id = $request->cellier;
+           
+            $user_id = User::query()
+                        ->join('celliers', 'users.id', '=', 'celliers.user_id')
+                        ->where('celliers.id', $cellier_id)
+                        ->value('users.id');
 
-        ListeBouteille::create([
-            'bouteille_id'=>$bouteille_id,
-            'cellier_id'=>$request->cellier,
-            'qte'=>$request->qte
-        ]);
+            if($user_id == Auth::user()->id){
+               if (ListeBouteille::query()
+                    ->where('cellier_id', $cellier_id)
+                    ->where('bouteille_id', $bouteille_id)
+                    ->exists()) {
+                    return 'error';
+                } else {
+                    ListeBouteille::create([
+                        'bouteille_id'=>$bouteille_id,
+                        'cellier_id'=>$request->cellier,
+                        'qte'=>$request->qte
+                    ]);
+                }
+            } else{
+                return redirect(route('dashboard'));
+            }
+
+        }
 
         return redirect(route('cellier.show', ['cellier'=>$request->cellier]))->withSuccess('Nouvelle bouteille ajoutée');
     }
