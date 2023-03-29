@@ -54,8 +54,11 @@
                         <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
                         @endforeach
                     </select>
-                    
+                    <span x-text="errors.recap" class="textError"></span>
                     <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
+
+                    <div x-text="errors.quantite" class="textError"></div>
+
                     <div class="btnWrapper">
                         <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
                         <button class="modal-button modal-button-confirm">Confirmer</button>
