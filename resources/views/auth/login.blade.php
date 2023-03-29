@@ -36,6 +36,22 @@
                         isValid = false;
                     }
 
+                    if (field == 'email') {
+                        fieldErrors[field] = ``;
+                        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))){
+                            fieldErrors[field] = `Entrez une adresse courriel valide`;
+                            isValid = false;
+                        }
+                    }
+                    
+                    if (field == 'password'){
+                        fieldErrors[field] = ``;
+                        if (password.value < 8) {
+                            fieldErrors[field] = `8 caractères minimum`;
+                            isValid = false;
+                        }
+                    }
+
                     this.errors = {...this.errors, ...fieldErrors};
                     console.log(this.errors)
                     return isValid;
@@ -46,7 +62,9 @@
 
             <div>
 
-                <x-input x-ref="email" @blur="validateField('email')" placeholder='Email' id="email" class="block mt-1 w-full" type="email" name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus />
+                <x-input x-ref="email" @blur="validateField('email')" placeholder='Email' 
+                id="email" class="block mt-1 w-full" type="email" 
+                name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus />
                 <span x-text="errors.email" class="textError"></span>
 
             </div>
