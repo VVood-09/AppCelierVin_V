@@ -6,7 +6,7 @@
             showNotification = true;
             message = message.replaceAll('\\\'', '\'');
             setTimeout(() => showNotification = false, 5000); 
-            console.log(showNotification)
+        
         }   
     }">
 

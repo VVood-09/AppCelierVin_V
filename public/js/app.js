@@ -22912,7 +22912,9 @@ function changeNote(note, valDepart){
 
 //  }
 
-
+/**
+ * Fonction pour ajouter un commentaire sur une bouteille de vin. Le commentaire et une notification sont injectées dès que la requête est faite.
+ */
 function ajoutComment(){
    
   let url = window.location.href;
@@ -22928,14 +22930,6 @@ function ajoutComment(){
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
   };
-
-   
-    // var notification = document.querySelector('#notification');
-    // let notif = notification.getAttribute('x-init');
-    // console.log(notif);
-    // let xData = eval('(' + notif + ')');
-    // console.log(xData);
-
 
   fetch(url+'/commentaire', {
     method: 'POST',
@@ -22955,40 +22949,13 @@ function ajoutComment(){
     </div>`;
     element.insertAdjacentHTML("beforeend", comment);
 
-
-    window.notificationMessage = {
-      message: 'Your message here',
-      type: 'success'
-    };
-
     let notification = document.querySelector('#notification');
-    console.log(notification);
-    notification.setAttribute('x-init', JSON.stringify({
   
-      message: window.notificationMessage.message,
-    
-    }));
-    console.log(notification);
-    //notification.__x.$data.showNotification = true;
+    notification.setAttribute('x-init', "() => { message = 'Commentaire ajouté'; if (message) { showNotification = true; message = message.replaceAll(\"'\", \"'\"); setTimeout(() => showNotification = false, 5000); } }");
   });
-//     if (data.success) {
-
-//       // Modify the 'showNotification' property
-//       xData.message = data.message;
-//          console.log(xData.message);
- 
-//       // Convert the modified data object back to a string
-//       var newData = JSON.stringify(xData);
-// console.log(newData);
-//       // Update the 'x-data' attribute of the element
-//       notification.setAttribute('x-data', newData);
-  
-//       }
-      
-      
-   
 
 }
+
 
  /**
   * Fonction pour trier les bouteilles dans le cellier
