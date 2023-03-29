@@ -73,7 +73,7 @@ class VinController extends Controller
             'qte'=>$request->qte
         ]);
 
-        return redirect(route('cellier.show', ['cellier'=>$request->cellier]))->withSuccess('Nouvelle bouteille créé');
+        return redirect(route('cellier.show', ['cellier'=>$request->cellier]))->withSuccess('Nouvelle bouteille ajoutée');
     }
 
 
@@ -112,7 +112,7 @@ class VinController extends Controller
             $comment->created_at_format = $date_formate;
                
         }
-        
+
         return view("bouteille.show", ['bouteille' => $bouteille, 'cellier'=>$cellier, 'note' => $note, 'comments' => $comments]);
     }
     
