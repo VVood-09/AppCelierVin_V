@@ -25,12 +25,7 @@ class ScraperController extends Controller
      */
     public $resultas = [];
 
-    public function scraper(){
-
-        ini_set('max_execution_time', '0');
-
-        $debut = date('H:i:s');
-
+    public function pages(){
         $client = new Client();
 
         // Pour allez chercher la quantité de page à Crawl
@@ -40,10 +35,21 @@ class ScraperController extends Controller
         $qteVin = end($qteVin);
         $nbParPage = 96; // Pour la quantité de bouteille par page
         $nbPage = ceil($qteVin / $nbParPage); // Nombre de page de bouteille de vin
+        return $nbPage;
+    }
+
+    public function scraper(Request $request){
+
+        ini_set('max_execution_time', '0');
+
+        $debut = date('H:i:s');
+
+        $client = new Client();
 
         // Récupération des bouteilles de vin
-        for($i = 1; $i <= $nbPage; $i++){
-            $url = 'https://www.saq.com/fr/produits/vin?p='.$i.'&product_list_limit=96';
+        // for($i = 1; $i <= 1; $i++){
+            $url = 'https://www.saq.com/fr/produits/vin?p='.$request[0].'&product_list_limit=96';
+            // $url = 'https://www.saq.com/fr/produits/vin?p=1&product_list_limit=96';
             $page = $client->request('GET', $url);
             $page->filter('.product-item-info')->each(function ($item) {
                 $info = explode(' | ', $item->filter('.product-item-identity-format')->text());
@@ -59,7 +65,7 @@ class ScraperController extends Controller
                     'url_saq' => $item->filter('.product.photo.product-item-photo')->attr('href'),
                 ];
             });
-        }
+        // }
 
         $data = $this->resultas;
 
@@ -84,7 +90,11 @@ class ScraperController extends Controller
         }
 
         $fin = date('H:i:s');
-        
-        return view('scraper.index', ['liste' => $liste, 'debut' => $debut, 'fin' => $fin]);    
+
+        return $request[0];
+    }
+
+    public function index(){
+        return view('scraper.index');
     }
 }

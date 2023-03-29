@@ -20,8 +20,9 @@ class VinController extends Controller
 
     public function create(){
         $celliers= Cellier::select()->where('user_id', Auth::user()->id)->get();
+        $cellier_actif = session('cellier_actif');
 
-        return view("bouteille.create", ['celliers'=>$celliers]);
+        return view("bouteille.create", ['celliers'=>$celliers, 'cellier_actif'=>$cellier_actif]);
     }
 
 
