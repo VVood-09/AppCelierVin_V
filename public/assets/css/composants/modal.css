@@ -237,7 +237,6 @@ body.pas-defilement {
     margin: 0;
 }
 
-.over{
-
-  overflow: auto;
+.modal-SAQ input {
+   color: black;
 }
