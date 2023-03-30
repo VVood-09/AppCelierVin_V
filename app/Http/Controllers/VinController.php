@@ -86,7 +86,14 @@ class VinController extends Controller
                     ->where('cellier_id', $cellier_id)
                     ->where('bouteille_id', $bouteille_id)
                     ->exists()) {
-                    return 'error';
+
+                       $qte = ListeBouteille::where('cellier_id', $cellier_id)
+                            ->where('bouteille_id', $bouteille_id)
+                            ->value('qte');
+
+                        
+                   return back()->with(['bouteille_id' => $bouteille_id, 'cellier_id' => $cellier_id, 'qte' => $qte, 'show_modal' => true]);
+
                 } else {
                     ListeBouteille::create([
                         'bouteille_id'=>$bouteille_id,
