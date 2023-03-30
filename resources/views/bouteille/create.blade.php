@@ -2,10 +2,11 @@
 @section('title', 'Ajouter bouteille')
 @section('content')
 
-
+@isset($cellier_actif)
+<a href="{{ route('cellier.show', ['cellier' => $cellier_actif]) }}" class="retour"> <svg viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512"><path d="M352 115.4 331.3 96 160 256l171.3 160 20.7-19.3L201.5 256z" fill="#7e001e" class="fill-000000"></path></svg>Cellier</a>
+@endisset
 
 <section class="formBtl_section suggestion_section">
-
 
     <div class="formBtl_search-section over" x-data="{ ismodalopen: false }">
         <h1>Rechercher un Vin</h1>

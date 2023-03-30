@@ -62,7 +62,7 @@
 
             <div>
 
-                <x-input x-ref="email" @blur="validateField('email')" placeholder='Email' 
+                <x-input x-ref="email" @blur="validateField('email')" placeholder='Courriel' 
                 id="email" class="block mt-1 w-full" type="email" 
                 name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus />
                 <span x-text="errors.email" class="textError"></span>
@@ -76,35 +76,31 @@
             </div>
 
 
-            <div class="mt-4">
-                <label for="remember_me" class="">
-                    <input id="remember_me" type="checkbox" class="login_password" name="remember">
+            <div class="login_souvenir">
+                <label for="remember_me">
                     <span class="">{{ __('Se souvenir de  moi') }}</span>
+                    <input id="remember_me" type="checkbox" class="login_password" name="remember">
                 </label>
             </div>
 
             
 
-            <div class="mt-4 login_btn">
+            <div >
             <div x-text="errors.warning" class="textError"></div>
 
-                <x-button class="">
+                <x-button class="btn">
                     {{ __('Connexion') }}
                 </x-button>
 
-                @if (Route::has('password.request'))
-                <a class="" href="{{ route('password.request') }}">
-                    <small>{{ __('Mot de Passe oublié?') }}</small>
-                </a>
-                @endif
             </div>
 
 
         </form>
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+        <div class="lien">
+            <a href="{{ route('register') }}">
                 {{ __('Vous n\'avez pas un compte?') }}
             </a>
+                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="Layer 2" id="Layer_2"><path d="M22,9a1,1,0,0,0,0,1.42l4.6,4.6H3.06a1,1,0,1,0,0,2H26.58L22,21.59A1,1,0,0,0,22,23a1,1,0,0,0,1.41,0l6.36-6.36a.88.88,0,0,0,0-1.27L23.42,9A1,1,0,0,0,22,9Z"/></g></svg>
         </div>
     </div>
 
@@ -116,3 +112,10 @@
 
 @endsection
 
+
+
+               <!-- @if (Route::has('password.request'))
+                <a class="" href="{{ route('password.request') }}">
+                    <small>{{ __('Mot de Passe oublié?') }}</small>
+                </a>
+                @endif-->

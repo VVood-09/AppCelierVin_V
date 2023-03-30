@@ -4,7 +4,7 @@
 @section('content')
 
     <section class="register_section"  >
-        <h1>S'inscrire</h1>
+        <h1>Inscription</h1>
      
 
         <!-- Validation Errors -->
@@ -71,20 +71,20 @@
 
             <!-- Name -->
             <div>
-                <x-input x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" placeholder='Nom:' id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" placeholder='Nom' id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
                 <span x-text="errors.nom" class="textError"></span>
             </div>
 
             <!-- Email Address -->
-            <div class="mt-4">
-                <x-input x-model="formValues.email" x-ref="email" @blur="validateField('email')" placeholder='Email:'  id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            <div >
+                <x-input x-model="formValues.email" x-ref="email" @blur="validateField('email')" placeholder='Courriel'  id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
                 <span x-text="errors.email" class="textError"></span>
 
             </div>
 
             <!-- Password -->
-            <div class="mt-4">
-                <x-input placeholder='Mot de passe:'  id="password" class="block mt-1 w-full"
+            <div >
+                <x-input placeholder='Mot de passe'  id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" 
@@ -96,8 +96,8 @@
             </div>
 
             <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-input  placeholder='Confirmation du mot de passe:'  id="password_confirmation" class="block mt-1 w-full"
+            <div>
+                <x-input  placeholder='Confirmation du mot de passe'  id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
                                 name="password_confirmation" required 
                                 x-ref="password_confirmation" @blur="validateField('password_confirmation')"
@@ -107,14 +107,16 @@
 
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Vous avez deja un compte?') }}
-                </a>
-
-                <x-button class="ml-4">
+            <div>
+                <x-button class="btn">
                     {{ __("S'inscrire") }}
                 </x-button>
+            </div>
+            <div class="lien">
+                <a  href="{{ route('login') }}">
+                    {{ __('Vous avez déjà un compte?') }} 
+                </a>
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="Layer 2" id="Layer_2"><path d="M22,9a1,1,0,0,0,0,1.42l4.6,4.6H3.06a1,1,0,1,0,0,2H26.58L22,21.59A1,1,0,0,0,22,23a1,1,0,0,0,1.41,0l6.36-6.36a.88.88,0,0,0,0-1.27L23.42,9A1,1,0,0,0,22,9Z"/></g></svg>
             </div>
         </form>
   </div>
