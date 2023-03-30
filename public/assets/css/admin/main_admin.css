@@ -1,9 +1,10 @@
 .main_admin {
-    padding-bottom: var(--espacements-large);
+    margin: var(--espacements-large) var(--espacements-x_large) ;
+ 
 }
 
 .main_admin table {
-    max-width: 1000px;
+    width: 100%;
     margin: var(--espacements-large) auto;
     border-spacing: 0;
 }
@@ -16,27 +17,31 @@
     padding: var(--espacements-small);
 }
 
-.main_admin td+td {
-    padding-left: var(--espacements-medium);
-}
+/* .main_admin td+td {
+    padding: var(--espacements-small);
+} */
 
 .main_admin tr:first-of-type {
     border-bottom: solid black 3px;
 }
 
 .main_admin tr:nth-child(even){
-    background-color: rgb(255, 140, 140);
+    background-color: var(--neutral);
 }
 
-.main_admin a {
+.main_admin a{
+    margin: 0;
+}
+
+.main_admin button {
     background-color: white;
     padding: var(--espacements-x_small);
     border-radius: var(--espacements-x_small);
     box-sizing: border-box;
-    font-weight: 900;
+    font-weight: 600;
 }
 
-.main_admin .modifier {
+/* .main_admin .modifier {
     color: rgb(0, 180, 30);
     border: 3px solid rgb(0, 180, 30);
 }
@@ -44,14 +49,46 @@
 .main_admin .supprimer {
     color: rgb(225, 0, 0);
     border: 3px solid rgb(225, 0, 0);
-}
+} */
 
-.main_admin .modifier:hover {
+.main_admin .btn, .main_admin .btn:visited{
+    color: rgb(0, 180, 30);
+    border: 2px solid rgb(0, 180, 30);
+    padding: 10px;
+    background-color: white;
+}
+.main_admin .btn:hover {
     color: white;
     background-color: rgb(0, 180, 30);
 }
 
-.main_admin .supprimer:hover {
+.main_admin .btn-reverse {
+    color: rgb(225, 0, 0);
+    border: 2px solid rgb(225, 0, 0);
+    padding: 10px;
+ 
+}
+
+.main_admin .modal_btn-delete>.btn-reverse {
+    width: initial;
+}
+
+.main_admin .btn-reverse:hover {
     color: white;
     background-color: rgb(225, 0, 0);
+}
+
+.main_admin .admin_btn{
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--espacements-medium);
+    margin-block: var(--espacements-small);
+}
+
+.main_admin input[type=submit]{
+    font-weight: 600;
+}
+
+.main_admin h1{
+    margin-bottom: var(--espacements-medium);
 }

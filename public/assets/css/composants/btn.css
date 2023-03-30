@@ -6,6 +6,7 @@
     padding: var(--espacements-small);
     text-align: center;
     border: 2px solid  var(--accent);
+    cursor: pointer;
 }
 
 .btn:hover{
@@ -23,7 +24,7 @@
     border: 2px solid  var(--accent);
     padding: var(--espacements-small);
     border-radius: 5px;
-   ;
+   transition: all 0.6s;
 } 
 
 .btn-close svg{
