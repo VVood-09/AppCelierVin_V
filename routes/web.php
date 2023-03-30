@@ -117,5 +117,6 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/membres', [AdminUtilisateurController::class, 'index'])->name('admin.membre.index');
         Route::get('/membres/{utilisateur}', [AdminUtilisateurController::class, 'show'])->name('admin.membre.show');
         Route::put('/membres/{utilisateur}', [AdminUtilisateurController::class, 'update']);
+        Route::delete('/membres/{utilisateur}', [AdminUtilisateurController::class, 'destroy'])->name('admin.membre.delete');
     });
 });

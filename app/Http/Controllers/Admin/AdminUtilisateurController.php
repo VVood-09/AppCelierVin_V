@@ -42,4 +42,11 @@ class AdminUtilisateurController extends Controller
       
         return view('admin.membre.index', ['utilisateurs'=>$utilisateurs]);
     }
+
+     public function destroy( User $utilisateur){
+        
+        $utilisateur->delete();
+
+        return redirect()->action([self::class, 'index']);
+      }
 }
