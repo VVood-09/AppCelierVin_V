@@ -14,9 +14,7 @@ a{
   font-family: var(--font-base);
 }
 
-a:visited, a:active{
-  color: black;
-}
+
 
 img{
   max-width: 100%;
