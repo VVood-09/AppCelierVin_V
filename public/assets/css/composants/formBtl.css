@@ -40,29 +40,17 @@
     width: 100%;
 }
 
-.modal-SAQ{
-    position: fixed;
-    top: 0%;
-    right: 0;
-    /* bottom: 10%; */
-    left: 0;
-    margin: 30px;
-    z-index: 100;
-}
-
 .formBtl_search form input, .formBtl_search form select{
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 
-.formBtl_search tr{
-    padding-top: 30px;
-}
 
 .formBtl_search th{
     text-align: initial;
     padding-right: 10px;
+    display: flex;
 }
 
 .formBtl_search table{
@@ -74,16 +62,28 @@
     max-width: max-content;
 }
 
-.modal-SAQ{
+/* .modal-SAQ{
     border: 1px solid #ccc;
     box-shadow: 2px 2px 6px 0 rgba(0,0,0,.3);
     background-color: var(--neutral);
     border-radius: 20px;
     padding: 20px;
     
-}
+} */
 
-.btnWrapper{
+
+/* .modal-SAQ{
+    position: fixed;
+    top: 0%;
+    right: 0;
+    /* bottom: 10%; */
+    /*left: 0;
+    margin: 30px;
+    z-index: 100;
+} */
+
+
+/* .btnWrapper{
     display: flex;
     justify-content: space-between;
 }
@@ -94,7 +94,7 @@
 
 .btnWrapper .modal-button-confirm{
     color: white;
-}
+} */
 
 
 .formBtl_search li{
