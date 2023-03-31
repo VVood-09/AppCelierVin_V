@@ -11,4 +11,10 @@ class AdminController extends Controller
 
         return view('admin.index');
     }
+
+     public function stats(){
+
+        return view('admin.stats');
+    }
+
 }

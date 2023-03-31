@@ -31,6 +31,7 @@
                 <nav>
                     <a href="{{ route('admin.membre.index') }}">Membres</a>
                     <a href="#">Vins</a>
+                    <a href="{{ route('admin.stats') }}">Statistiques</a>
                     <a href="{{ route('scraper.index') }}">Scraper</a>
                     <a href="{{ route('logout') }}">Déconnexion</a>
                 </nav>

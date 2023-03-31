@@ -11,7 +11,7 @@ use Illuminate\Validation\Rule;
 class AdminUtilisateurController extends Controller
 {
     public function index(){
-        $utilisateurs = User::all();
+        $utilisateurs = User::paginate(3);
       
         return view('admin.membre.index', ['utilisateurs'=>$utilisateurs]);
     }
@@ -42,4 +42,11 @@ class AdminUtilisateurController extends Controller
       
         return view('admin.membre.index', ['utilisateurs'=>$utilisateurs]);
     }
+
+     public function destroy( User $utilisateur){
+        
+        $utilisateur->delete();
+
+        return redirect()->action([self::class, 'index']);
+      }
 }

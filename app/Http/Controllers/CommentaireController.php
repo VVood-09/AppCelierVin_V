@@ -27,9 +27,8 @@ class CommentaireController extends Controller{
             'bouteille_id'=> $request->bouteille_id
         ]);
         
-        $comment->message = 'Commentaire ajouté';
-        
-      return $comment;
+      return response()->json(['data' => $comment,'success' => true, 'message' => 'Commentaire ajouté']);
+   
     }
 
 
@@ -38,21 +37,16 @@ class CommentaireController extends Controller{
     
     public function edit(  Cellier $cellier,Bouteille $bouteille){
    
-
     }
 
 
     public function update(Request $request, Bouteille $bouteille, Cellier $cellier){
-
-     
 
     }
 
 
 
     public function destroy(Cellier $cellier,Bouteille $bouteille,){
-
-       
         
     }
 
