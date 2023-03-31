@@ -1,16 +1,18 @@
 .main_admin {
     margin: var(--espacements-large) var(--espacements-x_large) ;
- 
+    padding-bottom: var(--espacements-large);
 }
 
 .main_admin table {
     width: 100%;
-    margin: var(--espacements-large) auto;
+    margin: var(--espacements-large) auto 0;
     border-spacing: 0;
 }
 
 .main_admin th {
     font-size: 1.15rem;
+    text-align: left;
+    padding: var(--espacements-small);
 }
 
 .main_admin td {

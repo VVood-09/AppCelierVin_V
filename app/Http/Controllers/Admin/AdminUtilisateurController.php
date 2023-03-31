@@ -11,7 +11,20 @@ use Illuminate\Validation\Rule;
 class AdminUtilisateurController extends Controller
 {
     public function index(){
-        $utilisateurs = User::paginate(3);
+        $utilisateurs = User::paginate(10);
+         
+        foreach($utilisateurs as $utilisateur){
+
+            $date = $utilisateur->created_at;
+            
+            $datetime = new \DateTime($date);
+            
+            $date_formate = $datetime->format('d/m/Y');
+            
+            $utilisateur->created_at_format = $date_formate;
+        }
+               
+        
       
         return view('admin.membre.index', ['utilisateurs'=>$utilisateurs]);
     }
@@ -40,7 +53,7 @@ class AdminUtilisateurController extends Controller
 
         $utilisateurs = User::all();
       
-        return view('admin.membre.index', ['utilisateurs'=>$utilisateurs]);
+        return redirect()->action([self::class, 'index']);
     }
 
      public function destroy( User $utilisateur){

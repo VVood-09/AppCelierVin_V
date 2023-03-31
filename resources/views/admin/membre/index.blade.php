@@ -9,6 +9,7 @@
         <tr>
             <th>Nom</th>
             <th>Courriel</th>
+            <th>Date d'inscription</th>
             <th>Droit</th>
         </tr>
         @endif
@@ -16,9 +17,9 @@
         <tr>
             <td>{{$membre->name}} @if(Auth::user()->id == $membre->id) <strong>(moi) </strong> @endif</td>
             <td>{{$membre->email}}</td>
+            <td>{{$membre->created_at_format}}</td>
             <td>{{$membre->permissionUtilisateur->permission}}</td>
             <td> <button class="btn">
-
                 <a href="{{ route('admin.membre.show', [$membre->id]) }}" >Modifier</a></td>
             </button>
             <td>
@@ -41,8 +42,8 @@
         <h2>Aucun membres dans la base de donnée.</h2>
         @endforelse
     </table>
-    <div class="pagination_admin">
-        {{$utilisateurs}}
-    </div>
+ 
+        {{ $utilisateurs->links('vendor.pagination.default') }}
+ 
 </section>
 @endsection
