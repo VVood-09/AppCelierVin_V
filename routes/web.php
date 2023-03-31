@@ -48,13 +48,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
     Route::post('cellier/create', [CellierController::class, 'store'])->name('cellier.store');
     Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');
-    //Route::post('cellier/{cellier}', [CellierController::class, 'changeQte']);
+    Route::post('cellier/{cellier}', [CellierController::class, 'changeQte']);
     Route::get('cellier/{cellier}/modif', [CellierController::class, 'edit'])->name('cellier.edit');
     Route::put('cellier/{cellier}/modif', [CellierController::class, 'update']);
     Route::delete('cellier/{cellier}/modif', [CellierController::class, 'destroy'])->name('cellier.delete');
 
 
-    Route::post('changeQte', [CellierController::class, 'changeQte']);
+    //Route::post('changeQte', [CellierController::class, 'changeQte']);
     
 // Route des Bouteilles
 
@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('ajout-bouteille', [VinController::class, 'store'])->name('bouteille.store');
     Route::get('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'show'])->name('bouteille.show');
     Route::put('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'changeNote']);
-    //Route::post('cellier/{cellier}/bouteille/{bouteille}', [CellierController::class, 'changeQte']);
+    Route::post('cellier/{cellier}/bouteille/{bouteille}', [CellierController::class, 'changeQte']);
     Route::get('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'edit'])->name('bouteille.edit');
     Route::put('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'update'])->name('bouteille.update');
     Route::delete('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'destroy'])->name('bouteille.delete');
@@ -112,12 +112,13 @@ Route::group(['middleware' => 'auth'], function(){
         // Route pour l'administration
         Route::get('', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/statistiques', [AdminController::class, 'stats'])->name('admin.stats');
+        Route::get('/vins', [AdminController::class, 'vins'])->name('admin.vins.index');
         Route::get('/scraper', [ScraperController::class, 'index'])->name('scraper.index');
         Route::post('/scraper', [ScraperController::class, 'pages']);
         Route::put('/scraper', [ScraperController::class, 'scraper']);
-        Route::get('/membres', [AdminUtilisateurController::class, 'index'])->name('admin.membre.index');
-        Route::get('/membres/{utilisateur}', [AdminUtilisateurController::class, 'show'])->name('admin.membre.show');
+        Route::get('/membres', [AdminUtilisateurController::class, 'index'])->name('admin.membres.index');
+        Route::get('/membres/{utilisateur}', [AdminUtilisateurController::class, 'show'])->name('admin.membres.show');
         Route::put('/membres/{utilisateur}', [AdminUtilisateurController::class, 'update']);
-        Route::delete('/membres/{utilisateur}', [AdminUtilisateurController::class, 'destroy'])->name('admin.membre.delete');
+        Route::delete('/membres/{utilisateur}', [AdminUtilisateurController::class, 'destroy'])->name('admin.membres.delete');
     });
 });

@@ -11,15 +11,28 @@ use Illuminate\Validation\Rule;
 class AdminUtilisateurController extends Controller
 {
     public function index(){
-        $utilisateurs = User::paginate(3);
+        $utilisateurs = User::paginate(10);
+         
+        foreach($utilisateurs as $utilisateur){
+
+            $date = $utilisateur->created_at;
+            
+            $datetime = new \DateTime($date);
+            
+            $date_formate = $datetime->format('d/m/Y');
+            
+            $utilisateur->created_at_format = $date_formate;
+        }
+               
+        
       
-        return view('admin.membre.index', ['utilisateurs'=>$utilisateurs]);
+        return view('admin.membres.index', ['utilisateurs'=>$utilisateurs]);
     }
 
     public function show(User $utilisateur){
         $permissions = Permission::all();
 
-        return view('admin.membre.show', ['utilisateur' => $utilisateur, 'permissions' => $permissions]);
+        return view('admin.membres.show', ['utilisateur' => $utilisateur, 'permissions' => $permissions]);
     }
 
     public function update(Request $request, User $utilisateur){
@@ -40,13 +53,14 @@ class AdminUtilisateurController extends Controller
 
         $utilisateurs = User::all();
       
-        return view('admin.membre.index', ['utilisateurs'=>$utilisateurs]);
+        return redirect()->action([self::class, 'index']);
     }
 
-     public function destroy( User $utilisateur){
+
+    public function destroy( User $utilisateur){
         
         $utilisateur->delete();
 
         return redirect()->action([self::class, 'index']);
-      }
+    }
 }
