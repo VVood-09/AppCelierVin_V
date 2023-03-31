@@ -6,7 +6,7 @@
  
     <table>
         @if(count($utilisateurs) > 0)
-        <tr>
+        <tr class="top">
             <th>Nom</th>
             <th>Courriel</th>
             <th>Date d'inscription</th>
@@ -20,14 +20,14 @@
             <td>{{$membre->created_at_format}}</td>
             <td>{{$membre->permissionUtilisateur->permission}}</td>
             <td> <button class="btn">
-                <a href="{{ route('admin.membre.show', [$membre->id]) }}" >Modifier</a></td>
+                <a href="{{ route('admin.membres.show', [$membre->id]) }}" >Modifier</a></td>
             </button>
             <td>
                 @if(Auth::user()->id !== $membre->id)
                 
                 <?php
                     $action = 'supprimer ce membre';
-                    $route = route('admin.membre.delete', [$membre->id]);
+                    $route = route('admin.membres.delete', [$membre->id]);
                     ?>
 
                 <div>

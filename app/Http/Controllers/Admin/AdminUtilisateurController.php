@@ -26,13 +26,13 @@ class AdminUtilisateurController extends Controller
                
         
       
-        return view('admin.membre.index', ['utilisateurs'=>$utilisateurs]);
+        return view('admin.membres.index', ['utilisateurs'=>$utilisateurs]);
     }
 
     public function show(User $utilisateur){
         $permissions = Permission::all();
 
-        return view('admin.membre.show', ['utilisateur' => $utilisateur, 'permissions' => $permissions]);
+        return view('admin.membres.show', ['utilisateur' => $utilisateur, 'permissions' => $permissions]);
     }
 
     public function update(Request $request, User $utilisateur){
@@ -56,10 +56,11 @@ class AdminUtilisateurController extends Controller
         return redirect()->action([self::class, 'index']);
     }
 
-     public function destroy( User $utilisateur){
+
+    public function destroy( User $utilisateur){
         
         $utilisateur->delete();
 
         return redirect()->action([self::class, 'index']);
-      }
+    }
 }
