@@ -24,7 +24,6 @@
 @import "./composants/note.css";
 @import "./composants/profil.css";
 @import "./composants/triage.css";
-@import "./composants/stats.css";
 
 
 /*-------- Import administration ---------*/
@@ -32,3 +31,4 @@
 @import "./admin/main_admin.css";
 @import "./admin/nav_admin.css";
 @import "./admin/pagination_admin.css";
+@import "./admin/stats.css";

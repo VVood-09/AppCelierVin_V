@@ -73,7 +73,7 @@
                     }
                     
                     // start interval to change slide
-                    let slideInterval = setInterval(startInterval, timeInterval);
+                    // let slideInterval = setInterval(startInterval, timeInterval);
                     
                     // mouse over slider stops slide
                     this.$refs.slider.onmouseover = () => {
