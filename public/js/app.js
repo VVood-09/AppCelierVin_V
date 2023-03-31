@@ -22998,21 +22998,83 @@ function triage(bouteilles, col){
 /**
  * 
  */
-function scraper(){
-  let url = window.location.href;
-  let entete = {
+async function scraper() {
+  const url = window.location.href;
+  const entete = {
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
   };
-  fetch(url, { method:'POST', headers:entete})
-  .then(reponse=> reponse.json())
-  .then((reponse)=> {for(let i = 1; i <= reponse; i++){
-    // console.log(i);
-    fetch(url, { method:'PUT', body: JSON.stringify(i), headers:entete})
-    .then(reponse=> reponse.json())
-    .then((reponse)=>{document.querySelector('#page').innerHTML = reponse});
+
+  const maxTentative = 3;
+  let i = 1;
+  let rafraichissement = false;
+  if(localStorage['rafraichi'] != undefined){
+    i = localStorage['rafraichi'];
+    console.log(localStorage['rafraichi']);
+  }
+
+  try {
+    const reponse = await fetch(url, { method: 'POST', headers: entete });
+    const qtePage = await reponse.json();
+    document.querySelector('#total').innerHTML = qtePage['pages'];
+    document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
+    `<p>Un total de ${qtePage['qte_Vins']} bouteilles ont été trouvé sur ${qtePage['pages']} pages de 96 bouteilles.</p>`);
+
+    for ( i; i <= qtePage['pages']; i++) {
+      let saqVinsReponse, pageVins, pourcentageProgres;
+      let whileTentative = 1;
+
+      while (whileTentative <= maxTentative) {
+        try {
+          saqVinsReponse = await fetch(url, { method: 'PUT', body: JSON.stringify(i), headers: entete });
+          pageVins = await saqVinsReponse.json();
+          pourcentageProgres = i*100/qtePage['pages'];
+          document.querySelector('.scraper_chargement').style.width = `${pourcentageProgres}%`;
+          
+          break; // Sort de la boucle si le Fetch fonctionne
+
+        } catch (erreur) {
+          document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
+          `<p>La tentative ${whileTentative} pour la page ${i} a échoué: ${erreur}</p>`);
+          console.error(erreur);
+          whileTentative++;
+        }
+      }
+
+      if (whileTentative > maxTentative) {
+        document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
+        `<p>Toutes les tentatives de la page ${i} ont échoué. Veuillez réassayer plus tard.</p>`);
+        if(rafraichissement == false){
+          rafraichissement = true;
+          localStorage['rafraichi'] = i;
+          console.log(localStorage['rafraichi']);
+        }
+        if(!document.querySelector('#rafraichi')){
+          document.querySelector('article').insertAdjacentHTML('beforeend', 
+          `<a id="rafraichi" href="" class="btn">Rafraichir la page</a>
+          <p id="rafraichi">Le prochain démarrage continuera à l'endroit de l'échec.</p>`)
+        }
+        continue; // Passe à la prochaine itération si il y a échec
+      }
+  
+      document.querySelector('#page').innerHTML = pageVins['page'];
+      let messageP2 = `Aucune bouteille n'as été ajouté.`;
+      if(pageVins['liste'] != 0){
+        messageP2 `${pageVins['liste']} ont été ajouté dans la base de données.</p>`;
+      }
+      document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
+      `<p>${pageVins['data']} bouteilles ont été trouvé sur la page ${pageVins['page']}. ${messageP2}`);
+      if(localStorage['rafraichi'] == i){
+        localStorage['rafraichi'] = undefined;
+      }
     }
- });
+
+  } catch (erreur) {
+    document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
+    `<p>Un échec de connexion vers la SAQ c'est produit, veuillez réassayer plus tard.</p>`);
+    document.querySelector('article').insertAdjacentHTML('beforeend', 
+    `<a id="rafraichi" href="" class="btn">Rafraichir la page</a>
+    <p id="rafraichi">Le prochain démarrage continuera à l'endroit de l'échec.</p>`)
+    console.error(erreur, i);
+  }
 }
-
-

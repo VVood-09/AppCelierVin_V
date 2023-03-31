@@ -35,11 +35,11 @@ class ScraperController extends Controller
         $qteVin = end($qteVin);
         $nbParPage = 96; // Pour la quantité de bouteille par page
         $nbPage = ceil($qteVin / $nbParPage); // Nombre de page de bouteille de vin
-        return $nbPage;
+        return ['pages' => $nbPage, 'qte_Vins' => $qteVin];
     }
 
     public function scraper(Request $request){
-
+      // return $request[0];
         ini_set('max_execution_time', '0');
 
         $debut = date('H:i:s');
@@ -48,7 +48,7 @@ class ScraperController extends Controller
 
         // Récupération des bouteilles de vin
         // for($i = 1; $i <= 1; $i++){
-            $url = 'https://www.saq.com/fr/produits/vin?p='.$request[0].'&product_list_limit=96';
+            $url = 'https://www.saq.com/fr/produits/vin?p='.$request[0].'&product_list_limit=96&product_list_order=name_asc';
             // $url = 'https://www.saq.com/fr/produits/vin?p=1&product_list_limit=96';
             $page = $client->request('GET', $url);
             $page->filter('.product-item-info')->each(function ($item) {
@@ -91,7 +91,7 @@ class ScraperController extends Controller
 
         $fin = date('H:i:s');
 
-        return $request[0];
+        return ['data' => count($data), 'liste' => count($liste), 'page' => $request[0]];
     }
 
     public function index(){
