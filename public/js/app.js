@@ -22826,6 +22826,11 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /**
  * Function pour changer la quantité de bouteilles dans le cellier
  */
+/**
+ * Function pour changer la quantité de bouteilles dans le cellier
+ */
+
+
 function changeQte(){
   // Récupéré le id de la bouteille
   let url = window.location.href;
@@ -22834,23 +22839,78 @@ function changeQte(){
   let data = {
       'qte' :this.counter,
       'bouteille': this.idB,
-      'cellier': this.idC
+      'cellier': this.idC,
+      'target_id': this.targetId
     };
 
-  // var entete = new Headers();
-  // entete.append('Content-Type', 'application/json');
 
+    
   entete = {
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
   };
-    
-  // fetch('../api/changeQte', { method:'PUT', body: JSON.stringify(data), headers:entete})
-  //
-   fetch(url, { method:'POST', body: JSON.stringify(data), headers:entete})
-  //Pas de retour nécessaire dans ce cas
 
- }
+  
+   fetch(url, { method:'POST', body: JSON.stringify(data), headers:entete})
+            .then(reponse=> reponse.json())
+            .then((reponse)=>verifieQte(reponse));
+
+            var element = document.querySelector('.liste-btl_carte');
+            element.addEventListener('click', function(event) {
+              console.log(event.target);
+            });
+          
+            if (data.qte == 0 && data.bouteille ==  6) {
+              const btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
+              btnEnleverQte.classList.add('modal_display-none');
+          
+              const btnModalSuppression = document.querySelector('.corbeille');
+              btnModalSuppression.classList.remove('modal_display-none');
+            }else{
+              const btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
+              btnEnleverQte.classList.remove('modal_display-none');
+          
+              const btnModalSuppression = document.querySelector('.corbeille');
+              btnModalSuppression.classList.add('modal_display-none');
+            }
+          
+          
+}
+          
+
+function verifieQte(data) {
+
+  console.log(data.target_id)
+  console.log(data.bouteille);  
+  console.log(data.cellier);  
+  console.log(data.qte);  
+
+  window.addEventListener('click', function(event) {
+    console.log(event.target);
+  });
+
+  if (data.qte == 0 && data.bouteille ==  6) {
+    const btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
+    btnEnleverQte.classList.add('modal_display-none');
+
+    const btnModalSuppression = document.querySelector('.corbeille');
+    btnModalSuppression.classList.remove('modal_display-none');
+  }else{
+    const btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
+    btnEnleverQte.classList.remove('modal_display-none');
+
+    const btnModalSuppression = document.querySelector('.corbeille');
+    btnModalSuppression.classList.add('modal_display-none');
+  }
+
+
+}
+  
+
+
+
+
+
 
 /**
  * Fonction pour créer une note sur une bouteille de vin
@@ -22885,32 +22945,7 @@ function changeNote(note, valDepart){
     // Pour développement, voir les réponses serveur
     // .then(reponse=> reponse.json())
     // .then((reponse)=>console.log(reponse));
-
 }
-
-
-
-// function ajoutComment(){
-//   console.log('rehjihu');
-//   let url = window.location.href,
-//       bouteille_id = url.split('/bouteille/')[1];
-
-// // console.log(data);
-// //   let data = {
-// //       'qte' :this.counter,
-// //       'bouteille': this.idB,
-// //       'cellier': this.idC
-// //     };
-
-// //     entete = {
-// //       'Content-Type': 'application/json',
-// //       'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-// //     };
-    
-// //   fetch(url+'/comment', { method:'POST', body: JSON.stringify(data), headers:entete})
-  
-
-//  }
 
 
 function ajoutComment(){
@@ -22945,12 +22980,7 @@ console.log(data);
                       <small>${date}</small>
                     </div>`;
       element.insertAdjacentHTML("beforeend", comment);
-
-
-
-  
     })
-  
 }
 
  /**
@@ -22959,6 +22989,7 @@ console.log(data);
   * @param {array} bouteilles 
   * @param {string} col sur quoi assortir les bouteilles ('nom', 'pays', 'type')
   */
+
 function assortir(bouteilles, col){
   if(this.sortCol === col) this.sortAsc = !this.sortAsc;
   this.sortCol = col;

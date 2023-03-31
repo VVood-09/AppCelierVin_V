@@ -19,16 +19,8 @@
                 @endif
             </div>
             @endIf
-
-
-
-
-
             
         </div>
-
-
-
 
         <div class="btl_carte-body">
 
@@ -70,9 +62,13 @@
                 </div>
             </div>
 
+            
+
             <div  class="btl_carte-quantite">   
                 <x-quantite :bouteille="$bouteille" :cellier="$cellier"/>             
             </div>
+ 
+
 
             <div class="btl_carte-description">
                 <details>
@@ -84,11 +80,16 @@
             </div>
 
 
+
+
+
            <div class="btl_carte-commentaire">            
                 <!-- Ajout de Commentaire !!-->
                 <?php
                     $route = route('commentaire.store', ['cellier' => $cellier->id,'bouteille' => $bouteille->id]);
                 ?>
+
+
 
                 <x-modal_commentaire  route="{{ $route }}"  />
                             

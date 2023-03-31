@@ -198,3 +198,6 @@ body.pas-defilement {
   overflow: hidden;
 }
 
+.modal_display-none{
+  display: none;
+}

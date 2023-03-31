@@ -1,6 +1,6 @@
-<div class="modal_btn-delete" x-data="{ ismodalopen: false }">
-  <button @click="ismodalopen = true" class="btn-reverse">{{ $triggerText }}</button>
-  <div class="" x-show="ismodalopen" x-init="$watch('ismodalopen', value => { if (value) { document.body.classList.add('no-scroll'); } else { document.body.classList.remove('no-scroll'); } })">
+<div class="modal_btn-delete" x-data="{ modalouvert: false }">
+  <button @click="modalouvert = true" class="corbeille modal_display-none">{{ $triggerText }}</button>
+  <div class="" x-show="modalouvert" x-init="$watch('modalouvert', value => { if (value) { document.body.classList.add('pas-defilement'); } else { document.body.classList.remove('pas-defilement'); } })">
     <div class="modal">
 
     
@@ -8,7 +8,8 @@
         {{ $slot }}
       </div>
 
-      <div class="modal_confirm-btn">
+      <div   class="modal_confirm-btn">
+      
             <form class="formBtl_form" method="post" action="{{ $route }}" >
                 @csrf
                 @method('delete')
@@ -18,7 +19,8 @@
                 </button>
 
             </form>
-            <button @click="ismodalopen = false" class="btn-reverse btn-close">
+
+            <button @click="modalouvert = false" class="btn-reverse btn-close">
               <svg data-name="Layer 1" height="200" id="Layer_1" viewBox="0 0 200 200" width="200" xmlns="http://www.w3.org/2000/svg"><title/><path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z"/></svg>
             </button>
       </div>  

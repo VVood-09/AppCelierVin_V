@@ -63,7 +63,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('cellier/{cellier}/bouteille/{bouteille}', [CellierController::class, 'changeQte']);
     Route::get('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'edit'])->name('bouteille.edit');
     Route::put('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'update'])->name('bouteille.update');
-    Route::delete('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'destroy'])->name('bouteille.delete');
+    Route::delete('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'delete'])->name('bouteille.delete');
+    Route::delete('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'destroy'])->name('bouteille.destroy');
 
     // Route::put('changeQte', [CellierController::class, 'changeQte']);
 
