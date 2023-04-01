@@ -30,5 +30,8 @@
 @import "./admin/general_admin.css";
 @import "./admin/main_admin.css";
 @import "./admin/nav_admin.css";
+@import "./admin/pagination_admin.css";
+@import "./admin/stats.css";
 @import "./admin/scraper_admin.css";
 @import "./admin/pagination_admin.css";
+

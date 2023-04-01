@@ -22845,10 +22845,10 @@ function changeQte(){
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
   };
     
-   fetch('/changeQte', { method:'POST', body: JSON.stringify(data), headers:entete})
+   //fetch('/changeQte', { method:'POST', body: JSON.stringify(data), headers:entete})
   // fetch('../api/changeQte', { method:'PUT', body: JSON.stringify(data), headers:entete})
   //
-   //fetch(url, { method:'POST', body: JSON.stringify(data), headers:entete})
+   fetch(url, { method:'POST', body: JSON.stringify(data), headers:entete})
   //Pas de retour nécessaire dans ce cas
 
  }

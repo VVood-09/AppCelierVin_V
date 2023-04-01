@@ -4,6 +4,7 @@
     flex-direction: row;
     color: var(--secondary);
     justify-content: space-between;
+    padding: var(--espacements-small) var(--espacements-medium) ;
 }
 
 .nav_admin > * {
