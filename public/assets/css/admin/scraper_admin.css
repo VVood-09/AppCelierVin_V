@@ -3,6 +3,10 @@
     margin-bottom: var(--espacements-small);
 }
 
+.scraper article {
+    padding-bottom: var(--espacements-large);
+}
+
 .scraper article > * {
     display: block;
     margin: 0 auto;
@@ -53,4 +57,10 @@
 
 .scraper #rafraichi {
     margin-top: var(--espacements-small);
+    text-align: center;
+    width: fit-content;
+}
+
+.scraper a:hover {
+    color: var(--accent);
 }

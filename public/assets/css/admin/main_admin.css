@@ -33,7 +33,7 @@
     margin: 0;
 }
 
-.main_admin button {
+.admin_main_membres button {
     background-color: white;
     padding: var(--espacements-x_small);
     border-radius: var(--espacements-x_small);
@@ -51,34 +51,34 @@
     border: 3px solid rgb(225, 0, 0);
 } */
 
-.main_admin .btn, .main_admin .btn:visited{
+.admin_main_membres .btn, .admin_main_membres .btn:visited{
     color: rgb(0, 180, 30);
     border: 2px solid rgb(0, 180, 30);
     padding: 10px;
     background-color: white;
 }
-.main_admin .btn:hover {
+.admin_main_membres .btn:hover {
     color: white;
     background-color: rgb(0, 180, 30);
 }
 
-.main_admin .btn-reverse {
+.admin_main_membres .btn-reverse {
     color: rgb(225, 0, 0);
     border: 2px solid rgb(225, 0, 0);
     padding: 10px;
  
 }
 
-.main_admin .modal_btn-delete>.btn-reverse {
+.admin_main_membres .modal_btn-delete>.btn-reverse {
     width: initial;
 }
 
-.main_admin .btn-reverse:hover {
+.admin_main_membres .btn-reverse:hover {
     color: white;
     background-color: rgb(225, 0, 0);
 }
 
-.main_admin .admin_btn{
+.admin_main_membres .admin_btn{
     display: flex;
     justify-content: flex-end;
     gap: var(--espacements-medium);

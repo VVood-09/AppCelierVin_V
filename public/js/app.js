@@ -23008,9 +23008,11 @@ async function scraper() {
   const maxTentative = 3;
   let i = 1;
   let rafraichissement = false;
+  if(isNaN(localStorage['rafraichi'])){
+    localStorage['rafraichi'] = 1;
+  }
   if(localStorage['rafraichi'] != undefined){
     i = localStorage['rafraichi'];
-    console.log(localStorage['rafraichi']);
   }
 
   try {
@@ -23047,7 +23049,6 @@ async function scraper() {
         if(rafraichissement == false){
           rafraichissement = true;
           localStorage['rafraichi'] = i;
-          console.log(localStorage['rafraichi']);
         }
         if(!document.querySelector('#rafraichi')){
           document.querySelector('article').insertAdjacentHTML('beforeend', 
@@ -23065,7 +23066,7 @@ async function scraper() {
       document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
       `<p>${pageVins['data']} bouteilles ont été trouvé sur la page ${pageVins['page']}. ${messageP2}`);
       if(localStorage['rafraichi'] == i){
-        localStorage['rafraichi'] = undefined;
+        localStorage['rafraichi'] = 1;
       }
     }
 

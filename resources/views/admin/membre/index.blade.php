@@ -2,7 +2,7 @@
 @section('title', 'Admin')
 @section('content')
 
-<section>
+<section class="admin_main_membres">
  
     <table>
         @if(count($utilisateurs) > 0)
