@@ -23061,7 +23061,7 @@ async function scraper() {
       document.querySelector('#page').innerHTML = pageVins['page'];
       let messageP2 = `Aucune bouteille n'as été ajouté.`;
       if(pageVins['liste'] != 0){
-        messageP2 `${pageVins['liste']} ont été ajouté dans la base de données.</p>`;
+        messageP2 = `${pageVins['liste']} ont été ajouté dans la base de données.</p>`;
       }
       document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
       `<p>${pageVins['data']} bouteilles ont été trouvé sur la page ${pageVins['page']}. ${messageP2}`);
@@ -23076,6 +23076,7 @@ async function scraper() {
     document.querySelector('article').insertAdjacentHTML('beforeend', 
     `<a id="rafraichi" href="" class="btn">Rafraichir la page</a>
     <p id="rafraichi">Le prochain démarrage continuera à l'endroit de l'échec.</p>`)
+    localStorage['rafraichi'] = i;
     console.error(erreur, i);
   }
 }
