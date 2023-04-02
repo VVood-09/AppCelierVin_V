@@ -39,7 +39,6 @@ class ScraperController extends Controller
     }
 
     public function scraper(Request $request){
-      // return $request[0];
         ini_set('max_execution_time', '0');
 
         $debut = date('H:i:s');
@@ -47,9 +46,7 @@ class ScraperController extends Controller
         $client = new Client();
 
         // Récupération des bouteilles de vin
-        // for($i = 1; $i <= 1; $i++){
             $url = 'https://www.saq.com/fr/produits/vin?p='.$request[0].'&product_list_limit=96&product_list_order=name_asc';
-            // $url = 'https://www.saq.com/fr/produits/vin?p=1&product_list_limit=96';
             $page = $client->request('GET', $url);
             $page->filter('.product-item-info')->each(function ($item) {
                 $info = explode(' | ', $item->filter('.product-item-identity-format')->text());
@@ -86,6 +83,17 @@ class ScraperController extends Controller
                     'url_saq' => $bouteille['url_saq'],
                 ]);
                 $liste[] = ['nom' => $bouteille['nom'], 'code_saq' => $bouteille['code_saq']];
+            } else { // Sinon mise à jour
+                $query[0]->update([
+                    'nom' => $bouteille['nom'],
+                    'image' => $bouteille['image'],
+                    'type' => $bouteille['type'],
+                    'format' => $bouteille['format'],
+                    'pays' => $bouteille['pays'],
+                    'description' => $bouteille['description'],
+                    'prix' => $bouteille['prix'],
+                    'url_saq' => $bouteille['url_saq'],
+                ]);
             }
         }
 
