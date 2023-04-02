@@ -84,7 +84,7 @@ class ScraperController extends Controller
                 ]);
                 $liste[] = ['nom' => $bouteille['nom'], 'code_saq' => $bouteille['code_saq']];
             } else { // Sinon mise à jour
-                $query->update([
+                $query[0]->update([
                     'nom' => $bouteille['nom'],
                     'image' => $bouteille['image'],
                     'type' => $bouteille['type'],
