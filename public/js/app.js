@@ -23066,7 +23066,9 @@ async function scraper() {
       document.querySelector('#page').innerHTML = pageVins['page']; // Montre la progression
       let messageP2 = `Aucune bouteille n'as été ajouté.`;
       if(pageVins['liste'] != 0){
-        messageP2 = `${pageVins['liste']} ont été ajouté dans la base de données.</p>`;
+        // condition ? exprIfTrue : exprIfFalse
+        let conjugaison = pageVins['liste'] > 1 ? 'ont' : 'a';
+        messageP2 = `${pageVins['liste']} ${conjugaison} été ajouté dans la base de données.</p>`;
       }
       document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
       `<p>${pageVins['data']} bouteilles ont été trouvé sur la page ${pageVins['page']}. ${messageP2}`);
