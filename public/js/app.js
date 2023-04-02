@@ -22996,7 +22996,10 @@ function triage(bouteilles, col){
 }
 
 /**
- * 
+ * Boucle pour récupérer tous les vins de la SAQ
+ * ASYNC/AWAIT pour assurer la récupération de data
+ * TRY/CATCH pour réassyer lors d'échec et récupérer les erreurs
+ * Fetch sur le Back-End pour Scraper la SAQ
  */
 async function scraper() {
   const url = window.location.href;
@@ -23005,37 +23008,38 @@ async function scraper() {
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
   };
 
-  const maxTentative = 3;
-  let i = 1;
-  let rafraichissement = false;
+  const maxTentative = 3; // Pour la boucle While, trois tentative
+  let i = 1; // Pour le For sur les pages de vins SAQ
+  let rafraichissement = false; // Boolean pour valider si il y a une donné réception dans localStorage
   if(isNaN(localStorage['rafraichi'])){
-    localStorage['rafraichi'] = 1;
+    localStorage['rafraichi'] = 1; // Pour empêcher des problèmes de type
   }
   if(localStorage['rafraichi'] != undefined){
-    i = localStorage['rafraichi'];
+    i = localStorage['rafraichi']; // Pour récuperer le numéro de page en cas d'échec
   }
 
-  try {
+  try { // Pour recevoir la quantité de bouteilles de vins existantes et la quantité de page à fouiller
     const reponse = await fetch(url, { method: 'POST', headers: entete });
     const qtePage = await reponse.json();
-    document.querySelector('#total').innerHTML = qtePage['pages'];
+    document.querySelector('#total').innerHTML = qtePage['pages']; // Insérer la quantité de page
     document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
     `<p>Un total de ${qtePage['qte_Vins']} bouteilles ont été trouvé sur ${qtePage['pages']} pages de 96 bouteilles.</p>`);
+    // Message dans le log
 
-    for ( i; i <= qtePage['pages']; i++) {
+    for ( i; i <= qtePage['pages']; i++) { // Pour trouvé tous les vins sur une page
       let saqVinsReponse, pageVins, pourcentageProgres;
-      let whileTentative = 1;
+      let whileTentative = 1; // Valeur de départ pour l'itération pour les érreurs
 
-      while (whileTentative <= maxTentative) {
-        try {
+      while (whileTentative <= maxTentative) { // Itération pour les érreures
+        try { // Récupère le data du Scraper sur les vins trouvés et insérer dans la DB
           saqVinsReponse = await fetch(url, { method: 'PUT', body: JSON.stringify(i), headers: entete });
           pageVins = await saqVinsReponse.json();
-          pourcentageProgres = i*100/qtePage['pages'];
-          document.querySelector('.scraper_chargement').style.width = `${pourcentageProgres}%`;
+          pourcentageProgres = i*100/qtePage['pages']; // Pour la progression de la bar de chargement
+          document.querySelector('.scraper_chargement').style.width = `${pourcentageProgres}%`; // Pour la progression de la bar de chargement
           
           break; // Sort de la boucle si le Fetch fonctionne
 
-        } catch (erreur) {
+        } catch (erreur) { // Récupération d'érreurs avec message
           document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
           `<p>La tentative ${whileTentative} pour la page ${i} a échoué: ${erreur}</p>`);
           console.error(erreur);
@@ -23043,14 +23047,14 @@ async function scraper() {
         }
       }
 
-      if (whileTentative > maxTentative) {
+      if (whileTentative > maxTentative) { // Dans le cas où toutes les tentatives ont échoué
         document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
         `<p>Toutes les tentatives de la page ${i} ont échoué. Veuillez réassayer plus tard.</p>`);
-        if(rafraichissement == false){
-          rafraichissement = true;
+        if(rafraichissement == false){ // Récupère la page où l'échec c'est produit
+          rafraichissement = true; // Pour ne pas supplanté l'information
           localStorage['rafraichi'] = i;
         }
-        if(!document.querySelector('#rafraichi')){
+        if(!document.querySelector('#rafraichi')){ // Pour ne pas mettre en double le bouton de rafraîchissement
           document.querySelector('article').insertAdjacentHTML('beforeend', 
           `<a id="rafraichi" href="" class="btn">Rafraichir la page</a>
           <p id="rafraichi">Le prochain démarrage continuera à l'endroit de l'échec.</p>`)
@@ -23058,19 +23062,24 @@ async function scraper() {
         continue; // Passe à la prochaine itération si il y a échec
       }
   
-      document.querySelector('#page').innerHTML = pageVins['page'];
+      // Récupère du data et log l'information
+      document.querySelector('#page').innerHTML = pageVins['page']; // Montre la progression
       let messageP2 = `Aucune bouteille n'as été ajouté.`;
       if(pageVins['liste'] != 0){
         messageP2 = `${pageVins['liste']} ont été ajouté dans la base de données.</p>`;
       }
       document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
       `<p>${pageVins['data']} bouteilles ont été trouvé sur la page ${pageVins['page']}. ${messageP2}`);
-      if(localStorage['rafraichi'] == i){
+
+      if(localStorage['rafraichi'] == i){ // Si il n'y a pas d'échec après le relancement
         localStorage['rafraichi'] = 1;
       }
     }
+    if(i = qtePage['pages']){ // À la dernière page Scraper
+      document.querySelector('.scraper_info > p').innerHTML = `Complété!`;
+    }
 
-  } catch (erreur) {
+  } catch (erreur) { // Dans le cas où il y a un problème avec la SAQ
     document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
     `<p>Un échec de connexion vers la SAQ c'est produit, veuillez réassayer plus tard.</p>`);
     document.querySelector('article').insertAdjacentHTML('beforeend', 
