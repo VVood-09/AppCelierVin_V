@@ -87,6 +87,9 @@ class CellierController extends Controller
             ->select('bouteilles.*', 'liste_bouteilles.qte', 'notes.note')
             ->get();
   
+            // $data = json_encode($bouteilles);
+            // return view('your_view', compact('data'));
+        $bouteilles = json_encode($bouteilles);
         return view('cellier.show', ['bouteilles' => $bouteilles, 'cellier'=>$cellier]);
     }
 

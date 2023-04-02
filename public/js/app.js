@@ -22826,16 +22826,27 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /**
  * Function pour changer la quantité de bouteilles dans le cellier
  */
-function changeQte(){
+function changeQte(qte, id){
   // Récupéré le id de la bouteille
   let url = window.location.href;
+  let data;
 
   // crée l'objet a envoyé
-  let data = {
+  if(!isNaN(qte)){
+    data = {
+      'qte' : qte,
+      'bouteille': id,
+      'cellier': this.idC
+    }
+  } else {
+    data = {
       'qte' :this.counter,
       'bouteille': this.idB,
       'cellier': this.idC
     };
+  }
+
+
 
   // var entete = new Headers();
   // entete.append('Content-Type', 'application/json');
@@ -22957,43 +22968,6 @@ function ajoutComment(){
 
 }
 
-
- /**
-  * Fonction pour trier les bouteilles dans le cellier
-  * https://www.raymondcamden.com/2022/05/02/building-table-sorting-and-pagination-in-alpinejs
-  * @param {array} bouteilles 
-  * @param {string} col sur quoi trier les bouteilles ('nom', 'pays', 'type')
-  */
-function triage(bouteilles, col){
-  if(this.triAsc == undefined){
-    this.triAsc = true;
-  }
-  if(this.colonneTri === col) this.triAsc = !this.triAsc;
-  this.colonneTri = col;
-  if(this.colonneTri == 'note'){
-    bouteilles.sort((a, b) => {
-      if(a[this.colonneTri] < b[this.colonneTri]) return this.triAsc?1:-1;
-      if(a[this.colonneTri] > b[this.colonneTri]) return this.triAsc?-1:1;
-      return 0;
-    });
-  } else {
-    bouteilles.sort((a, b) => {
-      const resultatTri = a[this.colonneTri].localeCompare(b[this.colonneTri]);
-      if(resultatTri === 0) return 0; // If the strings are equal, return 0
-      return this.triAsc ? resultatTri : -resultatTri; // Reverse the sort order if triAsc is false
-    });
-  }
-  const sectionTri = document.querySelector(".triage");
-  const sectionTriSpan = sectionTri.querySelectorAll("span#id");
-  sectionTriSpan.forEach((span) => {
-    span.innerHTML = `&#8226;`;
-  })
-  if(this.triAsc){
-    sectionTri.querySelector('#'+this.colonneTri).innerHTML = `&#9650;`;
-  } else {
-    sectionTri.querySelector('#'+this.colonneTri).innerHTML = `&#9660;`;
-  }
-}
 
 /**
  * Boucle pour récupérer tous les vins de la SAQ
