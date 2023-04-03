@@ -22840,11 +22840,9 @@ function changeQte(){
       'qte' :this.counter,
       'bouteille': this.idB,
       'cellier': this.idC,
-      'target_id': this.targetId
+    
     };
 
-
-    
   entete = {
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
@@ -22853,14 +22851,16 @@ function changeQte(){
   
    fetch(url, { method:'POST', body: JSON.stringify(data), headers:entete})
             .then(reponse=> reponse.json())
-            .then((reponse)=>verifieQte(reponse));
+            .then((reponse)=>console.log(reponse));
 
-            var element = document.querySelector('.liste-btl_carte');
-            element.addEventListener('click', function(event) {
-              console.log(event.target);
-            });
+   
+            // var element = document.querySelector('.liste-btl_carte');
+            // element.addEventListener('click', function(event) {
+            //   // console.log(event.target);
+            // });
           
-            if (data.qte == 0 && data.bouteille ==  6) {
+            console.log(data.qte);
+            if (data.qte == 0) {
               const btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
               btnEnleverQte.classList.add('modal_display-none');
           
@@ -22872,22 +22872,51 @@ function changeQte(){
           
               const btnModalSuppression = document.querySelector('.corbeille');
               btnModalSuppression.classList.add('modal_display-none');
-            }
-          
-          
+            }        
 }
-          
+
+
+
+
+// function verifieQte(data) {
+//   console.log(data.bouteille);  
+//   console.log(data.cellier);  
+//   console.log(data.qte);  
+
+//   window.addEventListener('click', function(event) {
+//     let target_id = event.target;
+//     console.log(target_id);
+
+//     if (data.qte == 0 ) {
+        
+//       target_id.classList.add('modal_display-none');
+//       const btnModalSuppression = target_id.nextElementSibling;
+//       while (btnModalSuppression && !btnModalSuppression.classList.contains('corbeille')) {
+//         btnModalSuppression = btnModalSuppression.nextElementSibling;
+//       }
+
+//         btnModalSuppression.classList.remove('modal_display-none');    
+//     } else {
+     
+//       target_id.classList.remove('modal_display-none');
+
+//       const btnModalSuppression = target_id.nextElementSibling;
+//       while (btnModalSuppression && !btnModalSuppression.classList.contains('corbeille')) {
+//         btnModalSuppression = btnModalSuppression.nextElementSibling;
+//       }
+
+//       if (btnModalSuppression) {
+//         btnModalSuppression.classList.add('modal_display-none');
+//       }
+//     }
+//   });
+// }
+
 
 function verifieQte(data) {
-
-  console.log(data.target_id)
-  console.log(data.bouteille);  
-  console.log(data.cellier);  
-  console.log(data.qte);  
-
-  window.addEventListener('click', function(event) {
-    console.log(event.target);
-  });
+  
+  // var element = document.querySelector('.liste-btl_carte');
+  // element.addEventListener('click', clickHandler(event))
 
   if (data.qte == 0 && data.bouteille ==  6) {
     const btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
@@ -22901,14 +22930,75 @@ function verifieQte(data) {
 
     const btnModalSuppression = document.querySelector('.corbeille');
     btnModalSuppression.classList.add('modal_display-none');
-  }
+  }   
+
+  // console.log(data.bouteille);  
+  // console.log(data.cellier);  
+  // console.log(data.qte);  
+
+  // window.addEventListener('click', function(event) {
+  //   var targetElement = event.target;
+  //   var parentElement = targetElement.parentNode;
+  //   console.log(parentElement);
+
+  //   // if (data.qte == 0 ) {
+        
+  //   //   target_id.classList.add('modal_display-none');
+
+  //   //   const btnModalSuppression = document.querySelector('.corbeille');// je veux remplacer cette ligne par le next html element qui a une class corbeille
+  //   //   btnModalSuppression.classList.remove('modal_display-none');
+  //   // } else {
+     
+  //   //   target_id.classList.remove('modal_display-none');// je veux remplacer cette ligne par le next html element qui a une class corbeille
+
+  //   //   const btnModalSuppression = document.querySelector('.corbeille');
+  //   //   btnModalSuppression.classList.add('modal_display-none');
+  //   // }
+  // });
 
 
-}
+
+  // function clickHandler(event) {
+  //   var targetElement = event.target;
+  //   var parentElement = targetElement.parentNode;
+  //   console.log(parentElement);
+  // }
+  
+ 
+  // Later on...
+  // window.removeEventListener('click', clickHandler);
+}   
+
+
+
+// function verifieQte(data) {
+//   console.log(data.bouteille);  
+//   console.log(data.cellier);  
+//   console.log(data.qte);  
+
+//   window.addEventListener('click', function(event) {
+//     let target_id = event.target;
+//     console.log(target_id);
+
+//     if (data.qte == 0 ) {
+        
+//       target_id.classList.add('modal_display-none');
+
+//       const btnModalSuppression = document.querySelector('.corbeille');
+//       btnModalSuppression.classList.remove('modal_display-none');
+//     }else{
+     
+//       target_id.classList.remove('modal_display-none');
+
+//       const btnModalSuppression = document.querySelector('.corbeille');
+//       btnModalSuppression.classList.add('modal_display-none');
+//     }
+
+
+//   });
   
 
-
-
+// }
 
 
 

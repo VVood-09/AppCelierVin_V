@@ -2,12 +2,12 @@
   <button @click="modalouvert = true" class="corbeille modal_display-none">{{ $triggerText }}</button>
   <div class="" x-show="modalouvert" x-init="$watch('modalouvert', value => { if (value) { document.body.classList.add('pas-defilement'); } else { document.body.classList.remove('pas-defilement'); } })">
     <div class="modal">
-
+<h1>{{$route}}</h1>
     
       <div class="modal_text">
         {{ $slot }}
       </div>
-
+  
       <div   class="modal_confirm-btn">
       
             <form class="formBtl_form" method="post" action="{{ $route }}" >

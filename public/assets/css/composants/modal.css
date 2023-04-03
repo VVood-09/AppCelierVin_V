@@ -13,6 +13,7 @@
  height: 100%; /* hauteur de l'écran */
  justify-content: center; /* centrer horizontalement */
  align-items: center; /* centrer verticalement */
+  z-index: 10;
 
 }
 
