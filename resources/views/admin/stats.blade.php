@@ -31,11 +31,11 @@
                             <p class="grid_carte-info">{{$stats->nbUtilisateurs}}</p>
                         </div>
                         <div class="grid_carte">
-                            <p class="grid_carte-label">Nombre de membre inscrit depuis moins d'un mois</p>
+                            <p class="grid_carte-label">Nombre de membres inscrits depuis moins d'un mois</p>
                             <p class="grid_carte-info">{{$stats->utilisateursUnMois}}</p>
                         </div>
                         <div class="grid_carte">
-                            <p class="grid_carte-label">Nombre de membre inscrit depuis moins de 6 mois</p>
+                            <p class="grid_carte-label">Nombre de membres inscrits depuis moins de 6 mois</p>
                             <p class="grid_carte-info">{{$stats->utilisateursSixMois}}</p>
                         </div>
                         <div class="grid_carte">
@@ -43,7 +43,7 @@
                             <p class="grid_carte-info">{{$stats->celliersUtilisateurs}}</p>
                         </div>
                         <div class="grid_carte">
-                            <p class="grid_carte-label">Nombre de bouteille en moyenne par membre</p>
+                            <p class="grid_carte-label">Nombre de bouteilles en moyenne par membre</p>
                             <p class="grid_carte-info">{{$stats->bouteillesUtilisateurs}}</p>
                         </div>
                     </div>
@@ -56,24 +56,29 @@
                      <div class="grid_stat">
 
                        
-                        <div>
+                        <div class="grid_stat-btlGlobal">
                             <div  class="grid_carte">
-                                <p class="grid_carte-label">Nombre de bouteille enregistrer au total</p>
+
+                                <p class="grid_carte-label">Nombre de bouteilles dans la base de données</p>
                                 <p class="grid_carte-info">{{$stats->nbBouteilles}}</p>
                             </div>
                             <div  class="grid_carte">
-                                <p class="grid_carte-label">Nombre de bouteilles différentes enregistrées dans un cellier</p>
+                                <p class="grid_carte-label">Nombre de bouteilles enregistrées dans un cellier</p>
+
                                 <p class="grid_carte-info">{{$stats->nbListeB}}</p>
                             </div>
                         </div>    
                         @foreach($pourcentage as $pourcentage)
                         <div class="grid_carte">
-                            <p>{{$pourcentage->type}}</p>
+                            <p class="grid_carte-info">{{$pourcentage->type}}</p>
                             <p class="grid_carte-label">Nombre d'entrée de bouteille</p>
-                            <p>{{$pourcentage->count}}</p>
+                            <p class="grid_carte-info">{{$pourcentage->count}}</p>
                             <p class="grid_carte-label">Quantités de bouteilles total enregistrées</p>
-                            <p>{{$pourcentage->qte_some}}</p>
-                            <p class="grid_carte-label">{{$pourcentage->pourcentage}}% des bouteilles enregistrées dans les celliers des utilisateurs sont des {{$pourcentage->type}}s. </p>
+
+                            <p class="grid_carte-info">{{$pourcentage->qte_somme}}</p>
+                            <p class="grid_carte-label">Pourcentage des bouteilles enregistrées dans les celliers des utilisateurs</p>
+                            <p class="grid_carte-info">{{$pourcentage->pourcentage}}% </p>
+
 
                         </div>
                          @endforeach
@@ -88,16 +93,23 @@
                      <div class="grid_stat">
                         
                         <div class="grid_carte">
-                            <p class="grid_carte-label">Nombre de commentaires laissé au total</p>
-                            <p>{{$stats->nbCommentaires}}</p>
+
+                            <p class="grid_carte-label">Nombre de commentaires laissés au total</p>
+                            <p class="grid_carte-info">{{$stats->nbCommentaires}}</p>
                         </div>
                         <div class="grid_carte">
-                            <p class="grid_carte-label">Nombre de commentaires laissé en moyenne par utilisateur</p>
-                            <p>{{$stats->commentairesUtilisateurs}}</p>
+                            <p class="grid_carte-label">Nombre de commentaires laissés en moyenne par utilisateur</p>
+                            <p class="grid_carte-info">{{$stats->commentairesUtilisateurs}}</p>
+
                         </div>
                         <div class="grid_carte">
                             <p class="grid_carte-label">Le vin ayant le plus de commentaire</p>
-                            <p class="grid_carte-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil voluptatibus pariatur hic, labore sequi magnam sunt maxime, voluptas in, fugiat sit quasi repellat. Sapiente est, accusantium earum perferendis aliquam ab.</p>
+                            <p class="grid_carte-info">{{$bouteilleComment->nom}}</p>
+                            @if($bouteilleComment->total == 1)
+                            <p>Avec : {{$bouteilleComment->total}} commentaire</p>
+                            @else
+                            <p>Avec : {{$bouteilleComment->total}} commentaires</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -108,16 +120,27 @@
                         </div>
                         <div class="grid_stat">
                             <div class="grid_carte">
-                                <p class="grid_carte-label">Nombre de notes laissée au total</p>
+                                <p class="grid_carte-label">Nombre de notes laissées au total</p>
                                 <p class="grid_carte-info">{{$stats->nbNotes}}</p>
                             </div>
                             <div class="grid_carte">
-                                <p class="grid_carte-label">Nombre de notes laissé en moyenne par utilisateur</p>
+                                <p class="grid_carte-label">Nombre de notes laissées en moyenne par utilisateur</p>
                                 <p class="grid_carte-info">{{$stats->notesUtilisateurs}}</p>
                             </div>
                             <div class="grid_carte">
-                                 <p class="grid_carte-label">Le vin (ou top 5) ayant la note moyenne la plus elever</p>
-                                 <p class="grid_carte-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quos aut neque recusandae aperiam veniam maiores, nam eligendi id illum, ipsa et dicta porro numquam hic nulla voluptas similique laborum.</p>
+                                 <p class="grid_carte-label">Top 5 des vins ayant la note moyenne la plus élevée</p>
+                                 @if(count($topBouteilles) < 5)
+                                    <small>Il n'y a que {{count($topBouteilles)}} bouteilles ayant des notes pour le moment</small>
+                                @endif
+                                 @forEach($topBouteilles as $topBouteille)
+                                    <p class="grid_carte-info">{{$topBouteille->nom}}</p>
+                                    <p>{{$topBouteille->average}} /5</p>
+                                    @if($topBouteille->total == 1)
+                                        <p>Avec : {{$topBouteille->total}} note</p>
+                                    @else
+                                        <p>Avec : {{$topBouteille->total}} notes</p>
+                                    @endif
+                                 @endforeach
                             </div>
                            
                         </div>
@@ -151,31 +174,7 @@
                     let timeInterval = this.$refs.slider.dataset.interval;
                     this.tabs[this.tab].setAttribute('class', 'active')
                     
-                    // set interval to change slide
-                    let startInterval = () => {
-                        this.tab = (this.tab < this.tabs.length - 1)? this.tab + 1 : 0;
-                        this.tabs.forEach( (tab)=> {
-                            (this.tab == this.tabs.indexOf(tab)) ?  tab.setAttribute('class', 'active') : tab.removeAttribute('class') 
-                        })
-                    }
-                    
-                    // start interval to change slide
-                    // let slideInterval = setInterval(startInterval, timeInterval);
-                    
-                    // mouse over slider stops slide
-                    this.$refs.slider.onmouseover = () => {
-                        if (slideInterval) { 
-                            clearInterval(slideInterval)
-                            slideInterval = null;
-                        }
-                    }
-                    
-                    // mouse out slider starts again slide
-                    this.$refs.slider.onmouseout = () => {
-                        if (slideInterval === null) { 
-                            slideInterval = setInterval(startInterval, timeInterval);
-                        }
-                    }
+                
                     
                     // slider tabs click event 
                     this.tabs.forEach( (tab)=> {
