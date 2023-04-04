@@ -7,24 +7,22 @@ window.addEventListener('DOMContentLoaded', () => {
   const confirmerButton = document.querySelector('.modal-button-confirm');
   const spanErrorModal = document.querySelector('.spanErrorModal');
   const errorMessage = document.createElement('span');
-  
+  const cellierSelect = document.querySelector('#selectCellier');
+  cellierSelect.value = cellierSelect.firstElementChild.nextElementSibling.value;
+
   errorMessage.style.color = 'red';
   errorMessage.style.fontSize = '0.8em';
   
   confirmerButton.addEventListener('click', (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
     
-    if ((qteInput.value)) {
-        console.log('if')
-        console.log(qteInput.value)
+    if ((qteInput.value > 0) && (cellierSelect.value)) {
+
         errorMessage.textContent = ''; // Clear the error message if the input is valid
-        // Do something here if the input is valid, such as submitting the form
-        console.log(this)
-        console.log(event)
         event.target.form.submit();
     } else {
-        console.log('else')
-        spanErrorModal.textContent = 'Veuillez entrer un nombre entier.'; // Show the error message if the input is invalid
+        cellierSelect.value = cellierSelect.firstElementChild.nextElementSibling.value
+        spanErrorModal.textContent = 'Veuillez entrer un nombre entier et choisir un cellier.'; // Show the error message if the input is invalid
     }
   });
 
@@ -80,7 +78,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 @csrf
                     <input type="hidden" name="id" x-ref="id" value="{{old('id')}}">
                     <input type="hidden" name="code_saq" x-ref="code_saq" value="{{old('code_saq')}}">
-                    <select name="cellier">
+                    <select name="cellier" id="selectCellier">
                         <option value="" disabled selected>Choisir un cellier</option>
                         @foreach($celliers as $cellier)
                         <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
