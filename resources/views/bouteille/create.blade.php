@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 <section class="formBtl_section suggestion_section">
 
-    <div x-data="{ ismodalopen: false }">
+    <div x-data="{ ismodalopen: false }" class="formBtl_section-recherche">
         <h1>Rechercher un Vin</h1>
         <div class="formBtl_search">
             <x-autocomplete-search />

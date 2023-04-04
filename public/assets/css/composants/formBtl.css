@@ -32,10 +32,10 @@
 .formBtl_search{
     position: relative;
     display: inline-block;
-    padding: 5px;
+
     width: 100%;
-   
 }
+
 .formBtl_search input{
     width: 100%;
 }
@@ -44,7 +44,6 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
 
 
 .formBtl_search th{
@@ -96,6 +95,14 @@
     color: white;
 } */
 
+
+.formBtl_section-recherche{
+    width: 100%;
+}
+
+.formBtl_section-recherche h1{
+    margin-inline: auto;
+}
 
 .formBtl_search li{
     padding-top: 10px;
