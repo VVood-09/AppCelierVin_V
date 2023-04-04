@@ -22847,15 +22847,11 @@ function changeQte(){
     };
   }
 
-
-
   entete = {
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
   };
     
-  // fetch('../api/changeQte', { method:'PUT', body: JSON.stringify(data), headers:entete})
-  //
    fetch(url, { method:'POST', body: JSON.stringify(data), headers:entete})
             .then(reponse=> reponse.json())
             .then((reponse)=>console.log(reponse));

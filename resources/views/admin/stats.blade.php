@@ -56,24 +56,25 @@
                      <div class="grid_stat">
 
                        
-                        <div>
+                        <div class="grid_stat-btlGlobal">
                             <div  class="grid_carte">
-                                <p class="grid_carte-label">Nombre de bouteille enregistrer au total</p>
+                                <p class="grid_carte-label">Nombre de bouteille enregistrer dans la base de donnée</p>
                                 <p class="grid_carte-info">{{$stats->nbBouteilles}}</p>
                             </div>
                             <div  class="grid_carte">
-                                <p class="grid_carte-label">Nombre de bouteilles différentes enregistrées dans un cellier</p>
+                                <p class="grid_carte-label">Nombre de bouteilles différentes enregistrées dans les celliers</p>
                                 <p class="grid_carte-info">{{$stats->nbListeB}}</p>
                             </div>
                         </div>    
                         @foreach($pourcentage as $pourcentage)
                         <div class="grid_carte">
-                            <p>{{$pourcentage->type}}</p>
+                            <p class="grid_carte-info">{{$pourcentage->type}}</p>
                             <p class="grid_carte-label">Nombre d'entrée de bouteille</p>
-                            <p>{{$pourcentage->count}}</p>
+                            <p class="grid_carte-info">{{$pourcentage->count}}</p>
                             <p class="grid_carte-label">Quantités de bouteilles total enregistrées</p>
-                            <p>{{$pourcentage->qte_some}}</p>
-                            <p class="grid_carte-label">{{$pourcentage->pourcentage}}% des bouteilles enregistrées dans les celliers des utilisateurs sont des {{$pourcentage->type}}s. </p>
+                            <p class="grid_carte-info">{{$pourcentage->qte_some}}</p>
+                            <p class="grid_carte-label">Pourcentage des bouteilles enregistrées dans les celliers des utilisateurs</p>
+                            <p class="grid_carte-info">{{$pourcentage->pourcentage}}% </p>
 
                         </div>
                          @endforeach
@@ -89,11 +90,11 @@
                         
                         <div class="grid_carte">
                             <p class="grid_carte-label">Nombre de commentaires laissé au total</p>
-                            <p>{{$stats->nbCommentaires}}</p>
+                            <p class="grid_carte-info">{{$stats->nbCommentaires}}</p>
                         </div>
                         <div class="grid_carte">
                             <p class="grid_carte-label">Nombre de commentaires laissé en moyenne par utilisateur</p>
-                            <p>{{$stats->commentairesUtilisateurs}}</p>
+                            <p class="grid_carte-info">{{$stats->commentairesUtilisateurs}}</p>
                         </div>
                         <div class="grid_carte">
                             <p class="grid_carte-label">Le vin ayant le plus de commentaire</p>
