@@ -9,68 +9,56 @@
     </div>        
 
         <section x-data="{ bouteilles: JSON.parse('{{ $bouteilles }}'),
-        triage(bouteilles, col){
-            /**
-            * Fonction pour trier les bouteilles dans le cellier
-            * https://www.raymondcamden.com/2022/05/02/building-table-sorting-and-pagination-in-alpinejs
-            * @param {array} bouteilles 
-            * @param {string} col sur quoi trier les bouteilles ('nom', 'pays', 'type')
-            */
-            if(this.sauvegarde == undefined) {
-                this.sauvegarde = bouteilles;
-            }
+            triage(bouteilles){
 
-            if(this.triAsc == undefined){
-              this.triAsc = true;
-            }
-          
-            if(this.colonneTri === col) this.triAsc = !this.triAsc;
-            if(col != undefined){
-              this.colonneTri = col;
-            } else {
-                this.colonneTri = '';
-            }
-          
-            let champRecherche = document.querySelector('.cellier_recherche').value.toLowerCase();
-            let bouteillesFiltrees;
-            if (champRecherche != '') {
-              bouteillesFiltrees = this.sauvegarde.filter(bouteille => bouteille.nom.toLowerCase().includes(champRecherche));
-            } else {
-                bouteillesFiltrees = this.sauvegarde;
-            }
-          
-            if(this.colonneTri !== ''){
-              if(this.colonneTri == 'note'){
-                bouteillesFiltrees.sort((a, b) => {
-                  if(a[this.colonneTri] < b[this.colonneTri]) return this.triAsc?1:-1;
-                  if(a[this.colonneTri] > b[this.colonneTri]) return this.triAsc?-1:1;
-                  return 0;
-                });
-              } else {
-                bouteillesFiltrees.sort((a, b) => {
-                  const resultatTri = a[this.colonneTri].localeCompare(b[this.colonneTri]);
-                  if(resultatTri === 0) return 0;
-                  return this.triAsc ? resultatTri : -resultatTri;
-                });
-              }
-            };
-          
-            this.bouteilles = bouteillesFiltrees;
+                /**
+                * Fonction pour trier les bouteilles dans le cellier
+                * https://www.raymondcamden.com/2022/05/02/building-table-sorting-and-pagination-in-alpinejs
+                * @param {array} bouteilles 
+                * modifié pour fonctionner sur un select avec des querySelectors
+                */
+
+                if(this.sauvegarde == undefined) {
+                    this.sauvegarde = bouteilles;
+                }
+
+                this.colonneTri = document.querySelector('#tri-select').value;
+                if(this.colonneTri == ''){
+                    this.colonneTri = 'nom';
+                }
+
+                this.triAsc = document.querySelector('#ordre-select').value;
+                if(this.triAsc == 'desc'){
+                    this.triAsc = false;
+                } else {
+                    this.triAsc = true
+                }
             
-            // La gestion de l'icône dans les tris
-            const sectionTri = document.querySelector('.triage');
-            const sectionTriSpan = sectionTri.querySelectorAll('span#id');
-            sectionTriSpan.forEach((span) => {
-              span.innerHTML = `&#8226;`;
-            })
-            if(this.colonneTri != ''){
-              if(this.triAsc){
-                sectionTri.querySelector('#'+this.colonneTri).innerHTML = `&#9650;`;
-              } else {
-                sectionTri.querySelector('#'+this.colonneTri).innerHTML = `&#9660;`;
-              }
-            }
-          } }" class="liste-btl_liste">
+                let champRecherche = document.querySelector('.cellier_recherche').value.toLowerCase();
+                let bouteillesFiltrees;
+                if (champRecherche != '') {
+                  bouteillesFiltrees = this.sauvegarde.filter(bouteille => bouteille.nom.toLowerCase().includes(champRecherche));
+                } else {
+                    bouteillesFiltrees = this.sauvegarde;
+                }
+            
+                if(this.colonneTri == 'note'){
+                  bouteillesFiltrees.sort((a, b) => {
+                    if(a[this.colonneTri] < b[this.colonneTri]) return this.triAsc?1:-1;
+                    if(a[this.colonneTri] > b[this.colonneTri]) return this.triAsc?-1:1;
+                    return 0;
+                  });
+                } else {
+                  bouteillesFiltrees.sort((a, b) => {
+                    const resultatTri = a[this.colonneTri].localeCompare(b[this.colonneTri]);
+                    if(resultatTri === 0) return 0;
+                    return this.triAsc ? resultatTri : -resultatTri;
+                  });
+                }
+              
+                this.bouteilles = bouteillesFiltrees;
+            } 
+        }" class="liste-btl_liste">
         
             <template x-if="bouteilles == '' && {{$bouteilles}} == ''">
                 <section class="liste-btl_vide">
@@ -83,10 +71,18 @@
                 <div class="formBtl_form">
                     <input @keyup="triage(bouteilles)" type="text" class="cellier_recherche" placeholder="Recherchez dans votre cellier">
                     <nav class="triage">
-                        <button @click="triage(bouteilles, 'nom')" class="btn"><span>Nom </span><span class="triage_fleche" id="nom">&#9660;</span></button>
-                        <button @click="triage(bouteilles, 'pays')" class="btn"><span>Pays </span><span class="triage_fleche" id="pays">&#9660;</span></button>
-                        <button @click="triage(bouteilles, 'type')" class="btn"><span>Type </span><span class="triage_fleche" id="type">&#9660;</span></button>
-                        <button @click="triage(bouteilles, 'note')" class="btn"><span>Note </span><span class="triage_fleche" id="note">&#9660;</span></button>
+                        <select id="tri-select" @change="triage(bouteilles)">
+                            <option value="">Trier par</option>
+                            <option value="nom">Nom</option>
+                            <option value="pays">Pays</option>
+                            <option value="type">Type</option>
+                            <option value="note">Note</option>
+                        </select>
+                        <select id="ordre-select" @change="triage(bouteilles)">
+                            <option value="">Ordre du tri</option>
+                            <option value="asc">Ascendant</option>
+                            <option value="desc">Descendant</option>
+                        </select>
                     </nav>
                 </div>
             </template>
