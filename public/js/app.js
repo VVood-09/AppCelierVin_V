@@ -23119,8 +23119,7 @@ function ajoutComment(){
  * TRY/CATCH pour réassyer lors d'échec et récupérer les erreurs
  * Fetch sur le Back-End pour Scraper la SAQ
  */
-async 
-function scraper() {
+async function scraper() {
   const url = window.location.href;
   const entete = {
     'Content-Type': 'application/json',
