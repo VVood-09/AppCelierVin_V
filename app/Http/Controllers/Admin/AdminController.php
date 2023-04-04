@@ -94,11 +94,31 @@ class AdminController extends Controller
         $pourcentageType = DB::table('liste_bouteilles')
                         ->join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
                         // ->select('bouteilles.type', DB::raw('SUM(liste_bouteilles.qte) * 100 / (SELECT SUM(qte) FROM liste_bouteilles) AS percentage'))
-                        ->select('bouteilles.type', DB::raw('SUM(liste_bouteilles.qte) as qte_some'), DB::raw('COUNT(*) as count'), DB::raw('SUM(liste_bouteilles.qte) * 100 / (SELECT SUM(qte) FROM liste_bouteilles) AS pourcentage'))
+                        ->select('bouteilles.type', DB::raw('SUM(liste_bouteilles.qte) as qte_somme'), DB::raw('COUNT(*) as count'), DB::raw('ROUND(SUM(liste_bouteilles.qte) * 100 / (SELECT SUM(qte) FROM liste_bouteilles), 2) AS pourcentage'))
                         ->groupBy('bouteilles.type')
                         ->get();
 
-        return view('admin.stats', ['stats'=>$stats, 'pourcentage'=>$pourcentageType]);
+
+
+        $bouteillePlusComment = DB::table('bouteilles')
+                        ->join('commentaires', 'bouteilles.id', '=', 'commentaires.bouteille_id')
+                        ->select('bouteilles.nom', DB::raw('COUNT(commentaires.id) as total'))
+                        ->groupBy('bouteilles.nom')
+                        ->orderBy('total', 'DESC')
+                        ->first();
+
+                           
+
+        $topBouteilles = DB::table('bouteilles')
+                        ->leftJoin('notes', 'bouteilles.id', '=', 'notes.bouteille_id')
+                        ->select('bouteilles.nom', DB::raw('COUNT(notes.bouteille_id) as total'), DB::raw('ROUND(AVG(notes.note), 2) as average'))
+                        ->groupBy('bouteilles.id', 'bouteilles.nom')
+                        ->having('total', '>', 0)
+                        ->orderBy('average', 'DESC')
+                        ->limit(5)
+                        ->get();
+
+        return view('admin.stats', ['stats'=>$stats, 'pourcentage'=>$pourcentageType, 'bouteilleComment'=>$bouteillePlusComment, 'topBouteilles'=>$topBouteilles]);
     }
 
      public function vins(){
