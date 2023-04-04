@@ -72,9 +72,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     </table>
                 </div>
 
-                <form 
-                
-                action="" enctype="multipart/form-data" method="post">
+                <form action="" enctype="multipart/form-data" method="post">
                 @csrf
                     <input type="hidden" name="id" x-ref="id" value="{{old('id')}}">
                     <input type="hidden" name="code_saq" x-ref="code_saq" value="{{old('code_saq')}}">
@@ -86,7 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     </select>
                     <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="1" required>
                     <div class="btnWrapper">
-                        <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
+                        <button type="button" @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
                         <button class="modal-button modal-button-confirm">Confirmer</button>
                     </div>
                     <span class="spanErrorModal"></span>

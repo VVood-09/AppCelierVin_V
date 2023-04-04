@@ -38,7 +38,11 @@
 
 .formBtl_search input{
     width: 100%;
+    border-radius: 20px;
+    padding-right: 30px;
 }
+
+  
 
 .formBtl_search form input, .formBtl_search form select{
     margin-top: 10px;
@@ -114,10 +118,7 @@
     max-height: 50vh;
 }
 
-.formBtl_search input{
-    border-radius: 20px;
-    padding-right: 30px;
-}
+
 
 .formBtl_search button img{
     width: 30px;
