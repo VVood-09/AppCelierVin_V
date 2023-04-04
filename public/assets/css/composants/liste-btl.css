@@ -27,7 +27,7 @@
 .liste-btl_liste{
     display: flex;
     flex-direction: column;
-    margin-top: var(--espacements-medium);
+    margin-top: var(--espacements-small);
     gap: var(--espacements-small);
     
 }
@@ -182,8 +182,8 @@
     display: flex;
     flex-direction: column;
     background:  var(--neutral);
-    gap: var(--espacements-small); 
-    padding: var(--espacements-small);
+    gap: var(--espacements-x_small); 
+    padding: var(--espacements-x_small);
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 4px;   
 }
@@ -209,10 +209,16 @@
 .liste-btl_info{
     display: flex;
     flex-direction: column;
-    gap: var(--espacements-small);
+    gap: var(--espacements-x_small);
     justify-content: space-between;
     width: 100%;
 
+}
+
+.liste-btl_info section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .liste-btl_tete{
     display: flex;
@@ -233,16 +239,18 @@
 
 .liste-btl_corps{
     display: flex;
-    gap: var(--espacements-x_small);
+    gap: var(--espacements-small);
 }
 
 .liste-btl_info_etoile {
-    font-size: 20px;
     display: flex;
-
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
 }
+
 .liste-btl_info_etoile svg{
-    width: 20px;
+    width: 17px;
 }
 
 .liste-btl_info{
@@ -256,19 +264,29 @@
 
 .liste-btl_info_bouteilles{
     display: flex;
-    justify-content: center;
-    gap: var(--espacements-medium);
+    /* justify-content: center; */
+    gap: var(--espacements-x_small);
 }
 
 .liste-btl_info_bouteilles svg{
-    width: 45px;
+    width: 40px;
 }
 
 .liste-btl_info_bouteilles input{
-    width: 50px;
+    width: 40px;
     border-radius: 50px;
     border: 1px solid #ccc;
     text-align: center;
- 
+    padding: 0;
+    color: black;
 }
 
+.liste-btl_vide > p {
+    text-align: center;
+    margin-bottom: var(--espacements-medium);
+}
+
+.liste-btl_vide > a {
+    display: block;
+    width: 100%;
+}

@@ -23,9 +23,16 @@
 @import "./composants/carte_commentaire.css";
 @import "./composants/note.css";
 @import "./composants/profil.css";
+@import "./composants/triage.css";
+@import "./composants/grid.css";
 
 
 /*-------- Import administration ---------*/
 @import "./admin/general_admin.css";
 @import "./admin/main_admin.css";
 @import "./admin/nav_admin.css";
+@import "./admin/pagination_admin.css";
+@import "./admin/stats.css";
+@import "./admin/scraper_admin.css";
+@import "./admin/pagination_admin.css";
+

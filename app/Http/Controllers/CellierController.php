@@ -70,6 +70,12 @@ class CellierController extends Controller
      */
     public function show(Cellier $cellier){
 
+        if(Auth::user()->id != $cellier->user_id){
+            return $this->index();
+        }
+
+        session(['cellier_actif' => $cellier->id]);
+
         $bouteilles = ListeBouteille::
             join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
             ->leftJoin('notes', function($join){
@@ -81,6 +87,9 @@ class CellierController extends Controller
             ->select('bouteilles.*', 'liste_bouteilles.qte', 'notes.note')
             ->get();
   
+            // $data = json_encode($bouteilles);
+            // return view('your_view', compact('data'));
+        $bouteilles = json_encode($bouteilles);
         return view('cellier.show', ['bouteilles' => $bouteilles, 'cellier'=>$cellier]);
     }
 

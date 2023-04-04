@@ -2,14 +2,34 @@
 .register_section{
     display: flex;
     flex-direction: column;
-   align-items: center;
-   margin-top: var(--espacements-large);
+    align-items: center;
+    margin-top: var(--espacements-large);
 }
 
 .register_form{
     display: flex;
     flex-direction: column;
     justify-content: center;
- 
-     margin-top: var(--espacements-medium);
+    margin-top: var(--espacements-medium);
+    width: 100%;
+}
+
+.register_form div+*{
+    margin-top: var(--espacements-small);
+}
+
+.register_form .lien{
+    display: flex;
+    gap: var(--espacements-x_small);
+    justify-content: flex-end;
+    margin: var(--espacements-x_small) 0;
+}
+
+.register_form .lien svg{
+    width: 15px;
+}
+
+.register_form button{
+   display: block;
+   width: 100%;
 }

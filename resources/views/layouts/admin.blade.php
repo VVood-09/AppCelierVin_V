@@ -29,8 +29,9 @@
                     <h1>Administration : {{ Auth::user()->name}}</h1>
                 </div>
                 <nav>
-                    <a href="{{ route('admin.membre.index') }}">Membres</a>
-                    <a href="#">Vins</a>
+                    <a href="{{ route('admin.membres.index') }}">Membres</a>
+                    <a href="{{ route('admin.vins.index') }}">Vins</a>
+                    <a href="{{ route('admin.stats') }}">Statistiques</a>
                     <a href="{{ route('scraper.index') }}">Scraper</a>
                     <a href="{{ route('logout') }}">Déconnexion</a>
                 </nav>

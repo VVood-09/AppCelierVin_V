@@ -6,13 +6,15 @@ html, body {
   scroll-behavior: smooth;
 }
 main{
-  margin: var(--espacements-medium) var(--espacements-small) var(--espacements-x_large);
+  margin: var(--espacements-medium) var(--espacements-small) var(--espacements-large_plus);
 }
 
 a{
   text-decoration: none;
   font-family: var(--font-base);
 }
+
+
 
 img{
   max-width: 100%;
@@ -52,9 +54,11 @@ details summary::marker {
   padding-bottom: var(--espacements-small);
   font-size: 15px;
   display: flex;
-
 }
 
+.retour:visited, .retour:active{
+  color: var(--accent);
+}
 .retour svg{
   display: inline;
   width: 20px;

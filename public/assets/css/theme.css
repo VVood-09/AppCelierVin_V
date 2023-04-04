@@ -4,6 +4,9 @@ font-family: 'Raleway', sans-serif; */
 
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@300;400&display=swap');
+
 
 
 :root {
@@ -12,7 +15,7 @@ font-family: 'Raleway', sans-serif; */
     Color palette
     */
         --primary: #181818;
-        --primary_fade: #181818f3;
+        --primary_fade: #181818f9;
         --secondary: white;
         --accent: #7E001E;
         --accent_fade: #7e001d9c;
@@ -33,6 +36,7 @@ font-family: 'Raleway', sans-serif; */
     --espacements-small:15px;
     --espacements-medium:30px;
     --espacements-large:60px;
+    --espacements-large_plus: 90px;
     --espacements-x_large:120px;
 
 

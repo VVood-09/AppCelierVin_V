@@ -52,12 +52,29 @@
     validateField(field) {
         const fieldErrors = {};
         let isValid = true;
+        fieldErrors[field] = ``;
 
         if (!this.formValues[field]) {
             fieldErrors[field] = `Le champ ${field} est obligatoire.`;
-            <!-- console.log(fieldErrors) -->
-            console.log(!this.formValues[field])
             isValid = false;
+        }
+
+        if (field == 'prix'){
+            console.log('prix')
+            fieldErrors[field] = ``;
+            if (!(/^\d+\s*\$?$/.test(prix.value))) {
+                            fieldErrors[field] = `Entrez un prix valide`;
+                            isValid = false;
+                        }
+        }
+
+        if (field == 'format'){
+            console.log('format')
+            fieldErrors[field] = ``;
+            if (!(/^\d+$/.test(format.value))) {
+                            fieldErrors[field] = `Entrez la quantité (sans écrire ml)`;
+                            isValid = false;
+                        }
         }
         
         this.errors = {...this.errors, ...fieldErrors};
@@ -76,20 +93,23 @@
         <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}" class="formBtl_file">
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{$bouteille->nom}}"
+        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}"
             x-model="formValues.nom" @blur="validateField('nom')"
+            id="nom"
         >
         <span x-text="errors.nom" class="textError"></span>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="prix" type="text" name="prix"  placeholder="Prix" value="{{$bouteille->prix}}"
+        <input x-ref="prix" type="text" name="prix"  placeholder="Prix" value="{{old('prix')}}"
             x-model="formValues.prix" @blur="validateField('prix')"
+            id="prix"
         />
         <span x-text="errors.prix" class="textError"></span>
 
         <span x-text="errors.recap" class="textError"></span>
         <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{$bouteille->pays}}"
             x-model="formValues.pays" @blur="validateField('pays')"
+            id="pays"
         />
         <span x-text="errors.pays" class="textError"></span>
 
@@ -108,7 +128,7 @@
 
         <span x-text="errors.recap" class="textError"></span>
         <input x-ref="format" type="text" id="format" name="format" step="0.01" min="0" value="{{$bouteille->format}}" placeholder="Quantité (en ml)"
-          x-model="formValues.format" @blur="validateField('format')"
+          x-model="formValues.format" @blur="validateField('format')" id="format"
         >
         <span x-text="errors.format" class="textError"></span>
 

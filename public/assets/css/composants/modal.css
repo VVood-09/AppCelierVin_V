@@ -2,37 +2,32 @@
   display: flex;
   flex-direction: column;
   background-color: var(--primary_fade);
- width: 100%;
- color: #fefefe;
- font-size: 18px;
- padding: 0 var(--espacements-medium);
- position: fixed; /* élément positionné de manière fixe */
- top: 0; /* position en haut de l'écran */
- left: 0; /* position à gauche de l'écran */
- width: 100%; /* largeur de l'écran */
- height: 100%; /* hauteur de l'écran */
- justify-content: center; /* centrer horizontalement */
- align-items: center; /* centrer verticalement */
-  z-index: 10;
-
+  width: 100%;
+  color: #fefefe;
+  font-size: 18px;
+  padding: 0 var(--espacements-large);
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  justify-content: center; 
+  align-items: center;
 }
 
-
-
-
-
-.modal div{
-  display: flex;
+/* .modal div{
+   display: flex; 
   justify-content: center;
   align-items: center;
 
-}
+} */
+
 .modal>button:first-of-type{
   padding: var(--espacements-x_small);
   position: absolute;
   top:0;
   right:0 ;
-  margin-top:var(--espacements-x_large) ;
+  margin-top: 100px ;
   margin-right: var(--espacements-small);
 }
 
@@ -42,38 +37,34 @@
   height: 35px;
 }
 
-.modal div:first-of-type{
+.modal> div:first-of-type{
   text-align: center;
   font-size: 25px;
-  margin-bottom: var(--espacements-large);
-}
-.modal_text{
-  margin-top:var(--espacements-large);
-  
+  margin-bottom: var(--espacements-medium);
 }
 
-.modal .formBtl_form{
-  margin: 0;
-}
+
+
+/* .modal .formBtl_form{
+  margin-inline: var(--espacements-large);
+}  */
+
 .modal_btn-add div .formBtl_form .modal_commentaire-textarea{
   color: black;
   height: 150px;
   padding: var(--espacements-small);
-  margin-top: var(--espacements-x_large);
+  margin-top: var(--espacements-small);
   margin-bottom: var(--espacements-large);
 }
 
-
- .modal_btn-add{
-position: absolute;
-right: 0;
-top:5px;
+.modal_btn-add{
+  position: absolute;
+  right: 0;
+  top:5px;
 } 
 
-
-
 .modal_btn-add svg{
-   width: 30px;
+  width: 35px;
 }
 
 .modal_btn-delete{
@@ -82,15 +73,10 @@ top:5px;
 }
 
 .modal_confirm-btn{
-  display: flex;
+  display: flex; 
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
-  padding: 0 30px;
-}
-.modal_confirm-btn .formBtl_form {
-  width:initial ;
-
 
 }
 
@@ -99,17 +85,16 @@ top:5px;
   height: 35px;
 }
 
-.modal_btn-delete .modal .modal_confirm-btn{
+/* .modal_btn-delete .modal .modal_confirm-btn{
  display: flex;
  flex-direction: row;
   margin-top: var(--espacements-small);
   justify-content: space-between;
-}
+} */
 
 .modal_btn-delete>.btn-reverse{
   width: 100%;
 }
-
 
 
 .modal_confirm-btn .btn{
@@ -117,14 +102,12 @@ top:5px;
 }
 
 
-
-
-.modal_btn-delete .modal_confirm-btn{
+/* .modal_btn-delete .modal_confirm-btn{
   display: flex;
  align-items: center;
  justify-content: center;
  
-}
+} */
 
 .modal-button-confirm{
   padding: var(--espacements-small);
@@ -138,48 +121,46 @@ top:5px;
 } */
 
 .modal-selector {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-  }
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
   
-  .modal-selector-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
+.modal-selector-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
   
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
   
-  .close:hover, .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.close:hover, .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
   
-  .modal-button {
-    display: flex;
-    margin: auto;
-    width: 75%;
-    justify-content: center;
+.modal-button {
+  display: flex;
+  margin: auto;
+  width: 75%;
+  justify-content: center;
 }
 
-
-  
-  .modal-button-confirm {
+.modal-button-confirm {
     background-color: var(--accent);
 }
 
@@ -201,4 +182,63 @@ body.pas-defilement {
 
 .modal_display-none{
   display: none;
+}
+
+.modal_commentaire div:first-of-type{
+  margin-top: var(--espacements-x_large);
+  margin-bottom: var(--espacements-medium);
+}
+
+.modal .modal_btn{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.modal-SAQ{
+  position: fixed;
+  inset: 0;
+  background-color: var(--primary_fade);
+  padding: 80px var(--espacements-small) 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--secondary);
+  overflow: auto;
+  max-height: 95vh;
+}
+
+.modal-SAQ .btnWrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--espacements-small);
+}
+
+.modal-SAQ select{
+  width: 100%;
+  border-radius: 20px;
+  color: black;
+}
+.modal-SAQ .btnWrapper>*  {
+    max-width: 40%;
+    margin: 0;
+}
+
+.modal-SAQ input {
+   color: black;
+}
+
+
+.modal-qte_form{
+  margin-top: var(--espacements-medium);
+  margin-bottom: var(--espacements-large);
+}
+
+.modal-qte_form svg, .modal-qte_form input{
+  width: 75px;
+}
+
+.modal-qte_form input{
+  font-size: 25px;
+  margin-inline: var(--espacements-small);
 }

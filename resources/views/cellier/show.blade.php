@@ -14,33 +14,91 @@
     </div>
 
    
-    <section x-data="{ items: {{$bouteilles}} }" class="liste-btl_liste">
-        <div>
-            <p>Assortir par :</p>
-            <button @click="assortir(items, 'nom')">Nom</button>
-            <button @click="assortir(items, 'pays')">Pays</button>
-            <button @click="assortir(items, 'type')">Type</button>
-            <button @click="assortir(items, 'note')">Note</button>
-        </div>
         
-        <template x-if="items == ''">
-            <div>Aucune bouteille dans le cellier</div>
-        </template>
+
+    <section x-data="{ bouteilles: JSON.parse('{{ $bouteilles }}'),
+        triage(bouteilles, col){
+            /**
+            * Fonction pour trier les bouteilles dans le cellier
+            * https://www.raymondcamden.com/2022/05/02/building-table-sorting-and-pagination-in-alpinejs
+            * @param {array} bouteilles 
+            * @param {string} col sur quoi trier les bouteilles ('nom', 'pays', 'type')
+        */
+            if(this.sauvegarde == undefined) {
+                this.sauvegarde = bouteilles;
+        }
+
+            if(this.triAsc == undefined){
+              this.triAsc = true;
+            }
+          
+            if(this.colonneTri === col) this.triAsc = !this.triAsc;
+            if(col != undefined){
+              this.colonneTri = col;
+            } else {
+                this.colonneTri = '';
+            }
+          
+            let champRecherche = document.querySelector('.cellier_recherche').value.toLowerCase();
+            let bouteillesFiltrees;
+            if (champRecherche != '') {
+          bouteillesFiltrees = this.sauvegarde.filter(bouteille => bouteille.nom.toLowerCase().includes(champRecherche));
+            } else {
+                bouteillesFiltrees = this.sauvegarde;
+            }
+          
+            if(this.colonneTri !== ''){
+              if(this.colonneTri == 'note'){
+                bouteillesFiltrees.sort((a, b) => {
+                  if(a[this.colonneTri] < b[this.colonneTri]) return this.triAsc?1:-1;
+                  if(a[this.colonneTri] > b[this.colonneTri]) return this.triAsc?-1:1;
+              return 0;
+                });
+              } else {
+                bouteillesFiltrees.sort((a, b) => {
+                  const resultatTri = a[this.colonneTri].localeCompare(b[this.colonneTri]);
+                  if(resultatTri === 0) return 0;
+                  return this.triAsc ? resultatTri : -resultatTri;
+            });
+              }
+            };
+          
+            this.bouteilles = bouteillesFiltrees;
+            
+            // La gestion de l'icône dans les tris
+            const sectionTri = document.querySelector('.triage');
+            const sectionTriSpan = sectionTri.querySelectorAll('span#id');
+            sectionTriSpan.forEach((span) => {
+              span.innerHTML = `&#8226;`;
+            })
+            if(this.colonneTri != ''){
+              if(this.triAsc){
+                sectionTri.querySelector('#'+this.colonneTri).innerHTML = `&#9650;`;
+              } else {
+                sectionTri.querySelector('#'+this.colonneTri).innerHTML = `&#9660;`;
+              }
+            }
+          } }" class="liste-btl_liste">
     
-            <template x-for="(item, cle) in items">
+            <template x-if="bouteilles == '' && {{$bouteilles}} == ''">
+                <section class="liste-btl_vide">
+                    <p>Aucune bouteille dans le cellier.</p>
+                    <a href="{{ route('bouteille.create')}}" class="btn">Ajouter une bouteille</a>
+                </section>
+        </template>
+        
+            <template x-if="items == ''">
+                <div>Aucune bouteille dans le cellier</div>
+            </template>
+    
+            <template x-for="(item, cle) in bouteilles">
                 <article class="liste-btl_carte">
                     <div class="liste-btl_tete">
                         <div class="liste-btl_tete_pays">
                             <svg enable-background="new 0 0 48 48" height="48px" version="1.1" viewBox="0 0 48 48" width="48px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Expanded"><g><g><path d="M22.007,35c-9.374,0-17-7.626-17-17s7.626-17,17-17s17,7.626,17,17S31.381,35,22.007,35z M22.007,3     c-8.271,0-15,6.729-15,15s6.729,15,15,15s15-6.729,15-15S30.278,3,22.007,3z"/></g><g><path d="M22.007,39.99c-5.634,0-11.268-2.145-15.557-6.433l1.414-1.414c7.799,7.797,20.487,7.798,28.284,0     c7.798-7.798,7.798-20.487,0-28.285l1.414-1.414c8.578,8.578,8.578,22.535,0,31.113C33.274,37.845,27.641,39.99,22.007,39.99z"/></g><g><rect height="4.05" width="2" x="20.007" y="38.976"/></g><g><rect height="4.05" width="2" x="22.007" y="38.976"/></g><g><path d="M36.973,48H7.04l2.403-1.8c3.668-2.748,8.013-4.2,12.563-4.2s8.895,1.452,12.562,4.2L36.973,48z M13.547,46h16.92     c-2.617-1.315-5.49-2-8.46-2S16.163,44.685,13.547,46z"/></g><g><path d="M5.743,35.264c-0.256,0-0.512-0.098-0.707-0.293c-0.391-0.391-0.391-1.023,0-1.414l2.828-2.828     c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414L6.45,34.971C6.255,35.166,5.999,35.264,5.743,35.264z"/></g><g><path d="M35.441,5.565c-0.256,0-0.512-0.098-0.707-0.293c-0.391-0.391-0.391-1.023,0-1.414l2.828-2.828     c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414l-2.828,2.828C35.953,5.468,35.697,5.565,35.441,5.565z"/></g></g></g></svg>
                             <p x-text="item.pays"></p>
                         </div>                   
-                        <span class="liste-btl_info_etoile">
-                            @for($i = 1; $i <= 5; $i++)
-                            <svg :class="{'note_jaune': {{$i}} <= item.note, 'note_vide': {{$i}} > item.note}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            @endfor
-                        </span>                       
+                        <p x-text="item.type"></p>      
                     </div>
 
                     <div class="liste-btl_corps">
@@ -58,32 +116,32 @@
                         <div class="liste-btl_info">
                            <div  class="liste-btl_info_nom">
                                 <a :href="`{{route('bouteille.show', [$cellier->id, ''])}}/${item.id}`">
-                                    <strong x-text="item.nom"></strong> 
-                                    <small x-text="item.type"></small>
-                                    <small> - </small>
-                                    <small x-text="item.format"></small>
-                                    <small> ml</small>
+                                    <strong x-text="item.nom"></strong>
                                 </a>
                             </div>
 
-                           
-                            <div  class="liste-btl_info_bouteilles" x-data="{counter : item.qte, idB : item.id, idC : {{$cellier->id}} }" x-on:change="changeQte" title="Change quantité de bouteille" onsubmit="return false">
+                            {{-- Avec l'utilisation de Alpine.js pour Sort() et de Laravel, la syntaxe a employé limite la manière de faire les choses. Dans le cas que la composante Quantite doit être usé avec un object contenant les informations de `item` provenant d'alpine `x-data`, `item` n'est pas un objet transferable dans la composante donc il doit être créé manuellement avec les informations de $bouteilles. `item` ne peut pas non plus être mis dans une variable pour php puisque c'est du JSON front-end. --}}
+                            {{-- Cette boucle est trop exigeante sur des grosses liste --}}
+                            {{-- @forelse($bouteilles as $bouteille)
+                            <template x-if="item.nom.toString() == `{{$bouteille->nom}}`">
+                                @php
+                                $item = (object)array('qte' => $bouteille->qte, 'id' => $bouteille->id);
+                                @endphp
+                                <x-quantite :bouteille="$item" :cellier="$cellier"/>
+                            </template>
+                            @empty
+                            @endforelse --}}
+                            {{-- Malheureusement, 
+                                https://gist.github.com/jasonlbeggs/1341e7367c0dc69ac64ef2140d0f0591
+                                ne semble pas fonctionner. --}}
+                            {{-- <x-quantite ::bouteille="item" :cellier="$cellier"/> --}}
+                            <form  class="liste-btl_info_bouteilles" x-data="{counter : item.qte, idB : item.id, idC : {{$cellier->id}} }" x-on:change="changeQte" title="Change quantité de bouteille" onsubmit="return false">
                                 <button @click="counter--; if(counter <0){counter = 0}" x-on:click="changeQte" aria-label="Enlever quantité"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2"><path d="M16 29a13 13 0 1 1 13-13 13 13 0 0 1-13 13Zm0-24a11 11 0 1 0 11 11A11 11 0 0 0 16 5Z" fill="#7e001e" class="fill-000000"></path><path d="M22 17H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2Z" fill="#7e001e" class="fill-000000"></path></g><path d="M0 0h32v32H0z" fill="none"></path></svg></button>
-
-                    
-
-                                <x-modal_qte-zero route="{{route('bouteille.show', [$cellier->id, ''])}}/${item.id}">
-                                    <x-slot  name="triggerText">
-                                    <svg viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill="#181818" fill-rule="evenodd" class="fill-333333"><path d="M29.98 6.819A2.99 2.99 0 0 0 27 4.003h-3V3.001a3 3 0 0 0-3-3H11a3 3 0 0 0-3 3v1.001H5a2.99 2.99 0 0 0-2.981 2.816H2v2.183a2 2 0 0 0 2 2v17a4 4 0 0 0 4 4h16a4 4 0 0 0 4-4v-17a2 2 0 0 0 2-2V6.819h-.02zM10 3.002a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1H10v-1zm16 25c0 1.102-.898 2-2 2H8c-1.103 0-2-.898-2-2v-17h20v17zm2-20.001v1H4V7.002a1 1 0 0 1 1-1h22a1 1 0 0 1 1 1v.999z"></path><path d="M9 28.006h2a1 1 0 0 0 1-1v-13a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1zm0-14.001h2v13H9v-13zM15 28.006h2a1 1 0 0 0 1-1v-13a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1zm0-14.001h2v13h-2v-13zM21 28.006h2a1 1 0 0 0 1-1v-13a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1zm0-14.001h2v13h-2v-13z"></path></g></svg>
-                                    </x-slot>
-                                    Êtes-vous certain de vouloir retirer cette bouteille de votre cellier' ?
-                                </x-modal_qte-zero>
-
                             
                                 <input type="number" x-on:change="changeQte" x-model.number="counter" min="0" aria-label="Quantité">
                                                    
                                 <button @click="counter++" x-on:click="changeQte" aria-label="Ajouter quantité"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2"><path d="M16 29a13 13 0 1 1 13-13 13 13 0 0 1-13 13Zm0-24a11 11 0 1 0 11 11A11 11 0 0 0 16 5Z" fill="#7e001e" class="fill-000000"></path><path d="M16 23a1 1 0 0 1-1-1V10a1 1 0 0 1 2 0v12a1 1 0 0 1-1 1Z" fill="#7e001e" class="fill-000000"></path><path d="M22 17H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2Z" fill="#7e001e" class="fill-000000"></path></g><path d="M0 0h32v32H0z" fill="none"></path></svg></button>
-                                </div>
+                            </form>
                         </div>
                     </div>
                 </article>

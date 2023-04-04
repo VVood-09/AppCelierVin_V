@@ -54,6 +54,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('cellier/{cellier}/modif', [CellierController::class, 'destroy'])->name('cellier.delete');
 
 
+    //Route::post('changeQte', [CellierController::class, 'changeQte']);
+    
 // Route des Bouteilles
 
     Route::get('ajout-bouteille', [VinController::class, 'create'])->name('bouteille.create');
@@ -66,7 +68,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('cellier/{cellier}/bouteille/{bouteille}/modif', [VinController::class, 'delete'])->name('bouteille.delete');
     Route::delete('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'destroy'])->name('bouteille.destroy');
 
-    // Route::put('changeQte', [CellierController::class, 'changeQte']);
 
 // Route des commentaires
     // Route::get('cellier/{cellier}/bouteille/{bouteille}', [CommentaireController::class, 'create'])->name('commentaire.create');
@@ -111,9 +112,14 @@ Route::group(['middleware' => 'auth'], function(){
     ], function(){   
         // Route pour l'administration
         Route::get('', [AdminController::class, 'index'])->name('admin.index');
-        Route::get('/scraper', [ScraperController::class, 'scraper'])->name('scraper.index');
-        Route::get('/membres', [AdminUtilisateurController::class, 'index'])->name('admin.membre.index');
-        Route::get('/membres/{utilisateur}', [AdminUtilisateurController::class, 'show'])->name('admin.membre.show');
+        Route::get('/statistiques', [AdminController::class, 'stats'])->name('admin.stats');
+        Route::get('/vins', [AdminController::class, 'vins'])->name('admin.vins.index');
+        Route::get('/scraper', [ScraperController::class, 'index'])->name('scraper.index');
+        Route::post('/scraper', [ScraperController::class, 'pages']);
+        Route::put('/scraper', [ScraperController::class, 'scraper']);
+        Route::get('/membres', [AdminUtilisateurController::class, 'index'])->name('admin.membres.index');
+        Route::get('/membres/{utilisateur}', [AdminUtilisateurController::class, 'show'])->name('admin.membres.show');
         Route::put('/membres/{utilisateur}', [AdminUtilisateurController::class, 'update']);
+        Route::delete('/membres/{utilisateur}', [AdminUtilisateurController::class, 'destroy'])->name('admin.membres.delete');
     });
 });
