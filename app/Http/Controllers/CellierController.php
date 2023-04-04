@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cellier;
 use App\Models\ListeBouteille;
+use App\Models\Bouteille;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
@@ -135,6 +136,7 @@ class CellierController extends Controller
 
 
 
+
      /**
      * Display the specified resource.
      *
@@ -143,6 +145,20 @@ class CellierController extends Controller
      */
     public function changeQte(Request $request){
         DB::statement("UPDATE liste_bouteilles SET qte = $request->qte, updated_at = now() WHERE bouteille_id = $request->bouteille AND cellier_id = $request->cellier ;");
+
+        $qteChange = ListeBouteille::select('qte')
+                            ->where('cellier_id', $request->cellier)
+                            ->where('bouteille_id', $request->bouteille)
+                            ->get();
+                          
+
+        $data = [
+                    'qte' => $qteChange[0]["qte"],
+                    'cellier' => $request->cellier,
+                    'bouteille' => $request->bouteille,
+                ];
+
+        return $data;
         
     }
 

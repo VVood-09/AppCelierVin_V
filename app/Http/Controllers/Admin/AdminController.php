@@ -101,6 +101,8 @@ class AdminController extends Controller
         return view('admin.stats', ['stats'=>$stats, 'pourcentage'=>$pourcentageType]);
     }
 
+
+
      public function vins(){
 
         $bouteilles= Bouteille::orderBy('nom', 'ASC')
@@ -123,12 +125,12 @@ class AdminController extends Controller
                 $bouteille->moyenne = 0;
             }
 
-            //nombre de commentaires
+            //nombre de commentaires pour une bouteille donnée
             $bouteille->nbComments = Commentaire::select()
                     ->where('bouteille_id', $bouteille->id)
                     ->count();
             
-            //nombre de commentaires
+            //nombre de celliers qui ont une bouteille donnée
             $bouteille->nbCelliers = ListeBouteille::select()
                     ->where('bouteille_id', $bouteille->id)
                     ->count();

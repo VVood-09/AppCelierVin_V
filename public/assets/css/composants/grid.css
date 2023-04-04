@@ -1,7 +1,7 @@
 .grid_stat{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 30px;
 }
 .grid_carte{
   background-color:  var(--neutral);
@@ -9,6 +9,7 @@
   border: 2px solid var(--accent);
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .grid_title{
@@ -24,8 +25,14 @@
 }
 .grid_carte-info{
   align-self: center;
-  margin-top: var(--espacements-medium);
+  margin-top: var(--espacements-x_small);
+  margin-bottom: var(--espacements-small);
   font-size: 40px;
   font-weight: bold;
   border-bottom: 2px solid var(--accent);
+}
+.grid_stat-btlGlobal{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
