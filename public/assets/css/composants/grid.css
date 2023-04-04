@@ -1,0 +1,31 @@
+.grid_stat{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.grid_carte{
+  background-color:  var(--neutral);
+  border-radius: 10px;
+  border: 2px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+}
+
+.grid_title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+.grid_carte-label{
+ 
+  margin: var(--espacements-small);
+}
+.grid_carte-info{
+  align-self: center;
+  margin-top: var(--espacements-medium);
+  font-size: 40px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--accent);
+}

@@ -19,23 +19,110 @@
             
             <div class="grid">
                 <div x-show="tab == 0" x-cloak>
-                    <h4>First content</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam quo odit veritatis distinctio mollitia error, delectus minima exercitationem vitae minus maiores sapiente praesentium ut velit impedit beatae commodi soluta magni!</p>
+                    <div class="grid_title">
+                        <h4 >Statistiques sur les membres</h4>
+                    </div>
+
+                     
+                    <div class="grid_stat">
+                       
+                        <div class="grid_carte">
+                            <p class="grid_carte-label">Nombre de membres total</p>
+                            <p class="grid_carte-info">{{$stats->nbUtilisateurs}}</p>
+                        </div>
+                        <div class="grid_carte">
+                            <p class="grid_carte-label">Nombre de membre inscrit depuis moins d'un mois</p>
+                            <p class="grid_carte-info">{{$stats->utilisateursUnMois}}</p>
+                        </div>
+                        <div class="grid_carte">
+                            <p class="grid_carte-label">Nombre de membre inscrit depuis moins de 6 mois</p>
+                            <p class="grid_carte-info">{{$stats->utilisateursSixMois}}</p>
+                        </div>
+                        <div class="grid_carte">
+                            <p class="grid_carte-label">Nombre de celliers en moyenne  par membre</p>
+                            <p class="grid_carte-info">{{$stats->celliersUtilisateurs}}</p>
+                        </div>
+                        <div class="grid_carte">
+                            <p class="grid_carte-label">Nombre de bouteille en moyenne par membre</p>
+                            <p class="grid_carte-info">{{$stats->bouteillesUtilisateurs}}</p>
+                        </div>
+                    </div>
+
                 </div>
                 <div x-show="tab == 1" x-cloak>
-                    <h4>Second content</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam quo odit veritatis distinctio mollitia error, delectus minima exercitationem vitae minus maiores sapiente praesentium ut velit impedit beatae commodi soluta magni!</p>
+                     <div class="grid_title">
+                         <h4>Statistiques sur les Vins</h4>
+                     </div>     
+                     <div class="grid_stat">
+
+                       
+                        <div>
+                            <div  class="grid_carte">
+                                <p class="grid_carte-label">Nombre de bouteille enregistrer au total</p>
+                                <p class="grid_carte-info">{{$stats->nbBouteilles}}</p>
+                            </div>
+                            <div  class="grid_carte">
+                                <p class="grid_carte-label">Nombre de bouteilles différentes enregistrées dans un cellier</p>
+                                <p class="grid_carte-info">{{$stats->nbListeB}}</p>
+                            </div>
+                        </div>    
+                        @foreach($pourcentage as $pourcentage)
+                        <div class="grid_carte">
+                            <p>{{$pourcentage->type}}</p>
+                            <p class="grid_carte-label">Nombre d'entrée de bouteille</p>
+                            <p>{{$pourcentage->count}}</p>
+                            <p class="grid_carte-label">Quantités de bouteilles total enregistrées</p>
+                            <p>{{$pourcentage->qte_some}}</p>
+                            <p class="grid_carte-label">{{$pourcentage->pourcentage}}% des bouteilles enregistrées dans les celliers des utilisateurs sont des {{$pourcentage->type}}s. </p>
+
+                        </div>
+                         @endforeach
+                     </div>
                 </div>
+
                 <div x-show="tab == 2" x-cloak>
-                    <h4>Third content</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam quo odit veritatis distinctio mollitia error, delectus minima exercitationem vitae minus maiores sapiente praesentium ut velit impedit beatae commodi soluta magni!</p>
-                </div>
-                    <div x-show="tab == 3" x-cloak>
-                        <h4>Fourth content</h4>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam quo odit veritatis distinctio mollitia error, delectus minima exercitationem vitae minus maiores sapiente praesentium ut velit impedit beatae commodi soluta magni!</p>
+                    <div class="grid_title">
+                        <h4>Statistiques sur les Commentaires</h4>
+                    </div>
+
+                     <div class="grid_stat">
+                        
+                        <div class="grid_carte">
+                            <p class="grid_carte-label">Nombre de commentaires laissé au total</p>
+                            <p>{{$stats->nbCommentaires}}</p>
+                        </div>
+                        <div class="grid_carte">
+                            <p class="grid_carte-label">Nombre de commentaires laissé en moyenne par utilisateur</p>
+                            <p>{{$stats->commentairesUtilisateurs}}</p>
+                        </div>
+                        <div class="grid_carte">
+                            <p class="grid_carte-label">Le vin ayant le plus de commentaire</p>
+                            <p class="grid_carte-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil voluptatibus pariatur hic, labore sequi magnam sunt maxime, voluptas in, fugiat sit quasi repellat. Sapiente est, accusantium earum perferendis aliquam ab.</p>
+                        </div>
                     </div>
                 </div>
-                
+
+                    <div x-show="tab == 3" x-cloak>
+                        <div class="grid_title">
+                             <h4>Statistiques sur les notes d'appréciation</h4>
+                        </div>
+                        <div class="grid_stat">
+                            <div class="grid_carte">
+                                <p class="grid_carte-label">Nombre de notes laissée au total</p>
+                                <p class="grid_carte-info">{{$stats->nbNotes}}</p>
+                            </div>
+                            <div class="grid_carte">
+                                <p class="grid_carte-label">Nombre de notes laissé en moyenne par utilisateur</p>
+                                <p class="grid_carte-info">{{$stats->notesUtilisateurs}}</p>
+                            </div>
+                            <div class="grid_carte">
+                                 <p class="grid_carte-label">Le vin (ou top 5) ayant la note moyenne la plus elever</p>
+                                 <p class="grid_carte-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quos aut neque recusandae aperiam veniam maiores, nam eligendi id illum, ipsa et dicta porro numquam hic nulla voluptas similique laborum.</p>
+                            </div>
+                           
+                        </div>
+                    </div>
+            </div>
             </article>
         </div>
         

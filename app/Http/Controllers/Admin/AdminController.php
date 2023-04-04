@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\cellier;
+use App\Models\Cellier;
+use App\Models\User;
 use App\Models\Bouteille;
 use App\Models\Commentaire;
 use App\Models\ListeBouteille;
 use App\Models\Note;
+use App\Models\Stats;
+
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -19,8 +24,81 @@ class AdminController extends Controller
 
     
     public function stats(){
+  
+        $date = Carbon::now();
+        $stats = new Stats();
 
-        return view('admin.stats');
+
+        $stats->nbCellier = Cellier::all()
+                        ->count();
+
+        
+        $stats->nbUtilisateurs = User::all()
+                        ->count();
+        
+
+        $stats->nbBouteilles = Bouteille::all()
+                        ->count();  
+                        
+                        
+        $stats->nbListeB = ListeBouteille::all()
+                        ->count();
+
+
+        $stats->nbNotes = Note::all()
+                        ->count();
+        
+
+        $stats->nbCommentaires = Commentaire::all()
+                        ->count();
+        
+
+        $stats->celliersUtilisateurs = $stats->nbCellier / $stats->nbUtilisateurs;
+        $stats->celliersUtilisateurs = round($stats->celliersUtilisateurs, 2);
+
+
+        $stats->bouteillesUtilisateurs = $stats->nbListeB / $stats->nbUtilisateurs;
+        $stats->bouteillesUtilisateurs = round($stats->bouteillesUtilisateurs, 2);
+
+
+        $stats->commentairesUtilisateurs = $stats->nbCommentaires / $stats->nbUtilisateurs;
+        $stats->commentairesUtilisateurs = round($stats->commentairesUtilisateurs, 2);
+
+        $stats->notesUtilisateurs = $stats->nbNotes / $stats->nbUtilisateurs;
+        $stats->notesUtilisateurs = round($stats->notesUtilisateurs, 2);
+
+        $dateUnMois = $date->subMonth(1);
+        $stats->utilisateursUnMois = User::all()
+                            ->where('created_at', '>=', $dateUnMois)
+                            ->count();
+
+
+        $dateSixMois = $date->subMonth(6);
+        $stats->utilisateursSixMois = User::all()
+                            ->where('created_at', '>=', $dateSixMois)
+                            ->count();
+
+  
+        // $pourcentageVins = DB::table('bouteilles')
+        //                     ->select('type', DB::raw('COUNT(*) * 100 / (SELECT COUNT(*) FROM bouteilles) AS pourcentage'))
+        //                     ->groupBy('type')
+        //                     ->get();
+
+        // $pourcentageNb = DB::table('liste_bouteilles')
+        //                 ->join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
+        //                 ->select('bouteilles.type', DB::raw('COUNT( liste_bouteilles.bouteille_id) as count'), DB::raw('COUNT( liste_bouteilles.bouteille_id) * 100 / (SELECT COUNT( bouteille_id) FROM liste_bouteilles) AS pourcentage'))
+        //                 ->groupBy('bouteilles.type')
+        //                 ->get();
+
+
+        $pourcentageType = DB::table('liste_bouteilles')
+                        ->join('bouteilles', 'liste_bouteilles.bouteille_id', '=', 'bouteilles.id')
+                        // ->select('bouteilles.type', DB::raw('SUM(liste_bouteilles.qte) * 100 / (SELECT SUM(qte) FROM liste_bouteilles) AS percentage'))
+                        ->select('bouteilles.type', DB::raw('SUM(liste_bouteilles.qte) as qte_some'), DB::raw('COUNT(*) as count'), DB::raw('SUM(liste_bouteilles.qte) * 100 / (SELECT SUM(qte) FROM liste_bouteilles) AS pourcentage'))
+                        ->groupBy('bouteilles.type')
+                        ->get();
+
+        return view('admin.stats', ['stats'=>$stats, 'pourcentage'=>$pourcentageType]);
     }
 
      public function vins(){

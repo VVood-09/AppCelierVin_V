@@ -56,7 +56,7 @@
                         @endforeach
                     </select>
                     <span x-text="errors.recap" class="textError"></span>
-                    <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('qte')}}">
+                    <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" max="9999999999" value="{{old('qte')}}">
 
                     <div x-text="errors.quantite" class="textError"></div>
 

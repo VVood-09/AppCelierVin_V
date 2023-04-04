@@ -139,11 +139,11 @@ class VinController extends Controller
         foreach($comments as $comment){
             $date = $comment->created_at;
     
-            $datetime = new \DateTime($date);
+            $date = new \DateTime($date);
 
-            $date_formate = $datetime->format('d/m/Y');
+            $date_format = $date->format('d/m/Y');
                 
-            $comment->created_at_format = $date_formate;
+            $comment->created_at_format = $date_format;
                
         }
 
