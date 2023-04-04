@@ -71,17 +71,17 @@
   justify-content: flex-start;
 }
 
-/* sert a faire la ligne rouge  dans les info */
+/* sert a faire la ligne noire  dans les info */
 .btl_carte-espaceur{
   width: 30%;
   background-color: var(--primary);
-  height: 5px;
+  height: 2px;
 }
 
 .btl_carte-espaceur-large{
   width: 50%;
   background-color: var(--primary);
-  height: 5px;
+  height: 2px;
 }
   
 .btl_carte-bullet_info div:first-of-type .btl_carte-espaceur{

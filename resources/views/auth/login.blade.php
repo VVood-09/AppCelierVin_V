@@ -63,14 +63,14 @@
             <div>
 
                 <x-input x-ref="email" @blur="validateField('email')" placeholder='Courriel' 
-                id="email" class="block mt-1 w-full" type="email" 
+                id="email"  type="email" 
                 name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus />
                 <span x-text="errors.email" class="textError"></span>
 
             </div>
 
             <div class="">
-                <x-input x-ref="password"  @blur="validateField('password')" placeholder='Mot de passe' id="password" class="block mt-1 w-full" type="password" value="{{old('password')}}" name="password" x-model="formValues.password" required autocomplete="current-password" />
+                <x-input x-ref="password"  @blur="validateField('password')" placeholder='Mot de passe' id="password"  type="password" value="{{old('password')}}" name="password" x-model="formValues.password" required autocomplete="current-password" />
                 <span x-text="errors.password" class="textError"></span>
 
             </div>

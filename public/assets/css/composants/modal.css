@@ -52,6 +52,10 @@
 
 .modal_btn-add svg{
   width: 35px;
+
+}
+.modal_btn-add>button{
+  padding: 0;
 }
 
 .modal_btn-delete{

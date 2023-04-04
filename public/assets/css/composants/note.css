@@ -6,6 +6,7 @@
 .note_vide {
     color: white;
     stroke: black;
+    padding: 0;
 }
 
 .note_hover {

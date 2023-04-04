@@ -55,7 +55,7 @@
                      <p>{{$bouteille->prix}}$</p>
                 </div>
                 <div>
-                     <p>{{$bouteille->format}}</p>
+                     <p>{{$bouteille->format}} ml</p>
                      <span class="btl_carte-espaceur-large"></span>
                 </div>
             </div>
