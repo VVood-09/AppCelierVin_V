@@ -56,24 +56,29 @@
                      <div class="grid_stat">
 
                        
-                        <div>
+                        <div class="grid_stat-btlGlobal">
                             <div  class="grid_carte">
-                                <p class="grid_carte-label">Nombre de bouteilledans la base de données</p>
+
+                                <p class="grid_carte-label">Nombre de bouteilles dans la base de données</p>
                                 <p class="grid_carte-info">{{$stats->nbBouteilles}}</p>
                             </div>
                             <div  class="grid_carte">
                                 <p class="grid_carte-label">Nombre de bouteilles enregistrées dans un cellier</p>
+
                                 <p class="grid_carte-info">{{$stats->nbListeB}}</p>
                             </div>
                         </div>    
                         @foreach($pourcentage as $pourcentage)
                         <div class="grid_carte">
-                            <p>{{$pourcentage->type}}</p>
+                            <p class="grid_carte-info">{{$pourcentage->type}}</p>
                             <p class="grid_carte-label">Nombre d'entrée de bouteille</p>
-                            <p>{{$pourcentage->count}}</p>
+                            <p class="grid_carte-info">{{$pourcentage->count}}</p>
                             <p class="grid_carte-label">Quantités de bouteilles total enregistrées</p>
-                            <p>{{$pourcentage->qte_somme}}</p>
-                            <p class="grid_carte-label">{{$pourcentage->pourcentage}}% des bouteilles enregistrées dans les celliers des utilisateurs sont des {{$pourcentage->type}}s. </p>
+
+                            <p class="grid_carte-info">{{$pourcentage->qte_somme}}</p>
+                            <p class="grid_carte-label">Pourcentage des bouteilles enregistrées dans les celliers des utilisateurs</p>
+                            <p class="grid_carte-info">{{$pourcentage->pourcentage}}% </p>
+
 
                         </div>
                          @endforeach
@@ -88,12 +93,14 @@
                      <div class="grid_stat">
                         
                         <div class="grid_carte">
+
                             <p class="grid_carte-label">Nombre de commentaires laissés au total</p>
-                            <p>{{$stats->nbCommentaires}}</p>
+                            <p class="grid_carte-info">{{$stats->nbCommentaires}}</p>
                         </div>
                         <div class="grid_carte">
                             <p class="grid_carte-label">Nombre de commentaires laissés en moyenne par utilisateur</p>
-                            <p>{{$stats->commentairesUtilisateurs}}</p>
+                            <p class="grid_carte-info">{{$stats->commentairesUtilisateurs}}</p>
+
                         </div>
                         <div class="grid_carte">
                             <p class="grid_carte-label">Le vin ayant le plus de commentaire</p>
@@ -167,31 +174,7 @@
                     let timeInterval = this.$refs.slider.dataset.interval;
                     this.tabs[this.tab].setAttribute('class', 'active')
                     
-                    // set interval to change slide
-                    let startInterval = () => {
-                        this.tab = (this.tab < this.tabs.length - 1)? this.tab + 1 : 0;
-                        this.tabs.forEach( (tab)=> {
-                            (this.tab == this.tabs.indexOf(tab)) ?  tab.setAttribute('class', 'active') : tab.removeAttribute('class') 
-                        })
-                    }
-                    
-                    // start interval to change slide
-                    // let slideInterval = setInterval(startInterval, timeInterval);
-                    
-                    // mouse over slider stops slide
-                    this.$refs.slider.onmouseover = () => {
-                        if (slideInterval) { 
-                            clearInterval(slideInterval)
-                            slideInterval = null;
-                        }
-                    }
-                    
-                    // mouse out slider starts again slide
-                    this.$refs.slider.onmouseout = () => {
-                        if (slideInterval === null) { 
-                            slideInterval = setInterval(startInterval, timeInterval);
-                        }
-                    }
+                
                     
                     // slider tabs click event 
                     this.tabs.forEach( (tab)=> {

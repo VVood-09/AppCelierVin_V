@@ -192,17 +192,27 @@ class VinController extends Controller
 
 
 
-      public function destroy(Cellier $cellier,Bouteille $bouteille)
+       public function delete(Cellier $cellier,Bouteille $bouteille)
       {
         $bouteille->delete();
   
         return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Bouteille supprimée');
-
-
       }
 
+      
+      public function destroy(Cellier $cellier, Bouteille $bouteille)
+      {
+       
+        ListeBouteille::where('bouteille_id', $bouteille->id)
+                        ->where('cellier_id', $cellier->id)
+                        ->delete();
+        return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Bouteille retirée');
+      }
+
+
+
     /**
-     * Route::put('cellier/{cellier}/fiche-bouteille/{bouteille}', [VinController::class, 'changeNote']);
+     * Route::put('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'changeNote']);
      * Réponse du FETCH de la même page en GET
      * @param {object} $request: note, bouteille_id
      */
