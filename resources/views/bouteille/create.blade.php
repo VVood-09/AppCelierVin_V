@@ -1,20 +1,47 @@
 @extends('layouts.app')
-@section('title', 'Ajouter bouteille')
+@section('title', 'Ajouter Bouteille')
 @section('content')
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const qteInput = document.querySelector('input[name="qte"]');
+  const confirmerButton = document.querySelector('.modal-button-confirm');
+  const spanErrorModal = document.querySelector('.spanErrorModal');
+  const errorMessage = document.createElement('span');
+  const cellierSelect = document.querySelector('#selectCellier');
+  cellierSelect.value = cellierSelect.firstElementChild.nextElementSibling.value;
 
-@isset($cellier_actif)
-<a href="{{ route('cellier.show', ['cellier' => $cellier_actif]) }}" class="retour"> <svg viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512"><path d="M352 115.4 331.3 96 160 256l171.3 160 20.7-19.3L201.5 256z" fill="#7e001e" class="fill-000000"></path></svg>Cellier</a>
-@endisset
+  errorMessage.style.color = 'red';
+  errorMessage.style.fontSize = '0.8em';
+  
+  confirmerButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+    
+    if ((qteInput.value > 0) && (cellierSelect.value)) {
+
+        errorMessage.textContent = ''; // Clear the error message if the input is valid
+        event.target.form.submit();
+    } else {
+        cellierSelect.value = cellierSelect.firstElementChild.nextElementSibling.value
+        spanErrorModal.textContent = 'Veuillez entrer un nombre entier et choisir un cellier.'; // Show the error message if the input is invalid
+    }
+  });
+
+  const btnWrapper = document.querySelector('.btnWrapper');
+  btnWrapper.insertBefore(errorMessage, confirmerButton);
+});
+</script>
+
+
+
 
 <section class="formBtl_section suggestion_section">
 
-    <div class="formBtl_search-section over" x-data="{ ismodalopen: false }">
+    <div x-data="{ ismodalopen: false }">
         <h1>Rechercher un Vin</h1>
-
-        <div class="formBtl_search over">
+        <div class="formBtl_search">
             <x-autocomplete-search />
                        
-            <div x-show="ismodalopen" x-init="$watch('ismodalopen', value => { if (value) { document.body.classList.add('pas-defilement'); } else { document.body.classList.remove('pas-defilement'); } })" class="modal-SAQ" x-transition>
+            <div x-show="ismodalopen" class="modal-SAQ" x-transition>
                 <h1>Ajouter à un cellier?</h1>
                 <div>
                     <table>
@@ -45,45 +72,34 @@
                     </table>
                 </div>
 
-                <form action="" enctype="multipart/form-data" method="post">
+                <form 
+                
+                action="" enctype="multipart/form-data" method="post">
                 @csrf
                     <input type="hidden" name="id" x-ref="id" value="{{old('id')}}">
                     <input type="hidden" name="code_saq" x-ref="code_saq" value="{{old('code_saq')}}">
-                    <select name="cellier">
-                        {{-- <option value="" disabled selected>Choisir un cellier</option> --}}
+                    <select name="cellier" id="selectCellier">
+                        <option value="" disabled selected>Choisir un cellier</option>
                         @foreach($celliers as $cellier)
-                        <option value="{{$cellier->id}}" @if($cellier_actif == $cellier->id) selected @endif>{{$cellier->nom}}</option>
+                        <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
                         @endforeach
                     </select>
-                    <span x-text="errors.recap" class="textError"></span>
-                    <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" max="9999999999" value="{{old('qte')}}">
-
-                    <div x-text="errors.quantite" class="textError"></div>
-
+                    <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="1" required>
                     <div class="btnWrapper">
                         <button @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
                         <button class="modal-button modal-button-confirm">Confirmer</button>
                     </div>
+                    <span class="spanErrorModal"></span>
                 </form>
             </div>
         </div>
     </div>
 
-    <h1>Ajouter une bouteille</h1>
+    <h1>Ajouter une Bouteille</h1>
 
-     <div>
-        @if($errors)
-          <ul>
-            @foreach($errors->all() as $error)
-            <li class="text-danger">{{ $error }}</li>
-            @endforeach
-          </ul>
-        @endif
-    </div>
-    
     <form x-data="{
     ismodalopen: true,
-    formValues: {cellier: {{$cellier_actif}}},
+    formValues: {},
     errors: {},
     validateForm() {
         event.preventDefault();
@@ -103,39 +119,12 @@
     validateField(field) {
         const fieldErrors = {};
         let isValid = true;
-        fieldErrors[field] = ``;
 
         if (!this.formValues[field]) {
             fieldErrors[field] = `Le champ ${field} est obligatoire.`;
             <!-- console.log(fieldErrors) -->
             console.log(!this.formValues[field])
             isValid = false;
-        }
-
-        if (field == 'prix'){
-            console.log('prix')
-            fieldErrors[field] = ``;
-            if (!(/^\d+\s*\$?$/.test(prix.value))) {
-                            fieldErrors[field] = `Entrez un prix valide`;
-                            isValid = false;
-                        }
-        }
-
-        if (field == 'format'){
-            console.log('format')
-            fieldErrors[field] = ``;
-            if (!(/^\d+$/.test(format.value))) {
-                            fieldErrors[field] = `Entrez la quantité (sans écrire ml)`;
-                            isValid = false;
-                        }
-        }
-
-        if (field == 'qte'){
-            fieldErrors[field] = ``;
-            if (!(/^\d+\s*\$?$/.test(qte.value))) {
-                            fieldErrors[field] = `Entrez une quantité valide`;
-                            isValid = false;
-                        }
         }
         
         this.errors = {...this.errors, ...fieldErrors};
@@ -145,21 +134,20 @@
 }" @submit.prevent="validateForm()" action="" enctype="multipart/form-data" class="formBtl_form" method="post">
  
         @csrf
-       
+        <span x-text="errors.recap" class="textError"></span>
         <label for="file" class="formBtl_ajoutL">Télécharger une image <i><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="formBtl_ajoutF"><g data-name="Layer 2"><path d="M16 29a13 13 0 1 1 13-13 13 13 0 0 1-13 13Zm0-24a11 11 0 1 0 11 11A11 11 0 0 0 16 5Z" fill="#7e001e" class="fill-000000"></path><path d="M16 23a1 1 0 0 1-1-1V10a1 1 0 0 1 2 0v12a1 1 0 0 1-1 1Z" fill="#7e001e" class="fill-000000"></path><path d="M22 17H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2Z" fill="#7e001e" class="fill-000000"></path></g><path d="M0 0h32v32H0z" fill="none"></path></svg></i>
         </label>
         <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}" class="formBtl_file">
-        
-         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="nom" id="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}" x-model="formValues.nom" @blur="validateField('nom')">
+
+        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}" x-model="formValues.nom" @blur="validateField('nom')">
         <span x-text="errors.nom" class="textError"></span>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="prix" id="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" x-model="formValues.prix" @blur="validateField('prix')" />
+        <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" x-model="formValues.prix" @blur="validateField('prix')" />
         <div x-text="errors.prix" class="textError"></div>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="pays" id="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" x-model="formValues.pays" @blur="validateField('pays')" />
+        <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" x-model="formValues.pays" @blur="validateField('pays')" />
         <div x-text="errors.pays" class="textError"></div>
 
         <span x-text="errors.recap" class="textError"></span>
@@ -180,15 +168,15 @@
 
         <span x-text="errors.recap" class="textError"></span>
         <select name="cellier" x-model="formValues.cellier" @blur="validateField('cellier')">
-            {{-- <option value="" disabled>Choisir un cellier</option> --}}
+            <option value="" disabled selected>Choisir un cellier</option>
             @foreach($celliers as $cellier)
-            <option value="{{$cellier->id}}" @if($cellier_actif == $cellier->id) selected @endif>{{$cellier->nom}}</option>
+            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
             @endforeach
         </select>
         <div x-text="errors.cellier" class="textError"></div>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input type="number" id="qte" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('quantite')}}" x-model="formValues.quantite" @blur="validateField('quantite')">
+        <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('quantite')}}" x-model="formValues.quantite" @blur="validateField('quantite')">
         <div x-text="errors.quantite" class="textError"></div>
 
         <div x-text="errors.warning" class="textError"></div>
@@ -196,11 +184,5 @@
 
     </form>
 
- 
- 
-</section>   
-
-<div>
-    <x-modalQte></x-modalQte>
-</div>
+</section>
 @endsection
