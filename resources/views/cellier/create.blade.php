@@ -16,7 +16,6 @@
 
         if (!this.formValues[field]) {
             fieldErrors[field] = `Le champ ${field} est obligatoire.`;
-            console.log(fieldErrors)
             isValid = false;
         }
 
@@ -27,7 +26,6 @@
             }
         }
         this.errors = {...this.errors, ...fieldErrors};
-        console.log(this.errors)
         return isValid;
     }
 }"

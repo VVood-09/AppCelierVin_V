@@ -52,9 +52,9 @@ class AdminUtilisateurController extends Controller{
     *@return \Illuminate\Http\RedirectResponse Redirige vers la page d'index des utilisateurs après la modification réussie
     */
     public function update(Request $request, User $utilisateur){
-        
+      
         $request->validate([
-            'name' => ['required', new NoBacktick],
+            'nom' => ['required', new NoBacktick],
             // Pour valider le courriel unique de l'utilisateur à modifier
             // https://laravel.com/docs/master/validation#rule-unique
             'email'=> ['required', 'email', Rule::unique('users')->ignore($utilisateur->id)],
@@ -62,7 +62,7 @@ class AdminUtilisateurController extends Controller{
         ]);
 
         $utilisateur->update([
-            'name'=>$request->name,
+            'name'=>$request->nom,
             'email'=>$request->email,
             'permission_id'=>$request->permission_id
         ]);

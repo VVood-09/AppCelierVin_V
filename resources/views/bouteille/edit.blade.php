@@ -42,7 +42,6 @@
         if (missingFields.length > 0) {
             this.errors.recap = 'Remplir ce champ';
             this.errors.warning = 'Champs manquant(s)';
-            console.log(missingFields);
             return;
         }
 
@@ -60,7 +59,6 @@
         }
 
         if (field == 'prix'){
-            console.log('prix')
             fieldErrors[field] = ``;
             if (!(/^\d+\s*\$?$/.test(prix.value))) {
                             fieldErrors[field] = `Entrez un prix valide`;
@@ -69,7 +67,6 @@
         }
 
         if (field == 'format'){
-            console.log('format')
             fieldErrors[field] = ``;
             if (!(/^\d+$/.test(format.value))) {
                             fieldErrors[field] = `Entrez la quantité (sans écrire ml)`;
@@ -78,7 +75,6 @@
         }
         
         this.errors = {...this.errors, ...fieldErrors};
-        console.log(this.errors)
         return isValid;
     },
     
