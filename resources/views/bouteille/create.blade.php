@@ -96,7 +96,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     <form x-data="{
     ismodalopen: true,
-    formValues: {cellier: {{$cellier_actif}}},
+    formValues: {cellier: `{{$cellier_actif}}`},
     errors: {},
     validateForm() {
         event.preventDefault();

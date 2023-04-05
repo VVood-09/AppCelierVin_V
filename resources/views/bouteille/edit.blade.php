@@ -23,13 +23,13 @@
     <form x-data="{
     ismodalopen: true,
     formValues: {
-        nom: '{{$bouteille->nom}}',
-        prix: '{{$bouteille->prix}}',
-        pays: '{{$bouteille->pays}}',
-        type: '{{$bouteille->type}}',
-        format: '{{$bouteille->format}}',
-        cellier: '{{$bouteille->cellier}}',
-        quantite: '{{$bouteille->quantite}}'
+        nom: `{{$bouteille->nom}}`,
+        prix: `{{$bouteille->prix}}`,
+        pays: `{{$bouteille->pays}}`,
+        type: `{{$bouteille->type}}`,
+        format: `{{$bouteille->format}}`,
+        cellier: `{{$bouteille->cellier}}`,
+        quantite: `{{$bouteille->quantite}}`
     },
     errors: {},
     validateForm() {

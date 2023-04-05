@@ -9,8 +9,8 @@
 
   <form x-data="{
     formValues: {
-      nom: '{{$utilisateur->name}}',
-      email: '{{$utilisateur->email}}'
+      nom: `{{$utilisateur->name}}`,
+      email: `{{$utilisateur->email}}`
     },
     errors: {},
 
