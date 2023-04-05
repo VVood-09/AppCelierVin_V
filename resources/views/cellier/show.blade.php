@@ -8,7 +8,7 @@
          <a href="{{ route('cellier.edit', $cellier->id)}}" title="Modifier cellier"><svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M0 14.2V18h3.8l11-11.1L11 3.1 0 14.2ZM17.7 4c.4-.4.4-1 0-1.4L15.4.3c-.4-.4-1-.4-1.4 0l-1.8 1.8L16 5.9 17.7 4Z" fill="#7e001e" fill-rule="evenodd" class="fill-000000"></path></svg></a> 
     </div>
 
-        <section x-data="{ bouteilles: JSON.parse('{{ $bouteilles }}'),
+        <section x-data="{ bouteilles: JSON.parse(`{{ $bouteilles }}`),
             triage(bouteilles){
 
                 /**
@@ -60,14 +60,14 @@
             } 
         }" class="liste-btl_liste">
         
-            <template x-if="bouteilles == '' && {{$bouteilles}} == ''">
+            <template x-if="bouteilles == '' && `{{$bouteilles}}` == ''">
                 <section class="liste-btl_vide">
                     <p>Aucune bouteille dans le cellier.</p>
                     <a href="{{ route('bouteille.create')}}" class="btn">Ajouter une bouteille</a>
                 </section>
         </template>
         
-            <template x-if="{{$bouteilles}} != ''">
+            <template x-if="`{{$bouteilles}}` != ''">
                 <div class="formBtl_form">
                     <input @keyup="triage(bouteilles)" type="text" class="cellier_recherche" placeholder="Recherchez dans votre cellier" aria-label="Recherche cellier">
                     <nav class="triage">
@@ -87,7 +87,7 @@
                 </div>
             </template>
 
-            <template x-if="bouteilles == '' && {{$bouteilles}} != ''">
+            <template x-if="bouteilles == '' && `{{$bouteilles}}` != ''">
                 <section class="liste-btl_vide">
                     <p>Aucune bouteille n'a été trouvée</p>
                 </section>
@@ -131,7 +131,7 @@
                                     @endfor
                                 </span>   
 
-                                <div  class="liste-btl_info_bouteilles" x-data="{idC : {{$cellier->id}} }" x-on:change="changeQte" title="Change quantité de bouteille">
+                                <div  class="liste-btl_info_bouteilles" x-data="{idC : `{{$cellier->id}}` }" x-on:change="changeQte" title="Change quantité de bouteille">
                                     <button :class="{'modal_display-none': item.qte == 0}" @click="item.qte--; if(item.qte < 0){item.qte = 0}" x-on:click="changeQte(item.qte, item.id)" aria-label="Enlever quantité"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2"><path d="M16 29a13 13 0 1 1 13-13 13 13 0 0 1-13 13Zm0-24a11 11 0 1 0 11 11A11 11 0 0 0 16 5Z" fill="#7e001e" class="fill-000000"></path><path d="M22 17H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2Z" fill="#7e001e" class="fill-000000"></path></g><path d="M0 0h32v32H0z" fill="none"></path></svg></button>
 
 

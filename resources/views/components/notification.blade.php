@@ -1,7 +1,7 @@
 
 
 <div id="notification" x-data="{ showNotification: false, message: '' }" x-init="() => {
-        message = '{{ session('success') }}'; 
+        message = `{{ session('success') }}`; 
         if (message) {
             showNotification = true;
             message = message.replaceAll('\\\'', '\'');

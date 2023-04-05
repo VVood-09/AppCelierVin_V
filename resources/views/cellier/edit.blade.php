@@ -9,7 +9,7 @@
   
   <form x-data="{
     formValues: {
-        nom: '{{$cellier->nom}}'
+        nom: `{{$cellier->nom}}`
     },
     errors: {},
     validateField(field) {
