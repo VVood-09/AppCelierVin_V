@@ -21,10 +21,10 @@
     margin-left: var(--espacements-medium);
 }
 
-
 .nav_admin a{
     color: white;
 }
+
 .nav_admin a:hover {
     text-decoration: underline;
     text-underline-offset: var(--espacements-x_small);

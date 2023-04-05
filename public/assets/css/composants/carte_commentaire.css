@@ -6,11 +6,13 @@
     margin-top:var(--espacements-small);
     border-radius: 10px; 
 }
+
 .carte_commentaire p{
     padding-left: var(--espacements-small);
     border-left: 2px solid var(--primary);
     color:var(--primary);
 }
+
 .carte_commentaire small{
     display: flex;
     justify-content: flex-end;

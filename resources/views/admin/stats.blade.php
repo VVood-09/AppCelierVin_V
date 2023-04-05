@@ -104,11 +104,11 @@
                         </div>
                         <div class="grid_carte">
                             <p class="grid_carte-label">Le vin ayant le plus de commentaire</p>
-                            <p class="grid_carte-info">{{$bouteilleComment->nom}}</p>
+                            <p class="grid_carte-vinComment">{{$bouteilleComment->nom}}</p>
                             @if($bouteilleComment->total == 1)
-                            <p>Avec : {{$bouteilleComment->total}} commentaire</p>
+                            <p>{{$bouteilleComment->total}} commentaire</p>
                             @else
-                            <p>Avec : {{$bouteilleComment->total}} commentaires</p>
+                            <p>{{$bouteilleComment->total}} commentaires</p>
                             @endif
                         </div>
                     </div>
@@ -118,28 +118,43 @@
                         <div class="grid_title">
                              <h4>Statistiques sur les notes d'appréciation</h4>
                         </div>
+
+
+             
+
+
+
                         <div class="grid_stat">
+                             <div class="grid_stat-btlGlobal">
+                                <div  class="grid_carte">
+                                    <p class="grid_carte-label">Nombre de notes laissées au total</p>
+                                    <p class="grid_carte-info">{{$stats->nbNotes}}</p>
+                                </div>
+                                <div  class="grid_carte">
+                                    <p class="grid_carte-label">Nombre de notes laissées en moyenne par utilisateur</p>
+                                    <p class="grid_carte-info">{{$stats->notesUtilisateurs}}</p>
+                                </div>
+                            </div>    
                             <div class="grid_carte">
-                                <p class="grid_carte-label">Nombre de notes laissées au total</p>
-                                <p class="grid_carte-info">{{$stats->nbNotes}}</p>
-                            </div>
-                            <div class="grid_carte">
-                                <p class="grid_carte-label">Nombre de notes laissées en moyenne par utilisateur</p>
-                                <p class="grid_carte-info">{{$stats->notesUtilisateurs}}</p>
-                            </div>
-                            <div class="grid_carte">
-                                 <p class="grid_carte-label">Top 5 des vins ayant la note moyenne la plus élevée</p>
-                                 @if(count($topBouteilles) < 5)
-                                    <small>Il n'y a que {{count($topBouteilles)}} bouteilles ayant des notes pour le moment</small>
-                                @endif
-                                 @forEach($topBouteilles as $topBouteille)
-                                    <p class="grid_carte-info">{{$topBouteille->nom}}</p>
-                                    <p>{{$topBouteille->average}} /5</p>
-                                    @if($topBouteille->total == 1)
-                                        <p>Avec : {{$topBouteille->total}} note</p>
-                                    @else
-                                        <p>Avec : {{$topBouteille->total}} notes</p>
+                                <div>
+                                    <p class="grid_carte-label">Top 5 des vins ayant la note moyenne la plus élevée</p>
+                                    @if(count($topBouteilles) < 5)
+                                        <small>Il n'y a que {{count($topBouteilles)}} bouteilles ayant des notes pour le moment</small>
                                     @endif
+                                </div>
+                                 @forEach($topBouteilles as $topBouteille)
+                                <div class="grid_top5">
+                                  
+                                    <div class="grid_top5-note">
+                                        <p class="grid_carte-average">{{$topBouteille->average}} /5</p>
+                                        @if($topBouteille->total == 1)
+                                            <p class="grid_top5-noteCount">{{$topBouteille->total}} note</p>
+                                        @else
+                                            <p class="grid_top5-noteCount">{{$topBouteille->total}} notes</p>
+                                        @endif
+                                    </div>
+                                    <p class="grid_top5-nom">{{$topBouteille->nom}}</p>
+                                </div>
                                  @endforeach
                             </div>
                            

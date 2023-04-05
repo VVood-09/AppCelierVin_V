@@ -20,6 +20,7 @@
 .btn:active, .btn:visited{
     color: white;
 }
+
 .btn-reverse{
     background-color: white;
     color: black;

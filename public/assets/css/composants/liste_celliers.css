@@ -48,13 +48,11 @@
   .liste_celliers .card__cellier a{
     background-color: var(--accent_fade);
     width: 100%;
-    /* padding: var(--espacements-medium) 0; */
   }
 
   .liste_celliers a svg{
     width: var(--espacements-medium);
   }
-  
 
  .liste_celliers>a{
   display: block;
