@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
         <div class="formBtl_search">
             <x-autocomplete-search />
                        
-            <div x-show="ismodalopen" class="modal-SAQ" x-transition>
+            <div x-show="ismodalopen" class="modal-SAQ" x-transition  x-init="$watch('ismodalopen', value => { if (value) { document.body.classList.add('pas-defilement'); } else { document.body.classList.remove('pas-defilement'); } })">
                 <h1>Ajouter à un cellier?</h1>
                 <div>
                     <table>

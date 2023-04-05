@@ -21,7 +21,7 @@ class Controller extends BaseController
         if(Auth::check()){
             return redirect('dashboard');
         }
-        return view("welcome");
+        return view("login");
     }
 
 }

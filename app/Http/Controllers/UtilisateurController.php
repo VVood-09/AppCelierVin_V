@@ -6,13 +6,21 @@ use App\Models\User;
 
 class UtilisateurController extends Controller
 { 
-    public function show()
-    {
+    /**
+    *Affiche la page de profil de l'utilisateur connecté.
+    *@return \Illuminate\Contracts\View\View
+    */
+    public function show(){
+
         $utilisateur = Auth::user();
         return view('utilisateur.show', ['utilisateur' => $utilisateur]);
     }
 
 
+    /**
+    *Affiche la page d'édition du profil de l'utilisateur connecté.
+    *@return \Illuminate\View\View
+    */
     public function edit(){
         $utilisateur = Auth::user();
     
@@ -20,6 +28,11 @@ class UtilisateurController extends Controller
     }
 
 
+    /**
+     * Met à jour les informations du compte utilisateur connecté.
+     * @param Request $request Les données de la requête HTTP.
+     * @return \Illuminate\Http\RedirectResponse Redirige l'utilisateur vers la page de détails de son compte avec un message de succès.
+     */
     public function update(Request $request){
 
         $utilisateur = Auth::user();
@@ -37,8 +50,11 @@ class UtilisateurController extends Controller
       }
 
       
-      public function destroy()
-      {
+    /** Supprime le compte utilisateur connecté.
+    * @return \Illuminate\Http\RedirectResponse Redirige l'utilisateur vers la page de connexion avec un message de succès.
+    */
+      public function destroy(){
+
         $utilisateur = Auth::user();
 
         $utilisateur->delete();
