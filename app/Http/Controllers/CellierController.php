@@ -91,6 +91,7 @@ class CellierController extends Controller
             // $data = json_encode($bouteilles);
             // return view('your_view', compact('data'));
         $bouteilles = json_encode($bouteilles);
+
         return view('cellier.show', ['bouteilles' => $bouteilles, 'cellier'=>$cellier]);
     }
 

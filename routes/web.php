@@ -47,6 +47,7 @@ use Illuminate\Support\Facades\DB;
 // Route des Bouteilles
     Route::get('ajout-bouteille', [VinController::class, 'create'])->name('bouteille.create');
     Route::post('ajout-bouteille', [VinController::class, 'store'])->name('bouteille.store');
+    Route::put('ajout-bouteille', [CellierController::class, 'changeQte']);
     Route::get('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'show'])->name('bouteille.show');
     Route::put('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'changeNote']);
     Route::post('cellier/{cellier}/bouteille/{bouteille}', [CellierController::class, 'changeQte']);

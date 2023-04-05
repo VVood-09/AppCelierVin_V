@@ -28,15 +28,23 @@ function changeQte(qte, id){
       'cellier': this.idC
     };
   }
-
+console.log(url);
   entete = {
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
   };
  
-  fetch(url, { method:'POST', body: JSON.stringify(data), headers:entete})
+
+  if(url.includes('ajout-bouteille') ){
+    fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete})
+            .then(reponse=> reponse.json())
+            
+  } else {
+     fetch(url, { method:'POST', body: JSON.stringify(data), headers:entete})
             .then(reponse=> reponse.json())
             .then((reponse)=>verifieQte(reponse));
+  }
+  
 
 }
 
@@ -51,6 +59,7 @@ function changeQte(qte, id){
   let url = window.location.href;
   url = url.split('/');
   let btnEnleverQte, btnModalSuppression;
+
   if(url.includes('bouteille')){
     btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
     btnModalSuppression = document.querySelector('.corbeille');
@@ -59,6 +68,7 @@ function changeQte(qte, id){
     btnEnleverQte = DOMcarteBtl.querySelector('button[aria-label="Enlever quantité"]');
     btnModalSuppression = DOMcarteBtl.querySelector('.corbeille');
   }
+
   if (data.qte == 0 ) {
     btnEnleverQte.classList.add('modal_display-none');
     btnModalSuppression.classList.remove('modal_display-none');
