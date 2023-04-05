@@ -71,20 +71,20 @@
 
             <!-- Name -->
             <div>
-                <x-input x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" placeholder='Nom' id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" placeholder='Nom' id="name"  type="text" name="name" :value="old('name')" required autofocus />
                 <span x-text="errors.nom" class="textError"></span>
             </div>
 
             <!-- Email Address -->
             <div >
-                <x-input x-model="formValues.email" x-ref="email" @blur="validateField('email')" placeholder='Courriel'  id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input x-model="formValues.email" x-ref="email" @blur="validateField('email')" placeholder='Courriel'  id="email" type="email" name="email" :value="old('email')" required />
                 <span x-text="errors.email" class="textError"></span>
 
             </div>
 
             <!-- Password -->
             <div >
-                <x-input placeholder='Mot de passe'  id="password" class="block mt-1 w-full"
+                <x-input placeholder='Mot de passe'  id="password" 
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" 
@@ -97,7 +97,7 @@
 
             <!-- Confirm Password -->
             <div>
-                <x-input  placeholder='Confirmation du mot de passe'  id="password_confirmation" class="block mt-1 w-full"
+                <x-input  placeholder='Confirmation du mot de passe'  id="password_confirmation" 
                                 type="password"
                                 name="password_confirmation" required 
                                 x-ref="password_confirmation" @blur="validateField('password_confirmation')"

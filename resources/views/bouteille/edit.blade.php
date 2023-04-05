@@ -139,7 +139,6 @@
 
     <?php
         $action = 'supprimer cette bouteille';
-      //  $routeBack = '  Route::get('cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');';
         $route = route('bouteille.delete', ['bouteille' => $bouteille->id,'cellier' => $cellier->id]);
     ?>
 

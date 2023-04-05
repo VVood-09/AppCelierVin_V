@@ -24,25 +24,15 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
-// Route::get('/', [AuthenticatedSessionController::class, 'create']);
-// Route::get('accueil', [Controller::class, 'index']);
 
 // Route de l'utilisateur
-Route::group(['middleware' => 'auth'], function(){
+    Route::group(['middleware' => 'auth'], function(){
     Route::get('dashboard', [CellierController::class, 'index'])->name('dashboard');
-   // Route::get('/user/{id}', [UserController::class, 'user.show']);
     Route::get('utilisateur/{id}', [UtilisateurController::class, 'show'])->name('utilisateur.show');
     Route::get('utilisateur/{id}/modif', [UtilisateurController::class, 'edit'])->name('utilisateur.edit');
     Route::put('utilisateur/{id}/modif', [UtilisateurController::class, 'update'])->name('utilisateur.update');
     Route::delete('utilisateur/{id}/modif', [UtilisateurController::class, 'destroy'])->name('utilisateur.delete');
+
 
 // Route des Celliers
     Route::get('cellier/create', [CellierController::class, 'create'])->name('cellier.create');
@@ -53,13 +43,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('cellier/{cellier}/modif', [CellierController::class, 'update']);
     Route::delete('cellier/{cellier}/modif', [CellierController::class, 'destroy'])->name('cellier.delete');
 
-
-    //Route::post('changeQte', [CellierController::class, 'changeQte']);
     
 // Route des Bouteilles
-
     Route::get('ajout-bouteille', [VinController::class, 'create'])->name('bouteille.create');
     Route::post('ajout-bouteille', [VinController::class, 'store'])->name('bouteille.store');
+    Route::put('ajout-bouteille', [CellierController::class, 'changeQte']);
     Route::get('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'show'])->name('bouteille.show');
     Route::put('cellier/{cellier}/bouteille/{bouteille}', [VinController::class, 'changeNote']);
     Route::post('cellier/{cellier}/bouteille/{bouteille}', [CellierController::class, 'changeQte']);
@@ -70,7 +58,6 @@ Route::group(['middleware' => 'auth'], function(){
 
 
 // Route des commentaires
-    // Route::get('cellier/{cellier}/bouteille/{bouteille}', [CommentaireController::class, 'create'])->name('commentaire.create');
     Route::post('cellier/{cellier}/bouteille/{bouteille}/commentaire', [CommentaireController::class, 'store'])->name('commentaire.store');
     Route::get('cellier/{cellier}/bouteille/{bouteille}/commentaire/{commentaire}/modif', [CommentaireController::class, 'edit'])->name('commentaire.edit');
     Route::put('cellier/{cellier}/bouteille/{bouteille}/commentaire/{commentaire}/modif', [CommentaireController::class, 'update'])->name('commentaire.update');
@@ -111,12 +98,12 @@ Route::group(['middleware' => 'auth'], function(){
         'middleware' => 'permission',
     ], function(){   
         // Route pour l'administration
-        Route::get('', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/statistiques', [AdminController::class, 'stats'])->name('admin.stats');
         Route::get('/vins', [AdminController::class, 'vins'])->name('admin.vins.index');
         Route::get('/scraper', [ScraperController::class, 'index'])->name('scraper.index');
         Route::post('/scraper', [ScraperController::class, 'pages']);
         Route::put('/scraper', [ScraperController::class, 'scraper']);
+        Route::get('/', [AdminUtilisateurController::class, 'index'])->name('admin.membres.index');
         Route::get('/membres', [AdminUtilisateurController::class, 'index'])->name('admin.membres.index');
         Route::get('/membres/{utilisateur}', [AdminUtilisateurController::class, 'show'])->name('admin.membres.show');
         Route::put('/membres/{utilisateur}', [AdminUtilisateurController::class, 'update']);

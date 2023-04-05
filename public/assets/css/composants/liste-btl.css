@@ -265,8 +265,8 @@
 .liste-btl_info_bouteilles{
     display: flex;
     /* justify-content: center; */
-    gap: var(--espacements-x_small);
-}
+    /* gap: var(--espacements-x_small);*/
+} 
 
 .liste-btl_info_bouteilles svg{
     width: 40px;

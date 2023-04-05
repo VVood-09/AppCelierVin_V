@@ -51,7 +51,7 @@
 }
 
 .stats .grid div {
-    min-height: 200px;
+    min-height: 125px;
     animation-duration: 0.45s;
     -webkit-animation-duration: 0.45s;
     animation-fill-mode: both;

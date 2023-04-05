@@ -1,3 +1,268 @@
+
+/****************************
+ * Fonction de App Vino
+ * Changement de quantité de bouteille dans le cellier
+ * Changement de la note sur bouteille
+ */
+
+
+/**
+ * Function pour changer la quantité de bouteilles dans le cellier
+ */
+function changeQte(qte, id){
+  // Récupéré le id de la bouteille
+  let url = window.location.href;
+  let data;
+
+  // crée l'objet a envoyé
+  if(!isNaN(qte)){
+    data = {
+      'qte' : qte,
+      'bouteille': id,
+      'cellier': this.idC
+    }
+  } else {
+    data = {
+      'qte' :this.counter,
+      'bouteille': this.idB,
+      'cellier': this.idC
+    };
+  }
+console.log(url);
+  entete = {
+    'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+  };
+ 
+
+  if(url.includes('ajout-bouteille') ){
+    fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete})
+            .then(reponse=> reponse.json())
+            
+  } else {
+     fetch(url, { method:'POST', body: JSON.stringify(data), headers:entete})
+            .then(reponse=> reponse.json())
+            .then((reponse)=>verifieQte(reponse));
+  }
+  
+
+}
+
+
+/**
+ * Vérifie la qte de bouteille pour gérer le svg nécessaire
+ * Alterne entre svg '-' et svg 'corbeille' et ce dernier active un modal pour retirer la bouteille du cellier
+ * @param {*} data 
+ */
+ function verifieQte(data){
+   
+  let url = window.location.href;
+  url = url.split('/');
+  let btnEnleverQte, btnModalSuppression;
+
+  if(url.includes('bouteille')){
+    btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
+    btnModalSuppression = document.querySelector('.corbeille');
+  } else {
+    console.log(data.bouteille);
+    let DOMcarteBtl = document.querySelector(`[id="${data.bouteille}"]`);
+    btnEnleverQte = DOMcarteBtl.querySelector('button[aria-label="Enlever quantité"]');
+    btnModalSuppression = DOMcarteBtl.querySelector('.corbeille');
+  }
+
+  if (data.qte == 0 ) {
+    btnEnleverQte.classList.add('modal_display-none');
+    btnModalSuppression.classList.remove('modal_display-none');
+  }else{
+    btnEnleverQte.classList.remove('modal_display-none');
+    btnModalSuppression.classList.add('modal_display-none');
+  }
+
+ }
+
+
+/**
+ * Fonction pour créer une note sur une bouteille de vin
+ * @param {string} note la valeur récupéré sur un click
+ * @param {string} valDepart la valeur de départ au chargement de la page
+ */
+function changeNote(note, valDepart){
+  // Récupéré le id de la bouteille
+  let url = window.location.href;
+  let bouteille_id = url.split('/bouteille/')[1];
+
+  // Pour gérer la note à envoyer
+  if(this.note == undefined && note == valDepart){
+    this.note = note;
+  }
+  if (this.note == note) {
+    this.note = 0;
+  }
+  else this.note = note;
+  
+  data = { 
+    'note' : this.note,
+    'bouteille_id' : bouteille_id,
+  };
+  
+  entete = {
+    'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+  };
+  
+  fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete})
+
+}
+
+
+/**
+ * Fonction pour ajouter un commentaire sur une bouteille de vin. Le commentaire et une notification sont injectées dès que la requête est faite.
+ */
+function ajoutComment(){
+   
+  let url = window.location.href;
+  let bouteille_id = url.split('/bouteille/')[1];
+  let commentaire = document.getElementById('commentaire').value; 
+     
+  let data = {
+    'bouteille_id': bouteille_id,
+    'commentaire': commentaire
+  };
+
+  let entete = {
+    'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+  };
+
+  fetch(url+'/commentaire', {
+    method: 'POST',
+    headers: entete,
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+    
+    let element = document.querySelector('.comment');
+    let created_at = new Date(data.data.created_at);
+    let date = created_at.toLocaleDateString('fr');
+    
+    let comment = `<div class="carte_commentaire">
+    <p>${data.data.commentaire}</p>               
+    <small>${date}</small>
+    </div>`;
+    element.insertAdjacentHTML("beforeend", comment);
+
+    let notification = document.querySelector('#notification');
+  
+    notification.setAttribute('x-init', "() => { message = 'Commentaire ajouté'; if (message) { showNotification = true; message = message.replaceAll(\"'\", \"'\"); setTimeout(() => showNotification = false, 5000); } }");
+  });
+
+}
+
+
+/**
+ * Boucle pour récupérer tous les vins de la SAQ
+ * ASYNC/AWAIT pour assurer la récupération de data
+ * TRY/CATCH pour réassyer lors d'échec et récupérer les erreurs
+ * Fetch sur le Back-End pour Scraper la SAQ
+ */
+async function scraper() {
+  const url = window.location.href;
+  const entete = {
+    'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+  };
+
+  const maxTentative = 3; // Pour la boucle While, trois tentative
+  let i = 1; // Pour le For sur les pages de vins SAQ
+  let rafraichissement = false; // Boolean pour valider si il y a une donné réception dans localStorage
+  if(isNaN(localStorage['rafraichi'])){
+    localStorage['rafraichi'] = 1; // Pour empêcher des problèmes de type
+  }
+  if(localStorage['rafraichi'] != undefined){
+    i = localStorage['rafraichi']; // Pour récuperer le numéro de page en cas d'échec
+  }
+
+  try { // Pour recevoir la quantité de bouteilles de vins existantes et la quantité de page à fouiller
+    const reponse = await fetch(url, { method: 'POST', headers: entete });
+    const qtePage = await reponse.json();
+    document.querySelector('#total').innerHTML = qtePage['pages']; // Insérer la quantité de page
+    document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
+    `<p>Un total de ${qtePage['qte_Vins']} bouteilles ont été trouvé sur ${qtePage['pages']} pages de 96 bouteilles.</p>`);
+    // Message dans le log
+
+    for ( i; i <= qtePage['pages']; i++) { // Pour trouvé tous les vins sur une page
+      let saqVinsReponse, pageVins, pourcentageProgres;
+      let whileTentative = 1; // Valeur de départ pour l'itération pour les érreurs
+
+      while (whileTentative <= maxTentative) { // Itération pour les érreures
+        try { // Récupère le data du Scraper sur les vins trouvés et insérer dans la DB
+          saqVinsReponse = await fetch(url, { method: 'PUT', body: JSON.stringify(i), headers: entete });
+          pageVins = await saqVinsReponse.json();
+          pourcentageProgres = i*100/qtePage['pages']; // Pour la progression de la bar de chargement
+          document.querySelector('.scraper_chargement').style.width = `${pourcentageProgres}%`; // Pour la progression de la bar de chargement
+          
+          break; // Sort de la boucle si le Fetch fonctionne
+
+        } catch (erreur) { // Récupération d'érreurs avec message
+          document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
+          `<p>La tentative ${whileTentative} pour la page ${i} a échoué: ${erreur}</p>`);
+          console.error(erreur);
+          whileTentative++;
+        }
+      }
+
+      if (whileTentative > maxTentative) { // Dans le cas où toutes les tentatives ont échoué
+        document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
+        `<p>Toutes les tentatives de la page ${i} ont échoué. Veuillez réassayer plus tard.</p>`);
+        if(rafraichissement == false){ // Récupère la page où l'échec c'est produit
+          rafraichissement = true; // Pour ne pas supplanté l'information
+          localStorage['rafraichi'] = i;
+        }
+        if(!document.querySelector('#rafraichi')){ // Pour ne pas mettre en double le bouton de rafraîchissement
+          document.querySelector('article').insertAdjacentHTML('beforeend', 
+          `<a id="rafraichi" href="" class="btn">Rafraichir la page</a>
+          <p id="rafraichi">Le prochain démarrage continuera à l'endroit de l'échec.</p>`)
+        }
+        continue; // Passe à la prochaine itération si il y a échec
+      }
+  
+      // Récupère du data et log l'information
+      document.querySelector('#page').innerHTML = pageVins['page']; // Montre la progression
+      let messageP2 = `Aucune bouteille n'as été ajouté.`;
+      if(pageVins['liste'] != 0){
+        // condition ? exprIfTrue : exprIfFalse
+        let conjugaison = pageVins['liste'] > 1 ? 'ont' : 'a';
+        messageP2 = `${pageVins['liste']} ${conjugaison} été ajouté dans la base de données.</p>`;
+      }
+      document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
+      `<p>${pageVins['data']} bouteilles ont été trouvé sur la page ${pageVins['page']}. ${messageP2}`);
+
+      if(localStorage['rafraichi'] == i){ // Si il n'y a pas d'échec après le relancement
+        localStorage['rafraichi'] = 1;
+      }
+    }
+    if(i = qtePage['pages']){ // À la dernière page Scraper
+      document.querySelector('.scraper_info > p').innerHTML = `Complété!`;
+    }
+
+  } catch (erreur) { // Dans le cas où il y a un problème avec la SAQ
+    document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
+    `<p>Un échec de connexion vers la SAQ c'est produit, veuillez réassayer plus tard.</p>`);
+    document.querySelector('article').insertAdjacentHTML('beforeend', 
+    `<a id="rafraichi" href="" class="btn">Rafraichir la page</a>
+    <p id="rafraichi">Le prochain démarrage continuera à l'endroit de l'échec.</p>`)
+    localStorage['rafraichi'] = i;
+    console.error(erreur, i);
+  }
+}
+
+
+
+
+
+
+
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -22815,393 +23080,3 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ })()
 ;
 
-
-/****************************
- * Fonction de App Vino
- * Changement de quantité de bouteille dans le cellier
- * Changement de la note sur bouteille
- */
-
-
-/**
- * Function pour changer la quantité de bouteilles dans le cellier
- */
-function changeQte(){
-  // Récupéré le id de la bouteille
-  let url = window.location.href;
-  let data;
-
-  // crée l'objet a envoyé
-  if(!isNaN(qte)){
-    data = {
-      'qte' : qte,
-      'bouteille': id,
-      'cellier': this.idC
-    }
-  } else {
-    data = {
-      'qte' :this.counter,
-      'bouteille': this.idB,
-      'cellier': this.idC,
-    
-    };
-  }
-
-  entete = {
-    'Content-Type': 'application/json',
-    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-  };
-    
-   fetch(url, { method:'POST', body: JSON.stringify(data), headers:entete})
-            .then(reponse=> reponse.json())
-            .then((reponse)=>console.log(reponse));
-
-   
-            // var element = document.querySelector('.liste-btl_carte');
-            // element.addEventListener('click', function(event) {
-            //   // console.log(event.target);
-            // });
-          
-            console.log(data.qte);
-            if (data.qte == 0) {
-              const btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
-              btnEnleverQte.classList.add('modal_display-none');
-          
-              const btnModalSuppression = document.querySelector('.corbeille');
-              btnModalSuppression.classList.remove('modal_display-none');
-            }else{
-              const btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
-              btnEnleverQte.classList.remove('modal_display-none');
-          
-              const btnModalSuppression = document.querySelector('.corbeille');
-              btnModalSuppression.classList.add('modal_display-none');
-            }        
-}
-
-
-
-
-// function verifieQte(data) {
-//   console.log(data.bouteille);  
-//   console.log(data.cellier);  
-//   console.log(data.qte);  
-
-//   window.addEventListener('click', function(event) {
-//     let target_id = event.target;
-//     console.log(target_id);
-
-//     if (data.qte == 0 ) {
-        
-//       target_id.classList.add('modal_display-none');
-//       const btnModalSuppression = target_id.nextElementSibling;
-//       while (btnModalSuppression && !btnModalSuppression.classList.contains('corbeille')) {
-//         btnModalSuppression = btnModalSuppression.nextElementSibling;
-//       }
-
-//         btnModalSuppression.classList.remove('modal_display-none');    
-//     } else {
-     
-//       target_id.classList.remove('modal_display-none');
-
-//       const btnModalSuppression = target_id.nextElementSibling;
-//       while (btnModalSuppression && !btnModalSuppression.classList.contains('corbeille')) {
-//         btnModalSuppression = btnModalSuppression.nextElementSibling;
-//       }
-
-//       if (btnModalSuppression) {
-//         btnModalSuppression.classList.add('modal_display-none');
-//       }
-//     }
-//   });
-// }
-
-
-function verifieQte(data) {
-  
-  // var element = document.querySelector('.liste-btl_carte');
-  // element.addEventListener('click', clickHandler(event))
-
-  if (data.qte == 0 && data.bouteille ==  6) {
-    const btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
-    btnEnleverQte.classList.add('modal_display-none');
-
-    const btnModalSuppression = document.querySelector('.corbeille');
-    btnModalSuppression.classList.remove('modal_display-none');
-  }else{
-    const btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
-    btnEnleverQte.classList.remove('modal_display-none');
-
-    const btnModalSuppression = document.querySelector('.corbeille');
-    btnModalSuppression.classList.add('modal_display-none');
-  }   
-
-  // console.log(data.bouteille);  
-  // console.log(data.cellier);  
-  // console.log(data.qte);  
-
-  // window.addEventListener('click', function(event) {
-  //   var targetElement = event.target;
-  //   var parentElement = targetElement.parentNode;
-  //   console.log(parentElement);
-
-  //   // if (data.qte == 0 ) {
-        
-  //   //   target_id.classList.add('modal_display-none');
-
-  //   //   const btnModalSuppression = document.querySelector('.corbeille');// je veux remplacer cette ligne par le next html element qui a une class corbeille
-  //   //   btnModalSuppression.classList.remove('modal_display-none');
-  //   // } else {
-     
-  //   //   target_id.classList.remove('modal_display-none');// je veux remplacer cette ligne par le next html element qui a une class corbeille
-
-  //   //   const btnModalSuppression = document.querySelector('.corbeille');
-  //   //   btnModalSuppression.classList.add('modal_display-none');
-  //   // }
-  // });
-
-
-
-  // function clickHandler(event) {
-  //   var targetElement = event.target;
-  //   var parentElement = targetElement.parentNode;
-  //   console.log(parentElement);
-  // }
-  
- 
-  // Later on...
-  // window.removeEventListener('click', clickHandler);
-}   
-
-
-
-// function verifieQte(data) {
-//   console.log(data.bouteille);  
-//   console.log(data.cellier);  
-//   console.log(data.qte);  
-
-//   window.addEventListener('click', function(event) {
-//     let target_id = event.target;
-//     console.log(target_id);
-
-//     if (data.qte == 0 ) {
-        
-//       target_id.classList.add('modal_display-none');
-
-//       const btnModalSuppression = document.querySelector('.corbeille');
-//       btnModalSuppression.classList.remove('modal_display-none');
-//     }else{
-     
-//       target_id.classList.remove('modal_display-none');
-
-//       const btnModalSuppression = document.querySelector('.corbeille');
-//       btnModalSuppression.classList.add('modal_display-none');
-//     }
-
-
-//   });
-  
-
-// }
-
-
-
-/**
- * Fonction pour créer une note sur une bouteille de vin
- * @param {string} note la valeur récupéré sur un click
- * @param {string} valDepart la valeur de départ au chargement de la page
- */
-function changeNote(note, valDepart){
-  // Récupéré le id de la bouteille
-  let url = window.location.href;
-  let bouteille_id = url.split('/bouteille/')[1];
-
-  // Pour gérer la note à envoyer
-  if(this.note == undefined && note == valDepart){
-    this.note = note;
-  }
-  if (this.note == note) {
-    this.note = 0;
-  }
-  else this.note = note;
-  
-  data = { 
-    'note' : this.note,
-    'bouteille_id' : bouteille_id,
-  };
-  
-  entete = {
-    'Content-Type': 'application/json',
-    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-  };
-  
-  fetch(url, { method:'PUT', body: JSON.stringify(data), headers:entete})
-    // Pour développement, voir les réponses serveur
-    // .then(reponse=> reponse.json())
-    // .then((reponse)=>console.log(reponse));
-}
-
-
-
-// function ajoutComment(){
-//   console.log('rehjihu');
-//   let url = window.location.href,
-//       bouteille_id = url.split('/bouteille/')[1];
-
-// // console.log(data);
-// //   let data = {
-// //       'qte' :this.counter,
-// //       'bouteille': this.idB,
-// //       'cellier': this.idC
-// //     };
-
-// //     entete = {
-// //       'Content-Type': 'application/json',
-// //       'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-// //     };
-    
-// //   fetch(url+'/comment', { method:'POST', body: JSON.stringify(data), headers:entete})
-  
-
-//  }
-
-/**
- * Fonction pour ajouter un commentaire sur une bouteille de vin. Le commentaire et une notification sont injectées dès que la requête est faite.
- */
-function ajoutComment(){
-   
-  let url = window.location.href;
-  let bouteille_id = url.split('/bouteille/')[1];
-  let commentaire = document.getElementById('commentaire').value; 
-     
-  let data = {
-    'bouteille_id': bouteille_id,
-    'commentaire': commentaire
-  };
-
-  let entete = {
-    'Content-Type': 'application/json',
-    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-  };
-
-  fetch(url+'/commentaire', {
-    method: 'POST',
-    headers: entete,
-    body: JSON.stringify(data)
-  })
-  .then(response => response.json())
-  .then(data => {
-    
-    let element = document.querySelector('.comment');
-    let created_at = new Date(data.data.created_at);
-    let date = created_at.toLocaleDateString('fr');
-    
-    let comment = `<div class="carte_commentaire">
-    <p>${data.data.commentaire}</p>               
-    <small>${date}</small>
-    </div>`;
-    element.insertAdjacentHTML("beforeend", comment);
-
-    let notification = document.querySelector('#notification');
-  
-    notification.setAttribute('x-init', "() => { message = 'Commentaire ajouté'; if (message) { showNotification = true; message = message.replaceAll(\"'\", \"'\"); setTimeout(() => showNotification = false, 5000); } }");
-  });
-
-}
-
-
-/**
- * Boucle pour récupérer tous les vins de la SAQ
- * ASYNC/AWAIT pour assurer la récupération de data
- * TRY/CATCH pour réassyer lors d'échec et récupérer les erreurs
- * Fetch sur le Back-End pour Scraper la SAQ
- */
-async function scraper() {
-  const url = window.location.href;
-  const entete = {
-    'Content-Type': 'application/json',
-    'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
-  };
-
-  const maxTentative = 3; // Pour la boucle While, trois tentative
-  let i = 1; // Pour le For sur les pages de vins SAQ
-  let rafraichissement = false; // Boolean pour valider si il y a une donné réception dans localStorage
-  if(isNaN(localStorage['rafraichi'])){
-    localStorage['rafraichi'] = 1; // Pour empêcher des problèmes de type
-  }
-  if(localStorage['rafraichi'] != undefined){
-    i = localStorage['rafraichi']; // Pour récuperer le numéro de page en cas d'échec
-  }
-
-  try { // Pour recevoir la quantité de bouteilles de vins existantes et la quantité de page à fouiller
-    const reponse = await fetch(url, { method: 'POST', headers: entete });
-    const qtePage = await reponse.json();
-    document.querySelector('#total').innerHTML = qtePage['pages']; // Insérer la quantité de page
-    document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
-    `<p>Un total de ${qtePage['qte_Vins']} bouteilles ont été trouvé sur ${qtePage['pages']} pages de 96 bouteilles.</p>`);
-    // Message dans le log
-
-    for ( i; i <= qtePage['pages']; i++) { // Pour trouvé tous les vins sur une page
-      let saqVinsReponse, pageVins, pourcentageProgres;
-      let whileTentative = 1; // Valeur de départ pour l'itération pour les érreurs
-
-      while (whileTentative <= maxTentative) { // Itération pour les érreures
-        try { // Récupère le data du Scraper sur les vins trouvés et insérer dans la DB
-          saqVinsReponse = await fetch(url, { method: 'PUT', body: JSON.stringify(i), headers: entete });
-          pageVins = await saqVinsReponse.json();
-          pourcentageProgres = i*100/qtePage['pages']; // Pour la progression de la bar de chargement
-          document.querySelector('.scraper_chargement').style.width = `${pourcentageProgres}%`; // Pour la progression de la bar de chargement
-          
-          break; // Sort de la boucle si le Fetch fonctionne
-
-        } catch (erreur) { // Récupération d'érreurs avec message
-          document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
-          `<p>La tentative ${whileTentative} pour la page ${i} a échoué: ${erreur}</p>`);
-          console.error(erreur);
-          whileTentative++;
-        }
-      }
-
-      if (whileTentative > maxTentative) { // Dans le cas où toutes les tentatives ont échoué
-        document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
-        `<p>Toutes les tentatives de la page ${i} ont échoué. Veuillez réassayer plus tard.</p>`);
-        if(rafraichissement == false){ // Récupère la page où l'échec c'est produit
-          rafraichissement = true; // Pour ne pas supplanté l'information
-          localStorage['rafraichi'] = i;
-        }
-        if(!document.querySelector('#rafraichi')){ // Pour ne pas mettre en double le bouton de rafraîchissement
-          document.querySelector('article').insertAdjacentHTML('beforeend', 
-          `<a id="rafraichi" href="" class="btn">Rafraichir la page</a>
-          <p id="rafraichi">Le prochain démarrage continuera à l'endroit de l'échec.</p>`)
-        }
-        continue; // Passe à la prochaine itération si il y a échec
-      }
-  
-      // Récupère du data et log l'information
-      document.querySelector('#page').innerHTML = pageVins['page']; // Montre la progression
-      let messageP2 = `Aucune bouteille n'as été ajouté.`;
-      if(pageVins['liste'] != 0){
-        // condition ? exprIfTrue : exprIfFalse
-        let conjugaison = pageVins['liste'] > 1 ? 'ont' : 'a';
-        messageP2 = `${pageVins['liste']} ${conjugaison} été ajouté dans la base de données.</p>`;
-      }
-      document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
-      `<p>${pageVins['data']} bouteilles ont été trouvé sur la page ${pageVins['page']}. ${messageP2}`);
-
-      if(localStorage['rafraichi'] == i){ // Si il n'y a pas d'échec après le relancement
-        localStorage['rafraichi'] = 1;
-      }
-    }
-    if(i = qtePage['pages']){ // À la dernière page Scraper
-      document.querySelector('.scraper_info > p').innerHTML = `Complété!`;
-    }
-
-  } catch (erreur) { // Dans le cas où il y a un problème avec la SAQ
-    document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
-    `<p>Un échec de connexion vers la SAQ c'est produit, veuillez réassayer plus tard.</p>`);
-    document.querySelector('article').insertAdjacentHTML('beforeend', 
-    `<a id="rafraichi" href="" class="btn">Rafraichir la page</a>
-    <p id="rafraichi">Le prochain démarrage continuera à l'endroit de l'échec.</p>`)
-    localStorage['rafraichi'] = i;
-    console.error(erreur, i);
-  }
-}

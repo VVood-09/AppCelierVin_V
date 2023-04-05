@@ -30,18 +30,22 @@
 .formBtl_search{
     position: relative;
     display: inline-block;
-    padding: 5px;
+
     width: 100%;
 }
+
 .formBtl_search input{
     width: 100%;
+    border-radius: 20px;
+    padding-right: 30px;
 }
+
+  
 
 .formBtl_search form input, .formBtl_search form select{
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
 
 
 .formBtl_search th{
@@ -94,6 +98,14 @@
 } */
 
 
+.formBtl_section-recherche{
+    width: 100%;
+}
+
+.formBtl_section-recherche h1{
+    margin-inline: auto;
+}
+
 .formBtl_search li{
     padding-top: 10px;
     border-bottom: 1px solid black;
@@ -104,10 +116,7 @@
     max-height: 50vh;
 }
 
-.formBtl_search input{
-    border-radius: 20px;
-    padding-right: 30px;
-}
+
 
 .formBtl_search button img{
     width: 30px;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cellier;
 use App\Models\ListeBouteille;
+use App\Models\Bouteille;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
@@ -90,6 +91,7 @@ class CellierController extends Controller
             // $data = json_encode($bouteilles);
             // return view('your_view', compact('data'));
         $bouteilles = json_encode($bouteilles);
+
         return view('cellier.show', ['bouteilles' => $bouteilles, 'cellier'=>$cellier]);
     }
 
@@ -132,6 +134,7 @@ class CellierController extends Controller
 
         return redirect(route('dashboard'))->withSuccess('Cellier supprimé'); 
     }
+
 
 
 
