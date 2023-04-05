@@ -9,6 +9,7 @@ use App\Models\Commentaire;
 use App\Models\ListeBouteille;
 use App\Models\Note;
 use App\Models\User;
+use App\Rules\NoBacktick;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
@@ -50,11 +51,12 @@ class VinController extends Controller{
 
         if(!$request->code_saq){
             $request->validate([
-                'nom' => 'required',
-                'image'=> 'mimes:jpg, png',
-                'qte'=>'numeric|gt:0',
-                'format'=>'numeric|gt:0',
-                'prix'=>'numeric|gt:0',
+                'nom' => ['required', new NoBacktick],
+                'description' => [new NoBacktick],
+                'image'=> ['mimes:jpg, png', new NoBacktick],
+                'qte'=>['numeric', 'gt:0', new NoBacktick],
+                'format'=>['numeric', 'gt:0', new NoBacktick],
+                'prix'=>['numeric', 'gt:0', new NoBacktick],
                 'cellier'=>'required'
             ]);
 
@@ -79,7 +81,7 @@ class VinController extends Controller{
             $request->validate([
                 'cellier'=>'required|numeric',
                 'id'=>'required|numeric',
-                'qte'=>'required|numeric',
+                'qte'=>['required', 'numeric', new NoBacktick],
 
             ]);
 
@@ -196,13 +198,14 @@ class VinController extends Controller{
         }
 
         $request->validate([
-            'nom' => 'required',
-            'image'=> 'mimes:jpg, png',
-            'qte'=>'numeric|gt:0',
-            'format'=>'numeric|gt:0',
-            'prix'=>'numeric|gt:0',
+            'nom' => ['required', new NoBacktick],
+            'description' => [new NoBacktick],
+            'image'=> ['mimes:jpg, png', new NoBacktick],
+            'qte'=>['numeric', 'gt:0', new NoBacktick],
+            'format'=>['numeric', 'gt:0', new NoBacktick],
+            'prix'=>['numeric', 'gt:0', new NoBacktick],  
         ]);
-
+        
         $bouteille->update([
             'nom'=>$request->nom,
             'image'=>$filename,

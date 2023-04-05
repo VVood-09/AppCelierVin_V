@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Rules\NoBacktick;
+use Illuminate\Validation\Rule;
 
 class UtilisateurController extends Controller
 { 
@@ -37,8 +39,8 @@ class UtilisateurController extends Controller
 
         $utilisateur = Auth::user();
         $request->validate([
-            'nom' => 'required',
-            'email'=>'email',
+            'nom' => ['required', new NoBacktick],
+            'email'=> ['required', 'email', Rule::unique('users')->ignore($utilisateur->id)],
         ]);
 
         $utilisateur->update([

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cellier;
 use App\Models\ListeBouteille;
 use App\Models\Bouteille;
+use App\Rules\NoBacktick;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,7 @@ class CellierController extends Controller
     public function store(Request $request){
        
         $request->validate([
-            'nom' => 'required|max:8',
+            'nom' => ['required', 'max:8', new NoBacktick],
         ]);
 
         $cellier = Cellier::create([
@@ -115,7 +116,7 @@ class CellierController extends Controller
     public function update(Request $request, Cellier $cellier){
 
         $request->validate([
-            'nom' => 'required|max:8',
+             'nom' => ['required', 'max:8', new NoBacktick],
         ]);
 
         $cellier->update([

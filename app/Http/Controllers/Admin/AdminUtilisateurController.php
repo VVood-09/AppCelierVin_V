@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use App\Rules\NoBacktick;
 
 class AdminUtilisateurController extends Controller{
 
@@ -53,7 +54,7 @@ class AdminUtilisateurController extends Controller{
     public function update(Request $request, User $utilisateur){
         
         $request->validate([
-            'name' => 'required',
+            'name' => ['required', new NoBacktick],
             // Pour valider le courriel unique de l'utilisateur à modifier
             // https://laravel.com/docs/master/validation#rule-unique
             'email'=> ['required', 'email', Rule::unique('users')->ignore($utilisateur->id)],
