@@ -47,39 +47,38 @@ window.addEventListener('DOMContentLoaded', () => {
                     <table>
                         <tr>
                             <th>Nom</th>
-                            <td x-ref="nom" value="{{old('nom')}}"></td>
+                            <td x-ref="nom"></td>
                         </tr>
                         <tr>
                             <th>Prix</th>
-                            <td x-ref="prix" value="{{old('prix')}}"></td>
+                            <td x-ref="prix"></td>
                         </tr>
                         <tr>
                             <th>Pays</th>
-                            <td x-ref="pays" value="{{old('pays')}}"></td>
+                            <td x-ref="pays"></td>
                         </tr>
                         <tr>
                             <th>Type</th>
-                            <td x-ref="type" value="{{old('type')}}"></td>
+                            <td x-ref="type"></td>
                         </tr>
                         <tr>
                             <th>Détails</th>
-                            <td x-ref="description" value="{{old('description')}}"></td>
+                            <td x-ref="description"></td>
                         </tr>
                         <tr>
                             <th>Format</th>
-                            <td x-ref="format" value="{{old('format ')}}"></td>
+                            <td x-ref="format"></td>
                         </tr>
                     </table>
                 </div>
 
                 <form action="" enctype="multipart/form-data" method="post">
                 @csrf
-                    <input type="hidden" name="id" x-ref="id" value="{{old('id')}}">
-                    <input type="hidden" name="code_saq" x-ref="code_saq" value="{{old('code_saq')}}">
+                    <input type="hidden" name="id" x-ref="id">
+                    <input type="hidden" name="code_saq" x-ref="code_saq">
                     <select name="cellier" id="selectCellier">
-                        <option value="" disabled selected>Choisir un cellier</option>
                         @foreach($celliers as $cellier)
-                        <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+                        <option value="{{$cellier->id}}" @if($cellier_actif == $cellier->id) selected @endif>{{$cellier->nom}}</option>
                         @endforeach
                     </select>
                     <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="1" required>
@@ -97,7 +96,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     <form x-data="{
     ismodalopen: true,
-    formValues: {},
+    formValues: {cellier: {{$cellier_actif}}},
     errors: {},
     validateForm() {
         event.preventDefault();
@@ -120,7 +119,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (!this.formValues[field]) {
             fieldErrors[field] = `Le champ ${field} est obligatoire.`;
-            <!-- console.log(fieldErrors) -->
             console.log(!this.formValues[field])
             isValid = false;
         }
@@ -166,9 +164,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
         <span x-text="errors.recap" class="textError"></span>
         <select name="cellier" x-model="formValues.cellier" @blur="validateField('cellier')">
-            <option value="" disabled selected>Choisir un cellier</option>
             @foreach($celliers as $cellier)
-            <option value="{{$cellier->id}}">{{$cellier->nom}}</option>
+            <option value="{{$cellier->id}}" @if($cellier_actif == $cellier->id) selected @endif>{{$cellier->nom}}</option>
             @endforeach
         </select>
         <div x-text="errors.cellier" class="textError"></div>
@@ -183,4 +180,8 @@ window.addEventListener('DOMContentLoaded', () => {
     </form>
 
 </section>
+
+<div>
+    <x-modalQte></x-modalQte>
+</div>
 @endsection
