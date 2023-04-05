@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
+use App\Rules\NoBacktick;
 
 
 class CommentaireController extends Controller{
@@ -22,6 +23,11 @@ class CommentaireController extends Controller{
     *@return \Illuminate\Http\JsonResponse
     */
     public function store(Request $request){
+
+        $request->validate([
+            'commentaire' => ['required', new NoBacktick]
+        ]);
+        
         $comment = Commentaire::create([
             'commentaire'=>$request->commentaire,
             'user_id'=> Auth::user()->id,
