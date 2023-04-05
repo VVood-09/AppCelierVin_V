@@ -6,9 +6,9 @@
     <section class="register_section"  >
         <h1>Inscription</h1>
      
-
         <!-- Validation Errors -->
         <div class="register_form" :errors="$errors" >
+        <x-auth-validation-errors :errors="$errors" />
 
         <form x-data="{
                 formValues: {},
@@ -33,7 +33,6 @@
 
                     if (!this.formValues[field]) {
                         fieldErrors[field] = `Le champ ${field} est obligatoire.`;
-                        console.log(fieldErrors)
                         isValid = false;
                     }
 
@@ -61,7 +60,6 @@
                     }
 
                     this.errors = {...this.errors, ...fieldErrors};
-                    console.log(this.errors)
                     return isValid;
                     },
             }"

@@ -28,7 +28,7 @@ function changeQte(qte, id){
       'cellier': this.idC
     };
   }
-console.log(url);
+
   entete = {
     'Content-Type': 'application/json',
     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content

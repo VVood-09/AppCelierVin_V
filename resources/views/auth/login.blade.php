@@ -7,7 +7,7 @@
         <!-- Session Status -->
         <x-auth-session-status class="" :status="session('status')" />
 
-        <x-auth-validation-errors class="" :errors="$errors" />
+        <x-auth-validation-errors :errors="$errors" />
 
         <form x-data="{
                 formValues: {},
@@ -17,7 +17,6 @@
                     this.errors = {};
                     const requiredFields = ['email', 'password']
                     const missingFields = requiredFields.filter(field => !this.formValues[field]);
-                    console.log(missingFields);
 
                     if (missingFields.length > 0) {
                         this.errors.recap = 'Remplir ce champ';
@@ -32,7 +31,6 @@
 
                     if (!this.formValues[field]) {
                         fieldErrors[field] = `Le champ ${field} est obligatoire.`;
-                        console.log(fieldErrors)
                         isValid = false;
                     }
 
@@ -53,11 +51,9 @@
                     }
 
                     this.errors = {...this.errors, ...fieldErrors};
-                    console.log(this.errors)
                     return isValid;
                     },
             }" class="login_form" method="POST"  action="{{ route('login') }}">
-            <!-- }" class="login_form" method="POST"  @submit.prevent="validateForm()"> -->
             @csrf
 
             <div>
