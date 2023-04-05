@@ -2,7 +2,7 @@
 @section('title', 'Admin')
 @section('content')
 
-<section>
+<section class="formulaire_admin">
     <h1>Modification d'un membre</h1>
    
     <form x-data="{

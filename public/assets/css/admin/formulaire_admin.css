@@ -1,0 +1,8 @@
+.formulaire_admin {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.formulaire_admin .admin_btn > *+* {
+    margin-left: auto;
+}
