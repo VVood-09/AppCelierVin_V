@@ -8,7 +8,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const spanErrorModal = document.querySelector('.spanErrorModal');
   const errorMessage = document.createElement('span');
   const cellierSelect = document.querySelector('#selectCellier');
-  cellierSelect.value = cellierSelect.firstElementChild.value;
 
   errorMessage.style.color = 'red';
   errorMessage.style.fontSize = '0.8em';
