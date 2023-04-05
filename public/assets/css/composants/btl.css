@@ -71,7 +71,7 @@
   justify-content: flex-start;
 }
 
-/* sert a faire la ligne rouge  dans les info */
+
 .btl_carte-espaceur{
   width: 30%;
   background-color: var(--primary);
@@ -99,7 +99,7 @@
 .btl_carte-bullet_info div:last-of-type .btl_carte-espaceur-large{
   margin-left: var(--espacements-small);   
 }
-/* fin */
+
 
 .btl_carte-bullet_info div:last-of-type{
   justify-content: flex-end;

@@ -17,16 +17,14 @@
 
 .formBtl_section.suggestion_section h1{
     margin-block: var(--espacements-small);
-
-
 }
 
 .formBtl_search-section{
     width: 100%;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     margin-bottom: var(--espacements-medium);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--espacements-medium);
 }
 
 .formBtl_search{
@@ -34,7 +32,6 @@
     display: inline-block;
     padding: 5px;
     width: 100%;
-   
 }
 .formBtl_search input{
     width: 100%;
