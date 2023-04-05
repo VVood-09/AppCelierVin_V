@@ -81,7 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
                         <option value="{{$cellier->id}}" @if($cellier_actif == $cellier->id) selected @endif>{{$cellier->nom}}</option>
                         @endforeach
                     </select>
-                    <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="1" required>
+                    <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="1" required aria-label="Nombre">
                     <div class="btnWrapper">
                         <button type="button" @click="ismodalopen = false; $dispatch('reset-query') " class="modal-button modal-button-cancel">Annuler</button>
                         <button class="modal-button modal-button-confirm">Confirmer</button>
@@ -133,21 +133,21 @@ window.addEventListener('DOMContentLoaded', () => {
         <span x-text="errors.recap" class="textError"></span>
         <label for="file" class="formBtl_ajoutL">Télécharger une image <i><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="formBtl_ajoutF"><g data-name="Layer 2"><path d="M16 29a13 13 0 1 1 13-13 13 13 0 0 1-13 13Zm0-24a11 11 0 1 0 11 11A11 11 0 0 0 16 5Z" fill="#7e001e" class="fill-000000"></path><path d="M16 23a1 1 0 0 1-1-1V10a1 1 0 0 1 2 0v12a1 1 0 0 1-1 1Z" fill="#7e001e" class="fill-000000"></path><path d="M22 17H10a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2Z" fill="#7e001e" class="fill-000000"></path></g><path d="M0 0h32v32H0z" fill="none"></path></svg></i>
         </label>
-        <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}" class="formBtl_file">
+        <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}" class="formBtl_file" aria-label="Image">
 
-        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}" x-model="formValues.nom" @blur="validateField('nom')">
+        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}" x-model="formValues.nom" @blur="validateField('nom')" aria-label="nom">
         <span x-text="errors.nom" class="textError"></span>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" x-model="formValues.prix" @blur="validateField('prix')" />
+        <input x-ref="prix" type="text" name="prix" placeholder="Prix" value="{{old('prix')}}" x-model="formValues.prix" @blur="validateField('prix')" aria-label="prix"/>
         <div x-text="errors.prix" class="textError"></div>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" x-model="formValues.pays" @blur="validateField('pays')" />
+        <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{old('pays')}}" x-model="formValues.pays" @blur="validateField('pays')" aria-label="pays"/>
         <div x-text="errors.pays" class="textError"></div>
 
         <span x-text="errors.recap" class="textError"></span>
-        <select x-ref="type" name="type" x-model="formValues.type" @blur="validateField('type')">
+        <select x-ref="type" name="type" x-model="formValues.type" @blur="validateField('type')" aria-label="Type">
             <option value="" disabled selected>Choisir un type</option>
             <option value="Vin blanc">Vin blanc</option>
             <option value="Vin rouge">Vin rouge</option>
@@ -156,14 +156,14 @@ window.addEventListener('DOMContentLoaded', () => {
         </select>
         <div x-text="errors.type" class="textError"></div>
 
-        <textarea x-ref="description" name="description" placeholder="Description">{{old('description')}}</textarea>
+        <textarea x-ref="description" name="description" placeholder="Description" aria-label="Description">{{old('description')}}</textarea>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="format" type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)" x-model="formValues.format" @blur="validateField('format')">
+        <input x-ref="format" type="number" id="format" name="format" step="0.01" min="0" value="{{old('format')}}" placeholder="Quantité (en ml)" x-model="formValues.format" @blur="validateField('format')" aria-label="Format">
         <div x-text="errors.format" class="textError"></div>
 
         <span x-text="errors.recap" class="textError"></span>
-        <select name="cellier" x-model="formValues.cellier" @blur="validateField('cellier')">
+        <select name="cellier" x-model="formValues.cellier" @blur="validateField('cellier')" aria-label="cellier">
             @foreach($celliers as $cellier)
             <option value="{{$cellier->id}}" @if($cellier_actif == $cellier->id) selected @endif>{{$cellier->nom}}</option>
             @endforeach
@@ -171,7 +171,7 @@ window.addEventListener('DOMContentLoaded', () => {
         <div x-text="errors.cellier" class="textError"></div>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('quantite')}}" x-model="formValues.quantite" @blur="validateField('quantite')">
+        <input aria-label="Nombre de bouteilles" type="number" name="qte" placeholder="Nombre de bouteilles" min="0" / value="{{old('quantite')}}" x-model="formValues.quantite" @blur="validateField('quantite')">
         <div x-text="errors.quantite" class="textError"></div>
 
         <div x-text="errors.warning" class="textError"></div>

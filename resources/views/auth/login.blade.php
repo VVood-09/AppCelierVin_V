@@ -64,13 +64,13 @@
 
                 <x-input x-ref="email" @blur="validateField('email')" placeholder='Courriel' 
                 id="email"  type="email" 
-                name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus />
+                name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus aria-label="Email"/>
                 <span x-text="errors.email" class="textError"></span>
 
             </div>
 
             <div class="">
-                <x-input x-ref="password"  @blur="validateField('password')" placeholder='Mot de passe' id="password"  type="password" value="{{old('password')}}" name="password" x-model="formValues.password" required autocomplete="current-password" />
+                <x-input x-ref="password"  @blur="validateField('password')" placeholder='Mot de passe' id="password"  type="password" value="{{old('password')}}" name="password" x-model="formValues.password" required autocomplete="current-password" aria-label="Courriel"/>
                 <span x-text="errors.password" class="textError"></span>
 
             </div>
