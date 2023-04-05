@@ -25,6 +25,7 @@
 @import "./composants/profil.css";
 @import "./composants/triage.css";
 @import "./composants/grid.css";
+@import "./composants/svg-corbeille.css";
 
 
 /*-------- Import administration ---------*/
