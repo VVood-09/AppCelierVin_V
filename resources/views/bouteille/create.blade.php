@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const spanErrorModal = document.querySelector('.spanErrorModal');
   const errorMessage = document.createElement('span');
   const cellierSelect = document.querySelector('#selectCellier');
-  cellierSelect.value = cellierSelect.firstElementChild.nextElementSibling.value;
+  cellierSelect.value = cellierSelect.firstElementChild.value;
 
   errorMessage.style.color = 'red';
   errorMessage.style.fontSize = '0.8em';
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
         errorMessage.textContent = ''; // Clear the error message if the input is valid
         event.target.form.submit();
     } else {
-        cellierSelect.value = cellierSelect.firstElementChild.nextElementSibling.value
+        cellierSelect.value = cellierSelect.firstElementChild.value
         spanErrorModal.textContent = 'Veuillez entrer un nombre entier et choisir un cellier.'; // Show the error message if the input is invalid
     }
   });
