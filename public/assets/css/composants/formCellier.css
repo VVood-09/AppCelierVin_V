@@ -3,17 +3,14 @@
     display: flex;
     flex-direction: column;
     margin-top: var(--espacements-x_large);
-   
-
-
 }
+
 .formCellier h1, .formCellier, .formCellier_input input{
     display: flex;
     justify-content: center;
     margin: var(--espacements-small) auto;
     border-radius: 20px;
     width: 100%;
- 
 }
 
 .formCellier_btn{

@@ -65,7 +65,7 @@
                     <p>Aucune bouteille dans le cellier.</p>
                     <a href="{{ route('bouteille.create')}}" class="btn">Ajouter une bouteille</a>
                 </section>
-            </template>
+        </template>
         
             <template x-if="{{$bouteilles}} != ''">
                 <div class="formBtl_form">

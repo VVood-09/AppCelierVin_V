@@ -6,6 +6,7 @@ html, body {
   scroll-behavior: smooth;
   line-height: 1.5;
 }
+
 main{
   margin: var(--espacements-medium) var(--espacements-small) var(--espacements-large_plus);
 }
@@ -15,8 +16,6 @@ a{
   font-family: var(--font-base);
   color: inherit;
 }
-
-
 
 img{
   max-width: 100%;
@@ -38,11 +37,9 @@ input[type="number"]::-webkit-outer-spin-button {
   display: none;
 }
 
-
 input[type=number] {
   -moz-appearance: textfield;
 }
-
 
 details summary::marker {
   font-size: 25px;
@@ -65,24 +62,6 @@ details summary::marker {
   display: inline;
   width: 20px;
 }
-/* 
-details summary::before {
-  content:url(../img/icon_PW2/arrow_down_left_icon.svg);
-  font-size: 1.2em;
-}
-
-
-
-[data-css-icon="right outline"] i{
-  transform: scale(0.5);
-}
-
-summary{
-  font-size: 20px;
-} */
-
-
-
 
 [type='text'],[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select {
   -webkit-appearance: none;
@@ -116,7 +95,6 @@ img, svg, video, canvas, audio, iframe, embed, object {
     vertical-align: middle;
 }
 
-
 *, ::before, ::after {
     box-sizing: border-box; 
     border-width: 0; 
@@ -134,12 +112,9 @@ button, [type='button'], [type='reset'], [type='submit'] {
     background-image: none;
 }
 
-
-
 blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
     margin: 0;
 }
-
 
 button, input, optgroup, select, textarea {
     font-family: inherit;
@@ -148,7 +123,7 @@ button, input, optgroup, select, textarea {
     line-height: inherit;
     color: inherit;
     margin: 0;
-    /* padding: 0; */
+
 }
 
 ol,

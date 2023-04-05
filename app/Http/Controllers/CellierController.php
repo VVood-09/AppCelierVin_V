@@ -145,7 +145,8 @@ class CellierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function changeQte(Request $request){
-        DB::statement("UPDATE liste_bouteilles SET qte = $request->qte, updated_at = now() WHERE bouteille_id = $request->bouteille AND cellier_id = $request->cellier ;");
+   
+        DB::statement("UPDATE liste_bouteilles SET qte = $request->qte, updated_at = now() WHERE bouteille_id = $request->bouteille AND cellier_id = $request->cellier;");
 
         $qteChange = ListeBouteille::select('qte')
                             ->where('cellier_id', $request->cellier)
@@ -160,7 +161,6 @@ class CellierController extends Controller
                 ];
 
         return $data;
-        
     }
 
 

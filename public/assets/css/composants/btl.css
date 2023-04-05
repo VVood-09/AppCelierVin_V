@@ -99,7 +99,7 @@
 .btl_carte-bullet_info div:last-of-type .btl_carte-espaceur-large{
   margin-left: var(--espacements-small);   
 }
-/* fin */
+
 
 .btl_carte-bullet_info div:last-of-type{
   justify-content: flex-end;
@@ -124,7 +124,6 @@
 
 .btl_carte-commentaire summary{
   border-bottom: 2px var(--accent) solid;
-
 }
  
 .btl_carte-commentaire a{
@@ -137,3 +136,6 @@
 .btl_carte a svg, .btl_carte-commentaire a svg {
   width: 30px;  
 }
+
+
+
