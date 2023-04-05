@@ -2,17 +2,6 @@
 @section('title', 'Show bouteille')
 @section('content')
 
-<script>
-    // Si à l'ouverture de la page la quantité de bouteille est à zéro
-    // L'option de suppresion de bouteille apparaît
-    window.addEventListener('DOMContentLoaded', () => {
-        if(document.querySelector("input[type='number']").value == 0){
-            document.querySelector('button[aria-label="Enlever quantité"]').classList.add('modal_display-none');
-            document.querySelector('.corbeille').classList.remove('modal_display-none');
-        }
-    })
-</script>
-
     <a href="{{ route('cellier.show', ['cellier' => $cellier->id]) }}" class="retour"> <svg viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512"><path d="M352 115.4 331.3 96 160 256l171.3 160 20.7-19.3L201.5 256z" fill="#7e001e" class="fill-000000"></path></svg>Cellier</a>
 
     <article class="btl_carte">
