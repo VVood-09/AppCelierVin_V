@@ -62,6 +62,7 @@
 .modal_btn-delete{
   width: 100%;
   margin: auto;
+  display: flex;
 }
 
 .modal_confirm-btn{

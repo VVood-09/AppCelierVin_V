@@ -1,0 +1,7 @@
+.corbeille svg {
+    height: 32px;
+}
+
+.corbeille {
+    fill: var(--accent);
+}

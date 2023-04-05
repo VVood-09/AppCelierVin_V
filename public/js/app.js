@@ -5,6 +5,19 @@
  * Changement de la note sur bouteille
  */
 
+/**
+ * Dans la page bouteille/show
+ * Si à l'ouverture de la page la quantité de bouteille est à zéro
+ * L'option de suppresion de bouteille apparaît
+ */ 
+window.addEventListener('DOMContentLoaded', () => {
+  if(window.location.href.includes('bouteille') && document.querySelector('.note')){   
+    if(document.querySelector("input[type='number']").value == 0){
+        document.querySelector('button[aria-label="Enlever quantité"]').classList.add('modal_display-none');
+        document.querySelector('.corbeille').classList.remove('modal_display-none');
+    }
+  }
+})
 
 /**
  * Function pour changer la quantité de bouteilles dans le cellier

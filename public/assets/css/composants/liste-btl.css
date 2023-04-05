@@ -113,6 +113,7 @@
 
 .liste-btl_info_bouteilles input{
     width: 40px;
+    height: 40px;
     border-radius: 50px;
     border: 1px solid #ccc;
     text-align: center;
