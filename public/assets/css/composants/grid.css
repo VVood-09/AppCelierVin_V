@@ -3,6 +3,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
+
 .grid_carte{
   background-color:  var(--neutral);
   border-radius: 10px;
@@ -18,11 +19,13 @@
   align-items: center;
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: var(--espacements-medium);
 }
+
 .grid_carte-label{
- 
-  margin: var(--espacements-small);
+  margin: var(--espacements-small) var(--espacements-small) var(--espacements-x_small) var(--espacements-small);
 }
+
 .grid_carte-info{
   align-self: center;
   margin-top: var(--espacements-x_small);
@@ -31,8 +34,49 @@
   font-weight: bold;
   border-bottom: 2px solid var(--accent);
 }
+
 .grid_stat-btlGlobal{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.grid_stat-btlGlobal> .grid_carte{
+  height: 45%;
+}
+
+.grid_top5{
+  display: flex;
+  margin: var(--espacements-small) var(--espacements-small) var(--espacements-small) var(--espacements-small);
+}
+
+.grid_top5-note{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 25%;
+}
+
+.grid_carte-average{
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--accent);
+  align-self: center;
+  
+}
+
+.grid_top5-noteCount{
+  font-size: 12px;
+}
+
+.grid_top5-nom{
+  margin-left: var(--espacements-medium);
+  align-self: center;
+  text-align: left;
+}
+
+.grid_carte-vinComment{
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: var(--espacements-medium);
 }

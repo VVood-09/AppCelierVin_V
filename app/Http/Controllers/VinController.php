@@ -192,8 +192,10 @@ class VinController extends Controller
 
 
 
-       public function delete(Cellier $cellier,Bouteille $bouteille)
+      public function delete(Cellier $cellier,Bouteille $bouteille)
       {
+      
+
         $bouteille->delete();
   
         return redirect(route('cellier.show', ['cellier'=>$cellier]))->withSuccess('Bouteille supprimée');

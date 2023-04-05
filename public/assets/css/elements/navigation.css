@@ -9,6 +9,7 @@ header{
    padding: var(--espacements-small) ;
    z-index: 10;
 }
+
 header span svg{
         width: 40px;
          
@@ -26,8 +27,7 @@ footer nav{
   bottom: 0;
   width: 100%;
   display: flex;
-  padding:0 var(--espacements-small);
-    
+  padding:0 var(--espacements-small); 
 }
 
 
@@ -37,7 +37,6 @@ footer nav a img{
 
 
 footer nav a {
-
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
@@ -45,13 +44,6 @@ footer nav a {
     font-size: 17px;
 
   }
-
-  /* footer nav a:first-child{
-    margin-left: var(--small);
-  }
-  footer nav a:last-child{
-    margin-right: var(--small);
-  } */
 
   footer nav a:hover {
     background: var(--neutral);
