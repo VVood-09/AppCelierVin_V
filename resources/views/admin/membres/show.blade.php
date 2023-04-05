@@ -19,7 +19,6 @@
 
         if (!this.formValues[field]) {
             fieldErrors[field] = `Le champ ${field} est obligatoire.`;
-            console.log(fieldErrors)
             isValid = false;
         }
 
@@ -33,7 +32,6 @@
 
 
         this.errors = {...this.errors, ...fieldErrors};
-        console.log(this.errors)
         return isValid;
     }
 
@@ -49,8 +47,8 @@
         x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" id="nom">
         
         <span x-text="errors.email" class="textError"></span>
-        <label for="nom">Courriel</label>
-        <input name="nom" type="email" placeholder="Courriel" value="{{$utilisateur->email}}"
+        <label for="email">Courriel</label>
+        <input name="email" type="email" placeholder="Courriel" value="{{$utilisateur->email}}"
             x-model="formValues.email" x-ref="email" @blur="validateField('email')" id="email">
 
         <label for="permission">Niveau d'accès</label>

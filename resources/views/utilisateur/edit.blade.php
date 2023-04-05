@@ -21,24 +21,20 @@
 
         if (!this.formValues[field]) {
             fieldErrors[field] = `Le champ ${field} est obligatoire.`;
-            console.log(fieldErrors)
             isValid = false;
         }
 
         if (field == 'email') {
-                        fieldErrors[field] = ``;
-                        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))){
-                            fieldErrors[field] = `Entrez une adresse courriel valide`;
-                            isValid = false;
-                        }
+            fieldErrors[field] = ``;
+            if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))){
+                fieldErrors[field] = `Entrez une adresse courriel valide`;
+                isValid = false;
+            }
         }
 
-
         this.errors = {...this.errors, ...fieldErrors};
-        console.log(this.errors)
         return isValid;
     }
-
   }"
   
   class="formBtl_form"   method="post" action="">

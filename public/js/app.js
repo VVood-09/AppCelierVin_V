@@ -77,7 +77,6 @@ function changeQte(qte, id){
     btnEnleverQte = document.querySelector('button[aria-label="Enlever quantité"]');
     btnModalSuppression = document.querySelector('.corbeille');
   } else {
-    console.log(data.bouteille);
     let DOMcarteBtl = document.querySelector(`[id="${data.bouteille}"]`);
     btnEnleverQte = DOMcarteBtl.querySelector('button[aria-label="Enlever quantité"]');
     btnModalSuppression = DOMcarteBtl.querySelector('.corbeille');

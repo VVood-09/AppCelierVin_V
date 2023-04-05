@@ -118,12 +118,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (!this.formValues[field]) {
             fieldErrors[field] = `Le champ ${field} est obligatoire.`;
-            console.log(!this.formValues[field])
             isValid = false;
         }
         
         this.errors = {...this.errors, ...fieldErrors};
-        console.log(this.errors)
         return isValid;
     },
 }" @submit.prevent="validateForm()" action="" enctype="multipart/form-data" class="formBtl_form" method="post">
