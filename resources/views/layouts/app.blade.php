@@ -29,10 +29,11 @@
             <main>
                 @yield("content")
             </main>
-            
-            <footer>
-                <nav>
-            <!--<a href="#"><img src="assets/img/icon_PW2/question_icon.png" alt=""></a>-->
+
+
+    <footer>
+        <nav>
+
             @if(Auth::check())
             
             <a href="{{ route('utilisateur.show', Auth::user()->id)}}"><img src="{{asset('assets/img/icon_PW2/profile_icon.svg')}}" alt="Page profil"></a>
