@@ -4,36 +4,55 @@
 
 <section>
     <h1>Modification d'un membre</h1>
-    <!-- CHANGEZ LA GESTION DES MESSAGES D'ERREURS -->
-    <!-- CHANGEZ LA GESTION DES MESSAGES D'ERREURS -->
-    <!-- CHANGEZ LA GESTION DES MESSAGES D'ERREURS -->
-    <!-- CHANGEZ LA GESTION DES MESSAGES D'ERREURS -->
-    <!-- CHANGEZ LA GESTION DES MESSAGES D'ERREURS -->
-    <div>
-        @if($errors)
-        <ul>
-            @foreach($errors->all() as $error)
-            <li class="text-danger">{{ $error }}</li>
-            @endforeach
-        </ul>
-        @endif
-    </div>
-    <!-- CHANGEZ LA GESTION DES MESSAGES D'ERREURS -->
-    <!-- CHANGEZ LA GESTION DES MESSAGES D'ERREURS -->
-    <!-- CHANGEZ LA GESTION DES MESSAGES D'ERREURS -->
-    <!-- CHANGEZ LA GESTION DES MESSAGES D'ERREURS -->
-    <!-- CHANGEZ LA GESTION DES MESSAGES D'ERREURS -->
-    
-    <form action="" method="post" class="formBtl_form">
-        @csrf
-        @method('put')
-        
+   
+    <form x-data="{
+    formValues: {
+      nom: '{{$utilisateur->name}}',
+      email: '{{$utilisateur->email}}'
+    },
+    errors: {},
+
+    validateField(field) {
+        const fieldErrors = {};
+        let isValid = true;
+        fieldErrors[field] = ``;
+
+        if (!this.formValues[field]) {
+            fieldErrors[field] = `Le champ ${field} est obligatoire.`;
+            console.log(fieldErrors)
+            isValid = false;
+        }
+
+        if (field == 'email') {
+                        fieldErrors[field] = ``;
+                        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))){
+                            fieldErrors[field] = `Entrez une adresse courriel valide`;
+                            isValid = false;
+                        }
+        }
+
+
+        this.errors = {...this.errors, ...fieldErrors};
+        console.log(this.errors)
+        return isValid;
+    }
+
+  }"
+  
+  class="formBtl_form"   method="post" action="">
+    @csrf
+    @method('put')
+     
+        <span x-text="errors.nom" class="textError"></span>
         <label for="nom">Nom</label>
-        <input id="nom" name="name" type="text" value="{{$utilisateur->name}}">
+        <input name="nom" type="text" placeholder="Nom" value="{{$utilisateur->name}}"
+        x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" id="nom">
         
-        <label for="courriel">Courriel</label>
-        <input id="courriel" name="email" type="text" value="{{$utilisateur->email}}">
-        
+        <span x-text="errors.email" class="textError"></span>
+        <label for="nom">Courriel</label>
+        <input name="nom" type="email" placeholder="Courriel" value="{{$utilisateur->email}}"
+            x-model="formValues.email" x-ref="email" @blur="validateField('email')" id="email">
+
         <label for="permission">Niveau d'accès</label>
         <select id="permission" name="permission_id" >
             @forelse($permissions as $permission)
@@ -45,13 +64,13 @@
             @empty
             @endforelse
         </select>
-        
+       
         <div class="admin_btn">
-            <button class="btn-reverse"> <a href="{{ route('admin.membre.index') }}">Annuler</a></button>
+            <button class="btn-reverse"> <a href="{{ route('admin.membres.index') }}">Annuler</a></button>
             <input class="btn" type="submit" value="Mettre à jour">
         </div>
-        
-    </form>
+  </form>
+
     
 </section>
 @endsection

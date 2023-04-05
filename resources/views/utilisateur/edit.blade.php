@@ -47,11 +47,11 @@
      
     <span x-text="errors.nom" class="textError"></span>
     <input name="nom" type="text" placeholder="Nom" value="{{$utilisateur->name}}"
-          x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" id="nom">
+          x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" id="nom" aria-label="nom">
     <span x-text="errors.email" class="textError"></span>
     <input name="email" type="email" placeholder="Courriel" value="{{$utilisateur->email}}"
-        x-model="formValues.email" x-ref="email" @blur="validateField('email')" id="email">
-    <input class="btn"  type="submit" value="Modifier">
+        x-model="formValues.email" x-ref="email" @blur="validateField('email')" id="email" aria-label="email">
+    <input class="btn"  type="submit" value="Modifier" aria-label="modifier">
        
   </form>
 

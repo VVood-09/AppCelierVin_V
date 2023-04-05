@@ -39,6 +39,7 @@
         <input placeholder="Nom du Cellier" type="text" id="nom" name="nom" class="form-control" 
         value="{{old('nom')}}" maxlength="8"
         x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')"
+        aria-label="Cellier"
         >
       </div>
       <div class="formCellier_btn">

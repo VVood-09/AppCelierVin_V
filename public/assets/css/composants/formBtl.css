@@ -17,22 +17,19 @@
 
 .formBtl_section.suggestion_section h1{
     margin-block: var(--espacements-small);
-
-
 }
 
 .formBtl_search-section{
     width: 100%;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     margin-bottom: var(--espacements-medium);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--espacements-medium);
 }
 
 .formBtl_search{
     position: relative;
     display: inline-block;
-
     width: 100%;
 }
 
@@ -65,41 +62,6 @@
     max-width: max-content;
 }
 
-/* .modal-SAQ{
-    border: 1px solid #ccc;
-    box-shadow: 2px 2px 6px 0 rgba(0,0,0,.3);
-    background-color: var(--neutral);
-    border-radius: 20px;
-    padding: 20px;
-    
-} */
-
-
-/* .modal-SAQ{
-    position: fixed;
-    top: 0%;
-    right: 0;
-    /* bottom: 10%; */
-    /*left: 0;
-    margin: 30px;
-    z-index: 100;
-} */
-
-
-/* .btnWrapper{
-    display: flex;
-    justify-content: space-between;
-}
-
-.btnWrapper > * {
-    max-width: 40%;
-}
-
-.btnWrapper .modal-button-confirm{
-    color: white;
-} */
-
-
 .formBtl_section-recherche{
     width: 100%;
 }
@@ -119,7 +81,6 @@
 }
 
 
-
 .formBtl_search button img{
     width: 30px;
     position: absolute;
@@ -128,13 +89,13 @@
     transform: translateY(-50%);
 }
 
-
 .formBtl_form {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: auto;
 }
+
 .formBtl_form h1{
     text-align: center;
 }
@@ -148,26 +109,22 @@
     border-radius: 20px;
     resize: none;
 }
+
 .formBtl_form a{
    display: flex;
    justify-content: center;
- 
 }
 
 .formBtl_form div{
     display: flex;
     margin-bottom: var(--espacements-small);
     align-items: last baseline;
-
 }
-
 
 .textError{
     color: red;
     font-weight: bold;
 }
-
-
 
 .formBtl_file{
     width: 0.1px;

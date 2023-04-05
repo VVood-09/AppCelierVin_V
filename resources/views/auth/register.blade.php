@@ -6,9 +6,9 @@
     <section class="register_section"  >
         <h1>Inscription</h1>
      
-
         <!-- Validation Errors -->
         <div class="register_form" :errors="$errors" >
+        <x-auth-validation-errors :errors="$errors" />
 
         <form x-data="{
                 formValues: {},
@@ -33,7 +33,6 @@
 
                     if (!this.formValues[field]) {
                         fieldErrors[field] = `Le champ ${field} est obligatoire.`;
-                        console.log(fieldErrors)
                         isValid = false;
                     }
 
@@ -61,7 +60,6 @@
                     }
 
                     this.errors = {...this.errors, ...fieldErrors};
-                    console.log(this.errors)
                     return isValid;
                     },
             }"
@@ -71,13 +69,13 @@
 
             <!-- Name -->
             <div>
-                <x-input x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" placeholder='Nom' id="name"  type="text" name="name" :value="old('name')" required autofocus />
+                <x-input x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" placeholder='Nom' id="name"  type="text" name="name" :value="old('name')" required autofocus aria-label="nom" />
                 <span x-text="errors.nom" class="textError"></span>
             </div>
 
             <!-- Email Address -->
             <div >
-                <x-input x-model="formValues.email" x-ref="email" @blur="validateField('email')" placeholder='Courriel'  id="email" type="email" name="email" :value="old('email')" required />
+                <x-input x-model="formValues.email" x-ref="email" @blur="validateField('email')" placeholder='Courriel'  id="email" type="email" name="email" :value="old('email')" required aria-label="Email" />
                 <span x-text="errors.email" class="textError"></span>
 
             </div>
@@ -90,6 +88,7 @@
                                 required autocomplete="new-password" 
                                 x-ref="password" @blur="validateField('password')"
                                 x-model="formValues.password"
+                                aria-label="Mot de Passe"
                                 />
                 <span x-text="errors.password" class="textError"></span>
 
@@ -101,7 +100,7 @@
                                 type="password"
                                 name="password_confirmation" required 
                                 x-ref="password_confirmation" @blur="validateField('password_confirmation')"
-                                x-model="formValues.password_confirmation"
+                                x-model="formValues.password_confirmation" aria-label="Confirmation Mot de passe"
                                 />
                 <span x-text="errors.password_confirmation" class="textError"></span>
 

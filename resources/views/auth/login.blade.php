@@ -7,7 +7,7 @@
         <!-- Session Status -->
         <x-auth-session-status class="" :status="session('status')" />
 
-        <x-auth-validation-errors class="" :errors="$errors" />
+        <x-auth-validation-errors :errors="$errors" />
 
         <form x-data="{
                 formValues: {},
@@ -17,7 +17,6 @@
                     this.errors = {};
                     const requiredFields = ['email', 'password']
                     const missingFields = requiredFields.filter(field => !this.formValues[field]);
-                    console.log(missingFields);
 
                     if (missingFields.length > 0) {
                         this.errors.recap = 'Remplir ce champ';
@@ -32,7 +31,6 @@
 
                     if (!this.formValues[field]) {
                         fieldErrors[field] = `Le champ ${field} est obligatoire.`;
-                        console.log(fieldErrors)
                         isValid = false;
                     }
 
@@ -53,24 +51,22 @@
                     }
 
                     this.errors = {...this.errors, ...fieldErrors};
-                    console.log(this.errors)
                     return isValid;
                     },
             }" class="login_form" method="POST"  action="{{ route('login') }}">
-            <!-- }" class="login_form" method="POST"  @submit.prevent="validateForm()"> -->
             @csrf
 
             <div>
 
                 <x-input x-ref="email" @blur="validateField('email')" placeholder='Courriel' 
                 id="email"  type="email" 
-                name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus />
+                name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus aria-label="Email"/>
                 <span x-text="errors.email" class="textError"></span>
 
             </div>
 
             <div class="">
-                <x-input x-ref="password"  @blur="validateField('password')" placeholder='Mot de passe' id="password"  type="password" value="{{old('password')}}" name="password" x-model="formValues.password" required autocomplete="current-password" />
+                <x-input x-ref="password"  @blur="validateField('password')" placeholder='Mot de passe' id="password"  type="password" value="{{old('password')}}" name="password" x-model="formValues.password" required autocomplete="current-password" aria-label="Courriel"/>
                 <span x-text="errors.password" class="textError"></span>
 
             </div>

@@ -98,15 +98,15 @@ Route::group(['middleware' => 'auth'], function(){
         'middleware' => 'permission',
     ], function(){   
         // Route pour l'administration
+        Route::get('/', [AdminUtilisateurController::class, 'index']);
+        Route::get('/membres', [AdminUtilisateurController::class, 'index'])->name('admin.membres.index');
+        Route::get('/membres/{utilisateur}', [AdminUtilisateurController::class, 'show'])->name('admin.membres.show');
+        Route::put('/membres/{utilisateur}', [AdminUtilisateurController::class, 'update']);
+        Route::delete('/membres/{utilisateur}', [AdminUtilisateurController::class, 'destroy'])->name('admin.membres.delete');
         Route::get('/statistiques', [AdminController::class, 'stats'])->name('admin.stats');
         Route::get('/vins', [AdminController::class, 'vins'])->name('admin.vins.index');
         Route::get('/scraper', [ScraperController::class, 'index'])->name('scraper.index');
         Route::post('/scraper', [ScraperController::class, 'pages']);
         Route::put('/scraper', [ScraperController::class, 'scraper']);
-        Route::get('/', [AdminUtilisateurController::class, 'index'])->name('admin.membres.index');
-        Route::get('/membres', [AdminUtilisateurController::class, 'index'])->name('admin.membres.index');
-        Route::get('/membres/{utilisateur}', [AdminUtilisateurController::class, 'show'])->name('admin.membres.show');
-        Route::put('/membres/{utilisateur}', [AdminUtilisateurController::class, 'update']);
-        Route::delete('/membres/{utilisateur}', [AdminUtilisateurController::class, 'destroy'])->name('admin.membres.delete');
     });
 });
