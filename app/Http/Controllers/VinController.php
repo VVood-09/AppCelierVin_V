@@ -193,7 +193,6 @@ class VinController extends Controller
 
 
       public function delete(Cellier $cellier,Bouteille $bouteille)
-       public function delete(Cellier $cellier,Bouteille $bouteille)
       {
       
 
