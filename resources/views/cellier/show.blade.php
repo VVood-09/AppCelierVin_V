@@ -60,14 +60,14 @@
             } 
         }" class="liste-btl_liste">
         
-            <template x-if="bouteilles == '' && `{{$bouteilles}}` == ''">
+            <template x-if="bouteilles == '' && {{$bouteilles}} == ''">
                 <section class="liste-btl_vide">
                     <p>Aucune bouteille dans le cellier.</p>
                     <a href="{{ route('bouteille.create')}}" class="btn">Ajouter une bouteille</a>
                 </section>
         </template>
         
-            <template x-if="`{{$bouteilles}}` != ''">
+            <template x-if="{{$bouteilles}} != ''">
                 <div class="formBtl_form">
                     <input @keyup="triage(bouteilles)" type="text" class="cellier_recherche" placeholder="Recherchez dans votre cellier" aria-label="Recherche cellier">
                     <nav class="triage">
@@ -87,7 +87,7 @@
                 </div>
             </template>
 
-            <template x-if="bouteilles == '' && `{{$bouteilles}}` != ''">
+            <template x-if="bouteilles == '' && {{$bouteilles}} != ''">
                 <section class="liste-btl_vide">
                     <p>Aucune bouteille n'a été trouvée</p>
                 </section>
