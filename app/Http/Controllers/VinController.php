@@ -186,7 +186,7 @@ class VinController extends Controller{
      */
     public function update(Request $request, Cellier $cellier, Bouteille $bouteille){
         
-        $filename= null;
+       
 
        //Gestion du nom du fichier pour assurer qu'il soit unique
         if ($request->file){
@@ -195,6 +195,8 @@ class VinController extends Controller{
             $filenameO = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $filename = $filenameO . time() . '_' . Str::random(10) .'.'. $extension;
             $file->storeAs('public/uploads', $filename);
+        }else{
+            $filename = $bouteille->image;
         }
 
         $request->validate([
