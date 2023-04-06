@@ -37,7 +37,7 @@
                 let champRecherche = document.querySelector('.cellier_recherche').value.toLowerCase();
                 let bouteillesFiltrees;
                 if (champRecherche != '') {
-                  bouteillesFiltrees = this.sauvegarde.filter(bouteille => bouteille.nom.toLowerCase().includes(champRecherche) || bouteille.pays.toLowerCase().includes(champRecherche));
+                  bouteillesFiltrees = this.sauvegarde.filter(bouteille => bouteille.nom.toLowerCase().includes(champRecherche) || bouteille.pays.toLowerCase().includes(champRecherche) || bouteille.type.toLowerCase().includes(champRecherche));
                 } else {
                     bouteillesFiltrees = this.sauvegarde;
                 }
