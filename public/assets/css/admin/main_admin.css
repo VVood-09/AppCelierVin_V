@@ -50,6 +50,7 @@
     border: 2px solid rgb(0, 180, 30);
     padding: 10px;
     background-color: white;
+    fill: black;
 }
 
 .admin_main_membres .btn:hover {

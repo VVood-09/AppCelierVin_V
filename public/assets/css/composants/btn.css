@@ -21,6 +21,10 @@
     color: white;
 }
 
+.btn:active:hover, .btn:visited:hover{
+    color: black;
+}
+
 .btn-reverse{
     background-color: white;
     color: black;

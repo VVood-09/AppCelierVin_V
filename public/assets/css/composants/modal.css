@@ -77,6 +77,10 @@
   height: 35px;
 }
 
+.modal_confirm-btn button svg:hover{
+  fill: black;
+}
+
 .modal_btn-delete>.btn-reverse{
   width: 100%;
 }
