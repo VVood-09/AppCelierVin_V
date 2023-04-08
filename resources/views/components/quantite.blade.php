@@ -1,3 +1,4 @@
+<!-- Composante pour changer la quantité de bouteille sur bouteille/show -->
 <div  class="liste-btl_info_bouteilles" x-data="{counter : `{{$bouteille->qte}}`, idB : `{{$bouteille->id}}`, idC : `{{$cellier->id}}`, targetId : {{$bouteille->id}} }" x-on:change="changeQte" title="Change quantité de bouteille">
 
 

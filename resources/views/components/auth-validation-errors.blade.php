@@ -1,3 +1,4 @@
+<!-- Composante Laravel -->
 @props(['errors'])
 
 @if ($errors->any())
