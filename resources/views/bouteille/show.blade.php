@@ -7,9 +7,11 @@
     <article class="btl_carte">
         
         <div class="btl_carte-header">   
-            <!-- Composante Note.php -->
-            <x-note :note="$note"/>  
-            
+
+<!-- Appel au composant de gestion de notes-->
+            <x-note :note="$note"/> 
+
+<!--Gestion de l'image selon le type de bouteille-->
             @if(!$bouteille->code_saq)
             <a href="{{route('bouteille.edit',[$cellier->id, $bouteille->id])}}"><svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M0 14.2V18h3.8l11-11.1L11 3.1 0 14.2ZM17.7 4c.4-.4.4-1 0-1.4L15.4.3c-.4-.4-1-.4-1.4 0l-1.8 1.8L16 5.9 17.7 4Z" fill="#7e001e" fill-rule="evenodd" class="fill-000000"></path></svg></a>
             @else
@@ -19,11 +21,9 @@
                 @endif
             </div>
             @endIf
-            
         </div>
 
         <div class="btl_carte-body">
-
             <div class="liste-btl_img">
                 @isset($bouteille->image)
                     @isset($bouteille->code_saq)
@@ -60,14 +60,11 @@
                 </div>
             </div>
 
-            
-
+<!-- Appel au composant de gestion de quantité de bouteilles-->
             <div  class="btl_carte-quantite">   
                 <x-quantite :bouteille="$bouteille" :cellier="$cellier"/>             
             </div>
  
-
-
             <div class="btl_carte-description">
                 <details>
                     <summary><span data-css-icon="right outline"><i></i></span>Description</summary>
@@ -77,17 +74,12 @@
                 </details>
             </div>
 
+           <div class="btl_carte-commentaire">     
 
-
-
-
-           <div class="btl_carte-commentaire">            
-                <!-- Ajout de Commentaire !!-->
+<!-- Appel au modal d'ajout de commentaire + création des valeurs nécessaires au modal-->
                 <?php
                     $route = route('commentaire.store', ['cellier' => $cellier->id,'bouteille' => $bouteille->id]);
                 ?>
-
-
 
                 <x-modal_commentaire  route="{{ $route }}"  />
                             
@@ -107,6 +99,7 @@
         </div>
     </article>
 
+    <!-- Appel au composant de notification de retour d'action-->
     <div>
         <x-notification></x-notification>
     </div>

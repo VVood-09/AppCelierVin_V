@@ -5,6 +5,7 @@
 <section class="formulaire_admin">
     <h1>Modification d'un membre</h1>
    
+    <!-- Fonction de validation des champs du formulaire -->
     <form x-data="{
     formValues: {
       nom: `{{$utilisateur->name}}`,
@@ -30,11 +31,9 @@
                         }
         }
 
-
         this.errors = {...this.errors, ...fieldErrors};
         return isValid;
     }
-
   }"
   
   class="formBtl_form"   method="post" action="">

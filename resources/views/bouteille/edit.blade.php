@@ -20,6 +20,7 @@
         @endif
     </div>
 
+    <!-- Fonction de validation des champs du formulaire -->
     <form x-data="{
     ismodalopen: true,
     formValues: {
@@ -44,7 +45,6 @@
             this.errors.warning = 'Champs manquant(s)';
             return;
         }
-
 
         event.target.submit();
     },
@@ -77,9 +77,7 @@
         this.errors = {...this.errors, ...fieldErrors};
         return isValid;
     },
-    
   }" action="" enctype="multipart/form-data" class="formBtl_form" method="post" @submit.prevent="validateForm()">
-  <!-- }" action="" enctype="multipart/form-data" class="formBtl_form" method="post"> -->
         @csrf
         @method('put')
 
@@ -89,26 +87,16 @@
         <input type="file" id="file" name="file" accept="image/*" value="{{old('file')}}" class="formBtl_file">
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}"
-            x-model="formValues.nom" @blur="validateField('nom')"
-            id="nom"
-        >
-        <span x-text="errors.nom" class="textError"></span>
+        <input x-ref="nom" type="text" name="nom" placeholder="Nom" value="{{old('nom')}}" x-model="formValues.nom" @blur="validateField('nom')" id="nom">
+        <span x-text="errors.nom" class="textError"/></span>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="prix" type="text" name="prix"  placeholder="Prix" value="{{old('prix')}}"
-            x-model="formValues.prix" @blur="validateField('prix')"
-            id="prix"
-        />
+        <input x-ref="prix" type="text" name="prix"  placeholder="Prix" value="{{old('prix')}}" x-model="formValues.prix" @blur="validateField('prix')" id="prix"/>
         <span x-text="errors.prix" class="textError"></span>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{$bouteille->pays}}"
-            x-model="formValues.pays" @blur="validateField('pays')"
-            id="pays"
-        />
+        <input x-ref="pays" type="text" name="pays" placeholder="Pays" value="{{$bouteille->pays}}" x-model="formValues.pays" @blur="validateField('pays')" id="pays"/>
         <span x-text="errors.pays" class="textError"></span>
-
 
         <span x-text="errors.recap" class="textError"></span>
         <select x-ref="type" name="type" x-model="formValues.type" @blur="validateField('type')">
@@ -119,34 +107,25 @@
         </select>
         <span x-text="errors.type" class="textError"></span>
 
-
         <textarea name="description" placeholder="Description" >{{$bouteille->description}}</textarea>
 
         <span x-text="errors.recap" class="textError"></span>
-        <input x-ref="format" type="text" id="format" name="format" step="0.01" min="0" value="{{$bouteille->format}}" placeholder="Quantité (en ml)"
-          x-model="formValues.format" @blur="validateField('format')" id="format"
-        >
+        <input x-ref="format" type="text" id="format" name="format" step="0.01" min="0" value="{{$bouteille->format}}" placeholder="Quantité (en ml)" x-model="formValues.format" @blur="validateField('format')" id="format"/>
         <span x-text="errors.format" class="textError"></span>
 
         <input class="btn"type="submit" value="Modifier">
-        
       
     </form>
 
+<!-- Appel au modal de suppression + création des valeurs nécessaires au modal-->
     <?php
         $action = 'supprimer cette bouteille';
         $route = route('bouteille.delete', ['bouteille' => $bouteille->id,'cellier' => $cellier->id]);
     ?>
 
-
     <x-modal_suppresion  route="{{ $route }}" trigger-text="Supprimer cette bouteille" >
       Êtes-vous certain de vouloir {{ $action }} ?
     </x-modal_suppresion>
-
-
-
-  
-
 
 </section>
 @endsection
