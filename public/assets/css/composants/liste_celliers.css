@@ -1,4 +1,7 @@
-
+/* 
+    Pour la vue cellier/show
+    Affiche de tous les celliers
+*/
   .liste_celliers .grid__celliers{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(40%,1fr)) ;

@@ -1,3 +1,9 @@
+/* 
+    Le visuel de la page Scraper
+    Avec le loading bar
+    Avec le log d'information
+*/
+
 .scraper section {
     text-align: center;
     margin-bottom: var(--espacements-small);

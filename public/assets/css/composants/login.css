@@ -1,4 +1,6 @@
-
+/* 
+    Comportement de la page de connexion
+*/
 .login_section{
     display: flex;
     flex-direction: column;
