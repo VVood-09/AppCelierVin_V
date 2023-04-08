@@ -25,12 +25,13 @@
             <td>
                 @if(Auth::user()->id !== $membre->id)
                 
+                <!-- Appel au modal de suppression + création des valeurs nécessaires au modal-->
                 <?php
                     $action = 'supprimer ce membre';
                     $route = route('admin.membres.delete', [$membre->id]);
                     ?>
 
-                <div>
+                <div> 
                     <x-modal_suppresion route="{{ $route }}" trigger-text="Supprimer">
                         Êtes-vous certain de vouloir {{  $action }} ?
                     </x-modal_suppresion>
@@ -43,6 +44,7 @@
         @endforelse
     </table>
  
+        <!--Injection de la pagination -->
         {{ $utilisateurs->links('vendor.pagination.default') }}
  
 </section>

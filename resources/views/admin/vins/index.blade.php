@@ -34,6 +34,7 @@
         @endforelse
     </table>
  
+    <!-- Injection de la pagination -->
         {{ $vins->links('vendor.pagination.default') }}
  
 </section>
