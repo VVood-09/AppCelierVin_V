@@ -1,59 +1,46 @@
+/* 
+  Pour la page de profil de l'utilisateur
+  Avec modification, suppression et déconnexion
+*/
 .profil{
     display: flex;
     flex-direction: column;
     margin-top: var(--espacements-medium);
 }
 
- .profil div,.profil h1{
-    display: flex;
-  }
-
-  .profil h1{
-    margin-bottom: var(--espacements-small);
-  }
-
-  .profil div:first-of-type{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: var(--espacements-medium);
-    align-items: center;
-  }
-  
-  .profil div:first-of-type h3{
-    margin-top: var(--espacements-x_small);
-    margin-bottom: var(--espacements-x_small);
-  }
-
-
-
-
-  
-  
-  .profil div:last-of-type{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .profil div:last-of-type a{
-    display: flex;
-    flex-direction: column;
-    margin-top: var(--espacements-small);
-    /* align-items: center; */
-   
-  }
-
-
-
-
-
-
-
-
-   .profil svg{
-    width: 20px;
-  }
-  
- .profil span svg{
-  width: 80px;
-  }
+.profil div,.profil h1{
+   display: flex;
+ }
+ .profil h1{
+   margin-bottom: var(--espacements-small);
+ }
+ .profil div:first-of-type{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   margin-bottom: var(--espacements-medium);
+   align-items: center;
+ }
+ 
+ .profil div:first-of-type h3{
+   margin-top: var(--espacements-x_small);
+   margin-bottom: var(--espacements-x_small);
+ }
+ 
+ .profil div:last-of-type{
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+ }
+ .profil div:last-of-type a{
+   display: flex;
+   flex-direction: column;
+   margin-top: var(--espacements-small);   
+ }
+  .profil svg{
+   width: 20px;
+ }
+ 
+.profil span svg{
+ width: 80px;
+ }

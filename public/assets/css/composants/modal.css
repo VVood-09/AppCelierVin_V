@@ -1,3 +1,7 @@
+/* 
+    Comportement de tous les modals du site
+    Avec gestion des différents boutons selon le modal spécifique
+*/
 .modal{
   display: flex;
   flex-direction: column;

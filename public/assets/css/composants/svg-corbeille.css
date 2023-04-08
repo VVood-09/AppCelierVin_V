@@ -1,3 +1,6 @@
+/* 
+    Règles pour le comportement du svg de corbeille dans les modals de suppression
+*/
 .corbeille svg {
     height: 32px;
 }

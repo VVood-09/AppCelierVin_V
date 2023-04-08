@@ -1,3 +1,6 @@
+/* 
+    Comportement des étoiles concernant la composante note, dans bouteille/show et cellier/show
+*/
 .note {
     width: 30px;
     cursor: pointer;

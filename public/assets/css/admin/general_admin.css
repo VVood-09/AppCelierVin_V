@@ -1,3 +1,6 @@
+/* 
+    Pour s'assurer que les pages admins prennent toute la hauteur
+*/
 .html_admin{
     height: 100%;
 }
