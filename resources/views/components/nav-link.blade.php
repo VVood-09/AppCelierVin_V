@@ -1,3 +1,4 @@
+<!-- Composante Laravel -->
 @props(['active'])
 
 @php

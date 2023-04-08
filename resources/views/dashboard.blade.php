@@ -8,6 +8,8 @@
         </div>
 
         <div class="grid__celliers">
+
+        <!-- Liste des celliers -->
         @foreach($celliers as $cellier)
             <a href="{{ route('cellier.show', $cellier->id)}}" class="card__cellier"> 
                 <span>
@@ -21,6 +23,7 @@
     </section>
 
 <!-- Appel au composant de notification de retour d'action-->
+
     <div>
         <x-notification ></x-notification>
     </div>
