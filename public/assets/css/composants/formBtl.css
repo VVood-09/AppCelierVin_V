@@ -1,3 +1,7 @@
+/* 
+    Pour la vue bouteilles/create
+    Gestion des formulaires de bouteille maison et bouteilles SAQ
+*/
 .formBtl > h1{
     margin-inline: var(--espacements-medium);
     text-align: center;

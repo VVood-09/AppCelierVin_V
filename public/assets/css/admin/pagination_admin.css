@@ -1,3 +1,8 @@
+ /* 
+    Pour la gestion de la pagination en bas de tableau dans administration
+    Pour les utilisateurs et la liste des vins
+ */
+
  .pagination_admin{
   display: flex;
   justify-content: flex-end;

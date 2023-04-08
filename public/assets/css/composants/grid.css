@@ -1,3 +1,6 @@
+/* 
+  Pour la page de statistique sur les vins dans administration
+*/
 .grid_stat{
   display: grid;
   grid-template-columns: repeat(3, 1fr);

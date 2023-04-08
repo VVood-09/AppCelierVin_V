@@ -1,4 +1,6 @@
-
+/* 
+    Page du formulaire d'inscription
+*/
 .register_section{
     display: flex;
     flex-direction: column;

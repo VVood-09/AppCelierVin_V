@@ -1,3 +1,6 @@
+/* 
+    Règles pour la majorité des comportements d'un bouton
+*/
 .btn{
     background-color: var(--accent);
     color: white;

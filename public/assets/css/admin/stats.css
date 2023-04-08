@@ -1,4 +1,7 @@
-  
+/* 
+    Pour la page de statistique
+    Avec les 4 onglets et l'animation entre chaque onglet
+*/
 .stats[x-cloak] { 
     display: none !important;
 }

@@ -1,3 +1,7 @@
+/* 
+    Comportement de la liste de bouteille dans un cellier
+    Comportement d'une carte de bouteille dans un cellier
+*/
 .liste-btl_head{
     display: flex;
     align-items: flex-end;

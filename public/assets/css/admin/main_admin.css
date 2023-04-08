@@ -1,4 +1,10 @@
-.main_admin {
+/* 
+    Tout ce qui concerne la balise main sur l'administration
+    Concerne la gestion de tableau pour les statistiques et les utilisateurs
+    Pour les boutons de modification et de suppression d'utilisateur
+ */
+
+ .main_admin {
     margin: var(--espacements-large)  ;
     padding-bottom: var(--espacements-large);
 }

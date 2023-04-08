@@ -1,3 +1,7 @@
+/* 
+    Dans bouteilles/show
+    Le comportement des cartes de commentaires
+*/
 .carte_commentaire{
     display: flex;
     flex-direction: column;
