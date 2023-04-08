@@ -5,7 +5,8 @@
 
 <section class="formCellier">
   <h1>Créer un nouveau cellier</h1>
-  
+
+  <!-- Fonction de validation des champs du formulaire -->  
   <form x-data="{
     formValues: {},
     errors: {},
@@ -35,12 +36,9 @@
     @csrf
       <div class="formCellier_input">
       <span x-text="errors.nom" class="textError"></span>
-        <input placeholder="Nom du Cellier" type="text" id="nom" name="nom" class="form-control" 
-        value="{{old('nom')}}" maxlength="8"
-        x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')"
-        aria-label="Cellier"
-        >
+        <input placeholder="Nom du Cellier" type="text" id="nom" name="nom" class="form-control" value="{{old('nom')}}" maxlength="8"x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" aria-label="Cellier">
       </div>
+      
       <div class="formCellier_btn">
           <input type="submit" name="" id="" value="Créer" class="btn ">
           <a href="{{ route ('dashboard')}}" class="btn-reverse ">Annuler</a>

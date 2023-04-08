@@ -18,8 +18,11 @@
             </a>
         @endforeach
         </div>
+
         <a href="{{ route('cellier.create') }}" class="btn">Ajouter un cellier</a>
     </section>
+
+<!-- Appel au composant de notification de retour d'action-->
 
     <div>
         <x-notification ></x-notification>

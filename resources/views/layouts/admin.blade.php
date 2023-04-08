@@ -41,6 +41,5 @@
             <main class="main_admin">
                @yield("content")
             </main>      
-
     </body>
 </html>

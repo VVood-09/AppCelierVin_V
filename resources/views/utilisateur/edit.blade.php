@@ -7,6 +7,7 @@
 <div class="formBtl">
   <h1>Modification de votre compte</h1>
 
+<!-- Fonction de validation des champs du formulaire -->
   <form x-data="{
     formValues: {
       nom: `{{$utilisateur->name}}`,
@@ -42,11 +43,11 @@
     @method('put')
      
     <span x-text="errors.nom" class="textError"></span>
-    <input name="nom" type="text" placeholder="Nom" value="{{$utilisateur->name}}"
-          x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" id="nom" aria-label="nom">
+    <input name="nom" type="text" placeholder="Nom" value="{{$utilisateur->name}}" x-model="formValues.nom" x-ref="nom" @blur="validateField('nom')" id="nom" aria-label="nom">
+    
     <span x-text="errors.email" class="textError"></span>
-    <input name="email" type="email" placeholder="Courriel" value="{{$utilisateur->email}}"
-        x-model="formValues.email" x-ref="email" @blur="validateField('email')" id="email" aria-label="email">
+    <input name="email" type="email" placeholder="Courriel" value="{{$utilisateur->email}}" x-model="formValues.email" x-ref="email" @blur="validateField('email')" id="email" aria-label="email">
+    
     <input class="btn"  type="submit" value="Modifier" aria-label="modifier">
        
   </form>
@@ -57,6 +58,7 @@
   ?>
 </div>
 
+<!-- Appel au modal de suppression + création des valeurs nécessaires au modal-->
 <div>
   <x-modal_suppresion route="{{ $route }}" trigger-text="Supprimer le compte">
     Êtes-vous certain de vouloir {{  $action }} ?

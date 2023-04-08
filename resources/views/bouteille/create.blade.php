@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title', 'Ajouter Bouteille')
 @section('content')
+
+<!-- Fonction de validation des champs du formulaire -->
 <script>
 window.addEventListener('DOMContentLoaded', () => {
   const qteInput = document.querySelector('input[name="qte"]');
@@ -35,11 +37,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
 <section class="formBtl_section suggestion_section">
 
-    <div x-data="{ ismodalopen: false }" class="formBtl_section-recherche">
-        <h1>Rechercher un Vin</h1>
-        <div class="formBtl_search">
-            <x-autocomplete-search />
-                       
+<!-- Fonction de recherche auto-complete -->
+<div x-data="{ ismodalopen: false }" class="formBtl_section-recherche">
+    <h1>Rechercher un Vin</h1>
+    <div class="formBtl_search">
+        <x-autocomplete-search />
+        
+        <!-- Modal pour info SAQ -->
             <div x-show="ismodalopen" class="modal-SAQ" x-transition  x-init="$watch('ismodalopen', value => { if (value) { document.body.classList.add('pas-defilement'); } else { document.body.classList.remove('pas-defilement'); } })">
                 <h1>Ajouter à un cellier?</h1>
                 <div>
@@ -93,6 +97,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     <h1>Ajouter une Bouteille</h1>
 
+<!-- Fonction de validation des champs du formulaire pour bouteille maison -->
     <form x-data="{
     ismodalopen: true,
     formValues: {cellier: `{{$cellier_actif}}`},
@@ -178,7 +183,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 </section>
 
+<!-- Appel au modal de qte si bouteille se trouve déjà dans le cellier-->
 <div>
     <x-modalQte></x-modalQte>
 </div>
+
 @endsection
