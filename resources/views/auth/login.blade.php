@@ -6,9 +6,10 @@
     <div>
         <!-- Session Status -->
         <x-auth-session-status class="" :status="session('status')" />
-
+<!--Erreurs back-end-->
         <x-auth-validation-errors :errors="$errors" />
 
+<!-- Fonction de validation des champs du formulaire -->        
         <form x-data="{
                 formValues: {},
                 errors: {},
@@ -23,7 +24,6 @@
                         this.errors.warning = 'Champs manquant(s)';
                         return;
                     }
-
                 },
                 validateField(field) {
                     const fieldErrors = {};
@@ -57,12 +57,8 @@
             @csrf
 
             <div>
-
-                <x-input x-ref="email" @blur="validateField('email')" placeholder='Courriel' 
-                id="email"  type="email" 
-                name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus aria-label="Email"/>
+                <x-input x-ref="email" @blur="validateField('email')" placeholder='Courriel' id="email"  type="email" name="email" value="{{old('email')}}" x-model="formValues.email" requif autofocus aria-label="Email"/>
                 <span x-text="errors.email" class="textError"></span>
-
             </div>
 
             <div class="">
@@ -71,7 +67,6 @@
 
             </div>
 
-
             <div class="login_souvenir">
                 <label for="remember_me">
                     <span class="">{{ __('Se souvenir de  moi') }}</span>
@@ -79,19 +74,15 @@
                 </label>
             </div>
 
-            
-
             <div >
             <div x-text="errors.warning" class="textError"></div>
-
                 <x-button class="btn">
                     {{ __('Connexion') }}
                 </x-button>
-
             </div>
 
-
         </form>
+
         <div class="lien">
             <a href="{{ route('register') }}">
                 {{ __('Vous n\'avez pas un compte?') }}
@@ -100,9 +91,11 @@
         </div>
     </div>
 
+<!-- Appel au composant de notification de retour d'action-->
     <div>
         <x-notification></x-notification>
     </div>
+
 </section>
 
 
