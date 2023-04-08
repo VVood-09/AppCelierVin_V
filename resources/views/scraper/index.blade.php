@@ -5,16 +5,16 @@
 <div class="scraper">
     <section>
         <h1>Récupération des vins de la SAQ.</h1>
-        <p>Celà peu prendre plusieurs minutes, veuillez ne pas fermer la page.</p>
+        <p>Cette action peut prendre plusieurs minutes, veuillez garder cette page ouverte.</p>
     </section>
     <article x-data="{actif: true, demarrer(){this.actif=false; scraper();}}">
 
-        <!-- Le bouton démarage, s'en va lorsqu'appuyé -->
+        <!-- Le bouton démarrage, s'en va lorsqu'appuyé -->
         <template x-if="actif">
             <button class="btn" @click="demarrer()"">Démarrer</button>
         </template>
 
-        <!-- Démarage Scraper -->
+        <!-- Démarrage Scraper -->
         <template x-if="!actif">
             <div class="scraper_info">
                 <p>

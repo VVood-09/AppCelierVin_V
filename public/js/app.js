@@ -205,9 +205,9 @@ async function scraper() {
 
     for ( i; i <= qtePage['pages']; i++) { // Pour trouvé tous les vins sur une page
       let saqVinsReponse, pageVins, pourcentageProgres;
-      let whileTentative = 1; // Valeur de départ pour l'itération pour les érreurs
+      let whileTentative = 1; // Valeur de départ pour l'itération pour les erreurs
 
-      while (whileTentative <= maxTentative) { // Itération pour les érreures
+      while (whileTentative <= maxTentative) { // Itération pour les erreurs
         try { // Récupère le data du Scraper sur les vins trouvés et insérer dans la DB
           saqVinsReponse = await fetch(url, { method: 'PUT', body: JSON.stringify(i), headers: entete });
           pageVins = await saqVinsReponse.json();
@@ -226,14 +226,14 @@ async function scraper() {
 
       if (whileTentative > maxTentative) { // Dans le cas où toutes les tentatives ont échoué
         document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
-        `<p>Toutes les tentatives de la page ${i} ont échoué. Veuillez réassayer plus tard.</p>`);
+        `<p>Toutes les tentatives de la page ${i} ont échouées. Veuillez essayer de nouveau plus tard.</p>`);
         if(rafraichissement == false){ // Récupère la page où l'échec c'est produit
           rafraichissement = true; // Pour ne pas supplanté l'information
           localStorage['rafraichi'] = i;
         }
         if(!document.querySelector('#rafraichi')){ // Pour ne pas mettre en double le bouton de rafraîchissement
           document.querySelector('article').insertAdjacentHTML('beforeend', 
-          `<a id="rafraichi" href="" class="btn">Rafraichir la page</a>
+          `<a id="rafraichi" href="" class="btn">Rafraîchir la page</a>
           <p id="rafraichi">Le prochain démarrage continuera à l'endroit de l'échec.</p>`)
         }
         continue; // Passe à la prochaine itération si il y a échec
@@ -260,9 +260,9 @@ async function scraper() {
 
   } catch (erreur) { // Dans le cas où il y a un problème avec la SAQ
     document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
-    `<p>Un échec de connexion vers la SAQ c'est produit, veuillez réassayer plus tard.</p>`);
+    `<p>Un échec de connexion vers la SAQ c'est produit. Veuillez essayer de nouveau plus tard.</p>`);
     document.querySelector('article').insertAdjacentHTML('beforeend', 
-    `<a id="rafraichi" href="" class="btn">Rafraichir la page</a>
+    `<a id="rafraichi" href="" class="btn">Rafraîchir la page</a>
     <p id="rafraichi">Le prochain démarrage continuera à l'endroit de l'échec.</p>`)
     localStorage['rafraichi'] = i;
     console.error(erreur, i);
