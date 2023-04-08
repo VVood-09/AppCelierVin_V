@@ -31,11 +31,9 @@
                         }
         }
 
-
         this.errors = {...this.errors, ...fieldErrors};
         return isValid;
     }
-
   }"
   
   class="formBtl_form"   method="post" action="">
