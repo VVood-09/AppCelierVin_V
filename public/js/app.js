@@ -200,7 +200,7 @@ async function scraper() {
     const qtePage = await reponse.json();
     document.querySelector('#total').innerHTML = qtePage['pages']; // Insérer la quantité de page
     document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
-    `<p>Un total de ${qtePage['qte_Vins']} bouteilles ont été trouvé sur ${qtePage['pages']} pages de 96 bouteilles.</p>`);
+    `<p>Un total de ${qtePage['qte_Vins']} bouteilles ont été trouvées.</p>`);
     // Message dans le log
 
     for ( i; i <= qtePage['pages']; i++) { // Pour trouvé tous les vins sur une page
@@ -218,7 +218,7 @@ async function scraper() {
 
         } catch (erreur) { // Récupération d'érreurs avec message
           document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
-          `<p>La tentative ${whileTentative} pour la page ${i} a échoué: ${erreur}</p>`);
+          `<p>La tentative ${whileTentative} pour la page ${i} a échoué.</p>`);
           console.error(erreur);
           whileTentative++;
         }
@@ -241,21 +241,21 @@ async function scraper() {
   
       // Récupère du data et log l'information
       document.querySelector('#page').innerHTML = pageVins['page']; // Montre la progression
-      let messageP2 = `Aucune bouteille n'as été ajouté.`;
+      let messageP2 = `Aucune bouteille n'as été ajoutée.`;
       if(pageVins['liste'] != 0){
         // condition ? exprIfTrue : exprIfFalse
-        let conjugaison = pageVins['liste'] > 1 ? 'ont' : 'a';
-        messageP2 = `${pageVins['liste']} ${conjugaison} été ajouté dans la base de données.</p>`;
+        let conjugaison = pageVins['liste'] > 1 ? 'bouteilles ont été ajoutées' : ' bouteille a été ajoutée';
+        messageP2 = `${pageVins['liste']} ${conjugaison} dans la base de données.</p>`;
       }
       document.querySelector('.scraper_log').insertAdjacentHTML('beforeend', 
-      `<p>${pageVins['data']} bouteilles ont été trouvé sur la page ${pageVins['page']}. ${messageP2}`);
+      `<p>${messageP2}`);
 
       if(localStorage['rafraichi'] == i){ // Si il n'y a pas d'échec après le relancement
         localStorage['rafraichi'] = 1;
       }
     }
     if(i = qtePage['pages']){ // À la dernière page Scraper
-      document.querySelector('.scraper_info > p').innerHTML = `Complété!`;
+      document.querySelector('.scraper_info > p').innerHTML = `L'ajout est complété!`;
     }
 
   } catch (erreur) { // Dans le cas où il y a un problème avec la SAQ
