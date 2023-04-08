@@ -1,4 +1,6 @@
-
+<!-- Les "snackbars" -->
+<!-- Retour d'action sur le site -->
+<!-- Connexion, ajout/modification/suppresion de bouteilles/celliers/commentaires -->
 
 <div id="notification" x-data="{ showNotification: false, message: '' }" x-init="() => {
         message = `{{ session('success') }}`; 

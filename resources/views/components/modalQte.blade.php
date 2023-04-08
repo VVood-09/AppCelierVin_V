@@ -1,3 +1,4 @@
+<!-- Modal pour l'ajout de doublon dans un cellier, propose d'augmenter la quantité -->
 @if (session('show_modal'))
 
   <div class="modal_btn-add " x-data="{ismodalopen: true}" >

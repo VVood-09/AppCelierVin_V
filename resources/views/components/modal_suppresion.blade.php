@@ -1,3 +1,4 @@
+<!-- Pour toutes les actions de suppression, ouverture du modal avec message en paramêtre -->
 <div class="modal_btn-delete" x-data="{ ismodalopen: false }">
   <button @click="ismodalopen = true" class="btn-reverse">{{ $triggerText }}</button>
   <div class="" x-show="ismodalopen" x-init="$watch('ismodalopen', value => { if (value) { document.body.classList.add('pas-defilement'); } else { document.body.classList.remove('pas-defilement'); } })">

@@ -1,5 +1,6 @@
 <!-- Donner du crédit à celui qui a créé -->
 <!-- https://codepen.io/rehhouari/pen/NWdrXjz -->
+<!-- Composante pour l'ajout et modification de note sur bouteille -->
 <form action="#" onsubmit="return false">
   <div x-data="
     {

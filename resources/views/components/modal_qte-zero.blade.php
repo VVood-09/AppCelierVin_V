@@ -1,6 +1,9 @@
+<!-- Composante de suppression de bouteille lorsque la quantité est 0 -->
 <div class="modal_btn-delete" x-data="{ modalouvert: false }">
   <button aria-label="suppresion" @click="modalouvert = true" class="corbeille modal_display-none">{{ $triggerText }}</button>
   <div class="" x-show="modalouvert" x-init="$watch('modalouvert', value => { if (value) { document.body.classList.add('pas-defilement'); } else { document.body.classList.remove('pas-defilement'); } })">
+
+    <!-- Quand le modal est ouvert -->
     <div class="modal">
     
       <div class="modal_text">
